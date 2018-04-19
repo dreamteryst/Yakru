@@ -14,11 +14,11 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="header-logo">
-                            <a href="index.html">
+                            <router-link to="/">
                                 <span class="brand"></span>
                                 <span>Color</span>Admin
                                 <small>e-commerce frontend theme</small>
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                     <!-- END navbar-header -->
@@ -41,7 +41,7 @@
                                             <div class="dropdown-menu-sidebar">
                                                 <h4 class="title">Shop By Categories</h4>
                                                 <ul class="dropdown-menu-list">
-                                                    <li><a href="product.html">Mobile Phone <i class="fa fa-angle-right pull-right"></i></a></li>
+                                                    <li><router-link to="product-detail">Mobile Phone <i class="fa fa-angle-right pull-right"></i></router-link></li>
                                                     <li><a href="product.html">Tablet <i class="fa fa-angle-right pull-right"></i></a></li>
                                                     <li><a href="product.html">Laptop <i class="fa fa-angle-right pull-right"></i></a></li>
                                                     <li><a href="product.html">Desktop <i class="fa fa-angle-right pull-right"></i></a></li>
@@ -231,10 +231,10 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="my_account.html">
+                                <router-link to="profile">
                                     <img src="/assets/img/user/user-1.jpg" class="user-img" alt="" /> 
                                     <span class="hidden-md hidden-sm hidden-xs">Login / Register</span>
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </div>

@@ -19,6 +19,19 @@ Route::prefix('admin')->group(function () {
     })->where('any', '.*');
 });
 
+Route::prefix('auth')->group(function () {
+    Route::get('/', function () {
+        return view('auth');
+    });
+    Route::get('/{any}', function () {
+        return view('auth');
+    })->where('any', '.*');
+});
+
+Route::get('errors', function () {
+    return view('admin');
+});
+
 Route::get('/{any}', function () {
     return view('main');
 })->where('any', '.*');

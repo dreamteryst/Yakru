@@ -1,10 +1,12 @@
 <template>
-    <section>
+    <div>
         <Navbar/>
         <Header/>
-        <router-view></router-view>
+        <transition name="fade">
+            <router-view></router-view>
+        </transition>
         <Footer/>
-    </section>
+    </div>
 </template>
 
 <style>
@@ -17,9 +19,9 @@
 </style>
 
 <script>
-import Navbar from './components/layouts/Navbar.vue'
-import Header from './components/layouts/Header.vue'
-import Footer from './components/layouts/Footer.vue'
+import Navbar from '../components/layouts/Navbar.vue'
+import Header from '../components/layouts/Header.vue'
+import Footer from '../components/layouts/Footer.vue'
 export default{
     components: {
         Navbar,

@@ -58,7 +58,9 @@
     <!-- end #page-loader -->
     
     <!-- begin #page-container -->
-	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">admin</div>
+	<div id="page-container" class="fade page-sidebar-fixed page-header-fixed">
+		<div id="app"></div>
+	</div>
     <!-- end page container -->
     	
 	<!-- ================== BEGIN BASE JS ================== -->

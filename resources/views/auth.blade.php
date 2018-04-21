@@ -54,7 +54,9 @@
 	    <div class="login-cover-bg"></div>
 	</div>
 	<!-- begin #page-container -->
-	<div id="page-container" class="fade"></div>
+	<div id="page-container" class="fade">
+		<div id="app"></div>
+	</div>
 	<!-- end page container -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->

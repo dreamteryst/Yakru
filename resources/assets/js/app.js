@@ -23,4 +23,4 @@ window.Vue = require('vue');
 new Vue(
     Vue.util.extend({ router }, App),
     store
-).$mount('#page-container');
+).$mount('#app');

@@ -31,281 +31,39 @@
 				<!-- begin sidebar nav -->
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
-					<li class="has-sub active">
-						<a href="javascript:;">
-					        <b class="caret"></b>
-						    <i class="fa fa-th-large"></i>
-						    <span>Dashboard</span>
-					    </a>
-						<ul class="sub-menu">
-						    <li><a href="index.html">Dashboard v1</a></li>
-						    <li class="active"><a href="index_v2.html">Dashboard v2</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-							<span class="badge pull-right">10</span>
-							<i class="fa fa-hdd"></i> 
-							<span>Email</span>
-						</a>
-						<ul class="sub-menu">
-						    <li><a href="email_inbox.html">Inbox</a></li>
-						    <li><a href="email_compose.html">Compose</a></li>
-						    <li><a href="email_detail.html">Detail</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-					        <b class="caret"></b>
-						    <i class="fa fa-gem"></i>
-						    <span>UI Elements <span class="label label-theme m-l-5">NEW</span></span> 
-						</a>
-						<ul class="sub-menu">
-							<li><a href="ui_general.html">General</a></li>
-							<li><a href="ui_typography.html">Typography</a></li>
-							<li><a href="ui_tabs_accordions.html">Tabs & Accordions</a></li>
-							<li><a href="ui_unlimited_tabs.html">Unlimited Nav Tabs</a></li>
-							<li><a href="ui_modal_notification.html">Modal & Notification <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
-							<li><a href="ui_widget_boxes.html">Widget Boxes</a></li>
-							<li><a href="ui_media_object.html">Media Object</a></li>
-							<li><a href="ui_buttons.html">Buttons</a></li>
-							<li><a href="ui_icons.html">Icons</a></li>
-							<li><a href="ui_simple_line_icons.html">Simple Line Icons</a></li>
-							<li><a href="ui_ionicons.html">Ionicons</a></li>
-							<li><a href="ui_tree.html">Tree View</a></li>
-							<li><a href="ui_language_bar_icon.html">Language Bar & Icon</a></li>
-							<li><a href="ui_social_buttons.html">Social Buttons</a></li>
-							<li><a href="ui_tour.html">Intro JS</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="bootstrap_4.html">
-							<div class="icon-img">
-						    	<img src="/assets_admin/img/logo/logo-bs4.png" alt="" />
+					<li v-for="(menu, i) in menus" :key="i" :class="{'has-sub':menu.submenu !== undefined, 'active':checkActive(menu.url, 1)}">
+						<router-link :to="menu.url">
+					        <b class="caret" v-if="menu.caret"></b>
+							<span class="badge pull-right" v-if="menu.badge !== undefined">{{ menu.badge }}</span>
+							<div class="icon-img" v-if="menu.img !== undefined">
+						    	<img :src="menu.img" alt="" />
 						    </div>
-						    <span>Bootstrap 4 <span class="label label-theme m-l-5">NEW</span></span> 
-						</a>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-					        <b class="caret"></b>
-						    <i class="fa fa-list-ol"></i>
-						    <span>Form Stuff <span class="label label-theme m-l-5">NEW</span></span> 
-						</a>
-						<ul class="sub-menu">
-							<li><a href="form_elements.html">Form Elements <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
-							<li><a href="form_plugins.html">Form Plugins <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
-							<li><a href="form_slider_switcher.html">Form Slider + Switcher</a></li>
-							<li><a href="form_validation.html">Form Validation</a></li>
-							<li><a href="form_wizards.html">Wizards</a></li>
-							<li><a href="form_wizards_validation.html">Wizards + Validation</a></li>
-							<li><a href="form_wysiwyg.html">WYSIWYG</a></li>
-							<li><a href="form_editable.html">X-Editable</a></li>
-							<li><a href="form_multiple_upload.html">Multiple File Upload</a></li>
-							<li><a href="form_summernote.html">Summernote</a></li>
-							<li><a href="form_dropzone.html">Dropzone</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-					        <b class="caret"></b>
-						    <i class="fa fa-table"></i>
-						    <span>Tables</span>
-						</a>
-						<ul class="sub-menu">
-							<li><a href="table_basic.html">Basic Tables</a></li>
-							<li class="has-sub">
-							    <a href="javascript:;"><b class="caret pull-right"></b> Managed Tables</a>
-							    <ul class="sub-menu">
-							        <li><a href="table_manage.html">Default</a></li>
-							        <li><a href="table_manage_autofill.html">Autofill</a></li>
-							        <li><a href="table_manage_buttons.html">Buttons</a></li>
-							        <li><a href="table_manage_colreorder.html">ColReorder</a></li>
-							        <li><a href="table_manage_fixed_columns.html">Fixed Column</a></li>
-							        <li><a href="table_manage_fixed_header.html">Fixed Header</a></li>
-							        <li><a href="table_manage_keytable.html">KeyTable</a></li>
-							        <li><a href="table_manage_responsive.html">Responsive</a></li>
-							        <li><a href="table_manage_rowreorder.html">RowReorder</a></li>
-							        <li><a href="table_manage_scroller.html">Scroller</a></li>
-							        <li><a href="table_manage_select.html">Select</a></li>
-							        <li><a href="table_manage_combine.html">Extension Combination</a></li>
-							    </ul>
-							</li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-					        <b class="caret"></b>
-							<i class="fa fa-star"></i> 
-							<span>Front End</span>
-						</a>
-						<ul class="sub-menu">
-						    <li><a href="../../../frontend/template/template_one_page_parallax/index.html" target="_blank">One Page Parallax</a></li>
-						    <li><a href="../../../frontend/template/template_blog/index.html" target="_blank">Blog</a></li>
-						    <li><a href="../../../frontend/template/template_forum/index.html" target="_blank">Forum</a></li>
-						    <li><a href="../../../frontend/template/template_e_commerce/index.html" target="_blank">E-Commerce</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-					    <a href="javascript:;">
-					        <b class="caret"></b>
-					        <i class="fa fa-envelope"></i>
-					        <span>Email Template</span>
-					    </a>
-						<ul class="sub-menu">
-							<li><a href="email_system.html">System Template</a></li>
-							<li><a href="email_newsletter.html">Newsletter Template</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-					    <a href="javascript:;">
-					        <b class="caret"></b>
-					        <i class="fa fa-chart-pie"></i>
-						    <span>Chart</span>
-						</a>
-						<ul class="sub-menu">
-						    <li><a href="chart-flot.html">Flot Chart</a></li>
-						    <li><a href="chart-morris.html">Morris Chart</a></li>
-							<li><a href="chart-js.html">Chart JS</a></li>
-						    <li><a href="chart-d3.html">d3 Chart</a></li>
-						</ul>
-					</li>
-					<li><a href="calendar.html"><i class="fa fa-calendar"></i> <span>Calendar</span></a></li>
-					<li class="has-sub">
-					    <a href="javascript:;">
-					        <b class="caret"></b>
-					        <i class="fa fa-map"></i>
-					        <span>Map</span>
-					    </a>
-						<ul class="sub-menu">
-							<li><a href="map_vector.html">Vector Map</a></li>
-							<li><a href="map_google.html">Google Map</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-					    <a href="javascript:;">
-					        <b class="caret"></b>
-						    <i class="fa fa-image"></i>
-						    <span>Gallery</span>
-						</a>
-					    <ul class="sub-menu">
-					        <li><a href="gallery.html">Gallery v1</a></li>
-					        <li><a href="gallery_v2.html">Gallery v2</a></li>
-					    </ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-					        <b class="caret"></b>
-						    <i class="fa fa-cogs"></i>
-						    <span>Page Options</span>
-						</a>
-						<ul class="sub-menu">
-							<li><a href="page_blank.html">Blank Page</a></li>
-							<li><a href="page_with_footer.html">Page with Footer</a></li>
-							<li><a href="page_without_sidebar.html">Page without Sidebar</a></li>
-							<li><a href="page_with_right_sidebar.html">Page with Right Sidebar</a></li>
-							<li><a href="page_with_minified_sidebar.html">Page with Minified Sidebar</a></li>
-							<li><a href="page_with_two_sidebar.html">Page with Two Sidebar</a></li>
-							<li><a href="page_with_line_icons.html">Page with Line Icons</a></li>
-							<li><a href="page_with_ionicons.html">Page with Ionicons</a></li>
-							<li><a href="page_full_height.html">Full Height Content</a></li>
-							<li><a href="page_with_wide_sidebar.html">Page with Wide Sidebar</a></li>
-							<li><a href="page_with_light_sidebar.html">Page with Light Sidebar</a></li>
-							<li><a href="page_with_mega_menu.html">Page with Mega Menu</a></li>
-                            <li><a href="page_with_top_menu.html">Page with Top Menu</a></li>
-                            <li><a href="page_with_boxed_layout.html">Page with Boxed Layout</a></li>
-                            <li><a href="page_with_mixed_menu.html">Page with Mixed Menu</a></li>
-                            <li><a href="page_boxed_layout_with_mixed_menu.html">Boxed Layout with Mixed Menu</a></li>
-                            <li><a href="page_with_transparent_sidebar.html">Page with Transparent Sidebar</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-					        <b class="caret"></b>
-						    <i class="fa fa-gift"></i>
-						    <span>Extra</span>
-						</a>
-						<ul class="sub-menu">
-						    <li><a href="extra_timeline.html">Timeline</a></li>
-						    <li><a href="extra_coming_soon.html">Coming Soon Page</a></li>
-							<li><a href="extra_search_results.html">Search Results</a></li>
-							<li><a href="extra_invoice.html">Invoice</a></li>
-							<li><a href="extra_404_error.html">404 Error Page</a></li>
-							<li><a href="extra_profile.html">Profile Page</a></li>
-						</ul>
-					</li>
-					<li class="has-sub">
-					    <a href="javascript:;">
-					        <b class="caret"></b>
-					        <i class="fa fa-key"></i>
-					        <span>Login & Register</span>
-					    </a>
-					    <ul class="sub-menu">
-							<li><a href="login.html">Login</a></li>
-					        <li><a href="login_v2.html">Login v2</a></li>
-					        <li><a href="login_v3.html">Login v3</a></li>
-					        <li><a href="register_v3.html">Register v3</a></li>
-					    </ul>
-					</li>
-					<li class="has-sub">
-					    <a href="javascript:;">
-					        <b class="caret"></b>
-					        <i class="fa fa-cubes"></i>
-					        <span>Version <span class="label label-theme m-l-5">NEW</span></span>
-					    </a>
-					    <ul class="sub-menu">
-							<li><a href="javascript:;">HTML</a></li>
-					        <li><a href="../template_ajax/index.html">AJAX</a></li>
-					        <li><a href="../template_angularjs/index.html">ANGULAR JS</a></li>
-					        <li><a href="../template_angularjs5/index.html">ANGULAR JS 5 <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
-					        <li><a href="../template_laravel/index.html">LARAVEL <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
-					        <li><a href="../template_material/index.html">MATERIAL DESIGN</a></li>
-					        <li><a href="../template_apple/index.html">APPLE DESIGN</a></li>
-					        <li><a href="../template_transparent/index.html">TRANSPARENT DESIGN <i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
-					    </ul>
-					</li>
-					<li class="has-sub">
-					    <a href="javascript:;">
-					        <b class="caret"></b>
-					        <i class="fa fa-medkit"></i>
-					        <span>Helper</span>
-					    </a>
-					    <ul class="sub-menu">
-							<li><a href="helper_css.html">Predefined CSS Classes</a></li>
-					    </ul>
-					</li>
-					<li class="has-sub">
-						<a href="javascript:;">
-					        <b class="caret"></b>
-						    <i class="fa fa-align-left"></i> 
-						    <span>Menu Level</span>
-						</a>
-						<ul class="sub-menu">
-							<li class="has-sub">
-								<a href="javascript:;">
-					        		<b class="caret"></b>
-						            Menu 1.1
-						        </a>
-								<ul class="sub-menu">
-									<li class="has-sub">
-										<a href="javascript:;">
-										    <b class="caret"></b>
-										    Menu 2.1
-										</a>
-										<ul class="sub-menu">
-											<li><a href="javascript:;">Menu 3.1</a></li>
-											<li><a href="javascript:;">Menu 3.2</a></li>
+						    <i v-if="menu.icon !== undefined" :class="menu.icon"></i>
+						    <span>{{ menu.title }} <span class="label label-theme m-l-5" v-if="menu.label">{{ menu.label }}</span></span>
+						</router-link>
+						<ul class="sub-menu" v-if="menu.submenu !== undefined">
+						    <li v-for="(sublv1, i) in menu.submenu" :key="i" :class="{'has-sub':sublv1.submenu !== undefined, 'active':checkActive(sublv1.url, 2)}">
+								<router-link :to="sublv1.url">
+									<b class="caret" v-if="sublv1.caret"></b>
+									{{ sublv1.title }}
+								</router-link>
+								<ul class="sub-menu" v-if="sublv1.submenu !== undefined">
+									<li v-for="(sublv2, i) in sublv1.submenu" :key="i" :class="{'has-sub':sublv2.submenu !== undefined, 'active':checkActive(sublv2.url, 3)}">
+										<router-link :to="sublv2.url">
+										    <b class="caret" v-if="sublv2.caret"></b>
+										    {{ sublv2.title }}
+										</router-link>
+										<ul class="sub-menu" v-if="sublv2.submenu !== undefined">
+											<li v-for="(sublv3, i) in sublv2.submenu" :key="i" :class="{'active':checkActive(sublv3.url, 4)}">
+												<a :to="sublv3.url">{{ sublv3.title }}</a>
+											</li>
 										</ul>
 									</li>
-									<li><a href="javascript:;">Menu 2.2</a></li>
-									<li><a href="javascript:;">Menu 2.3</a></li>
 								</ul>
 							</li>
-							<li><a href="javascript:;">Menu 1.2</a></li>
-							<li><a href="javascript:;">Menu 1.3</a></li>
 						</ul>
 					</li>
-			        <!-- begin sidebar minify button -->
+					<!-- begin sidebar minify button -->
 					<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
 			        <!-- end sidebar minify button -->
 				</ul>
@@ -320,7 +78,325 @@
 
 <script>
 export default {
+	data() {
+		return {
+			menus : [{
+				'icon': 'fa fa-th-large',
+				'title': 'Dashboard',
+				'url': 'admin',
+				'caret': true,
+				'submenu': [{
+					'url': 'dashboard/v1',
+					'title': 'Dashboard v1'
+				},{
+					'url': 'dashboard/v2',
+					'title': 'Dashboard v2'
+				}]
+			},{
+				'icon': 'fa fa-hdd',
+				'title': 'Email',
+				'url': '',
+				'badge': '10',
+				'submenu': [{
+					'url': 'email/inbox',
+					'title': 'Inbox'
+				},{
+					'url': 'email/compose',
+					'title': 'Compose'
+				},{
+					'url': 'email/detail',
+					'title': 'Detail'
+				}]
+			},{
+				'icon': 'fa fa-gem',
+				'title': 'UI Elements',
+				'url': '',
+				'label': 'NEW',
+				'caret': true,
+				'submenu': [{
+					'url': 'ui/general',
+					'title': 'General'
+				},{
+					'url': 'ui/typography',
+					'title': 'Typography'
+				},{
+					'url': 'ui/tabs-accordions',
+					'title': 'Tabs & Accordions'
+				},{
+					'url': 'ui/modal-notification',
+					'title': 'Modal & Notification',
+					'highlight': true
+				},{
+					'url': 'ui/widget-boxes',
+					'title': 'Widget Boxes'
+				},{
+					'url': 'ui/media-object',
+					'title': 'Media Object'
+				},{
+					'url': 'ui/buttons',
+					'title': 'Buttons'
+				},{
+					'url': 'ui/icons',
+					'title': 'Icons'
+				},{
+					'url': 'ui/simple-line-icons',
+					'title': 'Simple Line Ioncs'
+				},{
+					'url': 'ui/ionicons',
+					'title': 'Ionicons'
+				},{
+					'url': 'ui/language-icon',
+					'title': 'Language Icon'
+				},{
+					'url': 'ui/social-buttons',
+					'title': 'Social Buttons'
+				}]
+			},{
+				'img': '/assets_admin/img/logo/logo-bs4.png',
+				'title': 'Bootstrap 4',
+				'url': 'bootstrap-4',
+				'label': 'NEW'
+			},{
+				'icon': 'fa fa-list-ol',
+				'title': 'Form Stuff',
+				'url': 'form-stuff'
+			},{
+				'icon': 'fa fa-table',
+				'title': 'Tables',
+				'url': 'tables'
+			},{
+				'icon': 'fa fa-star',
+				'title': 'Frontend',
+				'url': '',
+				'caret': true,
+				'submenu': [{
+					'url': '',
+					'title': 'One Page Parallax'
+				},{
+					'url': '',
+					'title': 'Blog'
+				},{
+					'url': '',
+					'title': 'Forum'
+				},{
+					'url': '',
+					'title': 'E-Commerce'
+				}]
+			},{
+				'icon': 'fa fa-chart-pie',
+				'title': 'Chart',
+				'url': '',
+				'caret': true,
+				'submenu': [{
+					'url': 'chart/ngx',
+					'title': 'Ngx Chart'
+				},{
+					'url': 'chart/d3',
+					'title': 'd3 Chart'
+				}]
+			},{
+				'icon': 'fa fa-calendar',
+				'title': 'Calendar',
+				'url': 'calendar'
+			},{
+				'icon': 'fa fa-map',
+				'title': 'Map',
+				'url': '/map'
+			},{
+				'icon': 'fa fa-image',
+				'title': 'Gallery',
+				'url': '',
+				'caret': true,
+				'submenu': [{
+					'url': 'gallery/v1',
+					'title': 'Gallery v1'
+				},{
+					'url': 'gallery/v2',
+					'title': 'Gallery v2'
+				}]
+			},{
+				'icon': 'fa fa-cogs',
+				'title': 'Page Options',
+				'url': '',
+				'caret': true,
+				'submenu': [{
+					'url': 'page-option/page-blank',
+					'title': 'Blank Page'
+				},{
+					'url': 'page-option/page-with-footer',
+					'title': 'Page with Footer'
+				},{
+					'url': 'page-option/page-without-sidebar',
+					'title': 'Page without Sidebar'
+				},{
+					'url': 'page-option/page-with-right-sidebar',
+					'title': 'Page with Right Sidebar'
+				},{
+					'url': 'page-option/page-with-minified-sidebar',
+					'title': 'Page with Minified Sidebar'
+				},{
+					'url': 'page-option/page-with-two-sidebar',
+					'title': 'Page with Two Sidebar'
+				},{
+					'url': 'page-option/page-full-height',
+					'title': 'Full Height Content'
+				},{
+					'url': 'page-option/page-with-wide-sidebar',
+					'title': 'Page with Wide Sidebar'
+				},{
+					'url': 'page-option/page-with-light-sidebar',
+					'title': 'Page with Light Sidebar'
+				},{
+					'url': 'page-option/page-with-top-menu',
+					'title': 'Page with Top Menu'
+				},{
+					'url': 'page-option/page-with-mixed-menu',
+					'title': 'Page with Mixed Menu'
+				},{
+					'url': 'page-option/page-with-transparent-sidebar',
+					'title': 'Page with Transparent Sidebar'
+				}]
+			},{
+				'icon': 'fa fa-gift',
+				'title': 'Extra',
+				'url': '',
+				'caret': true,
+				'submenu': [{
+					'url': 'extra/timeline',
+					'title': 'Timeline'
+				},{
+					'url': 'extra/coming-soon',
+					'title': 'Coming Soon Page'
+				},{
+					'url': 'extra/search-results',
+					'title': 'Search Results'
+				},{
+					'url': 'extra/invoice',
+					'title': 'Invoice'
+				},{
+					'url': 'extra/error-page',
+					'title': '404 Error Page'
+				},{
+					'url': 'extra/profile',
+					'title': 'Profile Page'
+				}]
+			},{
+				'icon': 'fa fa-key',
+				'title': 'Login & Register',
+				'url': '',
+				'caret': true,
+				'submenu': [{
+					'url': 'login/v1',
+					'title': 'Login'
+				},{
+					'url': 'login/v2',
+					'title': 'Login v2'
+				},{
+					'url': 'login/v3',
+					'title': 'Login v3'
+				},{
+					'url': 'register/v3',
+					'title': 'Register v3'
+				}]
+			},{
+				'icon': 'fa fa-cube',
+				'title': 'Version',
+				'url': '',
+				'label': 'NEW',
+				'caret': true,
+				'submenu': [{
+					'url': '',
+					'title': 'HTML'
+				},{
+					'url': '',
+					'title': 'AJAX'
+				},{
+					'url': '',
+					'title': 'ANGULAR JS'
+				},{
+					'url': '',
+					'title': 'ANGULAR JS 5'
+				},{
+					'url': '',
+					'title': 'LARAVEL',
+					'highlight': true
+				},{
+					'url': '',
+					'title': 'MATERIAL DESIGN'
+				},{
+					'url': '',
+					'title': 'APPLE DESIGN'
+				},{
+					'url': '',
+					'title': 'TRANSPARENT DESIGN'
+				}]
+			},{
+				'icon': 'fa fa-medkit',
+				'title': 'Helper',
+				'url': '',
+				'caret': true,
+				'submenu': [{
+					'url': 'helper/css',
+					'title': 'Predefined CSS Classes'
+				}]
+			},{
+				'icon': 'fa fa-align-left',
+				'title': 'Menu Level',
+				'url': '',
+				'caret': true,
+				'submenu': [{
+					'url': '',
+					'title': 'Menu 1.1',
+					'caret': true,
+					'submenu': [{
+						'url': '',
+						'title': 'Menu 2.1',
+						'caret': true,
+						'submenu': [{
+							'url': '',
+							'title': 'Menu 3.1',
+						},{
+							'url': '',
+							'title': 'Menu 3.2'
+						}]
+					},{
+						'url': '',
+						'title': 'Menu 2.2'
+					},{
+						'url': '',
+						'title': 'Menu 2.3'
+					}]
+				},{
+					'url': '',
+					'title': 'Menu 1.2'
+				},{
+					'url': '',
+					'title': 'Menu 1.3'
+				}]
+			}]
 
+		};
+	},
+	methods: {
+		checkActive(url, lv) {
+			const segments = this.$route.path.split('/');
+			const urlSegments = url.split('/');
+			/**
+			 * ถ้า url เป็น admin/dashboard/v1
+			 * จะต้องตัด url ออกเป็น Segment แล้วเอามาเทียบกัน
+			 * โดยจะต้องเหมือนกันทุก Segment
+			 * สาเหตุที่ต้องเริ่มต้น i ด้วย 1 เพราะว่า
+			 * ค่า this.$route.path จะได้ค่ามาเป็น /admin/dashboard/v1
+			 * ถ้า split แล้ว index ที่ 1 ก็จะเป็น admin พอดี
+			 */
+			for(let i=1;i<=lv;i++) {
+				if(urlSegments[i-1].indexOf(segments[i]) == -1) {
+					return false;
+				}
+			}
+			return true;
+		}
+	}
 }
 </script>
 

@@ -4,10 +4,15 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-import App from './route/App.vue';
+require('./bootstrap');
+import $ from 'jquery';
+import App from './route';
 import router from './router';
 import store from './store/';
-require('./bootstrap');
+import BootstrapVue from 'bootstrap-vue'
+import 'datatables.net-bs4'
+import 'datatables.net-responsive-bs4'
+import 'datatables.net-buttons-bs4'
 
 window.Vue = require('vue');
 

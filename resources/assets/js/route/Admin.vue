@@ -2,7 +2,11 @@
     <div>
         <admin-header/>
         <admin-sidebar/>
-        <router-view></router-view>
+        <div id="content" class="content">
+            <transition name="fade">
+                <router-view></router-view>
+            </transition>
+        </div>
         <admin-footer/>
     </div>
 </template>

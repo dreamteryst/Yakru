@@ -16,13 +16,12 @@
                                 <li><a href="#"><img src="/assets/img/flag/flag-chinese.png" class="flag-img" alt="" /> Chinese</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Customer Care</a></li>
-                        <li><a href="#">Order Tracker</a></li>
+                        <li><a href="#">สมัครเป็นผู้สอน</a></li>
+                        <li><a href="#">ติดตามข่าวสาร</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Career</a></li>
-                        <li><a href="#">Our Forum</a></li>
-                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">วิธีใช้งาน</a></li>
+                        <li><a href="#">วิธีการชำระเงิน</a></li>
                         <li><a href="#"><i class="fa fa-facebook f-s-14"></i></a></li>
                         <li><a href="#"><i class="fa fa-twitter f-s-14"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram f-s-14"></i></a></li>

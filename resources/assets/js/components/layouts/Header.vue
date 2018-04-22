@@ -44,8 +44,8 @@
                                         <li><a href="product.html">Gadget</a></li>
                                     </ul>
                                 </li> -->
+                                <li><a href="product.html">คอร์สออนไลน์</a></li>
                                 <li><a href="product.html">แจ้งชำระเงิน</a></li>
-                                <li><a href="product.html">สมัครเป็นผู้สอน</a></li>
                                 <li><a href="product.html">ติดต่อเรา</a></li>
                                 <li class="dropdown dropdown-hover">
                                     <a href="#" data-toggle="dropdown">

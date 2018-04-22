@@ -304,135 +304,35 @@
         <!-- END #trending-items -->
 
         <!-- BEGIN #Web Development -->
-        <div id="Web Development" class="section-container bg-silver">
+        <div id="Web Development" class="section-container bg-silver" v-for="(category, i) in categories" :key="i">
             <!-- BEGIN container -->
             <div class="container">
                 <!-- BEGIN section-title -->
                 <h4 class="section-title clearfix">
                     <a href="#" class="pull-right m-l-5"><i class="fa fa-angle-right f-s-18"></i></a>
                     <a href="#" class="pull-right"><i class="fa fa-angle-left f-s-18"></i></a>
-                    Web Development
-                    <small>Shop and get your favourite items at amazing prices!</small>
+                    {{ category.name }}
+                    <small>{{ category.description }}</small>
                 </h4>
                 <!-- END section-title -->
             
                 <!-- BEGIN row -->
                 <div class="row row-space-10">
                     <!-- BEGIN col-2 -->
-                    <div class="col-md-2 col-sm-4">
+                    <div class="col-md-2 col-sm-4" v-for="(course, j) in category.courses" :key="j">
                         <!-- BEGIN item -->
                         <div class="item item-thumbnail">
                             <router-link to="/product-detail" class="item-image">
-                                <img src="/assets/img/product/product-iphone.png" alt="" />
-                                <div class="discount">15% OFF</div>
+                                <img :src="course.img" alt="" />
+                                <div class="discount">{{ course.percent }}% OFF</div>
                             </router-link>
                             <div class="item-info">
                                 <h4 class="item-title">
-                                    <a href="product_detail.html">iPhone 6s Plus<br />16GB</a>
+                                    <a href="product_detail.html">{{ course.name }}</a>
                                 </h4>
-                                <p class="item-desc">3D Touch. 12MP photos. 4K video.</p>
-                                <div class="item-price">$649.00</div>
-                                <div class="item-discount-price">$739.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <!-- END col-2 -->
-                    <!-- BEGIN col-2 -->
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <router-link to="/product-detail" class="item-image">
-                                <img src="/assets/img/product/product-ipad-pro.png" alt=""  />
-                                <div class="discount">32% OFF</div>
-                            </router-link>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product.html">9.7-inch iPad Pro<br />32GB</a>
-                                </h4>
-                                <p class="item-desc">Super. Computer. Now in two sizes.</p>
-                                <div class="item-price">$599.00</div>
-                                <div class="item-discount-price">$799.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <!-- END col-2 -->
-                    <!-- BEGIN col-2 -->
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <router-link to="/product-detail" class="item-image">
-                                <img src="/assets/img/product/product-imac.png" alt="" />
-                                <div class="discount">20% OFF</div>
-                            </router-link>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product.html">21.5-inch iMac<br />with Retina Display</a>
-                                </h4>
-                                <p class="item-desc">Retina. Now in colossal and ginormous.</p>
-                                <div class="item-price">$1,099.00</div>
-                                <div class="item-discount-price">$1,299.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <!-- END col-2 -->
-                    <!-- BEGIN col-2 -->
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <router-link to="/product-detail" class="item-image">
-                                <img src="/assets/img/product/product-apple-watch.png" alt="" />
-                                <div class="discount">13% OFF</div>
-                            </router-link>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product.html">Apple Watch<br />Stainless steel cases</a>
-                                </h4>
-                                <p class="item-desc">You. At a glance.</p>
-                                <div class="item-price">$599.00</div>
-                                <div class="item-discount-price">$799.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <!-- END col-2 -->
-                    <!-- BEGIN col-2 -->
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <router-link to="/product-detail" class="item-image">
-                                <img src="/assets/img/product/product-macbook-pro.png" alt="" />
-                                <div class="discount">30% OFF</div>
-                            </router-link>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product.html">MacBook Pro<br />with Retina Display</a>
-                                </h4>
-                                <p class="item-desc">Stunning Retina Display</p>
-                                <div class="item-price">$1299.00</div>
-                                <div class="item-discount-price">$1499.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <!-- END col-2 -->
-                    <!-- BEGIN col-2 -->
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <router-link to="/product-detail" class="item-image">
-                                <img src="/assets/img/product/product-apple-tv.png" alt="" />
-                                <div class="discount">40% OFF</div>
-                            </router-link>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product.html">Apple Tv<br />32GB</a>
-                                </h4>
-                                <p class="item-desc">The future of television is here.</p>
-                                <div class="item-price">$149.00</div>
-                                <div class="item-discount-price">$249.00</div>
+                                <p class="item-desc">{{ course.description }}</p>
+                                <div class="item-price">฿ {{ course.price }}</div>
+                                <div class="item-discount-price">฿ {{ course.discount }}</div>
                             </div>
                         </div>
                         <!-- END item -->
@@ -445,58 +345,6 @@
             <!-- END container -->
         </div>
         <!-- END #Web Development -->
-    
-        <!-- BEGIN #policy -->
-        <div id="policy" class="section-container p-t-30 p-b-30">
-            <!-- BEGIN container -->
-            <div class="container">
-                <!-- BEGIN row -->
-                <div class="row">
-                    <!-- BEGIN col-4 -->
-                    <div class="col-md-4 col-sm-4">
-                        <!-- BEGIN policy -->
-                        <div class="policy">
-                            <div class="policy-icon"><i class="fa fa-truck"></i></div>
-                            <div class="policy-info">
-                                <h4>Free Delivery Over $100</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                        <!-- END policy -->
-                    </div>
-                    <!-- END col-4 -->
-                    <!-- BEGIN col-4 -->
-                    <div class="col-md-4 col-sm-4">
-                        <!-- BEGIN policy -->
-                        <div class="policy">
-                            <div class="policy-icon"><i class="fa fa-shield"></i></div>
-                            <div class="policy-info">
-                                <h4>1 Year Warranty For Phones</h4>
-                                <p>Cras laoreet urna id dui malesuada gravida. <br />Duis a lobortis dui.</p>
-                            </div>
-                        </div>
-                        <!-- END policy -->
-                    </div>
-                    <!-- END col-4 -->
-                    <!-- BEGIN col-4 -->
-                    <div class="col-md-4 col-sm-4">
-                        <!-- BEGIN policy -->
-                        <div class="policy">
-                            <div class="policy-icon"><i class="fa fa-user-md"></i></div>
-                            <div class="policy-info">
-                                <h4>6 Month Warranty For Accessories</h4>
-                                <p>Fusce ut euismod orci. Morbi auctor, sapien non eleifend iaculis.</p>
-                            </div>
-                        </div>
-                        <!-- END policy -->
-                    </div>
-                    <!-- END col-4 -->
-                </div>
-                <!-- END row -->
-            </div>
-            <!-- END container -->
-        </div>
-        <!-- END #policy -->
     
         <!-- BEGIN #subscribe -->
         <div id="subscribe" class="section-container bg-silver p-t-30 p-b-30">
@@ -556,6 +404,56 @@
 
 <script>
 export default {
-  
+    data() {
+        return {
+            categories: [{
+                'name': 'Web Develeopment',
+                'description': 'Shop and get your favourite items at amazing prices!',
+                'courses': [{
+                    'img': '/assets/img/product/product-iphone-6s-plus-2.jpg',
+                    'name': 'Node with React: Fullstack Web Development',
+                    'description': 'Build and deploy fullstack web apps with NodeJS, React, Redux, Express, and MongoDB.',
+                    'price': '330',
+                    'discount': '7,000',
+                    'percent': '95'
+                },{
+                    'img': '/assets/img/product/product-iphone-6s-plus-2.jpg',
+                    'name': 'Node with React: Fullstack Web Development',
+                    'description': 'Build and deploy fullstack web apps with NodeJS, React, Redux, Express, and MongoDB.',
+                    'price': '330',
+                    'discount': '7,000',
+                    'percent': '95'
+                },{
+                    'img': '/assets/img/product/product-iphone-6s-plus-2.jpg',
+                    'name': 'Node with React: Fullstack Web Development',
+                    'description': 'Build and deploy fullstack web apps with NodeJS, React, Redux, Express, and MongoDB.',
+                    'price': '330',
+                    'discount': '7,000',
+                    'percent': '95'
+                },{
+                    'img': '/assets/img/product/product-iphone-6s-plus-2.jpg',
+                    'name': 'Node with React: Fullstack Web Development',
+                    'description': 'Build and deploy fullstack web apps with NodeJS, React, Redux, Express, and MongoDB.',
+                    'price': '330',
+                    'discount': '7,000',
+                    'percent': '95'
+                },{
+                    'img': '/assets/img/product/product-iphone-6s-plus-2.jpg',
+                    'name': 'Node with React: Fullstack Web Development',
+                    'description': 'Build and deploy fullstack web apps with NodeJS, React, Redux, Express, and MongoDB.',
+                    'price': '330',
+                    'discount': '7,000',
+                    'percent': '95'
+                },{
+                    'img': '/assets/img/product/product-iphone-6s-plus-2.jpg',
+                    'name': 'Node with React: Fullstack Web Development',
+                    'description': 'Build and deploy fullstack web apps with NodeJS, React, Redux, Express, and MongoDB.',
+                    'price': '330',
+                    'discount': '7,000',
+                    'percent': '95'
+                }]
+            }]
+        }
+    }
 }
 </script>

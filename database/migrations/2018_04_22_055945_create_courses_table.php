@@ -17,6 +17,7 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('category_id');
             $table->string('course_name');
+            $table->string('course_subtitle');
             $table->mediumText('course_description');
             $table->decimal('course_price', 8, 2);
             $table->json('requirements')->nullable();

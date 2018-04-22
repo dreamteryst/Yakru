@@ -105,7 +105,7 @@
                     <img src="/assets/img/payment/payment-method.png" alt="" />
                 </div>
                 <div class="copyright">
-                    Copyright &copy; 2017 SeanTheme. All rights reserved.
+                    Copyright &copy; 2018 Yakru. All rights reserved.
                 </div>
             </div>
             <!-- END container -->

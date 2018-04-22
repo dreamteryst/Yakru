@@ -38,7 +38,7 @@
 						    	<img :src="menu.img" alt="" />
 						    </div>
 						    <i v-if="isNotEmpty(menu.icon)" :class="menu.icon"></i>
-						    <span>{{ menu.title }} <span class="label label-theme m-l-5" v-if="menu.label">{{ menu.label }}</span></span>
+						    <span>{{ menu.title }} <span class="label label-theme m-l-5" v-if="isNotEmpty(menu.label)">{{ menu.label }}</span></span>
 						</router-link>
 						<ul class="sub-menu" v-if="isNotEmpty(menu.submenu)">
 						    <li v-for="(sublv1, i) in menu.submenu" :key="i" :class="{'has-sub':isNotEmpty(sublv1.submenu), 'active':checkActive(sublv1)}">
@@ -54,7 +54,7 @@
 										</router-link>
 										<ul class="sub-menu" v-if="isNotEmpty(sublv2.submenu)">
 											<li v-for="(sublv3, i) in sublv2.submenu" :key="i" :class="{'active':checkActive(sublv3)}">
-												<a :to="sublv3.url">{{ sublv3.title }}</a>
+												<router-link :to="sublv3.url">{{ sublv3.title }}</router-link>
 											</li>
 										</ul>
 									</li>
@@ -119,7 +119,12 @@ export default {
 		};
 	},
 	mounted() {
-
+		// check nav item collapse
+		$('.nav>li').on('click', function() {
+			$('.nav>li:not(.expand,.expanding)').each((key, item) => {
+				$(item).find('ul').slideUp();
+			});
+		});
 	},
 	methods: {
 		checkActive(menu) {

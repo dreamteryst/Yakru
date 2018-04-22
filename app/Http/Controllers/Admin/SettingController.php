@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
+use App\Setting;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class CourseController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Setting $setting)
     {
         //
     }
@@ -52,10 +53,10 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Setting $setting)
     {
         //
     }
@@ -64,10 +65,10 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Course  $course
+     * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Setting $setting)
     {
         //
     }
@@ -75,10 +76,10 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Course  $course
+     * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Setting $setting)
     {
         //
     }

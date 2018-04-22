@@ -38,7 +38,14 @@ const routes = [
     { path: "*", name: '404'}
 ]
 
-const router = new VueRouter({ mode: 'history', routes: routes});
+const router = new VueRouter({ 
+    mode: 'history', 
+    routes: routes, 
+    scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    }
+});
+
 router.afterEach((toRoute, fromRoute) => {
     if(toRoute.name == '404') {
         window.location.href = '/errors'

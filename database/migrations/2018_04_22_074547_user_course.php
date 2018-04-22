@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserWatchesTable extends Migration
+class UserCourse extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class CreateUserWatchesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_watches', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('user_course', function (Blueprint $table) {
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('course_id');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('course_id')->references('id')->on('courses');
+
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateUserWatchesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_watches');
+        Schema::dropIfExists('user_course');
     }
 }

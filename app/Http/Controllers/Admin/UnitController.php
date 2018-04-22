@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\CourseTag;
+use App\Unit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CourseTagController extends Controller
+class UnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class CourseTagController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CourseTag  $courseTag
+     * @param  \App\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function show(CourseTag $courseTag)
+    public function show(Unit $unit)
     {
         //
     }
@@ -53,10 +53,10 @@ class CourseTagController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CourseTag  $courseTag
+     * @param  \App\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function edit(CourseTag $courseTag)
+    public function edit(Unit $unit)
     {
         //
     }
@@ -65,10 +65,10 @@ class CourseTagController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CourseTag  $courseTag
+     * @param  \App\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CourseTag $courseTag)
+    public function update(Request $request, Unit $unit)
     {
         //
     }
@@ -76,10 +76,10 @@ class CourseTagController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CourseTag  $courseTag
+     * @param  \App\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CourseTag $courseTag)
+    public function destroy(Unit $unit)
     {
         //
     }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Enroll;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class EnrollController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class EnrollController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Enroll  $enroll
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function show(Enroll $enroll)
+    public function show(Tag $tag)
     {
         //
     }
@@ -53,10 +53,10 @@ class EnrollController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Enroll  $enroll
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Enroll $enroll)
+    public function edit(Tag $tag)
     {
         //
     }
@@ -65,10 +65,10 @@ class EnrollController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Enroll  $enroll
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Enroll $enroll)
+    public function update(Request $request, Tag $tag)
     {
         //
     }
@@ -76,10 +76,10 @@ class EnrollController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Enroll  $enroll
+     * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Enroll $enroll)
+    public function destroy(Tag $tag)
     {
         //
     }

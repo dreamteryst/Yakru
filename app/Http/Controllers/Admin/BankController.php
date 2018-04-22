@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\UserWatch;
+use App\bank;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UserWatchController extends Controller
+class BankController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class UserWatchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\UserWatch  $userWatch
+     * @param  \App\bank  $bank
      * @return \Illuminate\Http\Response
      */
-    public function show(UserWatch $userWatch)
+    public function show(bank $bank)
     {
         //
     }
@@ -53,10 +53,10 @@ class UserWatchController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\UserWatch  $userWatch
+     * @param  \App\bank  $bank
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserWatch $userWatch)
+    public function edit(bank $bank)
     {
         //
     }
@@ -65,10 +65,10 @@ class UserWatchController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserWatch  $userWatch
+     * @param  \App\bank  $bank
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UserWatch $userWatch)
+    public function update(Request $request, bank $bank)
     {
         //
     }
@@ -76,10 +76,10 @@ class UserWatchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\UserWatch  $userWatch
+     * @param  \App\bank  $bank
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UserWatch $userWatch)
+    public function destroy(bank $bank)
     {
         //
     }

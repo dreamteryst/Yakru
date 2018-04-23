@@ -109,7 +109,18 @@ export default {
 			},{
 				'icon': 'fa fa-users',
 				'title': 'User',
-				'url': '/admin/user'
+				'url': '',
+				'caret': true,
+				'submenu': [{
+					'url': '/admin/student',
+					'title': 'Student'
+				},{
+					'url': '/admin/teacher',
+					'title': 'Teacher'
+				},{
+					'url': '/admin/accounting',
+					'title': 'Accounting'
+				}]
 			},{
 				'icon': 'fa fa-cog',
 				'title': 'Setting',
@@ -120,7 +131,7 @@ export default {
 	},
 	mounted() {
 		// check nav item collapse
-		$('.nav>li').on('click', function() {
+		$('.nav>li>a').on('click', function() {
 			$('.nav>li:not(.expand,.expanding)').each((key, item) => {
 				$(item).find('ul').slideUp();
 			});

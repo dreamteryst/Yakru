@@ -18,19 +18,19 @@
                     <div class="product-detail">
                         <!-- BEGIN product-image -->
                         <div class="product-image">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1NHAQf0D-RI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                            <div class="row row-space-10">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/1NHAQf0D-RI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                            <div class="row row-space-10">
                                 <div class="col-sm-4">
-                                    <router-link to="/product-detail" class="item-image">
+                                    <router-link to="/product-detail" class="item-video">
                                         <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" alt="" />
                                     </router-link>
                                 </div>
                                 <div class="col-sm-4">
-                                    <router-link to="/product-detail" class="item-image">
+                                    <router-link to="/product-detail" class="item-video">
                                         <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" alt="" />
                                     </router-link>
                                 </div>
                                 <div class="col-sm-4">
-                                    <router-link to="/product-detail" class="item-image">
+                                    <router-link to="/product-detail" class="item-video">
                                         <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" alt="" />
                                     </router-link>
                                 </div>
@@ -274,114 +274,26 @@
                 <!-- BEGIN similar-product -->
                 <h4 class="m-b-15 m-t-30">You Might Also Like</h4>
                 <div class="row row-space-10">
-                    <div class="col-md-2 col-sm-4">
+                    <!-- BEGIN col-2 -->
+                    <div class="col-md-2 col-sm-4" v-for="(like, i) in likes" :key="i">
                         <!-- BEGIN item -->
                         <div class="item item-thumbnail">
-                            <a href="product_detail.html" class="item-image">
-                                <img src="/assets/img/product/product-iphone.png" alt="">
-                                <div class="discount">15% OFF</div>
-                            </a>
+                            <router-link to="/product-detail" class="item-image">
+                                <img :src="like.img" alt="" />
+                                <div class="discount">{{ getPercent(like) }}% OFF</div>
+                            </router-link>
                             <div class="item-info">
                                 <h4 class="item-title">
-                                    <a href="product_detail.html">iPhone 6s Plus<br>16GB</a>
+                                    <router-link to="/product-detail">{{ like.name }}</router-link>
                                 </h4>
-                                <p class="item-desc">3D Touch. 12MP photos. 4K video.</p>
-                                <div class="item-price">$649.00</div>
-                                <div class="item-discount-price">$739.00</div>
+                                <p class="item-desc">{{ like.description }}</p>
+                                <div class="item-price">฿ {{ numberWithCommas(like.price) }}</div>
+                                <div class="item-discount-price">฿ {{ numberWithCommas(like.discount) }}</div>
                             </div>
                         </div>
                         <!-- END item -->
                     </div>
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <a href="product_detail.html" class="item-image">
-                                <img src="/assets/img/product/product-samsung-note5.png" alt="">
-                                <div class="discount">32% OFF</div>
-                            </a>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product.html">Samsung Galaxy Note 5<br>Black</a>
-                                </h4>
-                                <p class="item-desc">Super. Computer. Now in two sizes.</p>
-                                <div class="item-price">$599.00</div>
-                                <div class="item-discount-price">$799.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <a href="product_detail.html" class="item-image">
-                                <img src="/assets/img/product/product-iphone-se.png" alt="">
-                                <div class="discount">20% OFF</div>
-                            </a>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product.html">iPhone SE<br>32/64Gb</a>
-                                </h4>
-                                <p class="item-desc">A big step for small.</p>
-                                <div class="item-price">$499.00</div>
-                                <div class="item-discount-price">$599.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <a href="product_detail.html" class="item-image">
-                                <img src="/assets/img/product/product-zenfone2.png" alt="">
-                                <div class="discount">15% OFF</div>
-                            </a>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product_detail.html">Assus ZenFone 2<br>‏(ZE550ML)</a>
-                                </h4>
-                                <p class="item-desc">See What Others Can’t See</p>
-                                <div class="item-price">$399.00</div>
-                                <div class="item-discount-price">$453.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <a href="product_detail.html" class="item-image">
-                                <img src="/assets/img/product/product-xperia-z.png" alt="">
-                                <div class="discount">32% OFF</div>
-                            </a>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product.html">Sony Xperia Z<br>Black Color</a>
-                                </h4>
-                                <p class="item-desc">For unexpectedly beautiful moments</p>
-                                <div class="item-price">$599.00</div>
-                                <div class="item-discount-price">$799.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <div class="col-md-2 col-sm-4">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <a href="product_detail.html" class="item-image">
-                                <img src="/assets/img/product/product-lumia-532.png" alt="">
-                                <div class="discount">20% OFF</div>
-                            </a>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <a href="product.html">Microsoft Lumia 531<br>Smartphone Orange</a>
-                                </h4>
-                                <p class="item-desc">1 Year Local Manufacturer Warranty</p>
-                                <div class="item-price">$99.00</div>
-                                <div class="item-discount-price">$199.00</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
+                    <!-- END col-2 -->
                 </div>
                 <!-- END similar-product -->
             </div>
@@ -393,7 +305,55 @@
 
 <script>
 export default {
-  
+    data() {
+        return {
+            likes: [{
+                'img': 'https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg',
+                'name': 'The Complete Web Developer Course 2.0',
+                'description': 'Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!',
+                'price': 330,
+                'discount': 7800
+            },{
+                'img': 'https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg',
+                'name': 'The Complete React Native and Redux Course',
+                'description': 'iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!',
+                'price': 330,
+                'discount': 3600
+            },{
+                'img': 'https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg',
+                'name': 'Android O & Java - Mobile App Development | Beginning to End',
+                'description': 'The complete Android course with Android Studio & Java. Go from beginner to professional app developer.',
+                'price': 330,
+                'discount': 7800
+            },{
+                'img': 'https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg',
+                'name': 'Running a Mobile App Dev Business: The Complete Guide',
+                'description': 'Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.',
+                'price': 330,
+                'discount': 5600
+            },{
+                'img': 'https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg',
+                'name': 'Android App Development: Mobile App Development & Java',
+                'description': 'Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop',
+                'price': 330,
+                'discount': 7200
+            },{
+                'img': 'https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg',
+                'name': 'Mobile App Development for Beginners (Swift 3, iPhone iOS10)',
+                'description': 'iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.',
+                'price': 330,
+                'discount': 1800
+            }]
+        }
+    },
+    methods: {
+        getPercent(course) {
+            return parseInt((course.discount - course.price) * 100 / course.discount);
+        },
+        numberWithCommas(number) {
+            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    }
 }
 </script>
 
@@ -407,6 +367,40 @@ export default {
     margin-bottom: 5px;
     padding-bottom: 5px;
     border-bottom: 1px dashed #06f;
+}
+.item-video {
+    max-width: 100%;
+}
+.item-video:after, .item-video:before {
+    position: absolute;
+    opacity: 0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+.item-video:after {
+    content: '\A';
+    width: 100%; height:100%;
+    top: 0; left:0;
+    background:rgba(0,0,0,0.6);
+}
+.item-video:before {
+    content: "\f144";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.item-video:hover:after, .item-video:hover:before {
+    opacity: 1;
 }
 .product-image {
     padding: 10px;

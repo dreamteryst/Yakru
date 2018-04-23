@@ -10,13 +10,13 @@
                     <div class="item active">
                         <img src="/assets/img/slider/slider-1-cover.jpg" class="bg-cover-img" alt="" />
                         <div class="container">
-                            <img src="/assets/img/slider/slider-1-product.png" class="product-img right bottom fadeInRight animated" alt="" />
+                            <img src="http://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Coding-Html-icon.png" class="product-img right bottom fadeInRight animated" alt="" />
                         </div>
                         <div class="carousel-caption carousel-caption-left">
                             <div class="container">
-                                <h3 class="title m-b-5 fadeInLeftBig animated">iMac</h3> 
-                                <p class="m-b-15 fadeInLeftBig animated">The vision is brighter than ever.</p>
-                                <div class="price m-b-30 fadeInLeftBig animated"><small>from</small> <span>$2299.00</span></div>
+                                <h3 class="title m-b-5 fadeInLeftBig animated">C Programming</h3> 
+                                <p class="m-b-15 fadeInLeftBig animated">For Beginners - Master the C Language.</p>
+                                <div class="price m-b-30 fadeInLeftBig animated"><small>from</small> <span>฿2299.00</span></div>
                                 <router-link to="/product-detail" class="btn btn-outline btn-lg fadeInLeftBig animated">Buy Now</router-link>
                             </div>
                         </div>
@@ -24,15 +24,15 @@
                     <!-- END item -->
                     <!-- BEGIN item -->
                     <div class="item">
-                        <img src="/assets/img/slider/slider-2-cover.jpg" class="bg-cover-img" alt="" />
+                        <img src="https://www.trumpf.com/filestorage/TRUMPF_Master/_processed_/b/f/csm_Technology-picture-power-inverter_a727d765f5.jpg" class="bg-cover-img" alt="" />
                         <div class="container">
-                            <img src="/assets/img/slider/slider-2-product.png" class="product-img left bottom fadeInLeft animated" alt="" />
+                            <img src="https://png.icons8.com/color/1600/c-programming.png" class="product-img left bottom fadeInLeft animated" alt="" />
                         </div>
                         <div class="carousel-caption carousel-caption-right">
                             <div class="container">
-                                <h3 class="title m-b-5 fadeInRightBig animated">iPhone X</h3> 
-                                <p class="m-b-15 fadeInRightBig animated">Say hello to the future.</p>
-                                <div class="price m-b-30 fadeInRightBig animated"><small>from</small> <span>$1,149.00</span></div>
+                                <h3 class="title m-b-5 fadeInRightBig animated">Microcontrollers</h3> 
+                                <p class="m-b-15 fadeInRightBig animated">and the C Programming Language</p>
+                                <div class="price m-b-30 fadeInRightBig animated"><small>from</small> <span>฿1,149.00</span></div>
                                 <router-link to="/product-detail" class="btn btn-outline btn-lg fadeInRightBig animated">Buy Now</router-link>
                             </div>
                         </div>
@@ -40,12 +40,12 @@
                     <!-- END item -->
                     <!-- BEGIN item -->
                     <div class="item">
-                        <img src="/assets/img/slider/slider-3-cover.jpg" class="bg-cover-img" alt="" />
+                        <img src="http://www.mgmt2000.com/wp-content/uploads/2015/12/post-img-27-1406x597.jpg" class="bg-cover-img" alt="" />
                         <div class="carousel-caption">
                             <div class="container">
-                                <h3 class="title m-b-5 fadeInDownBig animated">Macbook Air</h3> 
-                                <p class="m-b-15 fadeInDownBig animated">Thin.Light.Powerful.<br />And ready for anything</p>
-                                <div class="price fadeInDownBig animated"><small>from</small> <span>$999.00</span></div>
+                                <h3 class="title m-b-5 fadeInDownBig animated">Scratch Game</h3> 
+                                <p class="m-b-15 fadeInDownBig animated">Programming for Young Adults</p>
+                                <div class="price fadeInDownBig animated"><small>from</small> <span>฿999.00</span></div>
                                 <router-link to="/product-detail" class="btn btn-outline btn-lg fadeInUpBig animated">Buy Now</router-link>
                             </div>
                         </div>
@@ -85,9 +85,9 @@
                                 <img src="/assets/img/product/product-iphone-se.png" alt="" />
                             </div>
                             <div class="promotion-caption promotion-caption-inverse">
-                                <h4 class="promotion-title">iPhone SE</h4>
-                                <div class="promotion-price"><small>from</small> $299.00</div>
-                                <p class="promotion-desc">A big step for small.<br />A beloved design. Now with more to love.</p>
+                                <h4 class="promotion-title">IOS 11 Development</h4>
+                                <div class="promotion-price"><small>from</small> ฿299.00</div>
+                                <p class="promotion-desc">Learn iOS 11 App Development From <br/> Beginning to End. Using Xcode 9 and Swift 4.<br/> Includes Full ARKit and CoreML Modules!</p>
                                 <a href="#" class="promotion-btn">View More</a>
                             </div>
                         </div>
@@ -103,8 +103,8 @@
                             </div>
                             <div class="promotion-caption promotion-caption-inverse text-right">
                                 <h4 class="promotion-title">Apple Watch</h4>
-                                <div class="promotion-price"><small>from</small> $299.00</div>
-                                <p class="promotion-desc">You. At a glance.</p>
+                                <div class="promotion-price"><small>from</small> ฿299.00</div>
+                                <p class="promotion-desc">iOS Developers</p>
                                 <a href="#" class="promotion-btn">View More</a>
                             </div>
                         </div>
@@ -115,9 +115,9 @@
                                 <img src="/assets/img/product/product-mac-mini.png" alt="" />
                             </div>
                             <div class="promotion-caption text-center">
-                                <h4 class="promotion-title">Mac Mini</h4>
-                                <div class="promotion-price"><small>from</small> $199.00</div>
-                                <p class="promotion-desc">It’s mini in a massive way.</p>
+                                <h4 class="promotion-title">Mac Clarity</h4>
+                                <div class="promotion-price"><small>from</small> ฿399.00</div>
+                                <p class="promotion-desc">Master Your Mac.</p>
                                 <a href="#" class="promotion-btn">View More</a>
                             </div>
                         </div>
@@ -132,9 +132,9 @@
                                 <img src="/assets/img/product/product-mac-accessories.png" alt="" />
                             </div>
                             <div class="promotion-caption text-center">
-                                <h4 class="promotion-title">Apple Accessories</h4>
-                                <div class="promotion-price"><small>from</small> $99.00</div>
-                                <p class="promotion-desc">Redesigned. Rechargeable. Remarkable.</p>
+                                <h4 class="promotion-title">Complete Java Masterclass</h4>
+                                <div class="promotion-price"><small>from</small> ฿299.00</div>
+                                <p class="promotion-desc">Learn to master Java 8 and Java 9 core.</p>
                                 <a href="#" class="promotion-btn">View More</a>
                             </div>
                         </div>
@@ -145,9 +145,9 @@
                                 <img src="/assets/img/product/product-mac-pro.png" alt="" />
                             </div>
                             <div class="promotion-caption promotion-caption-inverse">
-                                <h4 class="promotion-title">Mac Pro</h4>
-                                <div class="promotion-price"><small>from</small> $1,299.00</div>
-                                <p class="promotion-desc">Built for creativity on an epic scale.</p>
+                                <h4 class="promotion-title">Microcontrollers</h4>
+                                <div class="promotion-price"><small>from</small> ฿1,299.00</div>
+                                <p class="promotion-desc">the C Programming Language.</p>
                                 <a href="#" class="promotion-btn">View More</a>
                             </div>
                         </div>

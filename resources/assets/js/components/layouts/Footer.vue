@@ -10,10 +10,10 @@
                     <div class="col-md-3">
                         <h4 class="footer-header">ABOUT US</h4>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec tristique dolor, ac efficitur velit. Nulla lobortis tempus convallis. Nulla aliquam lectus eu porta pulvinar. Mauris semper justo erat. 
+ฟรังก์วิลล์เวสต์ เลสเบี้ยนน็อค ติงต๊องเบนโลเยอบีร่าช็อคแลนด์ มยุราภิรมย์ฮาราคีรีวาฟเฟิลลอจิสติกส์ เทรดแม็กกาซีน เห่ยป๊อกโบว์ปิยมิตรโบรชัวร์ แฟ็กซ์แหววสไปเดอร์แฟ้บ ไวอะกร้ามาร์จินออดิทอเรียมพาสต้าหมิง
                         </p>
                         <p>
-                            Vestibulum porttitor lorem et vestibulum pharetra. Phasellus sit amet mi congue, hendrerit mi ut, dignissim eros.
+อุรังคธาตุเฟรชไบเบิล แอดมิชชั่น คำสาปบรรพชนวานิลาคอมเพล็กซ์ คาเฟ่ชาร์จแจ็กเก็ตฮัลโลวีนต่อรอง สเต็ปมั้งเลคเชอร์ ภคันทลาพาธฮอตดอกอุปนายิกาก๋ากั่น เช็งเม้งโอวัลติน คีตปฏิภาณ
                         </p>
                     </div>
                     <!-- END col-3 -->
@@ -21,14 +21,12 @@
                     <div class="col-md-3">
                         <h4 class="footer-header">RELATED LINKS</h4>
                         <ul class="fa-ul">
-                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Shopping Help</a></li>
-                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Terms of Use</a></li>
-                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Contact Us</a></li>
-                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Careers</a></li>
-                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Payment Method</a></li>
-                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Sales & Refund</a></li>
-                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Sitemap</a></li>
-                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">Privacy & Policy</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">วิธีการใช้งาน</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">ข้อตกลงการใช้งาน</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">ติดต่อเรา</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">สมัครเป็นผู้สอน</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">วิธีชำระเงิน</a></li>
+                            <li><i class="fa fa-li fa-angle-right"></i> <a href="#">การซื่อ/คืนเงิน</a></li>
                         </ul>
                     </div>
                     <!-- END col-3 -->
@@ -38,39 +36,39 @@
                         <ul class="list-unstyled list-product">
                             <li>
                                 <div class="image">
-                                    <img src="/assets/img/product/product-iphone-6s.jpg" alt="" />
+                                    <img src="https://udemy-images.udemy.com/course/240x135/381850_d819_10.jpg" alt="" />
                                 </div>
                                 <div class="info">
-                                    <h4 class="info-title">Iphone 6s</h4>
-                                    <div class="price">$1200.00</div>
+                                    <h4 class="info-title">Mobile App Design</h4>
+                                    <div class="price">฿1200.00</div>
                                 </div>
                             </li>
                             <li>
                                 <div class="image">
-                                    <img src="/assets/img/product/product-galaxy-s6.jpg" alt="" />
+                                    <img src="https://udemy-images.udemy.com/course/240x135/246314_3f1f_5.jpg" alt="" />
                                 </div>
                                 <div class="info">
-                                    <h4 class="info-title">Samsung Galaxy s7</h4>
-                                    <div class="price">$850.00</div>
+                                    <h4 class="info-title">Appium(Selenium)</h4>
+                                    <div class="price">฿850.00</div>
                                 </div>
                             </li>
                         
                             <li>
                                 <div class="image">
-                                    <img src="/assets/img/product/product-ipad-pro.jpg" alt="" />
+                                    <img src="https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg" alt="" />
                                 </div>
                                 <div class="info">
-                                    <h4 class="info-title">Ipad Pro</h4>
-                                    <div class="price">$800.00</div>
+                                    <h4 class="info-title">Mobile App Dev</h4>
+                                    <div class="price">฿800.00</div>
                                 </div>
                             </li>
                             <li>
                                 <div class="image">
-                                    <img src="/assets/img/product/product-galaxy-note5.jpg" alt="" />
+                                    <img src="https://udemy-images.udemy.com/course/240x135/99554_d15d_13.jpg" alt="" />
                                 </div>
                                 <div class="info">
-                                    <h4 class="info-title">Samsung Galaxy Note 5</h4>
-                                    <div class="price">$1200.00</div>
+                                    <h4 class="info-title">Mobile App Design</h4>
+                                    <div class="price">฿1200.00</div>
                                 </div>
                             </li>
                         </ul>
@@ -80,13 +78,11 @@
                     <div class="col-md-3">
                         <h4 class="footer-header">OUR CONTACT</h4>
                         <address>
-                            <strong>Twitter, Inc.</strong><br />
-                            1355 Market Street, Suite 900<br />
-                            San Francisco, CA 94103<br /><br />
-                            <abbr title="Phone">Phone:</abbr> (123) 456-7890<br />
-                            <abbr title="Fax">Fax:</abbr> (123) 456-7891<br />
-                            <abbr title="Email">Email:</abbr> <a href="mailto:sales@myshop.com">sales@myshop.com</a><br />
-                            <abbr title="Skype">Skype:</abbr> <a href="skype:myshop">myshop</a>
+                            <strong>Yakru, Inc.</strong><br />
+                            2001/123 Science, Khonkaen University<br />
+                            Sila, Mueng, Khonkaen 40002<br /><br />
+                            <abbr title="Phone">Phone:</abbr> (66) 914168306<br />
+                            <abbr title="Email">Email:</abbr> <a href="mailto:sales@myshop.com">p.kittisak@kkumail.com</a><br />
                         </address>
                     </div>
                     <!-- END col-3 -->

@@ -7,9 +7,15 @@ import ProductDetail from './components/ProductDetail';
 
 import Admin from './route/Admin';
 import AdminHome from './components/admin/AdminHome';
-import DataCourse from './components/admin/DataCourse';
-import DataVideo from './components/admin/DataVideo';
-import DataUser from './components/admin/DataUser';
+import CourseData from './components/admin/CourseData';
+import LectureData from './components/admin/LectureData';
+import StudentData from './components/admin/StudentData';
+import TeacherData from './components/admin/TeacherData';
+import AccountingData from './components/admin/AccountingData';
+import SettingData from './components/admin/SettingData';
+import PaymentData from './components/admin/PaymentData';
+import UnitData from './components/admin/UnitData';
+import OrderData from './components/admin/OrderData';
 
 import Auth from './route/Auth';
 import Login from './components/auth/Login';
@@ -27,9 +33,16 @@ const routes = [
     ]},
     { path: '/admin', component: Admin, children: [
         { path: '', name: 'Admin', component: AdminHome },
-        { path: 'course', name: 'Course', component: DataCourse },
-        { path: 'course/:id', name: 'Video', component: DataVideo },
-        { path: 'user', name: 'User', component: DataUser }
+        { path: 'course', name: 'Course', component: CourseData },
+        { path: 'course/:id', name: 'Unit', component: UnitData },
+        { path: 'course/:id/:unit', name: 'Lecuture', component: LectureData },
+        { path: 'student', name: 'Student', component: StudentData },
+        { path: 'teacher', name: 'Teacher', component: TeacherData },
+        { path: 'accounting', name: 'Accounting', component: AccountingData },
+        { path: 'setting', name: 'Setting', component: SettingData },
+        { path: 'payment', name: 'Payment', component: PaymentData },
+        { path: 'order', name: 'Order', component: OrderData },
+        
     ]},
     { path: '/auth', component: Auth, children: [
         { path: '', name: 'Login', component: Login }     

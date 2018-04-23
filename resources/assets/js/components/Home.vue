@@ -14,8 +14,8 @@
                         </div>
                         <div class="carousel-caption carousel-caption-left">
                             <div class="container">
-                                <h3 class="title m-b-5 fadeInLeftBig animated">C Programming</h3> 
-                                <p class="m-b-15 fadeInLeftBig animated">For Beginners - Master the C Language.</p>
+                                <h3 class="title m-b-5 fadeInLeftBig animated">The Full Stack</h3> 
+                                <p class="m-b-15 fadeInLeftBig animated">Web Development.</p>
                                 <div class="price m-b-30 fadeInLeftBig animated"><small>from</small> <span>฿2299.00</span></div>
                                 <router-link to="/product-detail" class="btn btn-outline btn-lg fadeInLeftBig animated">Buy Now</router-link>
                             </div>
@@ -24,7 +24,7 @@
                     <!-- END item -->
                     <!-- BEGIN item -->
                     <div class="item">
-                        <img src="https://www.trumpf.com/filestorage/TRUMPF_Master/_processed_/b/f/csm_Technology-picture-power-inverter_a727d765f5.jpg" class="bg-cover-img" alt="" />
+                        <img src="/assets/img/cover/cover-5.jpg" class="bg-cover-img" alt="" />
                         <div class="container">
                             <img src="https://png.icons8.com/color/1600/c-programming.png" class="product-img left bottom fadeInLeft animated" alt="" />
                         </div>
@@ -40,7 +40,7 @@
                     <!-- END item -->
                     <!-- BEGIN item -->
                     <div class="item">
-                        <img src="http://www.mgmt2000.com/wp-content/uploads/2015/12/post-img-27-1406x597.jpg" class="bg-cover-img" alt="" />
+                        <img src="/assets/img/cover/cover-9.jpg" class="bg-cover-img" alt="" />
                         <div class="carousel-caption">
                             <div class="container">
                                 <h3 class="title m-b-5 fadeInDownBig animated">Scratch Game</h3> 
@@ -383,6 +383,46 @@ export default {
                     'description': 'Learn Web Programming from a University Professor in Computer Science with over 15 years of teaching experience.',
                     'price': 330,
                     'discount': 2400
+                }]
+            },{
+                'name': 'Mobile Develeopment',
+                'description': 'Shop and get your favourite items at amazing prices!',
+                'courses': [{
+                    'img': 'https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg',
+                    'name': 'The Complete Web Developer Course 2.0',
+                    'description': 'Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!',
+                    'price': 330,
+                    'discount': 7800
+                },{
+                    'img': 'https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg',
+                    'name': 'The Complete React Native and Redux Course',
+                    'description': 'iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!',
+                    'price': 330,
+                    'discount': 3600
+                },{
+                    'img': 'https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg',
+                    'name': 'Android O & Java - Mobile App Development | Beginning to End',
+                    'description': 'The complete Android course with Android Studio & Java. Go from beginner to professional app developer.',
+                    'price': 330,
+                    'discount': 7800
+                },{
+                    'img': 'https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg',
+                    'name': 'Running a Mobile App Dev Business: The Complete Guide',
+                    'description': 'Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.',
+                    'price': 330,
+                    'discount': 5600
+                },{
+                    'img': 'https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg',
+                    'name': 'Android App Development: Mobile App Development & Java',
+                    'description': 'Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop',
+                    'price': 330,
+                    'discount': 7200
+                },{
+                    'img': 'https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg',
+                    'name': 'Mobile App Development for Beginners (Swift 3, iPhone iOS10)',
+                    'description': 'iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.',
+                    'price': 330,
+                    'discount': 1800
                 }]
             }]
         }

@@ -79,7 +79,7 @@
                         <h4 class="footer-header">OUR CONTACT</h4>
                         <address>
                             <strong>Yakru, Inc.</strong><br />
-                            2001/123 Science, Khonkaen University<br />
+                            Computer Science, Khonkaen University<br />
                             Sila, Mueng, Khonkaen 40002<br /><br />
                             <abbr title="Phone">Phone:</abbr> (66) 914168306<br />
                             <abbr title="Email">Email:</abbr> <a href="mailto:sales@myshop.com">p.kittisak@kkumail.com</a><br />

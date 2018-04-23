@@ -97,7 +97,7 @@
                             <div class="tab-pane fade active in" id="curriculum">
                                 <b-card no-body class="mb-1">
                                     <b-card-header header-tag="header" class="p-1" role="tab">
-                                        <b-btn block href="#" v-b-toggle.accordion1 variant="info">
+                                        <b-btn block href="#" v-b-toggle.accordion1 variant="info" class="btn-left">
                                             <i class="fa fa-plus"></i> Introduction
                                         </b-btn>
                                     </b-card-header>
@@ -125,7 +125,7 @@
                                     </b-card>
                                     <b-card no-body class="mb-1">
                                     <b-card-header header-tag="header" class="p-1" role="tab">
-                                        <b-btn block href="#" v-b-toggle.accordion2 variant="info">
+                                        <b-btn block href="#" v-b-toggle.accordion2 variant="info" class="btn-left">
                                             <i class="fa fa-plus"></i> The Essentials
                                         </b-btn>
                                     </b-card-header>
@@ -173,7 +173,7 @@
                                     </b-card>
                                     <b-card no-body class="mb-1">
                                     <b-card-header header-tag="header" class="p-1" role="tab">
-                                        <b-btn block href="#" v-b-toggle.accordion3 variant="info">
+                                        <b-btn block href="#" v-b-toggle.accordion3 variant="info" class="btn-left">
                                             <i class="fa fa-plus"></i> Setting up your presence
                                         </b-btn>
                                     </b-card-header>
@@ -358,6 +358,9 @@ export default {
 </script>
 
 <style>
+.btn-left {
+    text-align: left;
+}
 .curriculum {
     margin-top: 10px;
 }

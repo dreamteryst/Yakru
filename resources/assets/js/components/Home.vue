@@ -208,6 +208,7 @@
             <div class="container">
                 <!-- BEGIN section-title -->
                 <h4 class="section-title clearfix">
+                    <a href="#" class="pull-right">SHOW ALL</a>
                     {{ category.name }}
                     <small>{{ category.description }}</small>
                 </h4>
@@ -237,7 +238,6 @@
                     <!-- END col-2 -->
                 </div>
                 <!-- END row -->
-                <a class="pull-right-clear btn btn-info m-t-15">View ALL</a>
             </div>
             <!-- END container -->
         </div>

@@ -72,10 +72,10 @@
                             <!-- BEGIN product-purchase-container -->
                             <div class="product-purchase-container">
                                 <div class="product-discount">
-                                    <span class="discount">$869.00</span>
+                                    <span class="discount">฿869.00</span>
                                 </div>
                                 <div class="product-price">
-                                    <div class="price">$749.00</div>
+                                    <div class="price">฿749.00</div>
                                 </div>
                                 <button class="btn btn-inverse btn-lg" type="submit">ADD TO CART</button>
                             </div>

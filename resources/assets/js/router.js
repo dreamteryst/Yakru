@@ -42,10 +42,9 @@ const routes = [
         { path: 'setting', name: 'Setting', component: SettingData },
         { path: 'payment', name: 'Payment', component: PaymentData },
         { path: 'order', name: 'Order', component: OrderData },
-        
     ]},
     { path: '/auth', component: Auth, children: [
-        { path: '', name: 'Login', component: Login }     
+        { path: '', name: 'Login', component: Login }
     ]},
     { path: "/errors", name: 'Page not found', component: Error404 },
     { path: "*", name: '404'}

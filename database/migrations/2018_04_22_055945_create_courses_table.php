@@ -20,8 +20,8 @@ class CreateCoursesTable extends Migration
             $table->string('course_subtitle');
             $table->mediumText('course_description');
             $table->decimal('course_price', 8, 2);
-            $table->json('requirements')->nullable();
-            $table->json('result');
+            $table->text('requirements')->nullable();
+            $table->text('result');
 
             $table->foreign('category_id')->references('id')->on('categories');
 

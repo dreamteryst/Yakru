@@ -22,7 +22,7 @@ class CreatePaymentsTable extends Migration
             $table->string('slip')->comment('หลักฐานการโอนเงิน');
 
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->foreign('order_id')->references('id')->on('banks');
+            $table->foreign('bank_id')->references('id')->on('banks');
 
             $table->timestamps();
             $table->softDeletes();

@@ -21,3 +21,7 @@ Route::resource('category', 'CategoryController');
 
 Route::get('tag/data', 'TagController@anyData');
 Route::resource('tag', 'TagController');
+
+Route::get('course/data', 'CourseController@anyData');
+Route::resource('course', 'CourseController');
+

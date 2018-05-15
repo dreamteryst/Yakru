@@ -20,6 +20,25 @@ class Course extends Model
         'course_description',
         'course_price',
         'requirements',
-        'result'
+        'result',
+        'admin_id',
+        'tags'
     ];
+    
+    protected $casts = [
+        'requirements' => 'array',
+        'result'  => 'array',
+        'tags'  => 'array'
+        
+    ];
+    
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo('App\Admin');
+    }
 }

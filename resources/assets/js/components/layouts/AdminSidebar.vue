@@ -88,6 +88,36 @@ export default {
 				'title': 'Order',
 				'url': '/admin/order'
 			},{
+				'icon': 'fa fa-tags',
+				'title': 'Tags',
+				'url': '',
+				'caret': true,
+				'submenu': [
+					{
+						'url': '/admin/tag/add',
+						'title': 'Add Tags'
+					},
+					{
+						'url': '/admin/tag',
+						'title': 'Manage Tags'
+					}
+				]
+			},{
+				'icon': 'fa fa-book',
+				'title': 'Category',
+				'url': '',
+				'caret': true,
+				'submenu': [
+					{
+						'url': '/admin/category/add',
+						'title': 'Add Category'
+					},
+					{
+						'url': '/admin/category',
+						'title': 'Manage Category'
+					}
+				]
+			},{
 				'icon': 'fa fa-graduation-cap',
 				'title': 'Course',
 				'caret': true,
@@ -99,7 +129,7 @@ export default {
 					},
 					{
 						'url': '/admin/course',
-						'title': 'Mange course'
+						'title': 'Manage course'
 					}
 				]
 			},{
@@ -126,7 +156,6 @@ export default {
 				'title': 'Setting',
 				'url': '/admin/setting'
 			}]
-
 		};
 	},
 	mounted() {

@@ -10,6 +10,7 @@ import Contact from './components/Contact';
 import Admin from './route/Admin';
 import AdminHome from './components/admin/AdminHome';
 import CourseData from './components/admin/CourseData';
+import CourseAdd from './components/admin/CourseAdd';
 import LectureData from './components/admin/LectureData';
 import StudentData from './components/admin/StudentData';
 import TeacherData from './components/admin/TeacherData';
@@ -18,6 +19,10 @@ import SettingData from './components/admin/SettingData';
 import PaymentData from './components/admin/PaymentData';
 import UnitData from './components/admin/UnitData';
 import OrderData from './components/admin/OrderData';
+import CategoryData from './components/admin/CategoryData';
+import CategoryAdd from './components/admin/CategoryAdd';
+import TagData from './components/admin/TagData';
+import TagAdd from './components/admin/TagAdd';
 
 import Auth from './route/Auth';
 import Login from './components/auth/Login';
@@ -45,6 +50,7 @@ const routes = [
     { path: '/admin', component: Admin, children: [
         { path: '', name: 'Admin', component: AdminHome },
         { path: 'course', name: 'Course', component: CourseData },
+        { path: 'course/add', name: 'CourseAdd', component: CourseAdd },
         { path: 'course/:id', name: 'Unit', component: UnitData },
         { path: 'course/:id/:unit', name: 'Lecuture', component: LectureData },
         { path: 'student', name: 'Student', component: StudentData },
@@ -53,6 +59,13 @@ const routes = [
         { path: 'setting', name: 'Setting', component: SettingData },
         { path: 'payment', name: 'Payment', component: PaymentData },
         { path: 'order', name: 'Order', component: OrderData },
+        { path: 'category',  name: 'Category', component: CategoryData },
+        { path: 'category/add',  name: 'AddCategory', component: CategoryAdd },
+        { path: 'tag',  name: 'tag', component: TagData },
+        { path: 'tag/add',  name: 'Addtag', component: TagAdd }
+        
+        
+
     ]},
     { path: '/auth', component: Auth, children: [
         { path: '', name: 'Login', component: Login }

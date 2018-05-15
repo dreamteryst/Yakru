@@ -10,8 +10,11 @@ import App from './route';
 import router from './router';
 import store from './store/';
 import BootstrapVue from 'bootstrap-vue'
+import InputTag from 'vue-input-tag';
 
 window.Vue = require('vue');
+
+Vue.component('input-tag', InputTag);
 
 // const router = new VueRouter({
 //     routes // short for `routes: routes`

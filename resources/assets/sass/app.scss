@@ -7,3 +7,20 @@
 
 // // Bootstrap
 // @import "~bootstrap-sass/assets/stylesheets/bootstrap";
+.actions {
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    .fa {
+        margin-left: 2px;
+    }
+    .fa-edit {
+        color: #00acac;
+    }
+    .fa-undo {
+        color: #348fe2;
+    }
+    .fa-trash-alt {
+        color: #ff5b57;
+    }
+}

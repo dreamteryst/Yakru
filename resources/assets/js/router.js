@@ -20,6 +20,10 @@ import OrderData from './components/admin/OrderData';
 import Auth from './route/Auth';
 import Login from './components/auth/Login';
 
+import CheckoutCart from './components/Checkout-Cart';
+import CheckoutPayment from './components/Checkout-Payment';
+import CheckoutComplete from './components/Checkout-Complete';
+
 import Error404 from './components/Error404';
 
 window.Vue = require('vue');
@@ -29,7 +33,10 @@ const routes = [
     { path: '', component: User, children: [
         { path: '', name: 'Home', component: Home},
         { path: 'profile', name: 'Profile', component: Profile },
-        { path: 'product-detail', name: 'Product Detail', component: ProductDetail }
+        { path: 'product-detail', name: 'Product Detail', component: ProductDetail },
+        { path: 'checkout_cart', name: 'checkout_cart', component: CheckoutCart},
+        { path: 'checkout_payment', name: 'checkout_payment', component: CheckoutPayment},
+        { path: 'checkout_complete', name: 'checkout_complete', component: CheckoutComplete}
     ]},
     { path: '/admin', component: Admin, children: [
         { path: '', name: 'Admin', component: AdminHome },

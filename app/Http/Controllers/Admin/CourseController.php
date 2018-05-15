@@ -85,7 +85,22 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        //
+        $data =  $request->validate([
+            'category_id' => 'required',
+            'course_name' => 'required|max:200',
+            'course_subtitle' => 'required|max:200',
+            'course_description' => 'required|max:200',
+            'course_price' => 'required|max:6'
+        ]);
+        $data['requirements'] = json_decode($request['requirements']);
+        $data['result'] = json_decode($request['results']);
+        $data['tags'] = json_decode($request['tags']);
+        $data['admin_id'] = 1;
+
+        if($course->update($data)){
+            return json_encode(['success' => true, 'message' => 'ลบข้อมูล ' . $course->course_name . ' เรียบร้อย']);
+        }
+        return json_encode(['success' => false, 'message' => 'มีข้อผิดพลาดไม่คาดคิด']);
     }
 
     /**
@@ -97,7 +112,7 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         if($course->delete()){
-            return json_encode(['success' => true, 'message' => 'ลบข้อมูล ' . $category->category_name . ' เรียบร้อย']);
+            return json_encode(['success' => true, 'message' => 'ลบข้อมูล ' . $course->course_name . ' เรียบร้อย']);
         }
         return json_encode(['success' => false, 'message' => 'มีข้อผิดพลาดไม่คาดคิด']);
     }

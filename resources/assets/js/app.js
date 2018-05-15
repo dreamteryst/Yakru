@@ -10,9 +10,6 @@ import App from './route';
 import router from './router';
 import store from './store/';
 import BootstrapVue from 'bootstrap-vue'
-import axios from 'axios'
-
-
 
 window.Vue = require('vue');
 

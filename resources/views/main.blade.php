@@ -36,7 +36,7 @@
 	<link href="{{ asset('assets/plugins/animate/animate.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets/css/e-commerce/style.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets/css/e-commerce/style-responsive.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/css/e-commerce/theme/default.css') }}" id="theme" rel="stylesheet" />
+	<link href="{{ asset('assets/css/e-commerce/theme/default.css') }}" id="theme" rel="stylesheet" />
     <link href="{{ mix('vue/css/app.css') }}" rel="stylesheet" type="text/css">
 	<!-- ================== END BASE CSS STYLE ================== -->
 	
@@ -52,7 +52,8 @@
     <!-- END #page-container -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="{{ asset('assets/plugins/jquery/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ mix('vue/js/app.js') }}"></script>
+	{{-- <script src="{{ asset('assets/plugins/jquery/jquery-3.2.1.min.js') }}"></script> --}}
 	<script src="{{ asset('assets/plugins/bootstrap3/js/bootstrap.min.js') }}"></script>
 	<!--[if lt IE 9]>
 		<script src="assets/crossbrowserjs/html5shiv.js"></script>
@@ -61,7 +62,6 @@
 	<![endif]-->
 	<script src="{{ asset('assets/plugins/js-cookie/js.cookie.js') }}"></script>
     <script src="{{ asset('assets/js/e-commerce/apps.min.js') }}"></script>
-    <script src="{{ mix('vue/js/app.js') }}"></script>
 	<!-- ================== END BASE JS ================== -->
 	
 	<script>

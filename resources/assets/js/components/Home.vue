@@ -10,7 +10,7 @@
                     <div class="item active">
                         <img src="/assets/img/slider/slider-1-cover.jpg" class="bg-cover-img" alt="" />
                         <div class="container">
-                            <img src="http://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Coding-Html-icon.png" class="product-img right bottom fadeInRight animated" alt="" />
+                            <img src="https://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Coding-Html-icon.png" class="product-img right bottom fadeInRight animated" alt="" />
                         </div>
                         <div class="carousel-caption carousel-caption-left">
                             <div class="container">

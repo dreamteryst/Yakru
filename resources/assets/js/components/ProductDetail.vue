@@ -18,7 +18,10 @@
                     <div class="product-detail">
                         <!-- BEGIN product-image -->
                         <div class="product-image">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/1NHAQf0D-RI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                            <div class="row row-space-10">
+                            <div class="embed-responsive embed-responsive-16by9 m-b-5">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/1NHAQf0D-RI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            </div>
+                            <div class="row row-space-10">
                                 <div class="col-sm-4">
                                     <router-link to="/product-detail" class="item-video">
                                         <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" alt="" />

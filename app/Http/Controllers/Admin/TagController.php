@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class TagController extends Controller
 {
@@ -36,7 +37,12 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data =  $request->validate([
+            'tag_name' => 'required|max:200'
+        ]);
+        $Tag = new Tag();
+
+        return $Tag::create($data);
     }
 
     /**
@@ -70,7 +76,14 @@ class TagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $data =  $request->validate([
+            'tag_name' => 'required|max:200',
+        ]);
+        
+        if($tag->update($data)){
+            return json_encode(['success' => true, 'message' => 'ลบข้อมูล ' . $tag->tag_name . ' เรียบร้อย']);
+        }
+        return json_encode(['success' => false, 'message' => 'มีข้อผิดพลาดไม่คาดคิด']);
     }
 
     /**
@@ -81,6 +94,13 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        if($tag->delete()){
+            return json_encode(['success' => true, 'message' => 'ลบข้อมูล ' . $tag->tag_name . ' เรียบร้อย']);
+        }
+        return json_encode(['success' => false, 'message' => 'มีข้อผิดพลาดไม่คาดคิด']);
+    }
+    public function anyData()
+    {
+        return Datatables::of(Tag::query())->make(true);
     }
 }

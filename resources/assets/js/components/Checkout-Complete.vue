@@ -74,7 +74,7 @@
                                         </tr>
                                         <tr>
                                             <td class="field">Transaction Date and Time</td>
-                                            <td class="value">05 APR 2016 07:30PM</td>
+                                            <td class="value">05 APR 2018 07:30PM</td>
                                         </tr>
                                         <tr>
                                             <td class="field">Orders</td>
@@ -83,14 +83,14 @@
                                                     <img src="/assets/img/product/product-iphone-6s-plus.png" alt="">
                                                 </div>
                                                 <div class="product-summary-info">
-                                                    <div class="title">iPhone 6s Plus 16GB (Silver)</div>
-                                                    <div class="desc">Delivers Tue 26/04/2016 - Free</div>
+                                                    <div class="title">Running a Mobile App Dev Business: The Complete Guide</div>
+                                                    <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi gravida vel sapien et elementum. Proin id turpis eu sapien condimentum sagittis a quis tortor. Duis feugiat velit ut risus convallis mattis</div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="field">Payment Amount (RM)</td>
-                                            <td class="value">$999.00</td>
+                                            <td class="value">฿749.00</td>
                                         </tr>
                                     </tbody>
                                 </table>

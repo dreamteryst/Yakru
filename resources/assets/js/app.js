@@ -10,10 +10,6 @@ import App from './route';
 import router from './router';
 import store from './store/';
 import BootstrapVue from 'bootstrap-vue'
-import 'datatables.net-bs4'
-import 'datatables.net-responsive-bs4'
-import 'datatables.net-buttons-bs4'
-import './plugins/dash.all.min'
 
 window.Vue = require('vue');
 

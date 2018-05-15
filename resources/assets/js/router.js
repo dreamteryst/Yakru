@@ -4,6 +4,8 @@ import User from './route/User';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import ProductDetail from './components/ProductDetail';
+import LiveStream from './components/LiveStream';
+import Contact from './components/Contact';
 
 import Admin from './route/Admin';
 import AdminHome from './components/admin/AdminHome';
@@ -36,7 +38,9 @@ const routes = [
         { path: 'product-detail', name: 'Product Detail', component: ProductDetail },
         { path: 'checkout_cart', name: 'checkout_cart', component: CheckoutCart},
         { path: 'checkout_payment', name: 'checkout_payment', component: CheckoutPayment},
-        { path: 'checkout_complete', name: 'checkout_complete', component: CheckoutComplete}
+        { path: 'checkout_complete', name: 'checkout_complete', component: CheckoutComplete},
+        { path: 'live-stream', name: 'live-stream', component: LiveStream},
+        { path: 'contact', name: 'contact', component: Contact},
     ]},
     { path: '/admin', component: Admin, children: [
         { path: '', name: 'Admin', component: AdminHome },

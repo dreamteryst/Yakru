@@ -18,20 +18,23 @@
                     <div class="product-detail">
                         <!-- BEGIN product-image -->
                         <div class="product-image">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/1NHAQf0D-RI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>                            <div class="row row-space-10">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe src="//aka.ms/ampembed?url=%2F%2Famssamples.streaming.mediaservices.windows.net%2F91492735-c523-432b-ba01-faba6c2206a2%2FAzureMediaServicesPromo.ism%2Fmanifest" name="azuremediaplayer" scrolling="no" frameborder="no" align="center" height="280px" width="500px" allowfullscreen></iframe>
+                            </div>
+                            <div class="row row-space-10 m-t-15">
                                 <div class="col-sm-4">
                                     <router-link to="/product-detail" class="item-video">
-                                        <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" alt="" />
+                                        <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" class="img-responsive" alt="" />
                                     </router-link>
                                 </div>
                                 <div class="col-sm-4">
                                     <router-link to="/product-detail" class="item-video">
-                                        <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" alt="" />
+                                        <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" class="img-responsive" alt="" />
                                     </router-link>
                                 </div>
                                 <div class="col-sm-4">
                                     <router-link to="/product-detail" class="item-video">
-                                        <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" alt="" />
+                                        <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" class="img-responsive" alt="" />
                                     </router-link>
                                 </div>
                             </div>
@@ -370,6 +373,9 @@ export default {
     margin-bottom: 5px;
     padding-bottom: 5px;
     border-bottom: 1px dashed #06f;
+}
+.item-video > img {
+    min-width: 100%;
 }
 .item-video {
     max-width: 100%;

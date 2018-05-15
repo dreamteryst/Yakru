@@ -1,6 +1,5 @@
 {
     "/vue/js/app.js": "/vue/js/app.js",
-<<<<<<< HEAD
     "/vue/css/app.css": "/vue/css/app.css",
     "/0.2ff7ccadf1fcf055133f.hot-update.js": "/0.2ff7ccadf1fcf055133f.hot-update.js",
     "/0.1deabd71a6bd6ea28508.hot-update.js": "/0.1deabd71a6bd6ea28508.hot-update.js",
@@ -114,7 +113,4 @@
     "/0.4f70f0bb9a8a6fe65c5f.hot-update.js": "/0.4f70f0bb9a8a6fe65c5f.hot-update.js",
     "/0.c3d59363ea333c9eef66.hot-update.js": "/0.c3d59363ea333c9eef66.hot-update.js",
     "/0.086f647f8205fc99078f.hot-update.js": "/0.086f647f8205fc99078f.hot-update.js"
-=======
-    "/vue/css/app.css": "/vue/css/app.css"
->>>>>>> 0938d238f7e6084af68a2ef974fe6b1cd297ddbb
 }

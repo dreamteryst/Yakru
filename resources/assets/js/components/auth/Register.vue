@@ -20,10 +20,19 @@
             <div class="login-content">
                 <form action="index.html" method="GET" class="margin-bottom-0">
                     <div class="form-group m-b-20">
+                        <input type="text" class="form-control form-control-lg" placeholder="Firstname" required />
+                    </div>
+                    <div class="form-group m-b-20">
+                        <input type="text" class="form-control form-control-lg" placeholder="Lastname" required />
+                    </div>
+                    <div class="form-group m-b-20">
                         <input type="text" class="form-control form-control-lg" placeholder="Email Address" required />
                     </div>
                     <div class="form-group m-b-20">
                         <input type="password" class="form-control form-control-lg" placeholder="Password" required />
+                    </div>
+                    <div class="form-group m-b-20">
+                        <input type="password" class="form-control form-control-lg" placeholder="Password Confirm" required />
                     </div>
                     <div class="checkbox checkbox-css m-b-20">
                         <input type="checkbox" id="remember_checkbox" /> 
@@ -35,7 +44,7 @@
                         <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
                     </div>
                     <div class="m-t-20">
-                        Not a member yet? Click <router-link to="/auth/register">here</router-link> to register.
+                        Already a member yet? Click <router-link to="/auth">here</router-link> to login.
                     </div>
                 </form>
             </div>

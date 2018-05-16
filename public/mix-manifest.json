@@ -1,6 +1,7 @@
 {
     "/vue/js/app.js": "/vue/js/app.js",
     "/vue/css/app.css": "/vue/css/app.css",
+<<<<<<< HEAD
     "/0.0950810e3c0b8da02d19.hot-update.js": "/0.0950810e3c0b8da02d19.hot-update.js",
     "/0.4301bfc40b93ef6b78e2.hot-update.js": "/0.4301bfc40b93ef6b78e2.hot-update.js",
     "/0.b29592f99c65bf55c25f.hot-update.js": "/0.b29592f99c65bf55c25f.hot-update.js",
@@ -16,4 +17,12 @@
     "/0.a3fa73f278f650edf983.hot-update.js": "/0.a3fa73f278f650edf983.hot-update.js",
     "/0.43647a9edd82a3e606ab.hot-update.js": "/0.43647a9edd82a3e606ab.hot-update.js",
     "/0.962ee6e53c95d4d9f962.hot-update.js": "/0.962ee6e53c95d4d9f962.hot-update.js"
+=======
+    "/0.00fbd19aa9c0c31e978b.hot-update.js": "/0.00fbd19aa9c0c31e978b.hot-update.js",
+    "/0.67c60afd88e095829c59.hot-update.js": "/0.67c60afd88e095829c59.hot-update.js",
+    "/0.489f36358c3d32772042.hot-update.js": "/0.489f36358c3d32772042.hot-update.js",
+    "/0.8674a63790ebd3476559.hot-update.js": "/0.8674a63790ebd3476559.hot-update.js",
+    "/0.6e58a7316047afc4581b.hot-update.js": "/0.6e58a7316047afc4581b.hot-update.js",
+    "/0.16a406ef7f3c06810509.hot-update.js": "/0.16a406ef7f3c06810509.hot-update.js"
+>>>>>>> 389f05fbd2850bbfe3d7ffdc841eda66b68af424
 }

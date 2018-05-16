@@ -6,7 +6,7 @@
             <div class="login-header">
                 <div class="brand">
                     <router-link to="/">
-                        <span class="brand-logo" style="border: 0px;"><img
+                        <span class="logo" style="border: 0px;"><img
                             src="/assets/img/logo-small.png" width="30" height="30"></span><b>Yak</b>ru
                     </router-link>
                     <small>MOOC Via Live Streaming</small>

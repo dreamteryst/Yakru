@@ -73,7 +73,7 @@
                             <li class="dropdown dropdown-hover">
                                 <a href="#" class="header-cart" data-toggle="dropdown">
                                     <i class="fa fa-shopping-bag"></i>
-                                    <span class="total">2</span>
+                                    <span class="total">1</span>
                                     <span class="arrow top"></span>
                                 </a>
                     
@@ -84,30 +84,10 @@
                                     <div class="cart-body">
                                         <ul class="cart-item">
                                             <li>
-                                                <div class="cart-item-image"><img src="/assets/img/product/product-ipad.jpg" alt="" /></div>
+                                                <div class="cart-item-image"><img src="/assets/img/product/product-iphone-6s-plus.png" alt="" /></div>
                                                 <div class="cart-item-info">
-                                                    <h4>iPad Pro Wi-Fi 128GB - Silver</h4>
-                                                    <p class="price">$699.00</p>
-                                                </div>
-                                                <div class="cart-item-close">
-                                                    <a href="#" data-toggle="tooltip" data-title="Remove">&times;</a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="cart-item-image"><img src="/assets/img/product/product-imac.jpg" alt="" /></div>
-                                                <div class="cart-item-info">
-                                                    <h4>21.5-inch iMac</h4>
-                                                    <p class="price">$1299.00</p>
-                                                </div>
-                                                <div class="cart-item-close">
-                                                    <a href="#" data-toggle="tooltip" data-title="Remove">&times;</a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="cart-item-image"><img src="/assets/img/product/product-iphone.png" alt="" /></div>
-                                                <div class="cart-item-info">
-                                                    <h4>iPhone 6s 16GB - Silver</h4>
-                                                    <p class="price">$649.00</p>
+                                                    <h4>Running a Mobile App Dev Business: The Complete Guide</h4>
+                                                    <p class="price">฿749.00</p>
                                                 </div>
                                                 <div class="cart-item-close">
                                                     <a href="#" data-toggle="tooltip" data-title="Remove">&times;</a>

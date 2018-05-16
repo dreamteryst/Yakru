@@ -68,8 +68,8 @@
           </div>
           <div class="form-group">
             <label for="category_id">Category</label>
-            <select class="form-control" :class="{'is-invalid':isError('category_id')}" id="category_id" v-model="category_id">
-              <option v-for="(category, i) in categories" :key="i" :value="category.id" >{{ category.category_name }}</option>
+            <select class="form-control" :class="{'is-invalid':isError('category_id')}" id="category_id" v-model="data.category_id">
+              <option v-for="(category, i) in categories" :key="i" :value="category.id" :selected="category.id == data.category_id">{{ category.category_name }}</option>
             </select>
             <div class="invalid-feedback" v-if="isError('category_id')">
               {{ errors.category_id[0] }}
@@ -77,28 +77,28 @@
           </div>
           <div class="form-group">
             <label for="course_name">Course Name</label>
-            <input type="text" class="form-control" :class="{'is-invalid':isError('course_name')}" id="course_name" v-model="course_name" placeholder="Course Name">
+            <input type="text" class="form-control" :class="{'is-invalid':isError('course_name')}" id="course_name" v-model="data.course_name" placeholder="Course Name">
             <div class="invalid-feedback" v-if="isError('course_name')">
               {{ errors.course_name[0] }}
             </div>
           </div>
           <div class="form-group">
             <label for="course_subtitle">Course Subtitle</label>
-            <input type="text" class="form-control" id="course_subtitle" :class="{'is-invalid':isError('course_subtitle')}" v-model="course_subtitle" placeholder="Course Subtitle">
+            <input type="text" class="form-control" id="course_subtitle" :class="{'is-invalid':isError('course_subtitle')}" v-model="data.course_subtitle" placeholder="Course Subtitle">
             <div class="invalid-feedback" v-if="isError('course_subtitle')">
               {{ errors.course_subtitle[0] }}
             </div>
           </div>
           <div class="form-group">
             <label for="course_description">Course Description</label>
-            <textarea class="form-control" id="course_description" :class="{'is-invalid':isError('course_description')}" v-model="course_description" placeholder="Course Description" rows="15"></textarea>
+            <textarea class="form-control" id="course_description" :class="{'is-invalid':isError('course_description')}" v-model="data.course_description" placeholder="Course Description" rows="15"></textarea>
             <div class="invalid-feedback" v-if="isError('course_description')">
               {{ errors.course_description[0] }}
             </div>
           </div>
           <div class="form-group">
             <label for="course_price">Course Price</label>
-            <input type="number" min="0" max="999999" class="form-control" id="course_price" :class="{'is-invalid':isError('course_price')}" v-model="course_price" placeholder="Course Price">
+            <input type="number" min="0" max="999999" class="form-control" id="course_price" :class="{'is-invalid':isError('course_price')}" v-model="data.course_price" placeholder="Course Price">
             <div class="invalid-feedback" v-if="isError('course_price')">
               {{ errors.course_price[0] }}
             </div>
@@ -110,9 +110,9 @@
               <i class="fa fa-plus fa-2x m-t-5" @click="addReq"></i>
               <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeReq"></i>
             </div>
-            <div class="row m-b-15" v-for="(req, j) in requirements" :key="j">
+            <div class="row m-b-15" v-for="(req, j) in data.requirements" :key="j">
               <div class="col-md-10">
-                <input class="form-control" v-model="requirements[j]" placeholder="Course Requirements">
+                <input class="form-control" v-model="data.requirements[j]" placeholder="Course Requirements">
               </div>
             </div>
           </div>
@@ -122,15 +122,15 @@
               <i class="fa fa-plus fa-2x m-t-5" @click="addResult"></i>
               <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeResult"></i>
             </div>
-            <div class="row m-b-15" v-for="(result, i) in results" :key="i">
+            <div class="row m-b-15" v-for="(result, i) in data.result" :key="i">
               <div class="col-md-10">
-                <input class="form-control" v-model="results[i]" placeholder="Course Result">
+                <input class="form-control" v-model="data.result[i]" placeholder="Course Result">
               </div>
             </div>
           </div>
           <div class="form-group">
             <label for="tags">Tags</label>
-            <input type="text" class="form-control" id="tags" :class="{'is-invalid':isError('tags')}" v-model="tags" placeholder="Tags">
+              <input-tag type="text" class="form-control" id="tags" :class="{'is-invalid':isError('tags')}" :tags.sync="data.tags" placeholder="Tags" addTagOnBlur :addTagOnKeys="[13,188,9,32]" />
           </div>
         </b-modal>
     </section>
@@ -262,14 +262,14 @@ export default {
 
       var formData = new FormData();
       formData.append("_method", "PUT");
-      formData.append('category_id', this.category_id);
-      formData.append('course_name', this.course_name);
-      formData.append('course_subtitle', this.course_subtitle);
-      formData.append('course_description', this.course_description);
-      formData.append('course_price', this.course_price);
-      formData.append('requirements', JSON.stringify(this.requirements));
-      formData.append('results', JSON.stringify(this.results));
-      formData.append('tags', JSON.stringify(this.tags));
+      formData.append('category_id', this.data.category_id);
+      formData.append('course_name', this.data.course_name);
+      formData.append('course_subtitle', this.data.course_subtitle);
+      formData.append('course_description', this.data.course_description);
+      formData.append('course_price', this.data.course_price);
+      formData.append('requirements', JSON.stringify(this.data.requirements));
+      formData.append('results', JSON.stringify(this.data.results));
+      formData.append('tags', JSON.stringify(this.data.tags));
 
       axios
         .post(`//${window.location.host}/api/course` + "/" + this.data.id, formData)

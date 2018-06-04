@@ -20,13 +20,13 @@
             <div class="login-content">
                 <form action="index.html" method="GET" class="margin-bottom-0">
                     <div class="form-group m-b-20">
-                        <input type="text" class="form-control form-control-lg" placeholder="Email Address" required />
+                        <input type="text" class="form-control form-control-lg" v-model="data.email" placeholder="Email Address" required />
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="password" class="form-control form-control-lg" placeholder="Password" required />
+                        <input type="password" class="form-control form-control-lg" v-model="data.password" placeholder="Password" required />
                     </div>
                     <div class="checkbox checkbox-css m-b-20">
-                        <input type="checkbox" id="remember_checkbox" /> 
+                        <input type="checkbox" id="remember_checkbox" v-model="data.remember" /> 
                         <label for="remember_checkbox">
                         	Remember Me
                         </label>
@@ -47,6 +47,28 @@
 
 <script>
 export default {
+    data: () => ({
+        data: {
+            email: '',
+            password: '',
+            remember: false
+        },
+        errors: []
+    }),
+    methods: {
+        login() {
+            axios.post(`${window.location.host}/api/login`, formData)
+            .then((res) => {
+                if(res.status === 200) {
+                    window.location.href = '/';
+                }
+            })
+            .catch((err) => {
+                this.errors = err.response.data.errros;
+                console.log(err.response);
+            });
+        }
+    }
 
 }
 </script>

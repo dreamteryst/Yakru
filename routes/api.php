@@ -25,3 +25,9 @@ Route::resource('tag', 'TagController');
 Route::get('course/data', 'CourseController@anyData');
 Route::resource('course', 'CourseController');
 
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('register', 'Auth\RegisterController@register');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+

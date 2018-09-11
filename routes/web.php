@@ -35,3 +35,5 @@ Route::get('errors', function () {
 Route::get('/{any}', function () {
     return view('main');
 })->where('any', '.*');
+
+Route::get('/home', 'HomeController@index')->name('home');

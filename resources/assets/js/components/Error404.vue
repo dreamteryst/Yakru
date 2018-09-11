@@ -6,8 +6,7 @@
             <div class="error-content">
                 <div class="error-message">We couldn't find it...</div>
                 <div class="error-desc m-b-30">
-                    The page you're looking for doesn't exist. <br />
-                    Perhaps, there pages will help find what you're looking for.
+                    The page you're looking for doesn't exist. <br /> Perhaps, there pages will help find what you're looking for.
                 </div>
                 <div>
                     <a href="/" class="btn btn-success p-l-20 p-r-20">Go Home</a>
@@ -19,11 +18,8 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>

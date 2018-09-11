@@ -26,6 +26,7 @@ import TagAdd from './components/admin/TagAdd';
 
 import Auth from './route/Auth';
 import Login from './components/auth/Login';
+import Register from './components/auth/Register';
 
 import CheckoutCart from './components/Checkout-Cart';
 import CheckoutPayment from './components/Checkout-Payment';
@@ -68,7 +69,8 @@ const routes = [
 
     ]},
     { path: '/auth', component: Auth, children: [
-        { path: '', name: 'Login', component: Login }
+        { path: '', name: 'Login', component: Login },
+        { path: 'register', name: 'Register', component: Register },
     ]},
     { path: "/errors", name: 'Page not found', component: Error404 },
     { path: "*", name: '404'}

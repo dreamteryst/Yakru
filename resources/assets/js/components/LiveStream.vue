@@ -12,7 +12,7 @@
                 </ul>
                 <!-- END breadcrumb -->
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe src="//aka.ms/ampembed?url=%2F%2Fyakru-dreamteryst-aase.channel.media.azure.net%2Fpreview.isml%2Fmanifest" name="azuremediaplayer" scrolling="no" frameborder="no" align="center" height="280px" width="500px" allowfullscreen></iframe>
+                    <video ref="videoElement"></video>
                 </div>
                 <h4 class="m-t-15">Running a Mobile App Dev Business: The Complete Guide (Live)</h4>
                 <hr/>
@@ -48,56 +48,83 @@
 
 <script>
 export default {
-    data: () => ({
-        likes: [{
-            'img': 'https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg',
-            'name': 'The Complete Web Developer Course 2.0',
-            'description': 'Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!',
-            'price': 330,
-            'discount': 7800
-        },{
-            'img': 'https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg',
-            'name': 'The Complete React Native and Redux Course',
-            'description': 'iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!',
-            'price': 330,
-            'discount': 3600
-        },{
-            'img': 'https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg',
-            'name': 'Android O & Java - Mobile App Development | Beginning to End',
-            'description': 'The complete Android course with Android Studio & Java. Go from beginner to professional app developer.',
-            'price': 330,
-            'discount': 7800
-        },{
-            'img': 'https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg',
-            'name': 'Running a Mobile App Dev Business: The Complete Guide',
-            'description': 'Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.',
-            'price': 330,
-            'discount': 5600
-        },{
-            'img': 'https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg',
-            'name': 'Android App Development: Mobile App Development & Java',
-            'description': 'Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop',
-            'price': 330,
-            'discount': 7200
-        },{
-            'img': 'https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg',
-            'name': 'Mobile App Development for Beginners (Swift 3, iPhone iOS10)',
-            'description': 'iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.',
-            'price': 330,
-            'discount': 1800
-        }]
-    }),
-    methods: {
-        getPercent(course) {
-            return parseInt((course.discount - course.price) * 100 / course.discount);
-        },
-        numberWithCommas(number) {
-            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        }
+  data: () => ({
+    likes: [
+      {
+        img: "https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg",
+        name: "The Complete Web Developer Course 2.0",
+        description:
+          "Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!",
+        price: 330,
+        discount: 7800
+      },
+      {
+        img: "https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg",
+        name: "The Complete React Native and Redux Course",
+        description:
+          "iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!",
+        price: 330,
+        discount: 3600
+      },
+      {
+        img: "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
+        name: "Android O & Java - Mobile App Development | Beginning to End",
+        description:
+          "The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
+        price: 330,
+        discount: 7800
+      },
+      {
+        img: "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
+        name: "Running a Mobile App Dev Business: The Complete Guide",
+        description:
+          "Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
+        price: 330,
+        discount: 5600
+      },
+      {
+        img: "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
+        name: "Android App Development: Mobile App Development & Java",
+        description:
+          "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
+        price: 330,
+        discount: 7200
+      },
+      {
+        img: "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
+        name: "Mobile App Development for Beginners (Swift 3, iPhone iOS10)",
+        description:
+          "iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.",
+        price: 330,
+        discount: 1800
+      }
+    ]
+  }),
+  mounted() {
+    const self = this;
+    $(function() {
+      if (flvjs.isSupported()) {
+        var videoElement = self.$refs.videoElement;
+        var player = flvjs.createPlayer({
+          type: "flv",
+          url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
+        });
+        player.attachMediaElement(videoElement);
+        player.load();
+        player.play();
+      }
+    });
+  },
+  methods: {
+    getPercent(course) {
+      return parseInt((course.discount - course.price) * 100 / course.discount);
+    },
+    numberWithCommas(number) {
+      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-}
+  }
+};
 </script>
 
 <style>
-
 </style>

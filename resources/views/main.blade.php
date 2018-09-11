@@ -50,7 +50,7 @@
 		<div id="app"></div>
 	</div>
     <!-- END #page-container -->
-	
+	<script src="https://cdn.bootcss.com/flv.js/1.4.0/flv.min.js"></script>
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ mix('vue/js/app.js') }}"></script>
 	{{-- <script src="{{ asset('assets/plugins/jquery/jquery-3.2.1.min.js') }}"></script> --}}

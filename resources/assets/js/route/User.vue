@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Navbar/>
         <Header/>
         <transition name="fade">
             <router-view></router-view>

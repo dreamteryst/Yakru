@@ -24,8 +24,9 @@
         "datatables.net-buttons-bs": "^1.5.1",
         "datatables.net-buttons-bs4": "^1.5.1",
         "datatables.net-responsive-bs4": "^2.2.1",
+        "vue-dplayer": "0.0.10",
+        "vue-input-tag": "^1.0.3",
         "vue-router": "^3.0.1",
-        "vuex": "^3.0.1",
-        "vue-input-tag": "^1.0.3"
+        "vuex": "^3.0.1"
     }
 }

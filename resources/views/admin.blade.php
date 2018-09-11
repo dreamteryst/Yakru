@@ -65,7 +65,7 @@
     	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ mix('vue/js/app.js') }}"></script>
-    <script src="{{ asset('assets_admin/plugins/jquery/jquery-3.2.1.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets_admin/plugins/jquery/jquery-3.2.1.min.js') }}"></script> --}}
 	<script src="{{ asset('assets_admin/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 	<script src="{{ asset('assets_admin/plugins/bootstrap/4.0.0/js/bootstrap.bundle.min.js') }}"></script>
 	<!--[if lt IE 9]>

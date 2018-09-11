@@ -1,0 +1,124 @@
+<template>
+    <div class="section-container" id="checkout-cart">
+        <!-- BEGIN container -->
+        <div class="container">
+            <!-- BEGIN checkout -->
+            <div class="checkout">
+                <form action="checkout_info.html" method="POST" name="form_checkout">
+                    <!-- BEGIN checkout-header -->
+                    <div class="checkout-header">
+                        <!-- BEGIN row -->
+                        <div class="row">
+                            <!-- BEGIN col-4 -->
+                            <div class="col-md-4 col-sm-4">
+                                <div class="step">
+                                    <router-link to="checkout_cart">
+                                        <div class="number">1</div>
+                                        <div class="info">
+                                            <div class="title">Delivery Options</div>
+                                            <div class="desc">Lorem ipsum dolor sit amet.</div>
+                                        </div>
+                                    </router-link>
+                                </div>
+                            </div>
+                            <!-- END col-4 -->
+                            <!-- BEGIN col-4 -->
+                            <div class="col-md-4 col-sm-4">
+                                <div class="step ">
+                                    <router-link to="checkout_payment">
+                                        <div class="number">2</div>
+                                        <div class="info">
+                                            <div class="title">Payment</div>
+                                            <div class="desc">Aenean ut pretium ipsum. </div>
+                                        </div>
+                                    </router-link>
+                                </div>
+                            </div>
+                            <!-- END col-4 -->
+                            <!-- BEGIN col-4 -->
+                            <div class="col-md-4 col-sm-4">
+                                <div class="step active">
+                                    <router-link to="#">
+                                        <div class="number">3</div>
+                                        <div class="info">
+                                            <div class="title">Complete Payment</div>
+                                            <div class="desc">Curabitur interdum libero.</div>
+                                        </div>
+                                    </router-link>
+                                </div>
+                            </div>
+                            <!-- END col-4 -->
+                        </div>
+                        <!-- END row -->
+                    </div>
+                    <!-- END checkout-header -->
+                    <!-- BEGIN checkout-body -->
+                    <div class="checkout-body">
+                        <!-- BEGIN checkout-message -->
+                        <div class="checkout-message">
+                            <h1>Thank you! <small>Your Payment has been successfully processed with the following details.</small></h1>
+                            <div class="table-responsive2">
+                                <table class="table table-payment-summary">
+                                    <tbody>
+                                        <tr>
+                                            <td class="field">Transaction Status</td>
+                                            <td class="value">Success</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="field">Transaction Reference No.</td>
+                                            <td class="value">REF000001</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="field">Bank Authorised Code</td>
+                                            <td class="value">AUTH000001</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="field">Transaction Date and Time</td>
+                                            <td class="value">05 APR 2018 07:30PM</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="field">Orders</td>
+                                            <td class="value product-summary">
+                                                <div class="product-summary-img">
+                                                    <img src="/assets/img/product/product-iphone-6s-plus.png" alt="">
+                                                </div>
+                                                <div class="product-summary-info">
+                                                    <div class="title">Running a Mobile App Dev Business: The Complete Guide</div>
+                                                    <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi gravida vel sapien et elementum. Proin id turpis eu sapien condimentum sagittis a quis tortor. Duis feugiat velit ut risus convallis mattis</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="field">Payment Amount (RM)</td>
+                                            <td class="value">฿749.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="text-muted text-center m-b-0">Should you require any assistance, you can get in touch with Support Team at (123) 456-7890</p>
+                        </div>
+                        <!-- END checkout-message -->
+                    </div>
+                    <!-- END checkout-body -->
+                    <!-- BEGIN checkout-footer -->
+                    <div class="checkout-footer text-center">
+                        <router-link to="/" class="btn btn-white btn-lg p-l-30 p-r-30 m-l-10">Continue Shopping</router-link>
+                    </div>
+                    <!-- END checkout-footer -->
+                </form>
+            </div>
+            <!-- END checkout -->
+        </div>
+        <!-- END container -->
+    </div>
+</template>
+
+<script>
+export default {
+  
+}
+</script>
+
+<style>
+
+</style>

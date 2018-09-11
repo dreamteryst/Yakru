@@ -88,7 +88,7 @@
                                 <h4 class="promotion-title">IOS 11 Development</h4>
                                 <div class="promotion-price"><small>from</small> ฿299.00</div>
                                 <p class="promotion-desc">Learn iOS 11 App Development From <br/> Beginning to End. Using Xcode 9 and Swift 4.<br/> Includes Full ARKit and CoreML Modules!</p>
-                                <a href="#" class="promotion-btn">View More</a>
+                                <router-link to="/live-stream" class="promotion-btn">View More</router-link>
                             </div>
                         </div>
                         <!-- END promotion -->
@@ -105,7 +105,7 @@
                                 <h4 class="promotion-title">Apple Watch</h4>
                                 <div class="promotion-price"><small>from</small> ฿299.00</div>
                                 <p class="promotion-desc">iOS Developers</p>
-                                <a href="#" class="promotion-btn">View More</a>
+                                <router-link to="/live-stream" class="promotion-btn">View More</router-link>
                             </div>
                         </div>
                         <!-- END promotion -->
@@ -118,7 +118,7 @@
                                 <h4 class="promotion-title">Mac Clarity</h4>
                                 <div class="promotion-price"><small>from</small> ฿399.00</div>
                                 <p class="promotion-desc">Master Your Mac.</p>
-                                <a href="#" class="promotion-btn">View More</a>
+                                <router-link to="/live-stream" class="promotion-btn">View More</router-link>
                             </div>
                         </div>
                         <!-- END promotion -->
@@ -135,7 +135,7 @@
                                 <h4 class="promotion-title">Complete Java Masterclass</h4>
                                 <div class="promotion-price"><small>from</small> ฿299.00</div>
                                 <p class="promotion-desc">Learn to master Java 8 and Java 9 core.</p>
-                                <a href="#" class="promotion-btn">View More</a>
+                                <router-link to="/live-stream" class="promotion-btn">View More</router-link>
                             </div>
                         </div>
                         <!-- END promotion -->
@@ -148,7 +148,7 @@
                                 <h4 class="promotion-title">Microcontrollers</h4>
                                 <div class="promotion-price"><small>from</small> ฿1,299.00</div>
                                 <p class="promotion-desc">the C Programming Language.</p>
-                                <a href="#" class="promotion-btn">View More</a>
+                                <router-link to="/live-stream" class="promotion-btn">View More</router-link>
                             </div>
                         </div>
                         <!-- END promotion -->

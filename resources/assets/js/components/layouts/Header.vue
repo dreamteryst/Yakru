@@ -27,7 +27,7 @@
                     <div class="header-nav">
                         <div class=" collapse navbar-collapse" id="navbar-collapse">
                             <ul class="nav">
-                                <li class="active"><a href="index.html">หน้าแรก</a></li>
+                                <li class="active"><a href="/">หน้าแรก</a></li>
                                 <!-- <li class="dropdown dropdown-hover">
                                     <a href="#" data-toggle="dropdown">
                                         Accessories 
@@ -46,7 +46,7 @@
                                 </li> -->
                                 <li><a href="product.html">คอร์สออนไลน์</a></li>
                                 <li><a href="product.html">แจ้งชำระเงิน</a></li>
-                                <li><a href="product.html">ติดต่อเรา</a></li>
+                                <li><router-link to="contact">ติดต่อเรา</router-link></li>
                                 <li class="dropdown dropdown-hover">
                                     <a href="#" data-toggle="dropdown">
                                         <i class="fa fa-search search-btn"></i>
@@ -117,11 +117,8 @@
                                     </div>
                                     <div class="cart-footer">
                                         <div class="row row-space-10">
-                                            <div class="col-xs-6">
-                                                <a href="checkout_cart.html" class="btn btn-default btn-block">View Cart</a>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <a href="checkout_cart.html" class="btn btn-inverse btn-block">Checkout</a>
+                                            <div class="col-xs-12">
+                                                <router-link to="checkout_cart" class="btn btn-inverse btn-block">View Cart</router-link>
                                             </div>
                                         </div>
                                     </div>

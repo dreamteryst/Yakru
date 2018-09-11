@@ -4,10 +4,13 @@ import User from './route/User';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import ProductDetail from './components/ProductDetail';
+import LiveStream from './components/LiveStream';
+import Contact from './components/Contact';
 
 import Admin from './route/Admin';
 import AdminHome from './components/admin/AdminHome';
 import CourseData from './components/admin/CourseData';
+import CourseAdd from './components/admin/CourseAdd';
 import LectureData from './components/admin/LectureData';
 import StudentData from './components/admin/StudentData';
 import TeacherData from './components/admin/TeacherData';
@@ -16,9 +19,17 @@ import SettingData from './components/admin/SettingData';
 import PaymentData from './components/admin/PaymentData';
 import UnitData from './components/admin/UnitData';
 import OrderData from './components/admin/OrderData';
+import CategoryData from './components/admin/CategoryData';
+import CategoryAdd from './components/admin/CategoryAdd';
+import TagData from './components/admin/TagData';
+import TagAdd from './components/admin/TagAdd';
 
 import Auth from './route/Auth';
 import Login from './components/auth/Login';
+
+import CheckoutCart from './components/Checkout-Cart';
+import CheckoutPayment from './components/Checkout-Payment';
+import CheckoutComplete from './components/Checkout-Complete';
 
 import Error404 from './components/Error404';
 
@@ -29,11 +40,17 @@ const routes = [
     { path: '', component: User, children: [
         { path: '', name: 'Home', component: Home},
         { path: 'profile', name: 'Profile', component: Profile },
-        { path: 'product-detail', name: 'Product Detail', component: ProductDetail }
+        { path: 'product-detail', name: 'Product Detail', component: ProductDetail },
+        { path: 'checkout_cart', name: 'checkout_cart', component: CheckoutCart},
+        { path: 'checkout_payment', name: 'checkout_payment', component: CheckoutPayment},
+        { path: 'checkout_complete', name: 'checkout_complete', component: CheckoutComplete},
+        { path: 'live-stream', name: 'live-stream', component: LiveStream},
+        { path: 'contact', name: 'contact', component: Contact},
     ]},
     { path: '/admin', component: Admin, children: [
         { path: '', name: 'Admin', component: AdminHome },
         { path: 'course', name: 'Course', component: CourseData },
+        { path: 'course/add', name: 'CourseAdd', component: CourseAdd },
         { path: 'course/:id', name: 'Unit', component: UnitData },
         { path: 'course/:id/:unit', name: 'Lecuture', component: LectureData },
         { path: 'student', name: 'Student', component: StudentData },
@@ -42,6 +59,13 @@ const routes = [
         { path: 'setting', name: 'Setting', component: SettingData },
         { path: 'payment', name: 'Payment', component: PaymentData },
         { path: 'order', name: 'Order', component: OrderData },
+        { path: 'category',  name: 'Category', component: CategoryData },
+        { path: 'category/add',  name: 'AddCategory', component: CategoryAdd },
+        { path: 'tag',  name: 'tag', component: TagData },
+        { path: 'tag/add',  name: 'Addtag', component: TagAdd }
+        
+        
+
     ]},
     { path: '/auth', component: Auth, children: [
         { path: '', name: 'Login', component: Login }

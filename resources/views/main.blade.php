@@ -34,9 +34,7 @@
 	<link href="{{ asset('assets/plugins/bootstrap3/css/bootstrap.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets/plugins/animate/animate.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('assets/css/e-commerce/style.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('assets/css/e-commerce/style-responsive.min.css') }}" rel="stylesheet" />
-	<link href="{{ asset('assets/css/e-commerce/theme/default.css') }}" id="theme" rel="stylesheet" />
+	<link href="{{ mix('vue/css/style.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ mix('vue/css/app.css') }}" rel="stylesheet" type="text/css">
 	<!-- ================== END BASE CSS STYLE ================== -->
 	

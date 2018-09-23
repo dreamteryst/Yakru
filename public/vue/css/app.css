@@ -609,21 +609,6 @@ div.dtr-bs-modal table.table tr:first-child td {
   font-style: normal;
 }
 
-p,
-span,
-a {
-  font-family: 'FC Lamoon';
-  font-weight: 300;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: 'FC Lamoon';
-}
-
 .actions {
   text-align: center;
   cursor: pointer;

@@ -46,6 +46,7 @@
                                 </li> -->
                                 <li><a href="product.html">คอร์สออนไลน์</a></li>
                                 <li><a href="product.html">แจ้งชำระเงิน</a></li>
+                                <li><a href="#">สมัครเป็นผู้สอน</a></li>
                                 <li><router-link to="contact">ติดต่อเรา</router-link></li>
                                 <li class="dropdown dropdown-hover">
                                     <a href="#" data-toggle="dropdown">

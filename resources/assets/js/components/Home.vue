@@ -8,14 +8,14 @@
 				<div class="carousel-inner">
 					<!-- BEGIN item -->
 					<div class="item active">
-						<img src="/assets/img/slider/slider-1-cover.jpg" class="bg-cover-img" alt="" />
+						<img src="/assets/img/cover/react-cover.jpg" class="bg-cover-img" alt="" />
 						<div class="container">
-							<img src="http://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Coding-Html-icon.png" class="product-img right bottom fadeInRight animated" alt="" />
-						</div>
+							<img src="/assets/img/product/react-logo.png" class="product-img right bottom fadeInRight animated" alt="" />
+						</div> 
 						<div class="carousel-caption carousel-caption-left">
-							<div class="container">
-								<h3 class="title m-b-5 fadeInLeftBig animated">The Full Stack</h3>
-								<p class="m-b-15 fadeInLeftBig animated">Web Development.</p>
+						<div class="container">
+								<h3 class="title m-b-5 fadeInLeftBig animated">React Native</h3>
+								<p class="m-b-15 fadeInLeftBig animated">Mobile Development.</p> 
 								<div class="price m-b-30 fadeInLeftBig animated">
 									<small>from</small>
 									<span>฿2299.00</span>
@@ -34,7 +34,7 @@
 						<div class="carousel-caption carousel-caption-right">
 							<div class="container">
 								<h3 class="title m-b-5 fadeInRightBig animated">Microcontrollers</h3>
-								<p class="m-b-15 fadeInRightBig animated">and the C Programming Language</p>
+								<p class="m-b-15 fadeInRightBig animated">and the C Programming LanguageT</p>
 								<div class="price m-b-30 fadeInRightBig animated">
 									<small>from</small>
 									<span>฿1,149.00</span>

@@ -192,7 +192,7 @@ export default {
         courses: [
           {
             img:
-              "https://udemy-images.udemy.com/course/240x135/1002676_3c6e_2.jpg",
+              "/assets/img/product/item-cover1.jpg",
             name: "The Full Stack Web Development",
             description:
               "Learn Full Stack Web Development Building Over 40+ Projects",
@@ -315,10 +315,10 @@ export default {
           courses: [
             {
               img:
-                "https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg",
-              name: "The Complete Web Developer Course 2.0",
+                "/assets/img/product/item-cover1.jpg",
+              name: "React Native",
               description:
-                "Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!",
+                "สอน React Native เบื้องต้น สำหรับมือใหม่!",
               price: 330,
               discount: 7800
             },

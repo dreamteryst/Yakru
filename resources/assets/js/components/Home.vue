@@ -73,47 +73,6 @@
 		</div>
 		<!-- END #slider -->
 
-		<!-- BEGIN #trending-items -->
-		<div id="trending-items" class="section-container bg-silver">
-			<!-- BEGIN container -->
-			<div class="container">
-				<!-- BEGIN section-title -->
-				<h4 class="section-title clearfix">
-					<!-- <a href="#" class="pull-right m-l-5"><i class="fa fa-angle-right f-s-18"></i></a>
-                    <a href="#" class="pull-right"><i class="fa fa-angle-left f-s-18"></i></a> -->
-					{{ trending.name }}
-					<small>{{ trending.description }}</small>
-				</h4>
-				<!-- END section-title -->
-
-				<!-- BEGIN row -->
-				<div class="row row-space-10">
-					<!-- BEGIN col-2 -->
-					<div class="col-md-2 col-sm-4" v-for="(course, j) in trending.courses" :key="j">
-						<!-- BEGIN item -->
-						<div class="item item-thumbnail">
-							<router-link to="/product-detail" class="item-image">
-								<img :src="course.img" alt="" />
-								<div class="discount">{{ getPercent(course) }}% OFF</div>
-							</router-link>
-							<div class="item-info">
-								<h4 class="item-title">
-									<router-link to="/product-detail">{{ course.name }}</router-link>
-								</h4>
-								<p class="item-desc">{{ course.description }}</p>
-								<div class="item-price">฿ {{ numberWithCommas(course.price) }}</div>
-								<div class="item-discount-price">฿ {{ numberWithCommas(course.discount) }}</div>
-							</div>
-						</div>
-						<!-- END item -->
-					</div>
-					<!-- END col-2 -->
-				</div>
-				<!-- END row -->
-			</div>
-			<!-- END container -->
-		</div>
-		<!-- END #trending-items -->
 		<!-- BEGIN #Web Development -->
 		<div id="Web Development" class="section-container bg-silver" v-for="(category, i) in categories" :key="i">
 			<!-- BEGIN container -->

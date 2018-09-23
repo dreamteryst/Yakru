@@ -4,6 +4,7 @@ table.dataTable {
   margin-bottom: 6px !important;
   max-width: none !important;
   border-collapse: separate !important;
+  border-spacing: 0;
 }
 table.dataTable td,
 table.dataTable th {
@@ -25,7 +26,7 @@ div.dataTables_wrapper div.dataTables_length label {
   white-space: nowrap;
 }
 div.dataTables_wrapper div.dataTables_length select {
-  width: 75px;
+  width: auto;
   display: inline-block;
 }
 div.dataTables_wrapper div.dataTables_filter {
@@ -134,6 +135,9 @@ div.dataTables_scrollBody table {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
+div.dataTables_scrollBody table thead .sorting:before,
+div.dataTables_scrollBody table thead .sorting_asc:before,
+div.dataTables_scrollBody table thead .sorting_desc:before,
 div.dataTables_scrollBody table thead .sorting:after,
 div.dataTables_scrollBody table thead .sorting_asc:after,
 div.dataTables_scrollBody table thead .sorting_desc:after {
@@ -591,6 +595,35 @@ div.dtr-modal div.dtr-modal-background {
 div.dtr-bs-modal table.table tr:first-child td {
   border-top: none;
 }
+@font-face {
+  font-family: 'FC Lamoon';
+  src: url(/fonts/FCLamoonLight.woff2?482102e15c6a3fd0fad821ac51e5582d) format("woff2"), url(/fonts/FCLamoonLight.woff?a314e5cfd4d02d9dc8fc28c6ee97486e) format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'FC Lamoon';
+  src: url(/fonts/FCLamoonRegular.woff2?75ff2cdb7427015b9fce662681c6bb4e) format("woff2"), url(/fonts/FCLamoonRegular.woff?59856613f80522cf272e797e6910abf7) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+p,
+span,
+a {
+  font-family: 'FC Lamoon';
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'FC Lamoon';
+}
+
 .actions {
   text-align: center;
   cursor: pointer;

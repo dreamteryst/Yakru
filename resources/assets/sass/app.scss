@@ -11,6 +11,31 @@
 @import '../../../node_modules/datatables.net-buttons-bs4/css/buttons.bootstrap4.css';
 @import '../../../node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.css';
 
+@font-face {
+    font-family: 'FC Lamoon';
+    src: url('../fonts/FCLamoonLight.woff2') format('woff2'),
+        url('../fonts/FCLamoonLight.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FC Lamoon';
+    src: url('../fonts/FCLamoonRegular.woff2') format('woff2'),
+        url('../fonts/FCLamoonRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+p, span, a {
+    font-family: 'FC Lamoon';
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'FC Lamoon';
+}
+
 .actions {
     text-align: center;
     cursor: pointer;

@@ -12,7 +12,7 @@
                     <li>
                         <a href="#">Mobile Development</a>
                     </li>
-                    <li class="active">Running a Mobile App Dev Business: The Complete Guide</li>
+                    <li class="active">React Native สำหรับมือใหม่!!</li>
                 </ul>
                 <!-- END breadcrumb -->
 
@@ -23,24 +23,8 @@
                         <!-- BEGIN product-image -->
                         <div class="product-image">
                             <div class="embed-responsive embed-responsive-16by9">
-                                <video ref="videoElement"></video>
-                            </div>
-                            <div class="row row-space-10 m-t-15">
-                                <div class="col-sm-4">
-                                    <router-link to="/product-detail" class="item-video">
-                                        <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" class="img-responsive" alt="" />
-                                    </router-link>
-                                </div>
-                                <div class="col-sm-4">
-                                    <router-link to="/product-detail" class="item-video">
-                                        <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" class="img-responsive" alt="" />
-                                    </router-link>
-                                </div>
-                                <div class="col-sm-4">
-                                    <router-link to="/product-detail" class="item-video">
-                                        <img src="https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg" class="img-responsive" alt="" />
-                                    </router-link>
-                                </div>
+                                <!-- <video ref="videoElement"></video> -->
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/mkualZPRZCs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                             </div>
                         </div>
                         <!-- END product-image -->
@@ -49,7 +33,7 @@
                             <!-- BEGIN product-info-header -->
                             <div class="product-info-header">
                                 <h1 class="product-title">
-                                    <span class="label label-success">41% OFF</span> Running a Mobile App Dev Business: The Complete Guide</h1>
+                                    <span class="label label-success">41% OFF</span> React Native สำหรับมือใหม่!!</h1>
                                 <ul class="product-category">
                                     <li>
                                         <a href="#">Mobile</a>
@@ -71,25 +55,27 @@
                             <!-- END product-info-header -->
                             <!-- BEGIN product-warranty -->
                             <div class="product-warranty">
-                                <h3>What Will I Learn?</h3>
+                                <h4>What will you learn?</h4>
                             </div>
                             <!-- END product-warranty -->
                             <!-- BEGIN product-info-list -->
                             <ul class="product-info-list">
                                 <li>
-                                    <i class="fa fa-circle"></i> Choose the most effective platform strategy for your business</li>
+                                    <i class="fa fa-circle"></i> Setup and Introduction</li>
                                 <li>
-                                    <i class="fa fa-circle"></i> Predict the timeline for starting your business and effectively allocate your time</li>
+                                    <i class="fa fa-circle"></i> Mastering User Interface</li>
                                 <li>
-                                    <i class="fa fa-circle"></i> Choose whether or not to offer generalized or specialized mobile services</li>
+                                    <i class="fa fa-circle"></i> Platform Specific</li>
                                 <li>
-                                    <i class="fa fa-circle"></i> Recognize the core components of successful mobile development firms</li>
+                                    <i class="fa fa-circle"></i> Using Dynamic Content and Network (JSON Http Feed)</li>
                                 <li>
-                                    <i class="fa fa-circle"></i> Select a name that's attractive and conveys your core messaging</li>
+                                    <i class="fa fa-circle"></i> Access Native Device Feature</li>
                                 <li>
-                                    <i class="fa fa-circle"></i> Use advanced search techniques to find specialty contractors</li>
+                                    <i class="fa fa-circle"></i> User Input, Form and Data Management</li>
                                 <li>
-                                    <i class="fa fa-circle"></i> Use uncommon techniques to grow your portfolio faster</li>
+                                    <i class="fa fa-circle"></i> Using Google Map</li>
+                                <li>
+                                    <i class="fa fa-circle"></i> การเตรียม Resources, เทคนิคการ Build App และอัปโหลด App ไปที่ Store</li>
                             </ul>
                             <!-- END product-info-list -->
                             <!-- BEGIN product-purchase-container -->
@@ -119,11 +105,29 @@
                         <!-- BEGIN #product-tab-content -->
                         <div id="product-tab-content" class="tab-content">
                             <!-- BEGIN #curriculum -->
-                            <div class="tab-pane fade active in" id="curriculum">
+                            <div class="tab-pane fade active in" id="curriculum" v-for="(course, i) in courses" :key="i">
                                 <b-card no-body class="mb-1">
                                     <b-card-header header-tag="header" class="p-1" role="tab">
+                                        <b-btn block href="#" v-b-toggle="'accordion-' + i" variant="info" class="btn-left btn-peach">
+                                            <i class="fa fa-plus"></i> {{ course.title }}
+                                        </b-btn>
+                                    </b-card-header>
+                                    <b-collapse :id="'accordion-' + i" accordion="my-accordion" role="tabpanel">
+                                        <b-card-body>
+                                            <ul class="curriculum" v-for="(sub, j) in course.sub" :key="j">
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> {{ sub.name }}
+                                                    </router-link>
+                                                </li>
+                                            </ul>
+                                        </b-card-body>
+                                    </b-collapse>
+                                </b-card>
+                                <!-- <b-card no-body class="mb-1">
+                                    <b-card-header header-tag="header" class="p-1" role="tab">
                                         <b-btn block href="#" v-b-toggle.accordion1 variant="info" class="btn-left">
-                                            <i class="fa fa-plus"></i> Introduction
+                                            <i class="fa fa-plus"></i> Setup and Introduction
                                         </b-btn>
                                     </b-card-header>
                                     <b-collapse id="accordion1" visible accordion="my-accordion" role="tabpanel">
@@ -131,24 +135,59 @@
                                             <ul class="curriculum">
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Course Overview
+                                                        <i class="fa fa-play-circle"></i> Course Introduction
                                                     </router-link>
                                                 </li>
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> 7 reasons to start a mobile app development business
+                                                        <i class="fa fa-play-circle"></i> NodeJS Install
                                                     </router-link>
                                                 </li>
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> The Sprintkick story
+                                                        <i class="fa fa-play-circle"></i> React-Native & Watchman
+                                                    </router-link>
+                                                </li>
+                                                 <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> Visual Studio Install and React-Native Extension Pack
+                                                    </router-link>
+                                                </li>
+                                                 <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> React-Native CLI
+                                                    </router-link>
+                                                </li>
+                                                 <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> How to use the React-Native Documentation
+                                                    </router-link>
+                                                </li>
+                                                 <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> Basic ReactJS Langulage (ES5/6 and JSX)
+                                                    </router-link>
+                                                </li>
+                                                 <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> React Component and Basic UI
+                                                    </router-link>
+                                                </li>
+                                                 <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> Styling and Theming
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> Debugging / JS-Debugging / Auto-Reload
                                                     </router-link>
                                                 </li>
                                             </ul>
                                         </b-card-body>
                                     </b-collapse>
-                                </b-card>
-                                <b-card no-body class="mb-1">
+                                </b-card> -->
+                                <!-- <b-card no-body class="mb-1">
                                     <b-card-header header-tag="header" class="p-1" role="tab">
                                         <b-btn block href="#" v-b-toggle.accordion2 variant="info" class="btn-left">
                                             <i class="fa fa-plus"></i> The Essentials
@@ -159,91 +198,101 @@
                                             <ul class="curriculum">
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> The startup timeline
-                                                    </router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> How does this work as a programmer / non programmer?
-                                                    </router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> iOS versus Android
-                                                    </router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Native versus hybrid
-                                                    </router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Build yourself or contract?
-                                                    </router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> In-house hiring or out of house?
-                                                    </router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> In country or out of country?
+                                                        <i class="fa fa-play-circle"></i> 
                                                     </router-link>
                                                 </li>
                                             </ul>
                                         </b-card-body>
                                     </b-collapse>
-                                </b-card>
-                                <b-card no-body class="mb-1">
+                                </b-card> -->
+                                <!-- <b-card no-body class="mb-1">
                                     <b-card-header header-tag="header" class="p-1" role="tab">
-                                        <b-btn block href="#" v-b-toggle.accordion3 variant="info" class="btn-left">
-                                            <i class="fa fa-plus"></i> Setting up your presence
+                                        <b-btn block href="#" v-b-toggle.accordion2 variant="info" class="btn-left">
+                                            <i class="fa fa-plus"></i> Mastering User Interface
                                         </b-btn>
                                     </b-card-header>
-                                    <b-collapse id="accordion3" accordion="my-accordion" role="tabpanel">
+                                    <b-collapse id="accordion2" accordion="my-accordion" role="tabpanel">
                                         <b-card-body>
                                             <ul class="curriculum">
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Focus on 80/20 solutions for your online presence
+                                                        <i class="fa fa-play-circle"></i> 
                                                     </router-link>
                                                 </li>
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Looking at other studios
+                                                        <i class="fa fa-play-circle"></i> 
                                                     </router-link>
                                                 </li>
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Going further in-depth looking at studios
+                                                        <i class="fa fa-play-circle"></i> 
                                                     </router-link>
                                                 </li>
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Picking and configuring a template on Templatemonster
+                                                        <i class="fa fa-play-circle"></i> 
                                                     </router-link>
                                                 </li>
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Picking and configuring a template on ThemeForest
+                                                        <i class="fa fa-play-circle"></i> 
                                                     </router-link>
                                                 </li>
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Selecting a name
+                                                        <i class="fa fa-play-circle"></i> 
                                                     </router-link>
                                                 </li>
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> Advanced: Upgrade your presence with custom design
+                                                        <i class="fa fa-play-circle"></i> 
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> 
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> 
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> 
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> 
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> 
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> 
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> 
+                                                    </router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="#">
+                                                        <i class="fa fa-play-circle"></i> 
                                                     </router-link>
                                                 </li>
                                             </ul>
                                         </b-card-body>
                                     </b-collapse>
-                                </b-card>
+                                </b-card> -->
                             </div>
                             <!-- END #curriculum -->
                         </div>
@@ -265,30 +314,16 @@
                             <div class="tab-pane fade active in" id="product-desc">
                                 <h3>Requirement</h3>
                                 <ul>
-                                    <li>Requirements
-                                        <li>No pre-requisites necessary.</li>
-                                        <li>Programming experience is helpful but not necessary.</li>
+                                        <li>Javascript</li>
+                                        <li>HTML</li>
+                                        <li>CSS</li>
                                 </ul>
                                 <h3>Description</h3>
                                 <p>
-                                    The mobile app development industry is growing at a blazing 43% per year and shows no signs of slowing down. This represents a huge opportunity for you - bigger than it's ever been before. Whether you want to code or not, you can capitalize on the over 16 billion dollars of money spent per year on mobile app development services. Part-time or full-time, you can build an awesome portfolio and an even better income taking on mobile app development projects.
+                                    React-Native คือ Cross-Platform Framework ที่ใช้ในการพัฒนา Native Mobile Application อย่าง Android และ iOS ที่พัฒนาโดยบริษัท Facebook Inc. React Native มีหลักการคล้ายกับ Xamarin คือมันสามารถ Reuse Code ได้มากกว่า 70% ในการทำแอพที่รันได้ทั้งบน Android และ iOS โดยใช้ภาษาหลักภาษาเดียว คือภาษา ReactJS (ES6 / JSX) ซึ่งใกล้เคียงกับ Javascript / Typescript / XML ในการพัฒนาแอพ ซึ่งเมื่อทำเสร็จ แอพจะทำงานไวใกล้เคียงกับการเขียนด้วย ภาษา Native อย่าง Java และ Swift/Objective-C
+อีกหนึ่งจุดเด่นของ React Native คือการประยุกต์ใช้แนวคิดแบบ Reactive Programming ที่ทำให้การพัฒนารองรับการทำงานแบบ Asynchronous และมี State ที่ซับซ้อนได้
+นอกจากนี้ในหลักสูตรจะมีการสอน Redux (State Container) ในการจัดการ State เพื่อให้การพัฒนารองรับระบบที่มีความซับซ้อนและดูเป็นมืออาชีพ รวมถึงการเขียนโค้ดที่ทำงานร่วมกับ Native API ที่เป็น Java หรือ Objective-C และแชร์ประสบการณ์การในพัฒนาแอพด้วย React-Native จริงๆ
                                 </p>
-                                <p>
-                                    Over the last four years I've personally overseen the launch of over 100 apps from concept to deployment. I've grown my business from one small client to over 100. Today, we make apps for big name brands such as Walmart, GNC, Dick's Sporting Goods, and other Fortune 500 companies.
-                                </p>
-                                <p>
-                                    I created this course to teach you how you can hit the ground running by starting a mobile app development business - no coding
-                                </p>
-                                <p>
-                                    necessary. I see a lot of people floundering to start or grow their mobile businesses because they don't have the mentorship or the guidance to do it right. This course is my answer for all of you who have reached out for help. I've piled everything I know and everything that has made my business successful into this course. I'm going to show you how to jumpstart your business, grow it quickly, and manage your business like a professional - all from the comfort of your laptop.
-                                </p>
-                                <h3>Who is the target audience?</h3>
-                                <ul>
-                                    <li>Mobile app developers who want to learn how to expand their skills into a business.
-                                        <li>Non-technical entrepreneurs who want to start a business building mobile apps.</li>
-                                        <li>Established freelancers who want to add development services to their offerings.</li>
-                                        <li>Marketing, strategy, and SEO consultants who want to expand their business and offer more to their clients.</li>
-                                </ul>
                             </div>
                             <!-- END #product-desc -->
                         </div>
@@ -389,6 +424,274 @@ export default {
           discount: 1800
         }
       ],
+      courses: [
+        {
+            title: "Setup and Introduction",
+            sub: [
+                {
+                    name: "Course Introduction"
+                },
+                {
+                    name: "NodeJS Install"
+                },
+                {
+                    name: "React-Native & Watchman"
+                },
+                {
+                    name: "Visual Studio Install and React-Native Extension Pack"
+                },
+                {
+                    name: "React-Native CLI"
+                },
+                {
+                    name: "How to use the React-Native Documentation"
+                },
+                {
+                    name: "Basic ReactJS Langulage (ES5/6 and JSX)"
+                },
+                {
+                    name: "React Component and Basic UI"
+                },
+                {
+                    name: "Styling and Theming"
+                },
+                {
+                    name: "Debugging / JS-Debugging / Auto-Reload"
+                }
+            ]
+        },
+        {
+            title: "Mastering User Interface",
+            sub: [
+                {
+                    name: "React-Native Project Structure"
+                },
+                {
+                    name: "Core User Interface Input / Output"
+                },
+                {
+                    name: "Data Binding (Props and State)"
+                },
+                {
+                    name: "Event Listener"
+                },
+                {
+                    name: "Mutiple Screens"
+                },
+                {
+                    name: "Redux, React-Redux"
+                },
+                {
+                    name: "Redux Middleware Redux-Thunk"
+                },
+                {
+                    name: "Reducer, Action, Dispatch"
+                },
+                {
+                    name: "How Navigation works in an React-Native"
+                },
+                {
+                    name: "Creating a Page and how to Navigate to it"
+                },
+                {
+                    name: "Passing Data between Pages"
+                },
+                {
+                    name: "Popping Pages - Callback Data"
+                },
+                {
+                    name: "Using Redux for Page Navigation"
+                },
+                {
+                    name: "Configuring Page Transitions"
+                },
+                {
+                    name: "The Page Lifecycle in Action"
+                }
+            ]
+        },
+        {
+            title: "Platform Specific Code",
+            sub: [
+                {
+                    name: "Detecting OS (Android or iOS)"
+                },
+                {
+                    name: "Detecting Android Version"
+                },
+                {
+                    name: "Detecting iOS Version"
+                },
+                {
+                    name: "Style and Size in Specific Platform"
+                },
+                {
+                    name: "Platform-specific extensions"
+                },
+                {
+                    name: "Access Platform Specific Code"
+                }
+            ]
+        },
+        {
+            title: "Using Dynamic Content and Network (JSON Http Feed)",
+            sub: [
+                {
+                    name: "Standard Network API - Fetch"
+                },
+                {
+                    name: "3rd Party Network API - Axios"
+                },
+                {
+                    name: "HTTP Fetching RESTful (JSON)"
+                },
+                {
+                    name: "Fixing iOS HTTP (unsecured) Issue"
+                },
+                {
+                    name: "Fetching data from MySql"
+                },
+                {
+                    name: "ScrolllView"
+                },
+                {
+                    name: "Setup FlatList"
+                },
+                {
+                    name: "Styling ListView"
+                },
+                {
+                    name: "Tap Event Listener"
+                },{
+                    name: "Add Loading Component"
+                },
+                {
+                    name: "Add Pull to Refresh support to our app"
+                },
+                {
+                    name: "การจัดการกับปัญหาเรื่อง Cross-Origin-Resource-Sharing (Cors)"
+                }
+            ]
+        },
+        {
+            title: "Access Native Device Feature",
+            sub: [
+                {
+                    name: "Runtime Permission"
+                },
+                {
+                    name: "Youtube Video Player"
+                },
+                {
+                    name: "Camera"
+                },
+                {
+                    name: "arcode and QR Code Scanner"
+                },
+                {
+                    name: "InAppBrowser"
+                },
+                {
+                    name: "SQLite"
+                },
+                {
+                    name: "Toasts"
+                },
+                {
+                    name: "Call Number"
+                },
+                {
+                    name: "File"
+                },{
+                    name: "File Path"
+                },
+                {
+                    name: "File Transfer"
+                }
+            ]
+        },
+        {
+            title: "User Input, Forms and Data Management",
+            sub: [
+                {
+                    name: "How to use Local Storage"
+                },
+                {
+                    name: "Learn 3rd-party Custom UI - 'UI Element'"
+                },
+                {
+                    name: "Handle User Input"
+                },
+                {
+                    name: "Registering Controls"
+                },
+                {
+                    name: "Submitting the Form"
+                },
+                {
+                    name: "Validating the Form"
+                },
+                {
+                    name: "Handling Data with a Model for our Ingredients"
+                },
+                {
+                    name: "Managing Data with a Service"
+                },
+                {
+                    name: "insert, update, and delete data"
+                },
+                {
+                    name: "Alerts"
+                }
+            ]
+        },
+        {
+            title: "Using Google Map",
+            sub: [
+                {
+                    name: "Using 3rd-party Library"
+                },
+                {
+                    name: "Adding Google Maps to the App"
+                },
+                {
+                    name: "Configuring our Maps"
+                },
+                {
+                    name: "Allowing the User to Place a Marker on the Map"
+                },
+                {
+                    name: "Displaying the Chosen Location"
+                },
+                {
+                    name: "Geolocation to Locate the User"
+                }
+            ]
+        },
+        {
+            title: "การเตรียม Resources, เทคนิคการ Build App และอัพโหลด App ไปที่ Store",
+            sub: [
+                {
+                    name: "Custom Icons and Splashscreen"
+                },
+                {
+                    name: "Configuration"
+                },
+                {
+                    name: "Generate Distribution Files"
+                },
+                {
+                    name: "Build Preparations and Building for Production"
+                },
+                {
+                    name: "Publish to Google Play Store"
+                },
+                {
+                    name: "Publish to Apple AppStore"
+                }
+            ]
+        }
+    ],
       player: null
     };
   },
@@ -477,6 +780,6 @@ export default {
   opacity: 1;
 }
 .product-image {
-  padding: 10px;
+  padding: 20px;
 }
 </style>

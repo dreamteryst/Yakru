@@ -97,7 +97,7 @@
 							</router-link>
 							<div class="item-info">
 								<h4 class="item-title">
-									<router-link to="/product-detail">{{ course.name }}</router-link>
+									<router-link to="/product-detail" v-html="course.name"></router-link>
 								</h4>
 								<p class="item-desc">{{ course.description }}</p>
 								<div class="item-price">฿ {{ numberWithCommas(course.price) }}</div>
@@ -186,70 +186,10 @@
 export default {
   data() {
     return {
-      trending: {
-        name: "Trending Items",
-        description: "Shop and get your favourite items at amazing prices!",
-        courses: [
-          {
-            img:
-              "/assets/img/product/item-cover1.jpg",
-            name: "The Full Stack Web Development",
-            description:
-              "Learn Full Stack Web Development Building Over 40+ Projects",
-            price: 330,
-            discount: 2200
-          },
-          {
-            img:
-              "https://udemy-images.udemy.com/course/240x135/917724_114b_12.jpg",
-            name: "Learn JavaScript for Web Development",
-            description:
-              "Advance your Web Development Skills By Learning Javascript from JavaScript Expert",
-            price: 330,
-            discount: 2800
-          },
-          {
-            img:
-              "https://udemy-images.udemy.com/course/240x135/284076_749f_7.jpg",
-            name: "Automate Web Development With Gulp JS",
-            description:
-              "Learn how to automate and speed up your web development.",
-            price: 330,
-            discount: 600
-          },
-          {
-            img:
-              "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
-            name: "Android App Development: Mobile App Development & Java",
-            description:
-              "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
-            price: 330,
-            discount: 7200
-          },
-          {
-            img:
-              "https://udemy-images.udemy.com/course/240x135/200994_5de4_2.jpg",
-            name: "Business Development For Startups and Tech Companies",
-            description:
-              "Unlock massive growth using the business development channel. Learn pitching, BD strategy, cold emailing, & deal closing",
-            price: 330,
-            discount: 7600
-          },
-          {
-            img:
-              "https://udemy-images.udemy.com/course/240x135/507714_f9f3_3.jpg",
-            name: "Certificate in QlikSense Analytics Development",
-            description:
-              "Scenario based QlikSense app development training using real business data examples for visual data analysis",
-            price: 330,
-            discount: 6800
-          }
-        ]
-      },
       categories: [
         {
           name: "Web Develeopment",
-          description: "Shop and get your favourite items at amazing prices!",
+          description: "",
           courses: [
             {
               img:
@@ -311,12 +251,12 @@ export default {
         },
         {
           name: "Mobile Develeopment",
-          description: "Shop and get your favourite items at amazing prices!",
+          description: "",
           courses: [
             {
               img:
                 "/assets/img/product/item-cover1.jpg",
-              name: "React Native",
+              name: "React Native<br/> สำหรับมือใหม่!!",
               description:
                 "สอน React Native เบื้องต้น สำหรับมือใหม่!",
               price: 330,

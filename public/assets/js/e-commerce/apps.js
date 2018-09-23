@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3 & 4
-Version: 4.0.0
+Version: 4.2.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.0/frontend/e-commerce/
+Website: http://www.seantheme.com/color-admin-v4.2/frontend/e-commerce/
     ----------------------------
         APPS CONTENT TABLE
     ----------------------------
@@ -17,6 +17,7 @@ Website: http://www.seantheme.com/color-admin-v4.0/frontend/e-commerce/
     07. Handle Payment Type Selection
     08. Handle Checkout Qty Control
     09. Handle Product Image
+    10. Handle Paroller
 	
     <!-- ======== APPLICATION SETTING ======== -->
     Application Controller
@@ -88,22 +89,24 @@ var handleThemePanelExpand = function() {
 /* 06. Handle Theme Page Control
 ------------------------------------------------ */
 var handleThemePageControl = function() {
-    if (Cookies && Cookies.get('theme')) {
-        if ($('.theme-list').length !== 0) {
-            $('.theme-list [data-theme]').closest('li').removeClass('active');
-            $('.theme-list [data-theme="'+ Cookies.get('theme') +'"]').closest('li').addClass('active');
-        }
-        var cssFileSrc = $('[data-theme="'+ Cookies.get('theme') +'"]').attr('data-theme-file');
-        $('#theme').attr('href', cssFileSrc, { expires: 365 });
-    }
-    
-    $(document).on('click', '.theme-list [data-theme]', function() {
-        var cssFileSrc = $(this).attr('data-theme-file');
-        $('#theme').attr('href', cssFileSrc);
-        $('.theme-list [data-theme]').not(this).closest('li').removeClass('active');
-        $(this).closest('li').addClass('active');
-        Cookies.set('theme', $(this).attr('data-theme'));
-    });
+	if (typeof Cookies !== 'undefined') {
+		if (Cookies && Cookies.get('theme')) {
+			if ($('.theme-list').length !== 0) {
+				$('.theme-list [data-theme]').closest('li').removeClass('active');
+				$('.theme-list [data-theme="'+ Cookies.get('theme') +'"]').closest('li').addClass('active');
+			}
+			var cssFileSrc = $('[data-theme="'+ Cookies.get('theme') +'"]').attr('data-theme-file');
+			$('#theme').attr('href', cssFileSrc, { expires: 365 });
+		}
+	
+		$(document).on('click', '.theme-list [data-theme]', function() {
+			var cssFileSrc = $(this).attr('data-theme-file');
+			$('#theme').attr('href', cssFileSrc);
+			$('.theme-list [data-theme]').not(this).closest('li').removeClass('active');
+			$(this).closest('li').addClass('active');
+			Cookies.set('theme', $(this).attr('data-theme'));
+		});
+	}
 };
 
 
@@ -159,6 +162,18 @@ var handleProductImage = function() {
 };
 
 
+/* 10. Handle Paroller
+------------------------------------------------ */
+
+var handleParoller = function() {
+	if (typeof $.fn.paroller !== 'undefined') {
+		if ($('[data-paroller="true"]').length !== 0) {
+			$('[data-paroller="true"]').paroller();
+		}
+	}
+};
+
+
 /* Application Controller
 ------------------------------------------------ */
 var App = function () {
@@ -176,6 +191,7 @@ var App = function () {
             handlePaymentTypeSelection();
             handleQtyControl();
             handleProductImage();
+            handleParoller();
 		}
   };
 }();

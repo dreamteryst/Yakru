@@ -16,12 +16,9 @@
 
 <script>
 import AuthFooter from '../components/layouts/AuthFooter.vue'
-export default{
+export default {
     components: {
         AuthFooter
-    },
-    mounted() {
-        console.log(this.$route.path);
     }
 }
 </script>

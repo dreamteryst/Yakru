@@ -107,13 +107,13 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <router-link to="/" v-if="isAuth">
+                                <router-link to="/profile" v-if="isAuth">
                                     <img src="/assets/img/user/user-1.jpg" class="user-img" alt="" /> 
                                     <span class="hidden-md hidden-sm hidden-xs">{{ profile.firstname }} {{ profile.lastname }}</span>
                                 </router-link>
-                                <router-link to="/auth" v-if="!isAuth">
+                                <a href="/auth" v-if="!isAuth">
                                     <span class="hidden-md hidden-sm hidden-xs">เข้าสู่ระบบ / สมัครสมาชิก</span>
-                                </router-link>
+                                </a>
                             </li>
                         </ul>
                     </div>

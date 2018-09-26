@@ -8,6 +8,7 @@ import LiveStream from './components/LiveStream';
 import Contact from './components/Contact';
 
 import Admin from './route/Admin';
+import AdminLogin from './components/admin/auth/Login';
 import AdminHome from './components/admin/AdminHome';
 import CourseData from './components/admin/CourseData';
 import CourseAdd from './components/admin/CourseAdd';
@@ -48,6 +49,7 @@ const routes = [
         { path: 'live-stream', name: 'live-stream', component: LiveStream},
         { path: 'contact', name: 'contact', component: Contact},
     ]},
+    { path: '/admin/auth', name: 'AdminLogin', component: AdminLogin },
     { path: '/admin', component: Admin, children: [
         { path: '', name: 'Admin', component: AdminHome },
         { path: 'course', name: 'Course', component: CourseData },

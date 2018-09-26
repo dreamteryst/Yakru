@@ -13,7 +13,11 @@
 Route::group(['middleware' => ['web']], function() {
 // Login Routes...
     Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
-    Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+    Route::post('admin/login', ['as' => 'login.post', 'uses' => 'Auth\AdminLoginController@login']);
+    Route::get('logout', function() {
+        Auth::logout();
+        return redirect('/auth');
+    });
 
 // Registration Routes...
     Route::post('register', ['as' => 'register.post', 'uses' => 'Auth\RegisterController@register']);
@@ -29,7 +33,13 @@ Route::middleware('auth')->get('/user', function (Request $request) {
     return Auth::user();
 });
 
-Route::prefix('admin')->group(function () {
+Route::group(['middleware' => ['guest']], function() {
+    Route::get('admin/auth', function () {
+        return view('auth');
+    })->name('admin.login');
+});
+
+Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin');
     });
@@ -42,7 +52,7 @@ Route::group(['middleware' => ['guest']], function() {
     Route::prefix('auth')->group(function () {
         Route::get('/', function () {
             return view('auth');
-        });
+        })->name('login');
         Route::get('/{any}', function () {
             return view('auth');
         })->where('any', '.*');

@@ -5,10 +5,10 @@
             <!-- begin brand -->
             <div class="login-header">
                 <div class="brand">
-                    <router-link to="/">
+                    <a href="/">
                         <span class="logo" style="border: 0px;"><img
                             src="/assets/img/logo-small.png" width="30" height="30"></span><b>Yak</b>ru
-                    </router-link>
+                    </a>
                     <small>MOOC Via Live Streaming</small>
                 </div>
                 <div class="icon">
@@ -18,39 +18,39 @@
             <!-- end brand -->
             <!-- begin login-content -->
             <div class="login-content">
-                <form action="index.html" method="GET" class="margin-bottom-0">
+                <form action="/" method="POST" @submit="register" class="margin-bottom-0">
                     <div class="form-group m-b-20">
-                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError('firstname')}" v-model="data.firstname" placeholder="Firstname" required />
-                        <div class="invalid-feedback" v-if="isError('firstname')">
+                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'firstname')}" v-model="data.firstname" placeholder="Firstname" required />
+                        <div class="invalid-feedback" v-if="isError(errors, 'firstname')">
                             {{ errors.firstname[0] }}
                         </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError('lastname')}" v-model="data.lastname" placeholder="Lastname" required />
-                        <div class="invalid-feedback" v-if="isError('lastname')">
+                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'lastname')}" v-model="data.lastname" placeholder="Lastname" required />
+                        <div class="invalid-feedback" v-if="isError(errors, 'lastname')">
                             {{ errors.lastname[0] }}
                         </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="email" class="form-control form-control-lg" :class="{'is-invalid':isError('email')}" v-model="data.email" placeholder="Email Address" required />
-                        <div class="invalid-feedback" v-if="isError('email')">
+                        <input type="email" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'email')}" v-model="data.email" placeholder="Email Address" required />
+                        <div class="invalid-feedback" v-if="isError(errors, 'email')">
                             {{ errors.email[0] }}
                         </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError('password')}" v-model="data.password" placeholder="Password" required />
-                        <div class="invalid-feedback" v-if="isError('password')">
+                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'password')}" v-model="data.password" placeholder="Password" required />
+                        <div class="invalid-feedback" v-if="isError(errors, 'password')">
                             {{ errors.password[0] }}
                         </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError('password_confirmation')}" v-model="data.password_confirmation" placeholder="Password Confirm" required />
-                        <div class="invalid-feedback" v-if="isError('password_confirmation')">
+                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'password_confirmation')}" v-model="data.password_confirmation" placeholder="Password Confirm" required />
+                        <div class="invalid-feedback" v-if="isError(errors, 'password_confirmation')">
                             {{ errors.password_confirmation[0] }}
                         </div>
                     </div>
                     <div class="login-buttons">
-                        <button type="button" class="btn btn-success btn-block btn-lg" @click="register()">Register</button>
+                        <button type="submit" class="btn btn-success btn-block btn-lg">Register</button>
                     </div>
                     <div class="m-t-20">
                         Already a member yet? Click <router-link to="/auth">here</router-link> to login.
@@ -76,7 +76,8 @@ export default {
         errors: []
     }),
     methods: {
-        register() {
+        register(e) {
+            e.preventDefault();
             const formData = new FormData();
             formData.append('firstname', this.data.firstname);
             formData.append('lastname', this.data.lastname);
@@ -94,9 +95,6 @@ export default {
                 this.errors = err.response.data.errors;
                 console.log(err.response);
             });
-        },
-        isError(field){
-            return this.errors[field] !== undefined;
         }
     }
 }

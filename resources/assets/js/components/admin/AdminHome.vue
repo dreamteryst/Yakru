@@ -3,18 +3,19 @@
 		<!-- begin breadcrumb -->
 		<ol class="breadcrumb pull-right">
 			<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-			<!-- <li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li> -->
-			<!-- <li class="breadcrumb-item active">Dashboard v2</li> -->
+			<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
+			<li class="breadcrumb-item active">Dashboard v2</li>
 		</ol>
 		<!-- end breadcrumb -->
+
 		<!-- begin page-header -->
-		<!-- <h1 class="page-header">Dashboard v2 <small>header small text goes here...</small></h1> -->
+		<h1 class="page-header">Dashboard v2 <small>header small text goes here...</small></h1>
 		<!-- end page-header -->
+
 		<!-- begin row -->
-		
 		<div class="row">
 			<!-- begin col-3 -->
-			<!-- <div class="col-lg-3 col-md-6">
+			<div class="col-lg-3 col-md-6">
 				<div class="widget widget-stats bg-gradient-green">
 					<div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
 					<div class="stats-content">
@@ -26,10 +27,10 @@
 						<div class="stats-desc">Better than last week (70.1%)</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<!-- end col-3 -->
 			<!-- begin col-3 -->
-			<!-- <div class="col-lg-3 col-md-6">
+			<div class="col-lg-3 col-md-6">
 				<div class="widget widget-stats bg-gradient-blue">
 					<div class="stats-icon stats-icon-lg"><i class="fa fa-dollar-sign fa-fw"></i></div>
 					<div class="stats-content">
@@ -41,10 +42,10 @@
 						<div class="stats-desc">Better than last week (40.5%)</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<!-- end col-3 -->
 			<!-- begin col-3 -->
-			<!-- <div class="col-lg-3 col-md-6">
+			<div class="col-lg-3 col-md-6">
 				<div class="widget widget-stats bg-gradient-purple">
 					<div class="stats-icon stats-icon-lg"><i class="fa fa-archive fa-fw"></i></div>
 					<div class="stats-content">
@@ -56,10 +57,10 @@
 						<div class="stats-desc">Better than last week (76.3%)</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<!-- end col-3 -->
 			<!-- begin col-3 -->
-			<!-- <div class="col-lg-3 col-md-6">
+			<div class="col-lg-3 col-md-6">
 				<div class="widget widget-stats bg-gradient-black">
 					<div class="stats-icon stats-icon-lg"><i class="fa fa-comment-alt fa-fw"></i></div>
 					<div class="stats-content">
@@ -71,7 +72,7 @@
 						<div class="stats-desc">Better than last week (54.9%)</div>
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<!-- end col-3 -->
 		</div>
 		<!-- end row -->
@@ -79,7 +80,7 @@
 		<!-- begin row -->
 		<div class="row">
 			<!-- begin col-8 -->
-			<!-- <div class="col-lg-8">
+			<div class="col-lg-8">
 				<div class="widget-chart with-sidebar bg-black">
 					<div class="widget-chart-content">
 						<h4 class="chart-title">
@@ -100,10 +101,10 @@
 						</ul>
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<!-- end col-8 -->
 			<!-- begin col-4 -->
-			<!-- <div class="col-lg-4">
+			<div class="col-lg-4">
 				<div class="panel panel-inverse" data-sortable-id="index-1">
 					<div class="panel-heading">
 						<h4 class="panel-title">
@@ -126,7 +127,7 @@
 						</a>
 					</div>
 				</div>
-			</div> -->
+			</div>
 			<!-- end col-4 -->
 		</div>
 		<!-- end row -->
@@ -135,7 +136,7 @@
 			<!-- begin col-4 -->
 			<div class="col-lg-4">
 				<!-- begin panel -->
-				<!-- <div class="panel panel-inverse" data-sortable-id="index-2">
+				<div class="panel panel-inverse" data-sortable-id="index-2">
 					<div class="panel-heading">
 						<h4 class="panel-title">Chat History <span class="label bg-gradient-green pull-right">4 message</span></h4>
 					</div>
@@ -186,14 +187,14 @@
 							</div>
 						</form>
 					</div>
-				</div> -->
+				</div>
 				<!-- end panel -->
 			</div>
 			<!-- end col-4 -->
 			<!-- begin col-4 -->
 			<div class="col-lg-4">
 				<!-- begin panel -->
-				<!-- <div class="panel panel-inverse" data-sortable-id="index-3">
+				<div class="panel panel-inverse" data-sortable-id="index-3">
 					<div class="panel-heading">
 						<h4 class="panel-title">Today's Schedule</h4>
 					</div>
@@ -208,14 +209,14 @@
 							<span class="badge f-w-500 bg-gradient-blue f-s-10">2:45 pm</span>
 						</a>
 					</div>
-				</div> -->
+				</div>
 				<!-- end panel -->
 			</div>
 			<!-- end col-4 -->
 			<!-- begin col-4 -->
 			<div class="col-lg-4">
 				<!-- begin panel -->
-				<!-- <div class="panel panel-inverse" data-sortable-id="index-4">
+				<div class="panel panel-inverse" data-sortable-id="index-4">
 					<div class="panel-heading">
 						<h4 class="panel-title">New Registered Users <span class="pull-right label bg-gradient-green">24 new users</span></h4>
 					</div>
@@ -280,7 +281,7 @@
 					<div class="panel-footer text-center">
 						<a href="javascript:;" class="text-inverse">View All</a>
 					</div>
-				</div> -->
+				</div>
 				<!-- end panel -->
 			</div>
 			<!-- end col-4 -->

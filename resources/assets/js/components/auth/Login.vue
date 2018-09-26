@@ -5,10 +5,10 @@
             <!-- begin brand -->
             <div class="login-header">
                 <div class="brand">
-                    <router-link to="/">
+                    <a href="/">
                         <span class="logo" style="border: 0px;"><img
                             src="/assets/img/logo-small.png" width="30" height="30"></span><b>Yak</b>ru
-                    </router-link>
+                    </a>
                     <small>MOOC Via Live Streaming</small>
                 </div>
                 <div class="icon">
@@ -18,7 +18,7 @@
             <!-- end brand -->
             <!-- begin login-content -->
             <div class="login-content">
-                <form action="index.html" method="GET" class="margin-bottom-0">
+                <form action="/" method="POST" @submit="login" class="margin-bottom-0">
                     <div class="form-group m-b-20">
                         <input type="text" class="form-control form-control-lg" v-model="data.email" placeholder="Email Address" required />
                     </div>
@@ -56,7 +56,13 @@ export default {
         errors: []
     }),
     methods: {
-        login() {
+        login(e) {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append('email', this.data.email);
+            formData.append('password', this.data.password);
+            formData.append('remember', this.data.remember);
+
             axios.post(`${window.location.host}/api/login`, formData)
             .then((res) => {
                 if(res.status === 200) {

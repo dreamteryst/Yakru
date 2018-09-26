@@ -34,8 +34,8 @@
 	<link href="{{ asset('assets/plugins/bootstrap3/css/bootstrap.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets/plugins/animate/animate.min.css') }}" rel="stylesheet" />
-	<link href="{{ mix('vue/css/style.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ mix('vue/css/app.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('vue/css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('vue/css/app.css') }}" rel="stylesheet" type="text/css">
 	<!-- ================== END BASE CSS STYLE ================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
@@ -50,7 +50,7 @@
     <!-- END #page-container -->
 	<script src="https://cdn.bootcss.com/flv.js/1.4.0/flv.min.js"></script>
 	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="{{ mix('vue/js/app.js') }}"></script>
+	<script src="{{ asset('vue/js/app.js') }}"></script>
 	{{-- <script src="{{ asset('assets/plugins/jquery/jquery-3.2.1.min.js') }}"></script> --}}
 	<script src="{{ asset('assets/plugins/bootstrap3/js/bootstrap.min.js') }}"></script>
 	<!--[if lt IE 9]>

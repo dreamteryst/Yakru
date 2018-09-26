@@ -107,10 +107,10 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <router-link to="profile">
+                                <a href="/auth">
                                     <img src="/assets/img/user/user-1.jpg" class="user-img" alt="" /> 
                                     <span class="hidden-md hidden-sm hidden-xs">Login / Register</span>
-                                </router-link>
+                                </a>
                             </li>
                         </ul>
                     </div>

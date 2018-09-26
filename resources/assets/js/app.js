@@ -9,11 +9,13 @@ import $ from 'jquery';
 import App from './route';
 import router from './router';
 import store from './store/';
-import BootstrapVue from 'bootstrap-vue'
+import BootstrapVue from 'bootstrap-vue';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 import InputTag from 'vue-input-tag';
+import './mixins';
 
 window.Vue = require('vue');
-
+Vue.use(BootstrapVue);
 Vue.component('input-tag', InputTag);
 
 // const router = new VueRouter({

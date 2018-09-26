@@ -5,7 +5,7 @@
             <!-- BEGIN container -->
             <div class="container">
                 <!-- BEGIN breadcrumb -->
-                <ul class="breadcrumb m-b-10 f-s-12">
+                <ul class="breadcrumb m-b-10 f-s-20">
                     <li>
                         <a href="#">Home</a>
                     </li>
@@ -36,19 +36,7 @@
                                     <span class="label label-success">41% OFF</span> React Native สำหรับมือใหม่!!</h1>
                                 <ul class="product-category">
                                     <li>
-                                        <a href="#">Mobile</a>
-                                    </li>
-                                    <li>/</li>
-                                    <li>
-                                        <a href="#">Business</a>
-                                    </li>
-                                    <li>/</li>
-                                    <li>
-                                        <a href="#">Android</a>
-                                    </li>
-                                    <li>/</li>
-                                    <li>
-                                        <a href="#">IOS</a>
+                                        <a href="#">Mobile Development</a>
                                     </li>
                                 </ul>
                             </div>
@@ -108,7 +96,7 @@
                             <div class="tab-pane fade active in" id="curriculum" v-for="(course, i) in courses" :key="i">
                                 <b-card no-body class="mb-1">
                                     <b-card-header header-tag="header" class="p-1" role="tab">
-                                        <b-btn block href="#" v-b-toggle="'accordion-' + i" variant="info" class="btn-left btn-peach">
+                                        <b-btn block href="#" v-b-toggle="'accordion-' + i" variant="info" class="btn-left">
                                             <i class="fa fa-plus"></i> {{ course.title }}
                                         </b-btn>
                                     </b-card-header>

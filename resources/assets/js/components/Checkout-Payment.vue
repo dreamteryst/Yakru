@@ -15,8 +15,8 @@
                                     <router-link to="checkout_cart">
                                         <div class="number">1</div>
                                         <div class="info">
-                                            <div class="title">Delivery Options</div>
-                                            <div class="desc">Lorem ipsum dolor sit amet.</div>
+                                            <div class="title">คอร์ส</div>
+                                            <div class="desc">คอร์สทั้งหมดในตะกร้า</div>
                                         </div>
                                     </router-link>
                                 </div>
@@ -28,8 +28,8 @@
                                     <router-link to="#">
                                         <div class="number">2</div>
                                         <div class="info">
-                                            <div class="title">Payment</div>
-                                            <div class="desc">Aenean ut pretium ipsum. </div>
+                                            <div class="title">การชำระเงิน</div>
+                                            <div class="desc">เลือกวิธีการชำระเงิน</div>
                                         </div>
                                     </router-link>
                                 </div>
@@ -41,8 +41,8 @@
                                     <router-link to="checkout_complete">
                                         <div class="number">3</div>
                                         <div class="info">
-                                            <div class="title">Complete Payment</div>
-                                            <div class="desc">Curabitur interdum libero.</div>
+                                            <div class="title">เสร็จสิ้น</div>
+                                            <div class="desc">ชำระเงินเรียบร้อยแล้ว</div>
                                         </div>
                                     </router-link>
                                 </div>
@@ -54,7 +54,7 @@
                     <!-- END checkout-header -->
                     <!-- BEGIN checkout-body -->
                     <div class="checkout-body">
-                        <h4 class="checkout-title">Choose a payment method</h4>
+                        <h4 class="checkout-title">เลือกวิธีการชำระเงิน</h4>
                         <div class="form-group">
                             <label class="col-md-4 control-label">Cardholder Name <span class="text-danger">*</span></label>
                             <div class="col-md-4">
@@ -110,8 +110,8 @@
                     <!-- END checkout-body -->
                     <!-- BEGIN checkout-footer -->
                     <div class="checkout-footer">
-                        <router-link to="checkout_cart" class="btn btn-white btn-lg pull-left">Back</router-link>
-                        <router-link to="checkout_complete" class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10">Proceed</router-link>
+                        <router-link to="checkout_cart" class="btn btn-white btn-lg pull-left">ย้อนกลับ</router-link>
+                        <router-link to="checkout_complete" class="btn btn-inverse btn-lg p-l-30 p-r-30 m-l-10">ดำเนินการ</router-link>
                         
                     </div>
                     <!-- END checkout-footer -->
@@ -119,64 +119,64 @@
             </div>
             <!-- END checkout -->
             
-            <h4 class="checkout-title m-t-30 m-b-15">Payment Frequently Asked Questions</h4>
+            <!-- <h4 class="checkout-title m-t-30 m-b-15">Payment Frequently Asked Questions</h4> -->
             <!-- BEGIN checkout-question-list -->
             <div class="row checkout-question-list" id="checkout-faq">
                 <!-- BEGIN col-6 -->
                 <div class="col-md-6">
                     <div class="clearfix">
-                        <div class="question">
+                        <!-- <div class="question">
                             <a href="#checkout-faq-1" class="collapsed" data-toggle="collapse" data-parent="#checkout-faq">
                                 <span class="dash">-</span> Is my Credit Card / Debit Card details protected?
                             </a>   
                         </div>
                         <div class="answer collapse in" id="checkout-faq-1">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit, felis vel tincidunt sodales, urna metus rutrum leo, sit amet finibus velit ante nec lacus. Cras erat nunc, pulvinar nec leo at, rhoncus elementum orci. Nullam ut sapien ultricies, gravida ante ut, ultrices nunc.
-                        </div> 
+                        </div>  -->
                     </div>
                     <div class="clearfix m-t-10">
-                        <div class="question">
+                        <!-- <div class="question">
                             <a href="#checkout-faq-2" class="collapsed" data-toggle="collapse" data-parent="#checkout-faq">
                                 <span class="dash">-</span> Can I use a Debit Card to make payment??
                             </a>   
                         </div>
                         <div class="answer collapse in" id="checkout-faq-2">
                             Curabitur vitae venenatis odio, eget molestie mauris. Nullam vitae turpis at mi consequat rutrum quis quis mi. Vestibulum imperdiet neque non libero condimentum, quis sodales magna molestie. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-                        </div> 
+                        </div>  -->
                     </div>
                     <div class="clearfix m-t-10">
-                        <div class="question">
+                        <!-- <div class="question">
                             <a href="#checkout-faq-3" class="collapsed" data-toggle="collapse" data-parent="#checkout-faq">
                                 <span class="dash">-</span> Credit Card/Debit Card transaction keep failing. Why?
                             </a>   
                         </div>
                         <div class="answer collapse in" id="checkout-faq-3">
                             Cras malesuada mi quis purus pharetra egestas. Curabitur auctor sapien est, eu porttitor velit ornare in. Fusce porta suscipit diam at placerat. Donec lobortis iaculis accumsan. Ut semper felis vel nisi aliquam facilisis.
-                        </div> 
+                        </div>  -->
                     </div>
                 </div>
                 <!-- END col-6 -->
                 <!-- BEGIN col-6 -->
                 <div class="col-md-6">
                     <div class="clearfix">
-                        <div class="question">
+                        <!-- <div class="question">
                             <a href="#checkout-faq-4" class="collapsed" data-toggle="collapse" data-parent="#checkout-faq">
                                 <span class="dash">-</span> Did not receive the Pin Code on my mobile?
                             </a>   
-                        </div>
-                        <div class="answer collapse in" id="checkout-faq-4">
+                        </div> -->
+                        <!-- <div class="answer collapse in" id="checkout-faq-4">
                             Duis gravida sem eu arcu efficitur, laoreet egestas nibh posuere. Pellentesque suscipit tincidunt porttitor. Aliquam vitae massa vel justo lobortis posuere. Nulla tempor enim at auctor dignissim. Aenean sit amet venenatis odio.
-                        </div> 
+                        </div>  -->
                     </div>
                     <div class="clearfix m-t-10">
-                        <div class="question">
+                        <!-- <div class="question">
                             <a href="#checkout-faq-5" class="collapsed" data-toggle="collapse" data-parent="#checkout-faq">
                                 <span class="dash">-</span> My credit card has been charged, but my order shows failed?
                             </a>   
-                        </div>
-                        <div class="answer collapse in" id="checkout-faq-5">
+                        </div> -->
+                        <!-- <div class="answer collapse in" id="checkout-faq-5">
                             Nunc consectetur tellus libero, at tempor dolor scelerisque id. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat ligula vitae tincidunt sagittis. Etiam congue ligula purus, ut fringilla ante interdum eu.
-                        </div> 
+                        </div>  -->
                     </div>
                 </div>
                 <!-- END col-6 -->

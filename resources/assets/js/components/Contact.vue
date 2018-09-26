@@ -12,11 +12,11 @@
             </div>
             <!-- END container -->
         </div>
-        <div id="product" class="section-container p-t-20 bg-silver">
+        <div id="product" class="section-container p-t-20 bg-white">
             <!-- BEGIN container -->
             <div class="container">
                 <!-- BEGIN breadcrumb -->
-                <ul class="breadcrumb m-b-10 f-s-12">
+                <ul class="breadcrumb m-b-10 f-s-18">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Support</a></li>
                     <li class="active">Contact Us</li>
@@ -27,11 +27,6 @@
                     <!-- BEGIN col-8 -->
                     <div class="col-md-8">
                         <h4 class="m-t-0">Contact Form</h4>
-                        <p class="m-b-30 f-s-13">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis tortor justo, elementum volutpat ante porta eu. 
-                            Sed eget tellus neque. Nam feugiat magna turpis. Vestibulum pharetra nibh et pretium efficitur. Donec porta sollicitudin laoreet. 
-                            Sed a condimentum urna. Curabitur placerat ornare venenatis. Cras iaculis venenatis imperdiet.
-                        </p>
                         <form class="form-horizontal" name="contact_us_form" action="contact_us.html" method="POST">
                             <div class="form-group">
                                 <label class="control-label col-md-3">Name <span class="text-danger">*</span></label>
@@ -69,28 +64,27 @@
                     <!-- BEGIN col-4 -->
                     <div class="col-md-4">
                         <h4 class="m-t-0">Our Contacts</h4>
-                        <div class="embed-responsive embed-responsive-16by9 m-b-15">
+                        <p class="m-b-30 f-s-20">
+                            หากท่านมีข้อสงสัยใดเพิ่มเติมสามารถติดต่อสอมถามเราได้
+                        </p>
+                        <!-- <div class="embed-responsive embed-responsive-16by9 m-b-15">
                             <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3306.9584799260138!2d-118.49437019999998!3d34.019276700000006!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2a4cedd1266ff%3A0x1ffe328381544853!2sGoogle+Inc!5e0!3m2!1sen!2s!4v1435718319426" allowfullscreen=""></iframe>
-                        </div>
-                        <div><b>SeanTheme Store, Inc</b></div>
+                        </div> -->
+                        <!-- <div><b>SeanTheme Store, Inc</b></div>
                         <p class="m-b-15">
                             795 Folsom Ave, Suite 600<br>
                             San Francisco, CA 94107<br>
                             P: (123) 456-7890<br>
-                        </p>
+                        </p> -->
                         <div><b>Email</b></div>
                         <p class="m-b-15">
-                            <a href="mailto:hello@emailaddress.com" class="text-inverse">info@seantheme.com</a><br>
-                            <a href="mailto:hello@emailaddress.com" class="text-inverse">business@seantheme.com</a><br>
-                            <a href="mailto:hello@emailaddress.com" class="text-inverse">support@seantheme.com</a><br>
+                            <a href="mailto:hello@emailaddress.com" class="text-inverse">k.pimnonthong@gmail.com</a><br>
+                            <a href="mailto:hello@emailaddress.com" class="text-inverse">duanganongo@kkumail.com</a><br>
                         </p>
                         <div class="m-b-5"><b>Social Network</b></div>
                         <p class="m-b-15">
                             <a href="#" class="btn btn-icon btn-white btn-circle"><i class="fa fa-facebook"></i></a>
                             <a href="#" class="btn btn-icon btn-white btn-circle"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="btn btn-icon btn-white btn-circle"><i class="fa fa-google-plus"></i></a>
-                            <a href="#" class="btn btn-icon btn-white btn-circle"><i class="fa fa-instagram"></i></a>
-                            <a href="#" class="btn btn-icon btn-white btn-circle"><i class="fa fa-dribbble"></i></a>
                         </p>
                     </div>
                     <!-- END col-4 -->

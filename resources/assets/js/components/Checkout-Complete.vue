@@ -15,8 +15,8 @@
                                     <router-link to="checkout_cart">
                                         <div class="number">1</div>
                                         <div class="info">
-                                            <div class="title">Delivery Options</div>
-                                            <div class="desc">Lorem ipsum dolor sit amet.</div>
+                                            <div class="title">คอร์ส</div>
+                                            <div class="desc">คอร์สทั้งหมดในตะกร้า</div>
                                         </div>
                                     </router-link>
                                 </div>
@@ -28,8 +28,8 @@
                                     <router-link to="checkout_payment">
                                         <div class="number">2</div>
                                         <div class="info">
-                                            <div class="title">Payment</div>
-                                            <div class="desc">Aenean ut pretium ipsum. </div>
+                                            <div class="title">การชำระเงิน</div>
+                                            <div class="desc">เลือกวิธีการชำระเงิน</div>
                                         </div>
                                     </router-link>
                                 </div>
@@ -41,8 +41,8 @@
                                     <router-link to="#">
                                         <div class="number">3</div>
                                         <div class="info">
-                                            <div class="title">Complete Payment</div>
-                                            <div class="desc">Curabitur interdum libero.</div>
+                                            <div class="title">เสร็จสิ้น</div>
+                                            <div class="desc">ชำระเงินเรียบร้อยแล้ว</div>
                                         </div>
                                     </router-link>
                                 </div>
@@ -56,53 +56,51 @@
                     <div class="checkout-body">
                         <!-- BEGIN checkout-message -->
                         <div class="checkout-message">
-                            <h1>Thank you! <small>Your Payment has been successfully processed with the following details.</small></h1>
+                            <h1>ขอบคุณ! <small>การชำระเงินของคุณเรียบร้อยแล้ว</small></h1>
                             <div class="table-responsive2">
                                 <table class="table table-payment-summary">
                                     <tbody>
                                         <tr>
-                                            <td class="field">Transaction Status</td>
-                                            <td class="value">Success</td>
+                                            <td class="field">สถานะการซื้อ</td>
+                                            <td class="value">สำเร็จ</td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Transaction Reference No.</td>
+                                            <td class="field">หมายเลขอ้างอิง</td>
                                             <td class="value">REF000001</td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Bank Authorised Code</td>
-                                            <td class="value">AUTH000001</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="field">Transaction Date and Time</td>
+                                            <td class="field">วัน/เวลาที่ซื้อ</td>
                                             <td class="value">05 APR 2018 07:30PM</td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Orders</td>
+                                            <td class="field">รายการ</td>
                                             <td class="value product-summary">
                                                 <div class="product-summary-img">
-                                                    <img src="/assets/img/product/product-iphone-6s-plus.png" alt="">
+                                                    <img src="/assets/img/product/react-native-cover.jpg" alt="">
                                                 </div>
                                                 <div class="product-summary-info">
-                                                    <div class="title">Running a Mobile App Dev Business: The Complete Guide</div>
-                                                    <div class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi gravida vel sapien et elementum. Proin id turpis eu sapien condimentum sagittis a quis tortor. Duis feugiat velit ut risus convallis mattis</div>
+                                                    <div class="title">React Native สำหรับมือใหม่!!</div>
+                                                    <div class="desc">React-Native คือ Cross-Platform Framework ที่ใช้ในการพัฒนา Native Mobile Application อย่าง Android และ iOS ที่พัฒนาโดยบริษัท Facebook Inc. React Native มีหลักการคล้ายกับ Xamarin คือมันสามารถ Reuse Code ได้มากกว่า 70% ในการทำแอพที่รันได้ทั้งบน Android และ iOS โดยใช้ภาษาหลักภาษาเดียว คือภาษา ReactJS (ES6 / JSX) ซึ่งใกล้เคียงกับ Javascript / Typescript / XML ในการพัฒนาแอพ ซึ่งเมื่อทำเสร็จ แอพจะทำงานไวใกล้เคียงกับการเขียนด้วย ภาษา Native อย่าง Java และ Swift/Objective-C
+อีกหนึ่งจุดเด่นของ React Native คือการประยุกต์ใช้แนวคิดแบบ Reactive Programming ที่ทำให้การพัฒนารองรับการทำงานแบบ Asynchronous และมี State ที่ซับซ้อนได้
+นอกจากนี้ในหลักสูตรจะมีการสอน Redux (State Container) ในการจัดการ State เพื่อให้การพัฒนารองรับระบบที่มีความซับซ้อนและดูเป็นมืออาชีพ รวมถึงการเขียนโค้ดที่ทำงานร่วมกับ Native API ที่เป็น Java หรือ Objective-C และแชร์ประสบการณ์การในพัฒนาแอพด้วย React-Native จริงๆ</div>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="field">Payment Amount (RM)</td>
-                                            <td class="value">฿749.00</td>
+                                            <td class="field">จำนวนเงินที่ชำระ</td>
+                                            <td class="value">฿330.00</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <p class="text-muted text-center m-b-0">Should you require any assistance, you can get in touch with Support Team at (123) 456-7890</p>
+                            <!-- <p class="text-muted text-center m-b-0">Should you require any assistance, you can get in touch with Support Team at (123) 456-7890</p> -->
                         </div>
                         <!-- END checkout-message -->
                     </div>
                     <!-- END checkout-body -->
                     <!-- BEGIN checkout-footer -->
                     <div class="checkout-footer text-center">
-                        <router-link to="/" class="btn btn-white btn-lg p-l-30 p-r-30 m-l-10">Continue Shopping</router-link>
+                        <router-link to="/" class="btn btn-white btn-lg p-l-30 p-r-30 m-l-10">กลับสู่หน้าหลัก</router-link>
                     </div>
                     <!-- END checkout-footer -->
                 </form>

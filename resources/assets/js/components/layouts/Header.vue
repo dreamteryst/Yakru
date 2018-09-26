@@ -80,15 +80,15 @@
                     
                                 <div class="dropdown-menu dropdown-menu-cart p-0">
                                     <div class="cart-header">
-                                        <h4 class="cart-title">Shopping Bag (1) </h4>
+                                        <h4 class="cart-title">ตะกร้าของคุณ (1) </h4>
                                     </div>
                                     <div class="cart-body">
                                         <ul class="cart-item">
                                             <li>
-                                                <div class="cart-item-image"><img src="/assets/img/product/product-iphone-6s-plus.png" alt="" /></div>
+                                                <div class="cart-item-image"><img src="/assets/img/product/react-native-cover.jpg" alt="" /></div>
                                                 <div class="cart-item-info">
-                                                    <h4>Running a Mobile App Dev Business: The Complete Guide</h4>
-                                                    <p class="price">฿749.00</p>
+                                                    <h4>React Native สำหรับมือใหม่!!</h4>
+                                                    <p class="price">฿330.00</p>
                                                 </div>
                                                 <div class="cart-item-close">
                                                     <a href="#" data-toggle="tooltip" data-title="Remove">&times;</a>
@@ -99,7 +99,7 @@
                                     <div class="cart-footer">
                                         <div class="row row-space-10">
                                             <div class="col-xs-12">
-                                                <router-link to="checkout_cart" class="btn btn-inverse btn-block">View Cart</router-link>
+                                                <router-link to="checkout_cart" class="btn btn-inverse btn-block">ดูตะกร้าสินค้า</router-link>
                                             </div>
                                         </div>
                                     </div>
@@ -107,10 +107,13 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="/auth">
+                                <router-link to="/" v-if="isAuth">
                                     <img src="/assets/img/user/user-1.jpg" class="user-img" alt="" /> 
                                     <span class="hidden-md hidden-sm hidden-xs">{{ profile.firstname }} {{ profile.lastname }}</span>
-                                </a>
+                                </router-link>
+                                <router-link to="/auth" v-if="!isAuth">
+                                    <span class="hidden-md hidden-sm hidden-xs">เข้าสู่ระบบ / สมัครสมาชิก</span>
+                                </router-link>
                             </li>
                         </ul>
                     </div>

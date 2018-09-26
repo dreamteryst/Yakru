@@ -74,7 +74,7 @@
 		<!-- END #slider -->
 
 		<!-- BEGIN #Web Development -->
-		<div id="Web Development" class="section-container bg-silver" v-for="(category, i) in categories" :key="i">
+		<div id="Web Development" class="section-container bg-white" v-for="(category, i) in categories" :key="i">
 			<!-- BEGIN container -->
 			<div class="container">
 				<!-- BEGIN section-title -->
@@ -126,7 +126,7 @@
 						<div class="subscription">
 							<div class="subscription-intro">
 								<h4> LET'S STAY IN TOUCH</h4>
-								<p>Get updates on sales specials and more</p>
+								<p>ติดตามคอร์สและโปรโมชันใหม่ ๆ ได้ที่นี่</p>
 							</div>
 							<div class="subscription-form">
 								<form name="subscription_form" action="index.html" method="POST">
@@ -150,7 +150,6 @@
 						<div class="social">
 							<div class="social-intro">
 								<h4>FOLLOW US</h4>
-								<p>We want to hear from you!</p>
 							</div>
 							<div class="social-list">
 								<a href="#">
@@ -158,15 +157,6 @@
 								</a>
 								<a href="#">
 									<i class="fa fa-twitter"></i>
-								</a>
-								<a href="#">
-									<i class="fa fa-instagram"></i>
-								</a>
-								<a href="#">
-									<i class="fa fa-dribbble"></i>
-								</a>
-								<a href="#">
-									<i class="fa fa-google-plus"></i>
 								</a>
 							</div>
 						</div>
@@ -193,10 +183,10 @@ export default {
           courses: [
             {
               img:
-                "https://udemy-images.udemy.com/course/240x135/1254420_f6cb_4.jpg",
-              name: "Node with React: Fullstack Web Development",
+                "/assets/img/product/angular-cover.jpg",
+              name: "Core Angular: การใช้งาน Angular 4",
               description:
-                "Build and deploy fullstack web apps with NodeJS, React, Redux, Express, and MongoDB.",
+                "สอนใช้ Angular 4 อย่างมืออาชีพ!",
               price: 330,
               discount: 7000
             },
@@ -219,34 +209,34 @@ export default {
               price: 330,
               discount: 7800
             },
-            {
-              img:
-                "https://udemy-images.udemy.com/course/240x135/1002676_3c6e_2.jpg",
-              name: "The Full Stack Web Development",
-              description:
-                "Learn Full Stack Web Development Building Over 40+ Projects",
-              price: 330,
-              discount: 2200
-            },
-            {
-              img:
-                "https://udemy-images.udemy.com/course/240x135/917724_114b_12.jpg",
-              name: "Learn JavaScript for Web Development",
-              description:
-                "Advance your Web Development Skills By Learning Javascript from JavaScript Expert",
-              price: 330,
-              discount: 2800
-            },
-            {
-              img:
-                "https://udemy-images.udemy.com/course/240x135/1002030_f3e0_5.jpg",
-              name:
-                "Web Development w/ Google’s Go (golang) Programming Language",
-              description:
-                "Learn Web Programming from a University Professor in Computer Science with over 15 years of teaching experience.",
-              price: 330,
-              discount: 2400
-            }
+            // {
+            //   img:
+            //     "https://udemy-images.udemy.com/course/240x135/1002676_3c6e_2.jpg",
+            //   name: "The Full Stack Web Development",
+            //   description:
+            //     "Learn Full Stack Web Development Building Over 40+ Projects",
+            //   price: 330,
+            //   discount: 2200
+            // },
+            // {
+            //   img:
+            //     "https://udemy-images.udemy.com/course/240x135/917724_114b_12.jpg",
+            //   name: "Learn JavaScript for Web Development",
+            //   description:
+            //     "Advance your Web Development Skills By Learning Javascript from JavaScript Expert",
+            //   price: 330,
+            //   discount: 2800
+            // },
+            // {
+            //   img:
+            //     "https://udemy-images.udemy.com/course/240x135/1002030_f3e0_5.jpg",
+            //   name:
+            //     "Web Development w/ Google’s Go (golang) Programming Language",
+            //   description:
+            //     "Learn Web Programming from a University Professor in Computer Science with over 15 years of teaching experience.",
+            //   price: 330,
+            //   discount: 2400
+            // }
           ]
         },
         {
@@ -255,7 +245,7 @@ export default {
           courses: [
             {
               img:
-                "/assets/img/product/item-cover1.jpg",
+                "/assets/img/product/react-native-cover.jpg",
               name: "React Native<br/> สำหรับมือใหม่!!",
               description:
                 "สอน React Native เบื้องต้น สำหรับมือใหม่!",
@@ -271,44 +261,44 @@ export default {
               price: 330,
               discount: 3600
             },
-            {
-              img:
-                "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
-              name:
-                "Android O & Java - Mobile App Development | Beginning to End",
-              description:
-                "The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
-              price: 330,
-              discount: 7800
-            },
-            {
-              img:
-                "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
-              name: "Running a Mobile App Dev Business: The Complete Guide",
-              description:
-                "Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
-              price: 330,
-              discount: 5600
-            },
-            {
-              img:
-                "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
-              name: "Android App Development: Mobile App Development & Java",
-              description:
-                "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
-              price: 330,
-              discount: 7200
-            },
-            {
-              img:
-                "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
-              name:
-                "Mobile App Development for Beginners (Swift 3, iPhone iOS10)",
-              description:
-                "iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.",
-              price: 330,
-              discount: 1800
-            }
+            // {
+            //   img:
+            //     "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
+            //   name:
+            //     "Android O & Java - Mobile App Development | Beginning to End",
+            //   description:
+            //     "The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
+            //   price: 330,
+            //   discount: 7800
+            // },
+            // {
+            //   img:
+            //     "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
+            //   name: "Running a Mobile App Dev Business: The Complete Guide",
+            //   description:
+            //     "Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
+            //   price: 330,
+            //   discount: 5600
+            // },
+            // {
+            //   img:
+            //     "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
+            //   name: "Android App Development: Mobile App Development & Java",
+            //   description:
+            //     "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
+            //   price: 330,
+            //   discount: 7200
+            // },
+             {
+               img:
+                 "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
+               name:
+                 "Mobile App Development for Beginners (Swift 3, iPhone iOS10)",
+               description:
+                 "iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.",
+               price: 330,
+               discount: 1800
+             }
           ]
         }
       ]

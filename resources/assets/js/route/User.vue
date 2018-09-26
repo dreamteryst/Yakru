@@ -18,14 +18,22 @@
 </style>
 
 <script>
+import { mapActions } from 'vuex';
 import Navbar from '../components/layouts/Navbar.vue'
 import Header from '../components/layouts/Header.vue'
 import Footer from '../components/layouts/Footer.vue'
-export default{
+
+export default {
     components: {
         Navbar,
         Header,
         Footer
+    },
+    methods: {
+        ...mapActions(['initialize'])
+    },
+    created() {
+        this.initialize();
     }
 }
 </script>

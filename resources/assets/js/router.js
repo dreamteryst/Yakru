@@ -64,8 +64,6 @@ const routes = [
         { path: 'category/add',  name: 'AddCategory', component: CategoryAdd },
         { path: 'tag',  name: 'tag', component: TagData },
         { path: 'tag/add',  name: 'Addtag', component: TagAdd }
-        
-        
 
     ]},
     { path: '/auth', component: Auth, children: [

@@ -109,7 +109,7 @@
                             <li>
                                 <a href="/auth">
                                     <img src="/assets/img/user/user-1.jpg" class="user-img" alt="" /> 
-                                    <span class="hidden-md hidden-sm hidden-xs">Login / Register</span>
+                                    <span class="hidden-md hidden-sm hidden-xs">{{ profile.firstname }} {{ profile.lastname }}</span>
                                 </a>
                             </li>
                         </ul>
@@ -125,7 +125,24 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
-  
-}
+    data() {
+        return {
+            profile: {}
+        }
+    },
+    computed: {
+        ...mapState(['user']),
+        ...mapState('auth',['isAuth'])
+    },
+    watch: {
+        user() {
+            this.profile = this.user
+        }
+    },
+    mounted() {
+        console.log(this.isAuth)
+    }
+};
 </script>

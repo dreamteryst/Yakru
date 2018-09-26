@@ -1,11 +1,30 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import User from './user'
+import auth from './auth'
+
 Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   modules: {
-    User
+    auth
   },
-  strict: debug
+  strict: debug,
+  state: {
+    user: {}
+  },
+  mutations: {
+    setUser: (state, user) => (state.user = user)
+  },
+  actions: {
+    initialize({ commit, dispatch }) {
+      axios.get('/user').then(({ data }) => {
+        commit('setUser', data);
+        commit('auth/login');
+      }).catch((error) => {
+        if (error.response.status === 401) {
+          commit('auth/logout');
+        }
+      });
+    }
+  }
 })

@@ -162,7 +162,7 @@ export default {
 		// check nav item collapse
 		$('.nav>li>a').on('click', function() {
 			$('.nav>li:not(.expand,.expanding)').each((key, item) => {
-				$(item).find('ul').slideUp();
+				$(item).find('ul:not(.nav-profile)').slideUp();
 			});
 		});
 	},

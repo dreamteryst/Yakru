@@ -84,7 +84,7 @@ export default {
             formData.append('email', this.data.email);
             formData.append('password', this.data.password);
             formData.append('password_confirmation', this.data.password_confirmation);
-            axios.post(`//${window.location.host}/api/register`, formData)
+            axios.post('/register', formData)
             .then((res) => {
                 if(res.status === 200)
                 {

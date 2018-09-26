@@ -36,18 +36,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    public function login(Request $request)
-    {
-        //Validate request
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-        //Attempt login
-        if (Auth::ttempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return json_encode(['success' => true, 'message' => 'เข้าสู่ระบบสำเร็จ']);
-        }
-        return json_encode(['success' => false, 'message' => 'Email หรือ Password ผิดพลาด']);
-    }
 }

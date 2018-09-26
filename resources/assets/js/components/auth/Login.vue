@@ -20,10 +20,16 @@
             <div class="login-content">
                 <form action="/" method="POST" @submit="login" class="margin-bottom-0">
                     <div class="form-group m-b-20">
-                        <input type="text" class="form-control form-control-lg" v-model="data.email" placeholder="Email Address" required />
+                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'email')}" v-model="data.email" placeholder="Email Address" required />
+                        <div class="invalid-feedback" v-if="isError(errors, 'email')">
+                            {{ errors.email[0] }}
+                        </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="password" class="form-control form-control-lg" v-model="data.password" placeholder="Password" required />
+                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'password')}" v-model="data.password" placeholder="Password" required />
+                        <div class="invalid-feedback" v-if="isError(errors, 'password')">
+                            {{ errors.password[0] }}
+                        </div>
                     </div>
                     <div class="checkbox checkbox-css m-b-20">
                         <input type="checkbox" id="remember_checkbox" v-model="data.remember" /> 
@@ -47,38 +53,37 @@
 
 <script>
 export default {
-    data: () => ({
-        data: {
-            email: '',
-            password: '',
-            remember: false
-        },
-        errors: []
-    }),
-    methods: {
-        login(e) {
-            e.preventDefault();
-            const formData = new FormData();
-            formData.append('email', this.data.email);
-            formData.append('password', this.data.password);
-            formData.append('remember', this.data.remember);
+  data: () => ({
+    data: {
+      email: "",
+      password: "",
+      remember: false
+    },
+    errors: []
+  }),
+  methods: {
+    login(e) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("email", this.data.email);
+      formData.append("password", this.data.password);
+      formData.append("remember", this.data.remember);
 
-            axios.post(`${window.location.host}/api/login`, formData)
-            .then((res) => {
-                if(res.status === 200) {
-                    window.location.href = '/';
-                }
-            })
-            .catch((err) => {
-                this.errors = err.response.data.errros;
-                console.log(err.response);
-            });
-        }
+      axios
+        .post('/login', formData)
+        .then(res => {
+          if (res.status === 200) {
+            window.location.href = "/";
+          }
+        })
+        .catch(({response}) => {
+          this.errors = response.data.errros;
+          console.log(response);
+        });
     }
-
-}
+  }
+};
 </script>
 
 <style>
-
 </style>

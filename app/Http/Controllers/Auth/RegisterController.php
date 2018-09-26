@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -69,23 +70,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-    }
-
-    public function register(Request $request) {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
-
-        $user = $this->create($request->all());
-
-        // Sending email, sms or doing anything you want
-        $this->activationService->sendActivationMail($user);
-
-        return json_encode(['success' => true, 'message' => 'สมัครสมาชิกสำเร็จ']);
-
     }
 }

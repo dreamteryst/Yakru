@@ -45,7 +45,13 @@
     <link href="{{ asset('assets_admin/plugins/jquery-jvectormap/jquery-jvectormap.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets_admin/plugins/bootstrap-calendar/css/bootstrap_calendar.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets_admin/plugins/gritter/css/jquery.gritter.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets_admin/plugins/nvd3/build/nv.d3.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/nvd3/build/nv.d3.css') }}" rel="stylesheet" />
+
+	<link href="{{ asset('assets_admin/plugins/DataTables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/css/buttons.bootstrap.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/DataTables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
 	<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
@@ -86,7 +92,19 @@
     <script src="{{ asset('assets_admin/plugins/jquery-jvectormap/jquery-jvectormap-world-merc-en.js') }}"></script>
     <script src="{{ asset('assets_admin/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js') }}"></script>
 	<script src="{{ asset('assets_admin/plugins/gritter/js/jquery.gritter.js') }}"></script>
-    <script src="{{ asset('assets_admin/js/demo/dashboard-v2.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/js/demo/dashboard-v2.min.js') }}"></script>
+	
+	<script src="{{ asset('assets_admin/plugins/DataTables/media/js/jquery.dataTables.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/media/js/dataTables.bootstrap.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/jszip.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 	<script>

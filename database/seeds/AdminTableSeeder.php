@@ -21,7 +21,6 @@ class AdminTableSeeder extends Seeder
             'level' => 9,
             'type' => 'Master',
             'money' => 999999,
-            'confirm' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

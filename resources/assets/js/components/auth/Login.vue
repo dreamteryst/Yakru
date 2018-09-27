@@ -18,7 +18,10 @@
             <!-- end brand -->
             <!-- begin login-content -->
             <div class="login-content">
-                <form action="/" method="POST" @submit="login" class="margin-bottom-0">
+                <form action="/" method="POST" @submit="submitLogin" class="margin-bottom-0">
+                    <div class="alert alert-danger" role="alert" v-if="isNotEmpty(error_message)">
+                        {{ error_message }}
+                    </div>
                     <div class="form-group m-b-20">
                         <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'email')}" v-model="data.email" placeholder="Email Address" required />
                         <div class="invalid-feedback" v-if="isError(errors, 'email')">
@@ -32,9 +35,9 @@
                         </div>
                     </div>
                     <div class="checkbox checkbox-css m-b-20">
-                        <input type="checkbox" id="remember_checkbox" v-model="data.remember" /> 
+                        <input type="checkbox" id="remember_checkbox" v-model="data.remember" />
                         <label for="remember_checkbox">
-                        	Remember Me
+                            Remember Me
                         </label>
                     </div>
                     <div class="login-buttons">
@@ -52,36 +55,41 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
-  data: () => ({
-    data: {
-      email: "",
-      password: "",
-      remember: false
-    },
-    errors: []
-  }),
-  methods: {
-    login(e) {
-      e.preventDefault();
-      const formData = new FormData();
-      formData.append("email", this.data.email);
-      formData.append("password", this.data.password);
-      formData.append("remember", this.data.remember);
+    data: () => ({
+        data: {
+            email: "",
+            password: "",
+            remember: false
+        },
+        errors: {},
+        error_message: ''
+    }),
+    methods: {
+        ...mapMutations('auth', ['login']),
+        submitLogin(e) {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append("email", this.data.email);
+            formData.append("password", this.data.password);
+            formData.append("remember", this.data.remember);
 
-      axios
-        .post('/login', formData)
-        .then(res => {
-          if (res.status === 200) {
-            window.location.href = "/";
-          }
-        })
-        .catch(({response}) => {
-          this.errors = response.data.errros;
-          console.log(response);
-        });
+            axios
+                .post("/login", formData)
+                .then(res => {
+                    if (res.status === 200) {
+                        this.login()
+                        window.location.href = "/";
+                    }
+                })
+                .catch(({ response }) => {
+                    this.error_message = response.data.message;
+                    if (this.isNotEmpty(response.data.errors))
+                        this.errors = response.data.errors;
+                });
+        }
     }
-  }
 };
 </script>
 

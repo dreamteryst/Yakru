@@ -36,4 +36,18 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function login(Request $request)
+    {
+        //Validate request
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        //Attempt login
+        if (Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
+            return response(['message' => 'Login sucess'], 200);
+        }
+        return response(['message' => 'Email or password incorrect!'], 422);
+    }
 }

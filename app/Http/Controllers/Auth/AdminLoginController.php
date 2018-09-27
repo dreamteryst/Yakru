@@ -48,8 +48,8 @@ class AdminLoginController extends Controller
         ]);
         //Attempt login
         if (Auth::guard('web_admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-            return response('Login sucess', 200);
+            return response(['message' => 'Login sucess'], 200);
         }
-        return response('Email or password incorrect!', 422);
+        return response(['message' => 'Email or password incorrect!'], 422);
     }
 }

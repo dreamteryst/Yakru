@@ -12,6 +12,15 @@ class Admin extends Authenticatable
 
     protected $table = 'users';
 
+    protected $fillable = [
+        'name', 'email', 'password', 'firstname', 'lastname', 'date_of_birth', 'address', 
+        'phone_number', 'degree', 'level', 'institution', 'rank', 'type', 'money'
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
     protected static function boot()
     {
         parent::boot();

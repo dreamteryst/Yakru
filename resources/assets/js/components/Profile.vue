@@ -4,13 +4,6 @@
         <div id="about-us-cover" class="section-container">
             <!-- BEGIN container -->
             <div class="container">
-                <!-- BEGIN breadcrumb -->
-                <ul class="breadcrumb m-b-10 f-s-12">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Store</a></li>
-                    <li class="active">My Account</li>
-                </ul>
-                <!-- END breadcrumb -->
                 <!-- BEGIN account-container -->
                 <div class="account-container">
                     <!-- BEGIN account-sidebar -->
@@ -18,75 +11,146 @@
                         <div class="account-sidebar-cover">
                             <img src="/assets/img/cover/cover-14.jpg" alt="" />
                         </div>
-                        <div class="account-sidebar-content">
-                            <h4>Your Account</h4>
-                            <p>
-                                Modify an order, track a shipment, and update your account info.
-                            </p>
-                            <p>
-                                All you need in one place. All with a few simple clicks.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- END account-sidebar -->
-                    <!-- BEGIN account-body -->
-                    <div class="account-body">
-                        <!-- BEGIN row -->
-                        <div class="row">
-                            <!-- BEGIN col-6 -->
-                            <div class="col-md-6">
-                                <h4><i class="fa fa-gitlab fa-fw text-muted"></i> Orders</h4>
-                                <ul class="nav nav-list">
-                                    <li><a href="#">Check the status of an order</a></li>
-                                    <li><a href="#">Track a shipment</a></li>
-                                    <li><a href="#">Pre-sign for a delivery</a></li>
-                                    <li><a href="#">Cancel items</a></li>
-                                    <li><a href="#">Print an invoice</a></li>
-                                    <li><a href="#">Return items</a></li>
-                                    <li><a href="#">Change shipping or billing info for an order</a></li>
-                                    <li><a href="#">Edit gift messaging or engraving</a></li>
-                                    <li><a href="#">View order history</a></li>
-                                </ul>
-                                <h4><i class="fa fa-universal-access fa-fw text-muted"></i> Account Settings</h4>
-                                <ul class="nav nav-list">
-                                    <li><a href="#">Update your email address and password</a></li>
-                                    <li><a href="#">Change your default shipping or billing info</a></li>
-                                    <li><a href="#">Manage email subscriptions</a></li>
-                                </ul>
+                            <div class="account-sidebar-content">
+                                <h4>บัญชีของคุณ</h4>
+                                <p>
+                                    คุณสามารถแก้ไขข้อมูลส่วนตัว และเปลี่ยนรหัสผ่านได้ที่นี้
+                                </p>
+                                <p>
+                                    คอร์สของคุณทั้งหมด สามารถเข้าถึงได้อย่างง่ายดาย
+                                </p>
                             </div>
-                            <!-- END col-6 -->
-                            <!-- BEGIN col-6 -->
-                            <div class="col-md-6">
-                                <h4><i class="fa fa-cc-visa fa-fw text-muted"></i> Payments & Financing</h4>
-                                <ul class="nav nav-list">
-                                    <li><a href="#">Check the balance of a gift card</a></li>
-                                    <li><a href="#">Check the status of a rebate</a></li>
-                                </ul>
-                                <h4><i class="fa fa-wpforms fa-fw text-muted"></i> Specialists</h4>
-                                <ul class="nav nav-list">
-                                    <li><a href="#">View your previous activity</a></li>
-                                </ul>
-                            </div>
-                            <!-- END col-6 -->
                         </div>
-                        <!-- END row -->
+                        <!-- END account-sidebar -->
+                        <!-- BEGIN account-body -->
+                        <div class="account-body">
+                            <!-- BEGIN row -->
+                            <div class="row">
+                                <!-- BEGIN col-6 -->
+                                <div class="col-md-6">
+                                    <h4><i class="fa fa-gitlab fa-fw text-muted"></i> คอร์สของฉัน</h4>
+                                    <ul class="nav nav-list">
+                                        <li><a href="#">React Native สำหรับมือใหม่!!</a></li>
+                                        <li><a href="#">Core Angular: การใช้งาน Angular 4</a></li>
+                                    </ul>
+                                    <h4><i class="fa fa-universal-access fa-fw text-muted"></i> ตั้งค่าบัญชี</h4>
+                                    <ul class="nav nav-list">
+                                        <li><a href="#">เปลี่ยนรหัสผ่าน</a></li>
+                                        <li><a href="#">แก้ไขข้อมูลส่วนตัว</a></li>
+                                        <li><a href="/logout" class="text-danger"><i class="fas fa-lock"></i> ออกจากระบบ</a></li>
+                                    </ul>
+                                </div>
+                                <!-- END col-6 -->
+                                <!-- BEGIN col-6 -->
+                                <div class="col-md-6">
+                                    <h4><i class="fa fa-cc-visa fa-fw text-muted"></i> การเติมเงิน</h4>
+                                    <ul class="nav nav-list">
+                                        <li><a href="#">ชำระด้วยบัตร VISA</a></li>
+                                        <li><a href="#">ชำระด้วย Paypal</a></li>
+                                    </ul>
+                                </div>
+                                <!-- END col-6 -->
+                            </div>
+                            <!-- END row -->
+                        </div>
+                        <!-- END account-body -->
                     </div>
-                    <!-- END account-body -->
+                    <!-- END account-container -->
+                    <!-- BEGIN similar-product -->
+                    <h4 class="m-b-15 m-t-30">คอร์สที่คุณอาจจะชอบ</h4>
+                    <div class="row row-space-10">
+                        <!-- BEGIN col-2 -->
+                        <div class="col-md-2 col-sm-4" v-for="(like, i) in links" :key="i">
+                            <!-- BEGIN item -->
+                            <div class="item item-thumbnail">
+                                <router-link to="/product-detail" class="item-image">
+                                    <img :src="like.img" alt="" />
+                                    <div class="discount">{{ getPercent(like) }}% OFF</div>
+                                </router-link>
+                                <div class="item-info">
+                                    <h4 class="item-title">
+                                        <router-link to="/product-detail">{{ like.name }}</router-link>
+                                    </h4>
+                                    <p class="item-desc">{{ like.description }}</p>
+                                    <div class="item-price">฿ {{ numberWithCommas(like.price) }}</div>
+                                    <div class="item-discount-price">฿ {{ numberWithCommas(like.discount) }}</div>
+                                </div>
+                            </div>
+                            <!-- END item -->
+                        </div>
+                        <!-- END col-2 -->
+                    </div>
+                    <!-- END similar-product -->
                 </div>
-                <!-- END account-container -->
+                <!-- END container -->
             </div>
-            <!-- END container -->
-        </div>
-        <!-- END #about-us-cover -->
+            <!-- END #about-us-cover -->
     </section>
 </template>
 
 <script>
 export default {
-
+    data() {
+        return {
+            links: [
+                {
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg",
+                    name: "The Complete Web Developer Course 2.0",
+                    description:
+                        "Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!",
+                    price: 330,
+                    discount: 7800
+                },
+                {
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg",
+                    name: "The Complete React Native and Redux Course",
+                    description:
+                        "iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!",
+                    price: 330,
+                    discount: 3600
+                },
+                {
+                    img: "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
+                    name: "Android O & Java - Mobile App Development | Beginning to End",
+                    description:
+                        "The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
+                    price: 330,
+                    discount: 7800
+                },
+                {
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
+                    name: "Running a Mobile App Dev Business: The Complete Guide",
+                    description:
+                        "Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
+                    price: 330,
+                    discount: 5600
+                },
+                {
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
+                    name: "Android App Development: Mobile App Development & Java",
+                    description:
+                        "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
+                    price: 330,
+                    discount: 7200
+                },
+                {
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
+                    name: "Mobile App Development for Beginners (Swift 3, iPhone iOS10)",
+                    description:
+                        "iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.",
+                    price: 330,
+                    discount: 1800
+                }
+            ],
+        }
+    }
 }
 </script>
 
 <style>
-
 </style>

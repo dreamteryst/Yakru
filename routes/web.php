@@ -18,6 +18,10 @@ Route::group(['middleware' => ['web']], function() {
         Auth::logout();
         return redirect('/auth');
     });
+    Route::get('admin/logout', function() {
+        Auth::logout();
+        return redirect('/admin/auth');
+    });
 
 // Registration Routes...
     Route::post('register', ['as' => 'register.post', 'uses' => 'Auth\RegisterController@register']);

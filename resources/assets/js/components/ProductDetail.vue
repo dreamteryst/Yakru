@@ -302,15 +302,15 @@
                             <div class="tab-pane fade active in" id="product-desc">
                                 <h3>Requirement</h3>
                                 <ul>
-                                        <li>Javascript</li>
-                                        <li>HTML</li>
-                                        <li>CSS</li>
+                                    <li>Javascript</li>
+                                    <li>HTML</li>
+                                    <li>CSS</li>
                                 </ul>
                                 <h3>Description</h3>
                                 <p>
                                     React-Native คือ Cross-Platform Framework ที่ใช้ในการพัฒนา Native Mobile Application อย่าง Android และ iOS ที่พัฒนาโดยบริษัท Facebook Inc. React Native มีหลักการคล้ายกับ Xamarin คือมันสามารถ Reuse Code ได้มากกว่า 70% ในการทำแอพที่รันได้ทั้งบน Android และ iOS โดยใช้ภาษาหลักภาษาเดียว คือภาษา ReactJS (ES6 / JSX) ซึ่งใกล้เคียงกับ Javascript / Typescript / XML ในการพัฒนาแอพ ซึ่งเมื่อทำเสร็จ แอพจะทำงานไวใกล้เคียงกับการเขียนด้วย ภาษา Native อย่าง Java และ Swift/Objective-C
-อีกหนึ่งจุดเด่นของ React Native คือการประยุกต์ใช้แนวคิดแบบ Reactive Programming ที่ทำให้การพัฒนารองรับการทำงานแบบ Asynchronous และมี State ที่ซับซ้อนได้
-นอกจากนี้ในหลักสูตรจะมีการสอน Redux (State Container) ในการจัดการ State เพื่อให้การพัฒนารองรับระบบที่มีความซับซ้อนและดูเป็นมืออาชีพ รวมถึงการเขียนโค้ดที่ทำงานร่วมกับ Native API ที่เป็น Java หรือ Objective-C และแชร์ประสบการณ์การในพัฒนาแอพด้วย React-Native จริงๆ
+                                    อีกหนึ่งจุดเด่นของ React Native คือการประยุกต์ใช้แนวคิดแบบ Reactive Programming ที่ทำให้การพัฒนารองรับการทำงานแบบ Asynchronous และมี State ที่ซับซ้อนได้
+                                    นอกจากนี้ในหลักสูตรจะมีการสอน Redux (State Container) ในการจัดการ State เพื่อให้การพัฒนารองรับระบบที่มีความซับซ้อนและดูเป็นมืออาชีพ รวมถึงการเขียนโค้ดที่ทำงานร่วมกับ Native API ที่เป็น Java หรือ Objective-C และแชร์ประสบการณ์การในพัฒนาแอพด้วย React-Native จริงๆ
                                 </p>
                             </div>
                             <!-- END #product-desc -->
@@ -322,7 +322,7 @@
                 <!-- END product -->
 
                 <!-- BEGIN similar-product -->
-                <h4 class="m-b-15 m-t-30">You Might Also Like</h4>
+                <h4 class="m-b-15 m-t-30">คอร์สที่คุณอาจจะชอบ</h4>
                 <div class="row row-space-10">
                     <!-- BEGIN col-2 -->
                     <div class="col-md-2 col-sm-4" v-for="(like, i) in links" :key="i">
@@ -355,360 +355,354 @@
 
 <script>
 export default {
-  data() {
-    return {
-      links: [
-        {
-          img:
-            "https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg",
-          name: "The Complete Web Developer Course 2.0",
-          description:
-            "Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!",
-          price: 330,
-          discount: 7800
-        },
-        {
-          img:
-            "https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg",
-          name: "The Complete React Native and Redux Course",
-          description:
-            "iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!",
-          price: 330,
-          discount: 3600
-        },
-        {
-          img: "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
-          name: "Android O & Java - Mobile App Development | Beginning to End",
-          description:
-            "The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
-          price: 330,
-          discount: 7800
-        },
-        {
-          img:
-            "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
-          name: "Running a Mobile App Dev Business: The Complete Guide",
-          description:
-            "Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
-          price: 330,
-          discount: 5600
-        },
-        {
-          img:
-            "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
-          name: "Android App Development: Mobile App Development & Java",
-          description:
-            "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
-          price: 330,
-          discount: 7200
-        },
-        {
-          img:
-            "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
-          name: "Mobile App Development for Beginners (Swift 3, iPhone iOS10)",
-          description:
-            "iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.",
-          price: 330,
-          discount: 1800
-        }
-      ],
-      courses: [
-        {
-            title: "Setup and Introduction",
-            sub: [
+    data() {
+        return {
+            links: [
                 {
-                    name: "Course Introduction"
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg",
+                    name: "The Complete Web Developer Course 2.0",
+                    description:
+                        "Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!",
+                    price: 330,
+                    discount: 7800
                 },
                 {
-                    name: "NodeJS Install"
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg",
+                    name: "The Complete React Native and Redux Course",
+                    description:
+                        "iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!",
+                    price: 330,
+                    discount: 3600
                 },
                 {
-                    name: "React-Native & Watchman"
+                    img: "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
+                    name: "Android O & Java - Mobile App Development | Beginning to End",
+                    description:
+                        "The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
+                    price: 330,
+                    discount: 7800
                 },
                 {
-                    name: "Visual Studio Install and React-Native Extension Pack"
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
+                    name: "Running a Mobile App Dev Business: The Complete Guide",
+                    description:
+                        "Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
+                    price: 330,
+                    discount: 5600
                 },
                 {
-                    name: "React-Native CLI"
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
+                    name: "Android App Development: Mobile App Development & Java",
+                    description:
+                        "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
+                    price: 330,
+                    discount: 7200
                 },
                 {
-                    name: "How to use the React-Native Documentation"
-                },
-                {
-                    name: "Basic ReactJS Langulage (ES5/6 and JSX)"
-                },
-                {
-                    name: "React Component and Basic UI"
-                },
-                {
-                    name: "Styling and Theming"
-                },
-                {
-                    name: "Debugging / JS-Debugging / Auto-Reload"
+                    img:
+                        "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
+                    name: "Mobile App Development for Beginners (Swift 3, iPhone iOS10)",
+                    description:
+                        "iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.",
+                    price: 330,
+                    discount: 1800
                 }
-            ]
-        },
-        {
-            title: "Mastering User Interface",
-            sub: [
+            ],
+            courses: [
                 {
-                    name: "React-Native Project Structure"
+                    title: "Setup and Introduction",
+                    sub: [
+                        {
+                            name: "Course Introduction"
+                        },
+                        {
+                            name: "NodeJS Install"
+                        },
+                        {
+                            name: "React-Native & Watchman"
+                        },
+                        {
+                            name: "Visual Studio Install and React-Native Extension Pack"
+                        },
+                        {
+                            name: "React-Native CLI"
+                        },
+                        {
+                            name: "How to use the React-Native Documentation"
+                        },
+                        {
+                            name: "Basic ReactJS Langulage (ES5/6 and JSX)"
+                        },
+                        {
+                            name: "React Component and Basic UI"
+                        },
+                        {
+                            name: "Styling and Theming"
+                        },
+                        {
+                            name: "Debugging / JS-Debugging / Auto-Reload"
+                        }
+                    ]
                 },
                 {
-                    name: "Core User Interface Input / Output"
+                    title: "Mastering User Interface",
+                    sub: [
+                        {
+                            name: "React-Native Project Structure"
+                        },
+                        {
+                            name: "Core User Interface Input / Output"
+                        },
+                        {
+                            name: "Data Binding (Props and State)"
+                        },
+                        {
+                            name: "Event Listener"
+                        },
+                        {
+                            name: "Mutiple Screens"
+                        },
+                        {
+                            name: "Redux, React-Redux"
+                        },
+                        {
+                            name: "Redux Middleware Redux-Thunk"
+                        },
+                        {
+                            name: "Reducer, Action, Dispatch"
+                        },
+                        {
+                            name: "How Navigation works in an React-Native"
+                        },
+                        {
+                            name: "Creating a Page and how to Navigate to it"
+                        },
+                        {
+                            name: "Passing Data between Pages"
+                        },
+                        {
+                            name: "Popping Pages - Callback Data"
+                        },
+                        {
+                            name: "Using Redux for Page Navigation"
+                        },
+                        {
+                            name: "Configuring Page Transitions"
+                        },
+                        {
+                            name: "The Page Lifecycle in Action"
+                        }
+                    ]
                 },
                 {
-                    name: "Data Binding (Props and State)"
+                    title: "Platform Specific Code",
+                    sub: [
+                        {
+                            name: "Detecting OS (Android or iOS)"
+                        },
+                        {
+                            name: "Detecting Android Version"
+                        },
+                        {
+                            name: "Detecting iOS Version"
+                        },
+                        {
+                            name: "Style and Size in Specific Platform"
+                        },
+                        {
+                            name: "Platform-specific extensions"
+                        },
+                        {
+                            name: "Access Platform Specific Code"
+                        }
+                    ]
                 },
                 {
-                    name: "Event Listener"
+                    title: "Using Dynamic Content and Network (JSON Http Feed)",
+                    sub: [
+                        {
+                            name: "Standard Network API - Fetch"
+                        },
+                        {
+                            name: "3rd Party Network API - Axios"
+                        },
+                        {
+                            name: "HTTP Fetching RESTful (JSON)"
+                        },
+                        {
+                            name: "Fixing iOS HTTP (unsecured) Issue"
+                        },
+                        {
+                            name: "Fetching data from MySql"
+                        },
+                        {
+                            name: "ScrolllView"
+                        },
+                        {
+                            name: "Setup FlatList"
+                        },
+                        {
+                            name: "Styling ListView"
+                        },
+                        {
+                            name: "Tap Event Listener"
+                        }, {
+                            name: "Add Loading Component"
+                        },
+                        {
+                            name: "Add Pull to Refresh support to our app"
+                        },
+                        {
+                            name: "การจัดการกับปัญหาเรื่อง Cross-Origin-Resource-Sharing (Cors)"
+                        }
+                    ]
                 },
                 {
-                    name: "Mutiple Screens"
+                    title: "Access Native Device Feature",
+                    sub: [
+                        {
+                            name: "Runtime Permission"
+                        },
+                        {
+                            name: "Youtube Video Player"
+                        },
+                        {
+                            name: "Camera"
+                        },
+                        {
+                            name: "arcode and QR Code Scanner"
+                        },
+                        {
+                            name: "InAppBrowser"
+                        },
+                        {
+                            name: "SQLite"
+                        },
+                        {
+                            name: "Toasts"
+                        },
+                        {
+                            name: "Call Number"
+                        },
+                        {
+                            name: "File"
+                        }, {
+                            name: "File Path"
+                        },
+                        {
+                            name: "File Transfer"
+                        }
+                    ]
                 },
                 {
-                    name: "Redux, React-Redux"
+                    title: "User Input, Forms and Data Management",
+                    sub: [
+                        {
+                            name: "How to use Local Storage"
+                        },
+                        {
+                            name: "Learn 3rd-party Custom UI - 'UI Element'"
+                        },
+                        {
+                            name: "Handle User Input"
+                        },
+                        {
+                            name: "Registering Controls"
+                        },
+                        {
+                            name: "Submitting the Form"
+                        },
+                        {
+                            name: "Validating the Form"
+                        },
+                        {
+                            name: "Handling Data with a Model for our Ingredients"
+                        },
+                        {
+                            name: "Managing Data with a Service"
+                        },
+                        {
+                            name: "insert, update, and delete data"
+                        },
+                        {
+                            name: "Alerts"
+                        }
+                    ]
                 },
                 {
-                    name: "Redux Middleware Redux-Thunk"
+                    title: "Using Google Map",
+                    sub: [
+                        {
+                            name: "Using 3rd-party Library"
+                        },
+                        {
+                            name: "Adding Google Maps to the App"
+                        },
+                        {
+                            name: "Configuring our Maps"
+                        },
+                        {
+                            name: "Allowing the User to Place a Marker on the Map"
+                        },
+                        {
+                            name: "Displaying the Chosen Location"
+                        },
+                        {
+                            name: "Geolocation to Locate the User"
+                        }
+                    ]
                 },
                 {
-                    name: "Reducer, Action, Dispatch"
-                },
-                {
-                    name: "How Navigation works in an React-Native"
-                },
-                {
-                    name: "Creating a Page and how to Navigate to it"
-                },
-                {
-                    name: "Passing Data between Pages"
-                },
-                {
-                    name: "Popping Pages - Callback Data"
-                },
-                {
-                    name: "Using Redux for Page Navigation"
-                },
-                {
-                    name: "Configuring Page Transitions"
-                },
-                {
-                    name: "The Page Lifecycle in Action"
+                    title: "การเตรียม Resources, เทคนิคการ Build App และอัพโหลด App ไปที่ Store",
+                    sub: [
+                        {
+                            name: "Custom Icons and Splashscreen"
+                        },
+                        {
+                            name: "Configuration"
+                        },
+                        {
+                            name: "Generate Distribution Files"
+                        },
+                        {
+                            name: "Build Preparations and Building for Production"
+                        },
+                        {
+                            name: "Publish to Google Play Store"
+                        },
+                        {
+                            name: "Publish to Apple AppStore"
+                        }
+                    ]
                 }
-            ]
-        },
-        {
-            title: "Platform Specific Code",
-            sub: [
-                {
-                    name: "Detecting OS (Android or iOS)"
-                },
-                {
-                    name: "Detecting Android Version"
-                },
-                {
-                    name: "Detecting iOS Version"
-                },
-                {
-                    name: "Style and Size in Specific Platform"
-                },
-                {
-                    name: "Platform-specific extensions"
-                },
-                {
-                    name: "Access Platform Specific Code"
-                }
-            ]
-        },
-        {
-            title: "Using Dynamic Content and Network (JSON Http Feed)",
-            sub: [
-                {
-                    name: "Standard Network API - Fetch"
-                },
-                {
-                    name: "3rd Party Network API - Axios"
-                },
-                {
-                    name: "HTTP Fetching RESTful (JSON)"
-                },
-                {
-                    name: "Fixing iOS HTTP (unsecured) Issue"
-                },
-                {
-                    name: "Fetching data from MySql"
-                },
-                {
-                    name: "ScrolllView"
-                },
-                {
-                    name: "Setup FlatList"
-                },
-                {
-                    name: "Styling ListView"
-                },
-                {
-                    name: "Tap Event Listener"
-                },{
-                    name: "Add Loading Component"
-                },
-                {
-                    name: "Add Pull to Refresh support to our app"
-                },
-                {
-                    name: "การจัดการกับปัญหาเรื่อง Cross-Origin-Resource-Sharing (Cors)"
-                }
-            ]
-        },
-        {
-            title: "Access Native Device Feature",
-            sub: [
-                {
-                    name: "Runtime Permission"
-                },
-                {
-                    name: "Youtube Video Player"
-                },
-                {
-                    name: "Camera"
-                },
-                {
-                    name: "arcode and QR Code Scanner"
-                },
-                {
-                    name: "InAppBrowser"
-                },
-                {
-                    name: "SQLite"
-                },
-                {
-                    name: "Toasts"
-                },
-                {
-                    name: "Call Number"
-                },
-                {
-                    name: "File"
-                },{
-                    name: "File Path"
-                },
-                {
-                    name: "File Transfer"
-                }
-            ]
-        },
-        {
-            title: "User Input, Forms and Data Management",
-            sub: [
-                {
-                    name: "How to use Local Storage"
-                },
-                {
-                    name: "Learn 3rd-party Custom UI - 'UI Element'"
-                },
-                {
-                    name: "Handle User Input"
-                },
-                {
-                    name: "Registering Controls"
-                },
-                {
-                    name: "Submitting the Form"
-                },
-                {
-                    name: "Validating the Form"
-                },
-                {
-                    name: "Handling Data with a Model for our Ingredients"
-                },
-                {
-                    name: "Managing Data with a Service"
-                },
-                {
-                    name: "insert, update, and delete data"
-                },
-                {
-                    name: "Alerts"
-                }
-            ]
-        },
-        {
-            title: "Using Google Map",
-            sub: [
-                {
-                    name: "Using 3rd-party Library"
-                },
-                {
-                    name: "Adding Google Maps to the App"
-                },
-                {
-                    name: "Configuring our Maps"
-                },
-                {
-                    name: "Allowing the User to Place a Marker on the Map"
-                },
-                {
-                    name: "Displaying the Chosen Location"
-                },
-                {
-                    name: "Geolocation to Locate the User"
-                }
-            ]
-        },
-        {
-            title: "การเตรียม Resources, เทคนิคการ Build App และอัพโหลด App ไปที่ Store",
-            sub: [
-                {
-                    name: "Custom Icons and Splashscreen"
-                },
-                {
-                    name: "Configuration"
-                },
-                {
-                    name: "Generate Distribution Files"
-                },
-                {
-                    name: "Build Preparations and Building for Production"
-                },
-                {
-                    name: "Publish to Google Play Store"
-                },
-                {
-                    name: "Publish to Apple AppStore"
-                }
-            ]
-        }
-    ],
-      player: null
-    };
-  },
-  mounted() {
-    const self = this;
-    $(function() {
-      if (flvjs.isSupported()) {
-        var videoElement = self.$refs.videoElement;
-        self.player = flvjs.createPlayer({
-          type: "flv",
-          //   url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
-          url: "/assets/flv/converted.flv"
+            ],
+            player: null
+        };
+    },
+    mounted() {
+        const self = this;
+        $(function () {
+            if (flvjs.isSupported()) {
+                var videoElement = self.$refs.videoElement;
+                self.player = flvjs.createPlayer({
+                    type: "flv",
+                    //   url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
+                    url: "/assets/flv/converted.flv"
+                });
+                self.player.attachMediaElement(videoElement);
+                self.player.load();
+            }
         });
-        self.player.attachMediaElement(videoElement);
-        self.player.load();
-      }
-    });
-  },
-  methods: {
-    getPercent(course) {
-      return parseInt((course.discount - course.price) * 100 / course.discount);
     },
-    numberWithCommas(number) {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    },
-    play() {
-      this.player.play();
+    methods: {
+        play() {
+            this.player.play();
+        }
     }
-  }
 };
 </script>
 

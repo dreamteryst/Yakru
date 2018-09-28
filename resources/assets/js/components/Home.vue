@@ -8,7 +8,7 @@
 				<div class="carousel-inner">
 					<!-- BEGIN item -->
 					<div class="item active">
-						<img src="/assets/img/cover/react-cover.jpg" class="bg-cover-img" alt="" />
+						<img src="/assets/img/cover/carousel-1.jpg" class="bg-cover-img" alt="" />
 						<div class="container">
 							<img src="/assets/img/product/react-logo.png" class="product-img right bottom fadeInRight animated" alt="" />
 						</div> 
@@ -27,14 +27,14 @@
 					<!-- END item -->
 					<!-- BEGIN item -->
 					<div class="item">
-						<img src="/assets/img/cover/cover-5.jpg" class="bg-cover-img" alt="" />
+						<img src="/assets/img/cover/react-cover.jpg" class="bg-cover-img" alt="" />
 						<div class="container">
-							<img src="https://png.icons8.com/color/1600/c-programming.png" class="product-img left bottom fadeInLeft animated" alt="" />
+							<img src="/assets/img/cover/angular-logo.png" class="product-img left bottom fadeInLeft animated" alt="" />
 						</div>
 						<div class="carousel-caption carousel-caption-right">
 							<div class="container">
-								<h3 class="title m-b-5 fadeInRightBig animated">Microcontrollers</h3>
-								<p class="m-b-15 fadeInRightBig animated">and the C Programming LanguageT</p>
+								<h3 class="title m-b-5 fadeInRightBig animated">Angular 4</h3>
+								<p class="m-b-15 fadeInRightBig animated">สอนใช้ Angular อย่างมืออาชีพ</p>
 								<div class="price m-b-30 fadeInRightBig animated">
 									<small>from</small>
 									<span>฿1,149.00</span>
@@ -45,7 +45,7 @@
 					</div>
 					<!-- END item -->
 					<!-- BEGIN item -->
-					<div class="item">
+					<!-- <div class="item">
 						<img src="/assets/img/cover/cover-9.jpg" class="bg-cover-img" alt="" />
 						<div class="carousel-caption">
 							<div class="container">
@@ -58,7 +58,7 @@
 								<router-link to="/live-stream" class="btn btn-outline btn-lg fadeInUpBig animated">Buy Now</router-link>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- END item -->
 				</div>
 				<!-- END carousel-inner -->

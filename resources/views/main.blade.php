@@ -4,7 +4,6 @@
 <html lang="en">
 <!--<![endif]-->
 <head>
-	<base href="http://yakru.test">
 	<meta charset="utf-8" />
 	<title>Home | Yakru</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />

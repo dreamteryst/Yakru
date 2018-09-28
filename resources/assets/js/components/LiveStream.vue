@@ -14,7 +14,7 @@
 				<div class="row">
 					<div class="col-md-8">
 						<div class="embed-responsive embed-responsive-16by9">
-							<video ref="videoElement"></video>
+							<video ref="videoElement" controls></video>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -140,7 +140,8 @@ export default {
 				var player = flvjs.createPlayer({
 					type: "flv",
 					isLive: true,
-					url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
+					// url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
+					url: "http://localhost:8000/live/dreamteryst.flv"
 				});
 				player.attachMediaElement(videoElement);
 				player.load();

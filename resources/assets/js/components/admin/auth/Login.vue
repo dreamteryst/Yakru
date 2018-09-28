@@ -80,7 +80,7 @@ export default {
                 .then(res => {
                     if (res.status === 200) {
                         this.login()
-                        window.location.href = "/";
+                        window.location.href = "/admin";
                     }
                 })
                 .catch(({ response }) => {

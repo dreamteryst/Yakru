@@ -1,16 +1,15 @@
-
 @font-face {
-    font-family: 'FC Lamoon';
-    src: url('../fonts/FCLamoonLight.woff2') format('woff2'),
-        url('../fonts/FCLamoonLight.woff') format('woff');
+    font-family: "FC Lamoon";
+    src: url("../fonts/FCLamoonLight.woff2") format("woff2"),
+        url("../fonts/FCLamoonLight.woff") format("woff");
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'FC Lamoon';
-    src: url('../fonts/FCLamoonRegular.woff2') format('woff2'),
-        url('../fonts/FCLamoonRegular.woff') format('woff');
+    font-family: "FC Lamoon";
+    src: url("../fonts/FCLamoonRegular.woff2") format("woff2"),
+        url("../fonts/FCLamoonRegular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
 }
@@ -30,5 +29,52 @@
     }
     .fa-trash-alt {
         color: #ff5b57;
+    }
+}
+
+.chatbox {
+    background-color: hsl(0, 0%, 96%);
+    border-radius: 4px;
+	padding: 8px;
+	min-height: 350px;
+	.message {
+		clear:both;
+		padding-bottom: 10px;
+		div {
+			float: left;
+		}
+		.time {
+			color: rgb(139, 139, 139);
+			float: right;
+		}
+	}
+	.input {
+		width: 100%;
+		padding: 0 10px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		.form-control {
+			border-radius: 0px 0px 4px 4px;
+		}
+	}
+}
+
+.menu-box {
+    width: 145px;
+    height: 145px;
+    background: #fff;
+    border-radius: 24px;
+    cursor: pointer;
+    background-image: linear-gradient(to bottom right, #0099ff, #0066ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .fa,
+    .fas {
+        font-size: 7em;
+    }
+    i {
+        color: white;
     }
 }

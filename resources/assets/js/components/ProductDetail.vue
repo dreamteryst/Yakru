@@ -74,7 +74,7 @@
                                 <div class="product-price">
                                     <div class="price">฿749.00</div>
                                 </div>
-                                <button class="btn btn-inverse btn-lg" type="button" @click="play">ADD TO CART</button>
+                                <button class="btn btn-inverse btn-lg" type="button" @click="play">PURCHASE</button>
                             </div>
                             <!-- END product-purchase-container -->
                         </div>

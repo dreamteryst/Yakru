@@ -18,6 +18,10 @@ Route::group(['middleware' => ['web']], function() {
         Auth::logout();
         return redirect('/auth');
     });
+    Route::get('admin/logout', function() {
+        Auth::logout();
+        return redirect('/admin/auth');
+    });
 
 // Registration Routes...
     Route::post('register', ['as' => 'register.post', 'uses' => 'Auth\RegisterController@register']);
@@ -33,7 +37,7 @@ Route::middleware('auth')->get('/user', function (Request $request) {
     return Auth::user();
 });
 
-Route::group(['middleware' => ['guest']], function() {
+Route::group(['middleware' => ['guest:web_admin']], function() {
     Route::get('admin/auth', function () {
         return view('auth');
     })->name('admin.login');

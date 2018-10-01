@@ -15,16 +15,14 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('order_id');
+            $table->unsignedInteger('topup_id');
             $table->unsignedInteger('bank_id');
-            $table->unsignedInteger('user_id');
             $table->datetime('transferred_at');
-            $table->decimal('amount', 8, 2);
+            $table->decimal('amount', 20, 2);
             $table->string('slip')->comment('หลักฐานการโอนเงิน');
 
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('topup_id')->references('id')->on('topups');
             $table->foreign('bank_id')->references('id')->on('banks');
-            $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
             $table->softDeletes();

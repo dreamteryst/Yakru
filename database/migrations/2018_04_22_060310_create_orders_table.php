@@ -15,9 +15,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('course_id');
+            $table->unsignedInteger('user_id');
             $table->string('order_no');
             $table->string('order_note');
-            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
+            $table->decimal('course_price', 8, 2);
             
             $table->timestamps();
             $table->softDeletes();

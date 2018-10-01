@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePromotionsTable extends Migration
+class CreateTopupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreatePromotionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('promotions', function (Blueprint $table) {
+        Schema::create('topups', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('promotion_name');
-            $table->text('promotion_description');
-            $table->datetime('started_at');
-            $table->datetime('ended_at');
-            
+            $table->unsignedInteger('user_id');
+            $table->integer('amount');
+            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
+            $table->enum('method', ['transfer', 'visa', 'paypal']);
+            $table->string('reference')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +31,6 @@ class CreatePromotionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promotions');
+        Schema::dropIfExists('topups');
     }
 }

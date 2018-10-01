@@ -26,7 +26,7 @@ class Admin extends Authenticatable
         parent::boot();
 
         static::addGlobalScope('type', function (Builder $builder) {
-            $builder->where('type', '=', 'Master')->orWhere('type', '=', 'Teacher');
+            $builder->where('type', '=', 'master')->orWhere('type', '=', 'teacher');
         });
     }
 }

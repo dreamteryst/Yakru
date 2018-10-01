@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderCourse extends Model
+class Topup extends Model
 {
     protected $fillable = [
-        'order_id', 'user_id', 'course_id'
+        'user_id', 'amount', 'status', 'method', 'reference'
     ];
 }

@@ -14,10 +14,21 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    $type = ['Master', 'Teacher', 'Accounting', 'Student'];
     return [
-        'name' => $faker->name,
+        'firstname' => $faker->firstName,
+        'lastname' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => bcrypt('user'), // secret
         'remember_token' => str_random(10),
+        'date_of_birth' => dateTimeBetween($startDate = '-50 years', $endDate = '-10 years', $timezone = 'Asia/Bangkok'),
+        'address' => $faker->address,
+        'phone_number' => $faker->phoneNumber,
+        'degree' => 'ปริญญาตรี',
+        'level' => $faker->numberBetween(1, 4),
+        'institution' => 'Khonkaen university',
+        'rank' => 1,
+        'type' => $type[array_rand($type)],
+        'money' => randomFloat($nbMaxDecimals = 10, $min = 0, $max = null)
     ];
 });

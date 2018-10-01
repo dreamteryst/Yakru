@@ -29,8 +29,6 @@ class Course extends Model
     protected $casts = [
         'requirements' => 'array',
         'result'  => 'array',
-        'tags'  => 'array'
-        
     ];
     
     public function category()

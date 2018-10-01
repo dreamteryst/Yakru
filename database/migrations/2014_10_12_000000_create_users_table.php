@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('level')->comment('ชั้นปี')->nullable();
             $table->string('institution')->comment('สถาบัน')->nullable();
             $table->integer('rank')->default(1);
-            $table->enum('type', ['Master', 'Teacher', 'Accounting', 'Student'])->default('Student');
+            $table->enum('type', ['master', 'teacher', 'accounting', 'student'])->default('Student');
             $table->decimal('money', 10, 2)->default(0);
             $table->rememberToken();
             $table->timestamps();

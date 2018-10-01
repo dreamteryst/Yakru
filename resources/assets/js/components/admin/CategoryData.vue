@@ -26,7 +26,7 @@
                     <thead>
                         <tr>
                             <th width="1%" data-priority="1">ID</th>
-                            <th class="text-nowrap">Name</th>
+                            <th width="20%" class="text-nowrap">Name</th>
                             <th class="text-nowrap">Description</th>
                             <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
                         </tr>

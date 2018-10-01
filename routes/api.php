@@ -21,3 +21,6 @@ Route::resource('tag', 'TagController');
 
 Route::get('course/data', 'CourseController@anyData');
 Route::resource('course', 'CourseController');
+
+Route::get('order/data', 'OrderController@anyData');
+Route::resource('order', 'OrderController');

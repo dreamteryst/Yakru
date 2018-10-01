@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class OrderController extends Controller
 {
@@ -82,5 +83,20 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function anyData()
+    {
+        return Datatables::of(Order::query())
+        ->addColumn('course_name', function($order) {
+            return $order->course->course_name;
+        })
+        ->addColumn('course_price', function($order) {
+            return $order->course->course_price;
+        })
+        ->addColumn('fullname', function($order) {
+            return $order->user->firstname.' '.$order->user->lastname;
+        })
+        ->make(true);
     }
 }

@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('user'), // secret
         'remember_token' => str_random(10),
-        'date_of_birth' => dateTimeBetween($startDate = '-50 years', $endDate = '-10 years', $timezone = 'Asia/Bangkok'),
+        'date_of_birth' => $faker->dateTimeBetween($startDate = '-50 years', $endDate = '-10 years', $timezone = 'Asia/Bangkok'),
         'address' => $faker->address,
         'phone_number' => $faker->phoneNumber,
         'degree' => 'ปริญญาตรี',
@@ -29,6 +29,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'institution' => 'Khonkaen university',
         'rank' => 1,
         'type' => $type[array_rand($type)],
-        'money' => randomFloat($nbMaxDecimals = 10, $min = 0, $max = null)
+        'money' => $faker->randomFloat($nbMaxDecimals = 8, $min = 0, $max = 9999999)
     ];
 });

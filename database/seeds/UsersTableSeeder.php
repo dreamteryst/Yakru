@@ -27,5 +27,6 @@ class UsersTableSeeder extends Seeder
             'type' => 'student',
             'money' => 0
         ]);
+        factory(App\User::class, 100)->create();
     }
 }

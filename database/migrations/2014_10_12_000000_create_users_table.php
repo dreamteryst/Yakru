@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('address')->nullable();
-            $table->string('phone_number', 15)->nullable();
+            $table->string('phone_number')->nullable();
             $table->string('degree')->comment('ระดับปริญญา')->nullable();
             $table->string('level')->comment('ชั้นปี')->nullable();
             $table->string('institution')->comment('สถาบัน')->nullable();

@@ -26,12 +26,10 @@
                     <thead>
                         <tr>
                             <th width="1%" data-priority="1">ID</th>
+                            <th class="text-nowrap">Author</th>
                             <th class="text-nowrap">Course Name</th>
                             <th class="text-nowrap">Subtitle</th>
                             <th class="text-nowrap">Description</th>
-                            <th class="text-nowrap">Author</th>
-                            <th class="text-nowrap">Requirements</th>
-                            <th class="text-nowrap">Result</th>
                             <th class="text-nowrap">Price</th>
                             <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
                         </tr>
@@ -178,12 +176,10 @@ export default {
                 },
                 columns: [
                     { data: "id", name: "id" },
+                    { data: "fullname", name: "fullname" },
                     { data: "course_name", name: "course_name" },
                     { data: "course_subtitle", name: "course_subtitle" },
                     { data: "course_description", name: "course_description" },
-                    { data: "fullname", name: "fullname" },
-                    { data: "requirements", name: "requirements" },
-                    { data: "result", name: "result" },
                     { data: "course_price", name: "course_price" },
                     {
                         data: null,

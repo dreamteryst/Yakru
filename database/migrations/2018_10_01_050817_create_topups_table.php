@@ -20,7 +20,10 @@ class CreateTopupsTable extends Migration
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->enum('method', ['transfer', 'visa', 'paypal']);
             $table->string('reference')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

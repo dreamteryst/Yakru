@@ -9,7 +9,7 @@
         <!-- begin page-header -->
         <h1 class="page-header">Add Course <small></small></h1>
         <!-- end page-header -->
-        
+
         <!-- begin panel -->
         <div class="panel panel-inverse">
             <!-- begin panel-heading -->
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label for="category_id">Category</label>
                     <select class="form-control" :class="{'is-invalid':isError('category_id')}" id="category_id" v-model="category_id">
-                        <option v-for="(category, i) in categories" :key="i" :value="category.id" >{{ category.category_name }}</option>
+                        <option v-for="(category, i) in categories" :key="i" :value="category.id">{{ category.category_name }}</option>
                     </select>
                     <div class="invalid-feedback" v-if="isError('category_id')">
                         {{ errors.category_id[0] }}
@@ -64,7 +64,7 @@
                         {{ errors.course_price[0] }}
                     </div>
                 </div>
-            
+
                 <div class="form-group">
                     <label for="requirements">Course Requirements</label>
                     <div class="col-md-2 offset-md-11 col-4 offset-9">
@@ -75,58 +75,69 @@
                         <div class="col-md-10">
                             <input class="form-control" v-model="requirements[j]" placeholder="Course Requirements">
                         </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="result">Course Result</label>
-                    <div class="col-md-2 offset-md-11 col-4 offset-9">
-                        <i class="fa fa-plus fa-2x m-t-5" @click="addResult"></i>
-                        <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeResult"></i>
-                    </div>
-                    <div class="row m-b-15" v-for="(result, i) in results" :key="i">
-                        <div class="col-md-10">
-                            <input class="form-control" v-model="results[i]" placeholder="Course Result">
+                    <div class="form-group">
+                        <label for="result">Course Result</label>
+                        <div class="col-md-2 offset-md-11 col-4 offset-9">
+                            <i class="fa fa-plus fa-2x m-t-5" @click="addResult"></i>
+                            <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeResult"></i>
+                        </div>
+                        <div class="row m-b-15" v-for="(result, i) in results" :key="i">
+                            <div class="col-md-10">
+                                <input class="form-control" v-model="results[i]" placeholder="Course Result">
+                        </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tags">Tags</label>
+                            <input-tag type="text" class="form-control" id="tags" :class="{'is-invalid':isError('tags')}" :tags.sync="tags" placeholder="Tags" addTagOnBlur :addTagOnKeys="[13,188,9,32]" />
+                        </div>
+                        <div class="form-group">
+                            <label>ประเภท</label>
+                            <div class="radio radio-css radio-inline">
+                                <input type="radio" id="type-video" name="type" />
+                                <label for="type-video">Video</label>
+                            </div>
+                            <div class="radio radio-css radio-inline">
+                                <input type="radio" id="type-live" name="type" />
+                                <label for="type-live">Live Streaming</label>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <button class="btn btn-primary" @click="save"><i class="fa fa-paper-plane"></i> Save</button>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="tags">Tags</label>
-                    <input-tag type="text" class="form-control" id="tags" :class="{'is-invalid':isError('tags')}" :tags.sync="tags" placeholder="Tags" addTagOnBlur :addTagOnKeys="[13,188,9,32]" />
-                </div>
-                <div class="pull-right">
-                    <button class="btn btn-primary" @click="save"><i class="fa fa-paper-plane"></i> Save</button>
-                </div>
-            </div>
-        </div>
     </section>
 </template>
 
 <script>
 export default {
-    data(){
+    data() {
         return {
             categories: [],
             category_id: '',
             course_name: '',
-            course_subtitle : '',
-            course_description : '',
+            course_subtitle: '',
+            course_description: '',
             course_price: '',
             requirements: [''],
             results: [''],
             tags: [],
             errors: [],
-            isSuccess:false,
+            isSuccess: false,
         }
     },
-    mounted(){
-        axios.get(`//${window.location.host}/api/category/data`).then((res)=>{
-            if(res.status === 200) {
+    mounted() {
+        axios.get(`//${window.location.host}/api/category/data`).then((res) => {
+            if (res.status === 200) {
                 this.categories = res.data.data;
             }
         });
     },
-    methods:{
-        save(){
+    methods: {
+        save() {
             const formData = new FormData();
             formData.append('category_id', this.category_id);
             formData.append('course_name', this.course_name);
@@ -136,9 +147,9 @@ export default {
             formData.append('requirements', JSON.stringify(this.requirements));
             formData.append('results', JSON.stringify(this.results));
             formData.append('tags', JSON.stringify(this.tags));
-            
-            axios.post(`//${window.location.host}/api/course`, formData).then((response)=>{
-                if(response.status === 200) {
+
+            axios.post(`//${window.location.host}/api/course`, formData).then((response) => {
+                if (response.status === 200) {
                     this.course_name = '';
                     this.category_id = '';
                     this.course_subtitle = '';
@@ -151,31 +162,30 @@ export default {
                     this.errors = [];
                 }
             })
-            .catch((error) => {
-                this.errors = error.response.data.errors;
-                console.log(error.response)
-            });
+                .catch((error) => {
+                    this.errors = error.response.data.errors;
+                    console.log(error.response)
+                });
         },
-        isError(field){
+        isError(field) {
             return this.errors[field] !== undefined;
         },
-        addResult(){
+        addResult() {
             this.results.push('');
-           
+
         },
-        removeResult(){
-            this.results.splice((this.results.length>1) ? this.results.length-1 :this.results.length-0);
+        removeResult() {
+            this.results.splice((this.results.length > 1) ? this.results.length - 1 : this.results.length - 0);
         },
-        addReq(){
+        addReq() {
             this.requirements.push('');
         },
-        removeReq(){
-            this.requirements.splice((this.requirements.length>1) ? this.requirements.length-1 :this.requirements.length-0);
+        removeReq() {
+            this.requirements.splice((this.requirements.length > 1) ? this.requirements.length - 1 : this.requirements.length - 0);
         }
     }
 }
 </script>
 
 <style>
-
 </style>

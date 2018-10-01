@@ -20,7 +20,6 @@ class CreateSchedulesTable extends Migration
             $table->dateTime('end');
 
             $table->foreign('course_id')->references('id')->on('courses');
-            $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
             $table->softDeletes();

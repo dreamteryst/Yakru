@@ -31,9 +31,8 @@
                             <th class="text-nowrap">Description</th>
                             <th class="text-nowrap">Author</th>
                             <th class="text-nowrap">Requirements</th>
-                            <th class="text-nowrap">Result</th>>
+                            <th class="text-nowrap">Result</th>
                             <th class="text-nowrap">Price</th>
-                            <th class="text-nowrap">Tags</th>
                             <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
                         </tr>
                     </thead>
@@ -164,76 +163,77 @@ export default {
       }
     });
     var self = this;
-    this.table = $("#data-table-default").DataTable({
-      responsive: true,
-      autoWidth: false,
-      processing: true,
-      serverSide: true,
-      ajax: `//${window.location.host}/api/course/data`,
-      order: [[1, "desc"]],
-      rowCallback: function(row, data, index) {
-        if (data["deleted_at"] != null) {
-          $(row).addClass("danger");
-        }
-      },
-      columns: [
-        { data: "id", name: "id" },
-        { data: "course_name", name: "course_name" },
-        { data: "course_subtitle", name: "course_subtitle" },
-        { data: "course_description", name: "course_description" },
-        { data: "fullname", name: "fullname" },
-        { data: "requirements", name: "requirements" },
-        { data: "result", name: "result" },
-        { data: "course_price", name: "course_price" },
-        { data: "tags", name: "tags" },
-        {
-          data: null,
-          render: (data, type, row, meta) => {
-            return (
-              `
-                        <div class="actions" data='` +
-              JSON.stringify(row) +
-              `'>
-                        <i class="fa fa-edit new-user-edit"></i>
-                        ` +
-              (row["deleted_at"] == null
-                ? '<i class="fa fa-trash-alt"></i>'
-                : '<i class="fa fa-undo"></i>') +
-              `
-                        </div>`
+    $(function() {
+      self.table = $("#data-table-default").DataTable({
+        responsive: true,
+        autoWidth: false,
+        processing: true,
+        serverSide: true,
+        ajax: `//${window.location.host}/api/course/data`,
+        order: [[1, "desc"]],
+        rowCallback: function(row, data, index) {
+          if (data["deleted_at"] != null) {
+            $(row).addClass("danger");
+          }
+        },
+        columns: [
+          { data: "id", name: "id" },
+          { data: "course_name", name: "course_name" },
+          { data: "course_subtitle", name: "course_subtitle" },
+          { data: "course_description", name: "course_description" },
+          { data: "fullname", name: "fullname" },
+          { data: "requirements", name: "requirements" },
+          { data: "result", name: "result" },
+          { data: "course_price", name: "course_price" },
+          {
+            data: null,
+            render: (data, type, row, meta) => {
+              return (
+                `
+                          <div class="actions" data='` +
+                JSON.stringify(row) +
+                `'>
+                          <i class="fa fa-edit new-user-edit"></i>
+                          ` +
+                (row["deleted_at"] == null
+                  ? '<i class="fa fa-trash-alt"></i>'
+                  : '<i class="fa fa-undo"></i>') +
+                `
+                          </div>`
+              );
+            },
+            searchable: false,
+            sortable: false
+          }
+        ],
+        drawCallback: function(settings) {
+          $(".fa-edit").on("click", function() {
+            self.data = JSON.parse(
+              $(this)
+                .closest("div")
+                .attr("data")
             );
-          },
-          searchable: false,
-          sortable: false
-        }
-      ],
-      drawCallback: function(settings) {
-        $(".fa-edit").on("click", function() {
-          self.data = JSON.parse(
-            $(this)
-              .closest("div")
-              .attr("data")
-          );
-          self.modalEdit = true;
-        });
+            self.modalEdit = true;
+          });
 
-        $(".fa-trash-alt").on("click", function() {
-          self.data = JSON.parse(
-            $(this)
-              .closest("div")
-              .attr("data")
-          );
-          self.modalDelete = true;
-        });
-        $(".fa-undo").on("click", function() {
-          self.data = JSON.parse(
-            $(this)
-              .closest("div")
-              .attr("data")
-          );
-          self.deleteData();
-        });
-      }
+          $(".fa-trash-alt").on("click", function() {
+            self.data = JSON.parse(
+              $(this)
+                .closest("div")
+                .attr("data")
+            );
+            self.modalDelete = true;
+          });
+          $(".fa-undo").on("click", function() {
+            self.data = JSON.parse(
+              $(this)
+                .closest("div")
+                .attr("data")
+            );
+            self.deleteData();
+          });
+        }
+      });
     });
   },
   methods: {

@@ -14,8 +14,9 @@ class CreateScheduleUnitsTable extends Migration
     public function up()
     {
         Schema::create('schedule_units', function (Blueprint $table) {
-            $table->unsignedInteger('schedule_id')->primary();
-            $table->unsignedInteger('unit_id')->primary();
+            $table->unsignedInteger('schedule_id');
+            $table->unsignedInteger('unit_id');
+            $table->primary(['schedule_id', 'unit_id']);
 
             $table->foreign('schedule_id')->references('id')->on('schedules');
             $table->foreign('unit_id')->references('id')->on('units');

@@ -35,15 +35,40 @@
 }
 
 .chatbox {
-  background-color: whitesmoke;
-  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.719);
+  border: #9E9E9E solid 1px;
+  border-radius: 5px;
   padding: 8px;
-  min-height: 350px;
+  min-height: 423px;
+}
+
+@media only screen and (max-width: 990px) {
+  .chatbox {
+    margin-top: 8px;
+  }
 }
 
 .chatbox .message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   clear: both;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.chatbox .message .user-name {
+  color: #BDBDBD;
+}
+
+.chatbox .message .user-name-teacher {
+  color: #00acac;
+}
+
+.chatbox .message .text {
+  color: #2c2c2c;
 }
 
 .chatbox .message div {
@@ -51,8 +76,10 @@
 }
 
 .chatbox .message .time {
-  color: #8b8b8b;
-  float: right;
+  margin-left: auto;
+  color: #BDBDBD;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .chatbox .input {
@@ -65,6 +92,7 @@
 
 .chatbox .input .form-control {
   border-radius: 0px 0px 4px 4px;
+  border: #9E9E9E solid 1px;
 }
 
 .menu-box {

@@ -8,36 +8,36 @@
 				<ul class="breadcrumb m-b-10 f-s-20">
 					<li><a href="#">Home</a></li>
 					<li><a href="#">Mobile Development</a></li>
-					<li class="active">Running a Mobile App Dev Business: The Complete Guide</li>
+					<li class="active">React Native สำหรับมือใหม่!!</li>
 				</ul>
 				<!-- END breadcrumb -->
 				<div class="row">
 					<div class="col-md-8">
 						<div class="embed-responsive embed-responsive-16by9">
-							<video ref="videoElement"></video>
+							<video ref="videoElement" controls></video>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="chatbox">
 							<div class="message">
-								<span class="username">
+								<span class="user-name-teacher">
 									DreaMTeryST :&nbsp;
 								</span>
-								<span class="badge badge-danger f-s-20">สวัสดีครับ</span>
+								<span class="text">สวัสดีครับ</span>
 								<span class="time">1:40</span>
 							</div>
 							<div class="message">
-								<span class="username">
+								<span class="user-name-teacher">
 									DreaMTeryST :&nbsp;
 								</span>
-								<span class="badge badge-danger f-s-20">ท่านผู้ชม</span>
+								<span class="text">ท่านผู้ชม</span>
 								<span class="time">1:41</span>
 							</div>
 							<div class="message">
-								<span class="username">
+								<span class="user-name">
 									Moojy :&nbsp;
 								</span>
-								<span class="badge badge-info f-s-20">สงสัยค่ะ</span>
+								<span class="text">สงสัยค่ะ</span>
 								<span class="time">2:30</span>
 							</div>
 							<div class="input">
@@ -46,7 +46,7 @@
 						</div>
 					</div>
 				</div>
-				<h4 class="m-t-15">Running a Mobile App Dev Business: The Complete Guide (Live)</h4>
+				<h4 class="m-t-15">React Native สำหรับมือใหม่!! (Live)</h4>
 				<hr/>
 				<!-- BEGIN similar-product -->
 				<h4 class="m-b-15 m-t-30">You Might Also Like</h4>
@@ -140,7 +140,8 @@ export default {
 				var player = flvjs.createPlayer({
 					type: "flv",
 					isLive: true,
-					url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
+					// url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
+					url: "http://localhost:8000/live/dreamteryst.flv"
 				});
 				player.attachMediaElement(videoElement);
 				player.load();

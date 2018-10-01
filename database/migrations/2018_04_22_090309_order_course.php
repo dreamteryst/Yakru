@@ -14,9 +14,10 @@ class OrderCourse extends Migration
     public function up()
     {
         Schema::create('order_course', function (Blueprint $table) {
-            $table->unsignedInteger('order_id')->primary();
-            $table->unsignedInteger('user_id')->primary();
-            $table->unsignedInteger('course_id')->primary();
+            $table->unsignedInteger('order_id');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('course_id');
+            $table->primary(['order_id', 'user_id', 'course_id']);
 
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('user_id')->references('id')->on('users');

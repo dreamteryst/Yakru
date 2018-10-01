@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->string('order_no');
             $table->string('order_note');
-            $table->enum('status', ['paid', 'unpaid'])->default(0);
+            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             
             $table->timestamps();
             $table->softDeletes();

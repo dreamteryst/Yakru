@@ -14,8 +14,9 @@ class CoursePromotion extends Migration
     public function up()
     {
         Schema::create('course_promotion', function (Blueprint $table) {
-            $table->unsignedInteger('course_id')->primary();
-            $table->unsignedInteger('promotion_id')->primary();
+            $table->unsignedInteger('course_id');
+            $table->unsignedInteger('promotion_id');
+            $table->primary(['course_id', 'promotion_id']);
 
             $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('promotion_id')->references('id')->on('promotions');

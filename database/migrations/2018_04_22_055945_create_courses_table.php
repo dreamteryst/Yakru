@@ -21,9 +21,10 @@ class CreateCoursesTable extends Migration
             $table->string('course_subtitle');
             $table->mediumText('course_description');
             $table->decimal('course_price', 8, 2);
-            $table->text('requirements')->nullable();
-            $table->text('result')->nullable();
-            $table->text('tags')->nullable();
+            $table->json('requirements')->nullable();
+            $table->json('result')->nullable();
+            $table->enum('type', ['video', 'live'])->default('video');
+            $table->string('secret')->nullable();
 
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');

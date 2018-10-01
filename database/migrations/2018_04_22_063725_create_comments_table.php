@@ -19,8 +19,6 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('course_id');
             $table->float('stars', 2, 1);
             $table->text('comment');
-            $table->integer('vote_good')->default(0);
-            $table->integer('vote_bad')->default(0);
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('course_id')->references('id')->on('courses');

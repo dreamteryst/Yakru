@@ -15,9 +15,9 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('order_no', 16);
+            $table->string('order_no');
             $table->string('order_note');
-            $table->integer('status')->default(0)->comment('0 unpaid, 1 paid');
+            $table->enum('status', ['paid', 'unpaid'])->default(0);
             
             $table->timestamps();
             $table->softDeletes();

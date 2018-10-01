@@ -14,11 +14,12 @@ class OrderCourse extends Migration
     public function up()
     {
         Schema::create('order_course', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('order_id');
-            $table->unsignedInteger('course_id');
+            $table->unsignedInteger('order_id')->primary();
+            $table->unsignedInteger('user_id')->primary();
+            $table->unsignedInteger('course_id')->primary();
 
             $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('course_id')->references('id')->on('courses');
 
             $table->timestamps();

@@ -22,7 +22,8 @@ class Course extends Model
         'requirements',
         'result',
         'admin_id',
-        'tags'
+        'type',
+        'secret'
     ];
     
     protected $casts = [

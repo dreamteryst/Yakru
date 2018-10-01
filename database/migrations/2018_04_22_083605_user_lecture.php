@@ -14,9 +14,9 @@ class UserLecture extends Migration
     public function up()
     {
         Schema::create('user_lecture', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('lecture_id');
+            $table->unsignedInteger('user_id')->primary();
+            $table->unsignedInteger('lecture_id')->primary();
+            $table->string('time')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('lecture_id')->references('id')->on('lectures');

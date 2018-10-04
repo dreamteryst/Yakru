@@ -146,10 +146,10 @@ export default {
 				'caret': true,
 				'submenu': [{
 					'url': '/admin/student',
-					'title': 'ผู้เรียน'
+					'title': ' รายชื่อผู้เรียน'
 				}, {
 					'url': '/admin/teacher',
-					'title': 'ผู้สอน'
+					'title': 'รายชื่อผู้สอน'
 				}]
 			}, {
 				'icon': 'fa fa-cog',

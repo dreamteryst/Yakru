@@ -29,4 +29,9 @@ class Admin extends Authenticatable
             $builder->where('type', '=', 'master')->orWhere('type', '=', 'teacher');
         });
     }
+
+    public function course()
+    {
+        return $this->hasMany('App\Course', 'user_id');
+    }
 }

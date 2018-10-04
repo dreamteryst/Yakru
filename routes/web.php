@@ -75,6 +75,11 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
 
         Route::get('schedule/data/{id}', 'ScheduleController@anyData');
         Route::resource('schedule', 'ScheduleController');
+
+        Route::get('student/data', 'StudentController@anyData');
+        Route::resource('student', 'StudentController');
+
+        Route::get('teacher/data', 'AdminController@anyData');
     });
 
     Route::get('/{any}', function () {

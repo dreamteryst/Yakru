@@ -40,7 +40,7 @@ a.deactive-link {
 
 .chatbox {
   background-color: rgba(255, 255, 255, 0.719);
-  border: #9E9E9E solid 1px;
+  border: #9e9e9e solid 1px;
   border-radius: 5px;
   padding: 8px;
   min-height: 423px;
@@ -64,7 +64,7 @@ a.deactive-link {
 }
 
 .chatbox .message .user-name {
-  color: #BDBDBD;
+  color: #bdbdbd;
 }
 
 .chatbox .message .user-name-teacher {
@@ -81,7 +81,7 @@ a.deactive-link {
 
 .chatbox .message .time {
   margin-left: auto;
-  color: #BDBDBD;
+  color: #bdbdbd;
   font-size: 16px;
   font-weight: 300;
 }
@@ -96,7 +96,7 @@ a.deactive-link {
 
 .chatbox .input .form-control {
   border-radius: 0px 0px 4px 4px;
-  border: #9E9E9E solid 1px;
+  border: #9e9e9e solid 1px;
 }
 
 .menu-box {
@@ -192,5 +192,13 @@ a.deactive-link {
 
 .product-image {
   padding: 20px;
+}
+
+.vue-input-tag-wrapper {
+  -webkit-appearance: none !important;
+}
+
+.vue-input-tag-wrapper .input-tag {
+  font-size: 10px !important;
 }
 

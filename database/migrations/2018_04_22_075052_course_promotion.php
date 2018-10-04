@@ -13,7 +13,7 @@ class CoursePromotion extends Migration
      */
     public function up()
     {
-        Schema::create('course_promotion', function (Blueprint $table) {
+        Schema::create('course_promotions', function (Blueprint $table) {
             $table->unsignedInteger('course_id');
             $table->unsignedInteger('promotion_id');
             $table->primary(['course_id', 'promotion_id']);
@@ -31,6 +31,6 @@ class CoursePromotion extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('course_promotion');
+        Schema::dropIfExists('course_promotions');
     }
 }

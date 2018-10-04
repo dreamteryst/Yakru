@@ -9,6 +9,6 @@ $factory->define(App\Promotion::class, function (Faker $faker) {
         'promotion_name' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'promotion_description' => $faker->text,
         'started_at' => $start,
-        'ended_at' => $faker->dateTimeBetween(strtotime($start, '+3 days'), $endDate = 'now', $timezone = 'Asia/bangkok')
+        'ended_at' => $faker->dateTimeBetween($start->add(new DateInterval('P3D')), $endDate = 'now', $timezone = 'Asia/bangkok')
     ];
 });

@@ -16,7 +16,7 @@ class CreateTopupsTable extends Migration
         Schema::create('topups', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->decimal('money', 10, 2);
+            $table->decimal('amount', 10, 2);
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->enum('method', ['transfer', 'visa', 'paypal']);
             $table->string('evidence')->nullable();

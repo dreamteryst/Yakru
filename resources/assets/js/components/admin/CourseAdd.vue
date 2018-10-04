@@ -28,7 +28,7 @@
                     เพิ่มข้อมูลสำเร็จ
                 </div>
                 <div class="form-group">
-                    <label for="category_id">Category</label>
+                    <label for="category_id">หมวดหมู่</label>
                     <select class="form-control" :class="{'is-invalid':isError('category_id')}" id="category_id" v-model="category_id">
                         <option v-for="(category, i) in categories" :key="i" :value="category.id">{{ category.category_name }}</option>
                     </select>
@@ -37,36 +37,43 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="course_name">Course Name</label>
+                    <label for="course_cover">ภาพปก</label>
+                    <input type="file" class="form-control" :class="{'is-invalid':isError('course_cover')}" id="course_cover" accept="image/*" placeholder="Course Cover">
+                    <div class="invalid-feedback" v-if="isError('course_cover')">
+                        {{ errors.course_cover[0] }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="course_name">ชื่อคอร์ส</label>
                     <input type="text" class="form-control" :class="{'is-invalid':isError('course_name')}" id="course_name" v-model="course_name" placeholder="Course Name">
                     <div class="invalid-feedback" v-if="isError('course_name')">
                         {{ errors.course_name[0] }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="course_subtitle">Course Subtitle</label>
+                    <label for="course_subtitle">คำอธิบายโดยย่อ</label>
                     <input type="text" class="form-control" id="course_subtitle" :class="{'is-invalid':isError('course_subtitle')}" v-model="course_subtitle" placeholder="Course Subtitle">
                     <div class="invalid-feedback" v-if="isError('course_subtitle')">
                         {{ errors.course_subtitle[0] }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="course_description">Course Description</label>
+                    <label for="course_description">รายละเอียดคอร์ส</label>
                     <textarea class="form-control" id="course_description" :class="{'is-invalid':isError('course_description')}" v-model="course_description" placeholder="Course Description" rows="15"></textarea>
                     <div class="invalid-feedback" v-if="isError('course_description')">
                         {{ errors.course_description[0] }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="course_price">Course Price</label>
-                    <input type="number" min="0" max="999999" class="form-control" id="course_price" :class="{'is-invalid':isError('course_price')}" v-model="course_price" placeholder="Course Price">
+                    <label for="course_price">ราคา</label>
+                    <input type="number" min="0" max="999999" step="0.01" class="form-control" id="course_price" :class="{'is-invalid':isError('course_price')}" v-model="course_price" placeholder="Course Price">
                     <div class="invalid-feedback" v-if="isError('course_price')">
                         {{ errors.course_price[0] }}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="requirements">Course Requirements</label>
+                    <label for="requirements">ความรู้ที่ต้องนำมาใช้</label>
                     <div class="col-md-2 offset-md-11 col-4 offset-9">
                         <i class="fa fa-plus fa-2x m-t-5" @click="addReq"></i>
                         <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeReq"></i>
@@ -78,7 +85,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="result">Course Result</label>
+                        <label for="result">ผลลัพธ์ที่คาดว่าจะได้จากการเรียน</label>
                         <div class="col-md-2 offset-md-11 col-4 offset-9">
                             <i class="fa fa-plus fa-2x m-t-5" @click="addResult"></i>
                             <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeResult"></i>
@@ -90,7 +97,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="tags">Tags</label>
+                            <label for="tags">แท็ก</label>
                             <input-tag type="text" class="form-control" id="tags" :class="{'is-invalid':isError('tags')}" :tags.sync="tags" placeholder="Tags" addTagOnBlur :addTagOnKeys="[13,188,9,32]" />
                         </div>
                         <div class="form-group">

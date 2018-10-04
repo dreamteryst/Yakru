@@ -53,6 +53,25 @@
 	<link href="{{ asset('assets_admin/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets_admin/plugins/DataTables/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets_admin/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css') }}" rel="stylesheet" />
+
+	<link href="{{ asset('assets_admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/ionRangeSlider/css/ion.rangeSlider.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/ionRangeSlider/css/ion.rangeSlider.skinNice.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/password-indicator/css/password-indicator.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/bootstrap-combobox/css/bootstrap-combobox.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/jquery-tag-it/css/jquery.tagit.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css') }}" rel="stylesheet" />
+	<link href="{{ asset('assets_admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css') }}" rel="stylesheet" />
 	<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
@@ -106,6 +125,26 @@
 	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js') }}"></script>
 	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js') }}"></script>
 	<script src="{{ asset('assets_admin/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js') }}"></script>
+
+	<script src="{{ asset('assets_admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/masked-input/masked-input.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/password-indicator/js/password-indicator.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-combobox/js/bootstrap-combobox.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/jquery-tag-it/js/tag-it.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-daterangepicker/moment.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/select2/dist/js/select2.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-show-password/bootstrap-show-password.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/clipboard/clipboard.min.js') }}"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 	<script>

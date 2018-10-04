@@ -10,6 +10,6 @@ $factory->define(App\Schedule::class, function (Faker $faker) {
     return [
         'course_id' => $course->id,
         'start' => $start,
-        'end' => $faker->dateTimeBetween(strtotime($start, '+3 hours'), $endDate = 'now', $timezone = 'Asia/bangkok')
+        'end' => $faker->dateTimeBetween($start->add(new DateInterval('PT3H')), $endDate = 'now', $timezone = 'Asia/bangkok')
     ];
 });

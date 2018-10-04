@@ -28,26 +28,10 @@
                         <div class=" collapse navbar-collapse" id="navbar-collapse">
                             <ul class="nav">
                                 <li class="active"><a href="/">หน้าแรก</a></li>
-                                <!-- <li class="dropdown dropdown-hover">
-                                    <a href="#" data-toggle="dropdown">
-                                        Accessories 
-                                        <i class="fa fa-angle-down"></i> 
-                                        <span class="arrow top"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="product.html">Mobile Phone</a></li>
-                                        <li><a href="product.html">Tablet</a></li>
-                                        <li><a href="product.html">TV</a></li>
-                                        <li><a href="product.html">Desktop</a></li>
-                                        <li><a href="product.html">Laptop</a></li>
-                                        <li><a href="product.html">Speaker</a></li>
-                                        <li><a href="product.html">Gadget</a></li>
-                                    </ul>
-                                </li> -->
-                                <li><a href="product.html">แจ้งชำระเงิน</a></li>
-                                <li><a href="#">สมัครเป็นผู้สอน</a></li>
+                                <li><a href="/">แจ้งชำระเงิน</a></li>
+                                <li><a href="/">สมัครเป็นผู้สอน</a></li>
                                 <li>
-                                    <router-link to="contact">ติดต่อเรา</router-link>
+                                    <router-link to="/contact">ติดต่อเรา</router-link>
                                 </li>
                                 <li class="dropdown dropdown-hover">
                                     <a href="#" data-toggle="dropdown">
@@ -74,7 +58,7 @@
                         <ul class="nav pull-right">
                             <li>
                                 <router-link to="/profile" v-if="isAuth">
-                                    <img src="/assets/img/user/user-1.jpg" class="user-img" alt="" />
+                                    <img src="/assets_admin/img/user/user.jpg" class="user-img" alt="" />
                                     <span class="hidden-md hidden-sm hidden-xs">{{ profile.firstname }} {{ profile.lastname }}</span>
                                 </router-link>
                                 <a href="/auth" v-if="!isAuth">

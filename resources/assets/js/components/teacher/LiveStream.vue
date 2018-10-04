@@ -13,11 +13,14 @@
 				<!-- END breadcrumb -->
 				<div class="row">
 					<div class="col-md-8">
-						<div class="embed-responsive embed-responsive-16by9">
-							<video ref="videoElement" controls></video>
-						</div>
+						<img src="https://camo.githubusercontent.com/ecd56f66884ba473e09b7151764acf2054b23546/68747470733a2f2f692e696d6775722e636f6d2f5a443058426b472e706e67" class="img-responsive" />
 					</div>
 					<div class="col-md-4">
+						<div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'master'">
+							<button type="button" class="btn btn-primary btn-block">
+								<span class="f-s-20">เริ่มการสอน</span>
+							</button>
+						</div>
 						<div class="chatbox">
 							<div class="message">
 								<span class="user-name-teacher">
@@ -143,6 +146,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
 	data: () => ({
 		likes: [
@@ -196,22 +200,11 @@ export default {
 			}
 		]
 	}),
+	computed: {
+		...mapState(['user'])
+	},
 	mounted() {
-		const self = this;
-		$(function () {
-			if (flvjs.isSupported()) {
-				var videoElement = self.$refs.videoElement;
-				var player = flvjs.createPlayer({
-					type: "flv",
-					isLive: true,
-					// url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
-					url: "http://localhost:8000/live/dreamteryst.flv"
-				});
-				player.attachMediaElement(videoElement);
-				player.load();
-				player.play();
-			}
-		});
+
 	}
 };
 </script>

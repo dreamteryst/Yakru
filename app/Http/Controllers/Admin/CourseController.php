@@ -124,7 +124,7 @@ class CourseController extends Controller
             return $course->category->category_name;
         })
         ->filterColumn('category_name', function($query, $keyword){
-            $query->whereHash('category', function($subQuery) use ($keyword){
+            $query->whereHas('category', function($subQuery) use ($keyword){
                 $subQuery->where('category_name', 'like', "%{$keyword}%");
             });
         })
@@ -132,8 +132,8 @@ class CourseController extends Controller
             return $course->admin->firstname." ".$course->admin->lastname;
         })
         ->filterColumn('fullname', function($query, $keyword){
-            $query->whereHash('admin', function($subQuery) use ($keyword){
-                $subQuery->whereRow("CONCAT(firstname, ' ', lastname) like ?", ["%{$keyword}"]);
+            $query->whereHas('admin', function($subQuery) use ($keyword){
+                $subQuery->whereRaw("CONCAT(firstname, ' ', lastname) like ?", ["%{$keyword}%"]);
             });
         })
         ->make(true);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class PaymentController extends Controller
 {
@@ -82,5 +83,20 @@ class PaymentController extends Controller
     public function destroy(Payment $payment)
     {
         //
+    }
+
+    public function anyData()
+    {
+        return Datatables::of(Payment::query())
+        ->addColumn('account_no', function($payment){
+            return $payment->bank->account_no;
+        })
+        ->addColumn('bank_name', function($payment){
+            return $payment->bank->bank_name;
+        })
+        ->addColumn('fullname', function($payment){
+            return $payment->user->firstname.' '.$payment->user->lastname;
+        })
+        ->make(true);
     }
 }

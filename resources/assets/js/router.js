@@ -26,6 +26,8 @@ import CategoryData from "./components/admin/CategoryData";
 import CategoryAdd from "./components/admin/CategoryAdd";
 import TagData from "./components/admin/TagData";
 import TagAdd from "./components/admin/TagAdd";
+import PromotionAdd from "./components/admin/PromotionAdd";
+import PromotionData from "./components/admin/PromotionData";
 
 import Auth from "./route/Auth";
 import Login from "./components/auth/Login";
@@ -88,7 +90,9 @@ const routes = [
       { path: "category", name: "Category", component: CategoryData },
       { path: "category/add", name: "AddCategory", component: CategoryAdd },
       { path: "tag", name: "tag", component: TagData },
-      { path: "tag/add", name: "Addtag", component: TagAdd }
+      { path: "tag/add", name: "Addtag", component: TagAdd },
+      { path: "promotion", name: "Promotion", component: PromotionData },
+      { path: "promotion/add", name: "AddPromotion", component: PromotionAdd },
     ]
   },
   {

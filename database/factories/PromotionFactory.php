@@ -8,6 +8,7 @@ $factory->define(App\Promotion::class, function (Faker $faker) {
     return [
         'promotion_name' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'promotion_description' => $faker->text,
+        'discount' => $faker->randomDigitNotNull,
         'started_at' => $start,
         'ended_at' => $faker->dateTimeBetween($start->add(new DateInterval('P3D')), $endDate = 'now', $timezone = 'Asia/bangkok')
     ];

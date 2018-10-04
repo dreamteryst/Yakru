@@ -13,7 +13,8 @@ class TopupsTableSeeder extends Seeder
     {
         factory(App\Topup::class, 50)->create()->each(function($topup) {
             factory(App\Payment::class, 1)->create([
-                'topup_id' => $topup->id
+                'topup_id' => $topup->id,
+                'user_id' => $topup->user_id
             ]);
         });
     }

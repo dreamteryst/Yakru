@@ -40,11 +40,16 @@ class Course extends Model
 
     public function admin()
     {
-        return $this->belongsTo('App\Admin', 'user_id');
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function units()
     {
         return $this->hasMany('App\Unit');
+    }
+
+    public function promotion()
+    {
+        return $this->belongsToMany('App\Promotion', 'course_promotions');
     }
 }

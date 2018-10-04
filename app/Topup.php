@@ -9,4 +9,14 @@ class Topup extends Model
     protected $fillable = [
         'user_id', 'amount', 'status', 'method', 'reference'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Topup');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne('App\Topup');
+    }
 }

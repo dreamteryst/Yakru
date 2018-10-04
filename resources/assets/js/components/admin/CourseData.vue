@@ -189,7 +189,12 @@ export default {
                     { data: "category_name", name: "category_name" },
                     { data: "course_subtitle", name: "course_subtitle" },
                     { data: "course_description", name: "course_description" },
-                    { data: "course_price", name: "course_price" },
+                    { 
+                        data: "course_price",
+                        render: (data, type, row, meta) => {
+                            return self.numberWithCommas(data);
+                        }
+                    },
                     {
                         data: null,
                         render: (data, type, row, meta) => {

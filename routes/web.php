@@ -66,6 +66,12 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
 
         Route::get('order/data', 'OrderController@anyData');
         Route::resource('order', 'OrderController');
+
+        Route::get('payment/data', 'PaymentController@anyData');
+        Route::resource('payment', 'PaymentController');
+
+        Route::get('promotion/data', 'PromotionController@anyData');
+        Route::resource('promotion', 'PromotionController');
     });
 
     Route::get('/{any}', function () {

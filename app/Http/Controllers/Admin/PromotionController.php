@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Promotion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class PromotionController extends Controller
 {
@@ -82,5 +83,11 @@ class PromotionController extends Controller
     public function destroy(Promotion $promotion)
     {
         //
+    }
+
+    public function anyData()
+    {
+        return Datatables::of(Promotion::with('course'))
+        ->make(true);
     }
 }

@@ -17,6 +17,7 @@ class CreatePromotionsTable extends Migration
             $table->increments('id');
             $table->string('promotion_name');
             $table->text('promotion_description');
+            $table->integer('discount');
             $table->datetime('started_at');
             $table->datetime('ended_at');
             

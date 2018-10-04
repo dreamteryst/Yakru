@@ -5,6 +5,7 @@ use App\Promotion;
 use Faker\Generator as Faker;
 
 $factory->define(App\CoursePromotion::class, function (Faker $faker) {
+    
     $promotions = Promotion::all();
     $courses = Course::all();
     return [

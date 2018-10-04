@@ -14,8 +14,8 @@
 							</div>
 								<div class="info">
 									<b class="caret pull-right"></b>
-									DreaMTeryST
-									<small>Full stack developer</small>
+									{{ user.firstname }} {{ user.lastname }}
+									<small>{{ user.type }}</small>
 								</div>
 						</a>
 					</li>
@@ -76,88 +76,84 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
+	computed: {
+		...mapState(['user'])
+	},
 	data() {
 		return {
 			menus: [{
 				'icon': 'fa fa-home',
-				'title': 'Home',
+				'title': 'หน้าแรก',
 				'url': '/admin'
 			}, {
-				'icon': 'fa fa-th-large',
-				'title': 'Dashboard',
-				'url': '/admin/dashboard'
-			}, {
 				'icon': 'fa fa-shopping-cart',
-				'title': 'Order',
+				'title': 'รายการซื้อขาย',
 				'url': '/admin/order'
 			}, {
-				'icon': 'fa fa-tags',
-				'title': 'Tags',
-				'url': '',
-				'caret': true,
-				'submenu': [
-					{
-						'url': '/admin/tag/add',
-						'title': 'Add Tags'
-					},
-					{
-						'url': '/admin/tag',
-						'title': 'Manage Tags'
-					}
-				]
-			}, {
 				'icon': 'fa fa-book',
-				'title': 'Category',
+				'title': 'หมวดหมู่',
 				'url': '',
 				'caret': true,
 				'submenu': [
 					{
 						'url': '/admin/category/add',
-						'title': 'Add Category'
+						'title': 'เพิ่มหมวดหมู่'
 					},
 					{
 						'url': '/admin/category',
-						'title': 'Manage Category'
+						'title': 'จัดการหมวดหมู่'
 					}
 				]
 			}, {
 				'icon': 'fa fa-graduation-cap',
-				'title': 'Course',
+				'title': 'คอร์ส',
 				'caret': true,
 				'url': '',
 				'submenu': [
 					{
 						'url': '/admin/course/add',
-						'title': 'Add course'
+						'title': 'เพิ่มคอร์ส'
 					},
 					{
 						'url': '/admin/course',
-						'title': 'Manage course'
+						'title': 'จัดการคอร์ส'
+					}
+				]
+			}, {
+				'icon': 'fas fa-award',
+				'title': 'โปรโมชัน',
+				'caret': true,
+				'url': '',
+				'submenu': [
+					{
+						'url': '/admin/promotion/add',
+						'title': 'เพิ่มโปรโมชัน'
+					}, {
+						'url': '/admin/promotion',
+						'title': 'จัดการโปรโมชัน'
 					}
 				]
 			}, {
 				'icon': 'fa fa-credit-card',
-				'title': 'Payment',
+				'title': 'รายการแจ้งชำระเงิน',
 				'url': '/admin/payment'
 			}, {
 				'icon': 'fa fa-users',
-				'title': 'User',
+				'title': 'ผู้ใช้งาน',
 				'url': '',
 				'caret': true,
 				'submenu': [{
 					'url': '/admin/student',
-					'title': 'Student'
+					'title': 'ผู้เรียน'
 				}, {
 					'url': '/admin/teacher',
-					'title': 'Teacher'
-				}, {
-					'url': '/admin/accounting',
-					'title': 'Accounting'
+					'title': 'ผู้สอน'
 				}]
 			}, {
 				'icon': 'fa fa-cog',
-				'title': 'Setting',
+				'title': 'ตั้งค่า',
 				'url': '/admin/setting'
 			}]
 		};

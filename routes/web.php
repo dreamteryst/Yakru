@@ -47,6 +47,9 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin');
     });
+    Route::get('/user', function (Request $request) {
+        return Auth::user();
+    });
     Route::get('/{any}', function () {
         return view('admin');
     })->where('any', '.*');

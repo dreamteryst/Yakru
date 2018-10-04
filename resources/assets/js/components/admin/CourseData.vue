@@ -22,7 +22,7 @@
             <!-- end panel-heading -->
             <!-- begin panel-body -->
             <div class="panel-body">
-                <table id="data-table-default" class="table table-striped table-bordered">
+                <table id="course-table" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th width="1%" data-priority="1">ID</th>
@@ -162,13 +162,13 @@ export default {
         });
         var self = this;
         $(function () {
-            self.table = $("#data-table-default").DataTable({
+            self.table = $("#course-table").DataTable({
                 responsive: true,
                 autoWidth: false,
                 processing: true,
                 serverSide: true,
                 ajax: `//${window.location.host}/api/course/data`,
-                order: [[1, "desc"]],
+                order: [[0, "desc"]],
                 rowCallback: function (row, data, index) {
                     if (data["deleted_at"] != null) {
                         $(row).addClass("danger");

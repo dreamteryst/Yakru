@@ -21,6 +21,7 @@ class Course extends Model
         'course_price',
         'requirements',
         'result',
+        'tags',
         'admin_id',
         'type',
         'secret'
@@ -29,6 +30,7 @@ class Course extends Model
     protected $casts = [
         'requirements' => 'array',
         'result'  => 'array',
+        'tags'  => 'array',
     ];
     
     public function category()

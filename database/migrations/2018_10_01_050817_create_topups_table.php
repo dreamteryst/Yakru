@@ -16,10 +16,10 @@ class CreateTopupsTable extends Migration
         Schema::create('topups', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->integer('amount');
+            $table->decimal('money', 10, 2);
             $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->enum('method', ['transfer', 'visa', 'paypal']);
-            $table->string('reference')->nullable();
+            $table->string('evidence')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

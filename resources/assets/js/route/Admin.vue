@@ -21,14 +21,21 @@
 </style>
 
 <script>
+import { mapActions } from 'vuex';
 import AdminHeader from '../components/layouts/AdminHeader.vue'
 import AdminSidebar from '../components/layouts/AdminSidebar.vue'
 import AdminFooter from '../components/layouts/AdminFooter.vue'
-export default{
+export default {
     components: {
         AdminHeader,
         AdminSidebar,
         AdminFooter
+    },
+    methods: {
+        ...mapActions(['adminInitialize'])
+    },
+    created() {
+        this.adminInitialize();
     }
 }
 </script>

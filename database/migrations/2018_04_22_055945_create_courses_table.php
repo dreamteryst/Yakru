@@ -23,6 +23,7 @@ class CreateCoursesTable extends Migration
             $table->decimal('course_price', 8, 2);
             $table->json('requirements')->nullable();
             $table->json('result')->nullable();
+            $table->json('tags')->nullable();
             $table->enum('type', ['video', 'live'])->default('video');
             $table->string('secret')->nullable();
 

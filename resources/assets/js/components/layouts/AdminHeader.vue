@@ -16,6 +16,11 @@
 				</button>
 			</div>
 			<!-- end navbar-header -->
+			<ul class="navbar-nav">
+				<li v-for="(menu, i) in menus" :key="i">
+					<router-link :to="menu.link"><i :class="menu.icon"></i> {{ menu.name }}</router-link>
+				</li>
+			</ul>
 			
 			<!-- begin header-nav -->
 			<!-- <ul class="navbar-nav navbar-right">
@@ -50,7 +55,31 @@
 
 <script>
 export default {
-
+	data() {
+		return {
+			menus: [{
+				icon: 'fas fa-layer-group',
+				name: 'จัดการหมวดหมู่',
+				link: '/admin/category'
+			}, {
+				icon: 'fas fa-book',
+				name: 'จัดการคอร์ส',
+				link: '/admin/course'
+			}, {
+				icon: 'fas fa-award',
+				name: 'จัดการโปรโมชัน',
+				link: 'admin/promotion'
+			}, {
+				icon: 'fas fa-users',
+				name: 'รายชื่อผู้เรียน',
+				link: '/admin/student'
+			}, {
+				icon: 'fas fa-cogs',
+				name: 'ตั้งค่า',
+				link: '/admin/settings'
+			}]
+		}
+	}
 }
 </script>
 

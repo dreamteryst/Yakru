@@ -3,6 +3,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Promotion::class, function (Faker $faker) {
+    
     $start = $faker->dateTime($max = 'now', $timezone = 'Asia/bangkok');
     return [
         'promotion_name' => $faker->sentence($nbWords = 6, $variableNbWords = true),

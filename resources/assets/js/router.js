@@ -73,7 +73,7 @@ const routes = [
     path: "/admin",
     component: Admin,
     children: [
-      { path: "", name: "Admin", component: AdminHome },
+      { path: "", name: "Admin", component: Dashboard },
       { path: "dashboard", name: "Dashboard", component: Dashboard },
       { path: "course", name: "Course", component: CourseData },
       { path: "course/add", name: "CourseAdd", component: CourseAdd },

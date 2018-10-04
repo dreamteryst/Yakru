@@ -22,7 +22,7 @@
             <!-- end panel-heading -->
             <!-- begin panel-body -->
             <div class="panel-body">
-                <table id="data-table-default" class="table table-striped table-bordered">
+                <table id="tag-table" class="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th width="1%" data-priority="1">ID</th>
@@ -83,7 +83,7 @@ export default {
   },
   mounted() {
     var self = this;
-    this.table = $("#data-table-default").DataTable({
+    this.table = $("#tag-table").DataTable({
         responsive: true,
         autoWidth: false,
         processing: true,

@@ -28,10 +28,10 @@
                             <div class="row">
                                 <!-- BEGIN col-6 -->
                                 <div class="col-md-6">
-                                    <h4><i class="fa fa-gitlab fa-fw text-muted"></i> คอร์สของฉัน</h4>
-                                    <ul class="nav nav-list" v-if="user.type != 'student'">
-                                        <li><router-link to="/product-detail">React Native สำหรับมือใหม่!!</router-link></li>
-                                        <li><router-link to="/product-detail">Core Angular: การใช้งาน Angular 4</router-link></li>
+                                    <h4><i class="fas fa-graduation-cap"></i> ประวัติการเรียน</h4>
+                                    <ul class="nav nav-list" v-if="user.type == 'student'">
+                                        <li><a href="#">React Native สำหรับมือใหม่!!</a></li>
+                                        <li><a href="#">Core Angular: การใช้งาน Angular 4</a></li>
                                     </ul>
                                     <h4><i class="fa fa-universal-access fa-fw text-muted"></i> ตั้งค่าบัญชี</h4>
                                     <ul class="nav nav-list">
@@ -43,10 +43,10 @@
                                 <!-- END col-6 -->
                                 <!-- BEGIN col-6 -->
                                 <div class="col-md-6">
-                                    <h4><i class="fas fa-graduation-cap"></i> ประวัติการเรียน</h4>
-                                    <ul class="nav nav-list" v-if="user.type == 'student'">
-                                        <li><a href="#">React Native สำหรับมือใหม่!!</a></li>
-                                        <li><a href="#">Core Angular: การใช้งาน Angular 4</a></li>
+                                    <h4 v-if="user.type != 'student'"><i class="fa fa-gitlab fa-fw text-muted"></i> คอร์สของฉัน</h4>
+                                    <ul class="nav nav-list" v-if="user.type != 'student'">
+                                        <li><router-link to="/product-detail">React Native สำหรับมือใหม่!!</router-link></li>
+                                        <li><router-link to="/product-detail">Core Angular: การใช้งาน Angular 4</router-link></li>
                                     </ul>
                                     <h4><i class="fa fa-cc-visa fa-fw text-muted"></i> การเติมเงิน</h4>
                                     <ul class="nav nav-list">

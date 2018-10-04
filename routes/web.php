@@ -72,6 +72,9 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
 
         Route::get('promotion/data', 'PromotionController@anyData');
         Route::resource('promotion', 'PromotionController');
+
+        Route::get('schedule/data/{id}', 'ScheduleController@anyData');
+        Route::resource('schedule', 'ScheduleController');
     });
 
     Route::get('/{any}', function () {

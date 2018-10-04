@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Schedule;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class ScheduleController extends Controller
 {
@@ -81,5 +83,14 @@ class ScheduleController extends Controller
     public function destroy(Schedule $schedule)
     {
         //
+    }
+
+    public function anyData(Request $request)
+    {
+        return Datatables::of(Schedule::with('unit')->where('course_id', $request->id))
+        ->addColumn('unit_count', function($lecture){
+            return (!empty($lecture->unit)?$lecture->unit->count():0);
+        })
+        ->make(true);
     }
 }

@@ -87,14 +87,14 @@ class LectureController extends Controller
 
     public function anyData(Request $request)
     {
-        return Datatables::of(Lecture::has('unit')->where('course_id', $request->id))
+        return Datatables::of(Lecture::where('course_id', $request->id))
         ->addColumn('unit_name', function($lecture){
             return $lecture->unit->unit_name;
         })
         ->filterColumn('unit_name', function($query, $keyword){
-            // $query->whereHash('unit', function($subQuery) use ($keyword){
-            //     $subQuery->where('unit_name', 'like', "%{$keyword}%");
-            // });
+            $query->whereHas('unit', function($subQuery) use ($keyword){
+                $subQuery->where('unit_name', 'like', "%{$keyword}%");
+            });
         })
         ->make(true);
     }

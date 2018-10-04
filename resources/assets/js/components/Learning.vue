@@ -4,17 +4,6 @@
         <div id="product" class="section-container p-t-20">
             <!-- BEGIN container -->
             <div class="container">
-                <!-- BEGIN breadcrumb -->
-                <ul class="breadcrumb m-b-10 f-s-20">
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#">Mobile Development</a>
-                    </li>
-                    <li class="active">React Native สำหรับมือใหม่!!</li>
-                </ul>
-                <!-- END breadcrumb -->
 
                 <!-- BEGIN product -->
                 <div class="product">
@@ -22,63 +11,13 @@
                     <div class="product-detail">
                         <!-- BEGIN product-image -->
                         <div class="product-image">
+                            <h1 class="product-title">React Native สำหรับมือใหม่!!</h1><br/>
                             <div class="embed-responsive embed-responsive-16by9">
                                 <!-- <video ref="videoElement"></video> -->
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/mkualZPRZCs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe src="https://www.youtube.com/embed/mkualZPRZCs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                             </div>
                         </div>
                         <!-- END product-image -->
-                        <!-- BEGIN product-info -->
-                        <div class="product-info">
-                            <!-- BEGIN product-info-header -->
-                            <div class="product-info-header">
-                                <h1 class="product-title">
-                                    <span class="label label-success">41% OFF</span> React Native สำหรับมือใหม่!!</h1>
-                                <ul class="product-category">
-                                    <li>
-                                        <a href="#">Mobile Development</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- END product-info-header -->
-                            <!-- BEGIN product-warranty -->
-                            <div class="product-warranty">
-                                <h4>What will you learn?</h4>
-                            </div>
-                            <!-- END product-warranty -->
-                            <!-- BEGIN product-info-list -->
-                            <ul class="product-info-list">
-                                <li>
-                                    <i class="fa fa-circle"></i> Setup and Introduction</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Mastering User Interface</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Platform Specific</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Using Dynamic Content and Network (JSON Http Feed)</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Access Native Device Feature</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> User Input, Form and Data Management</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Using Google Map</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> การเตรียม Resources, เทคนิคการ Build App และอัปโหลด App ไปที่ Store</li>
-                            </ul>
-                            <!-- END product-info-list -->
-                            <!-- BEGIN product-purchase-container -->
-                            <div class="product-purchase-container">
-                                <div class="product-discount">
-                                    <span class="discount">฿869.00</span>
-                                </div>
-                                <div class="product-price">
-                                    <div class="price">฿749.00</div>
-                                </div>
-                                <button class="btn btn-inverse btn-lg" type="button" @click="play">PURCHASE</button>
-                            </div>
-                            <!-- END product-purchase-container -->
-                        </div>
-                        <!-- END product-info -->
                     </div>
                     <!-- END product-detail -->
                     <!-- BEGIN product-tab -->
@@ -104,7 +43,7 @@
                                         <b-card-body>
                                             <ul class="curriculum" v-for="(sub, j) in course.sub" :key="j">
                                                 <li>
-                                                    <router-link to="#">
+                                                    <router-link to="#" :class="{'deactive-link': sub.isLearned}">
                                                         <i class="fa fa-play-circle"></i> {{ sub.name }}
                                                     </router-link>
                                                 </li>
@@ -118,65 +57,9 @@
                         <!-- END #product-tab-content -->
                     </div>
                     <!-- END product-tab -->
-                    <!-- BEGIN product-tab -->
-                    <div class="product-tab">
-                        <!-- BEGIN #product-tab -->
-                        <ul id="product-tab" class="nav nav-tabs">
-                            <li class="active">
-                                <a href="#product-desc" data-toggle="tab">Product Description</a>
-                            </li>
-                        </ul>
-                        <!-- END #product-tab -->
-                        <!-- BEGIN #product-tab-content -->
-                        <div id="product-tab-content" class="tab-content">
-                            <!-- BEGIN #product-desc -->
-                            <div class="tab-pane fade active in" id="product-desc">
-                                <h3>Requirement</h3>
-                                <ul>
-                                    <li>Javascript</li>
-                                    <li>HTML</li>
-                                    <li>CSS</li>
-                                </ul>
-                                <h3>Description</h3>
-                                <p>
-                                    React-Native คือ Cross-Platform Framework ที่ใช้ในการพัฒนา Native Mobile Application อย่าง Android และ iOS ที่พัฒนาโดยบริษัท Facebook Inc. React Native มีหลักการคล้ายกับ Xamarin คือมันสามารถ Reuse Code ได้มากกว่า 70% ในการทำแอพที่รันได้ทั้งบน Android และ iOS โดยใช้ภาษาหลักภาษาเดียว คือภาษา ReactJS (ES6 / JSX) ซึ่งใกล้เคียงกับ Javascript / Typescript / XML ในการพัฒนาแอพ ซึ่งเมื่อทำเสร็จ แอพจะทำงานไวใกล้เคียงกับการเขียนด้วย ภาษา Native อย่าง Java และ Swift/Objective-C
-                                    อีกหนึ่งจุดเด่นของ React Native คือการประยุกต์ใช้แนวคิดแบบ Reactive Programming ที่ทำให้การพัฒนารองรับการทำงานแบบ Asynchronous และมี State ที่ซับซ้อนได้
-                                    นอกจากนี้ในหลักสูตรจะมีการสอน Redux (State Container) ในการจัดการ State เพื่อให้การพัฒนารองรับระบบที่มีความซับซ้อนและดูเป็นมืออาชีพ รวมถึงการเขียนโค้ดที่ทำงานร่วมกับ Native API ที่เป็น Java หรือ Objective-C และแชร์ประสบการณ์การในพัฒนาแอพด้วย React-Native จริงๆ
-                                </p>
-                            </div>
-                            <!-- END #product-desc -->
-                        </div>
-                        <!-- END #product-tab-content -->
-                    </div>
-                    <!-- END product-tab -->
                 </div>
                 <!-- END product -->
 
-                <!-- BEGIN similar-product -->
-                <h4 class="m-b-15 m-t-30">คอร์สที่คุณอาจจะชอบ</h4>
-                <div class="row row-space-10">
-                    <!-- BEGIN col-2 -->
-                    <div class="col-md-2 col-sm-4" v-for="(like, i) in links" :key="i">
-                        <!-- BEGIN item -->
-                        <div class="item item-thumbnail">
-                            <router-link to="/product-detail" class="item-image">
-                                <img :src="like.img" alt="" />
-                                <div class="discount">{{ getPercent(like) }}% OFF</div>
-                            </router-link>
-                            <div class="item-info">
-                                <h4 class="item-title">
-                                    <router-link to="/product-detail">{{ like.name }}</router-link>
-                                </h4>
-                                <p class="item-desc">{{ like.description }}</p>
-                                <div class="item-price">฿ {{ numberWithCommas(like.price) }}</div>
-                                <div class="item-discount-price">฿ {{ numberWithCommas(like.discount) }}</div>
-                            </div>
-                        </div>
-                        <!-- END item -->
-                    </div>
-                    <!-- END col-2 -->
-                </div>
-                <!-- END similar-product -->
             </div>
             <!-- END container -->
         </div>
@@ -188,79 +71,29 @@
 export default {
     data() {
         return {
-            links: [
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg",
-                    name: "The Complete Web Developer Course 2.0",
-                    description:
-                        "Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!",
-                    price: 330,
-                    discount: 7800
-                },
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg",
-                    name: "The Complete React Native and Redux Course",
-                    description:
-                        "iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!",
-                    price: 330,
-                    discount: 3600
-                },
-                {
-                    img: "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
-                    name: "Android O & Java - Mobile App Development | Beginning to End",
-                    description:
-                        "The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
-                    price: 330,
-                    discount: 7800
-                },
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
-                    name: "Running a Mobile App Dev Business: The Complete Guide",
-                    description:
-                        "Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
-                    price: 330,
-                    discount: 5600
-                },
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
-                    name: "Android App Development: Mobile App Development & Java",
-                    description:
-                        "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
-                    price: 330,
-                    discount: 7200
-                },
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
-                    name: "Mobile App Development for Beginners (Swift 3, iPhone iOS10)",
-                    description:
-                        "iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.",
-                    price: 330,
-                    discount: 1800
-                }
-            ],
             courses: [
                 {
                     title: "Setup and Introduction",
                     sub: [
                         {
-                            name: "Course Introduction"
+                            name: "Course Introduction",
+                            isLearned: true
                         },
                         {
-                            name: "NodeJS Install"
+                            name: "NodeJS Install",
+                            isLearned: true
                         },
                         {
-                            name: "React-Native & Watchman"
+                            name: "React-Native & Watchman",
+                            isLearned: true
                         },
                         {
-                            name: "Visual Studio Install and React-Native Extension Pack"
+                            name: "Visual Studio Install and React-Native Extension Pack",
+                            isLearned: true
                         },
                         {
-                            name: "React-Native CLI"
+                            name: "React-Native CLI",
+                            isLearned: true
                         },
                         {
                             name: "How to use the React-Native Documentation"
@@ -513,29 +346,10 @@ export default {
             ],
             player: null
         };
-    },
-    mounted() {
-        const self = this;
-        $(function () {
-            if (flvjs.isSupported()) {
-                var videoElement = self.$refs.videoElement;
-                self.player = flvjs.createPlayer({
-                    type: "flv",
-                    //   url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
-                    url: "/assets/flv/converted.flv"
-                });
-                self.player.attachMediaElement(videoElement);
-                self.player.load();
-            }
-        });
-    },
-    methods: {
-        play() {
-            this.player.play();
-        }
     }
 };
 </script>
 
 <style>
+
 </style>

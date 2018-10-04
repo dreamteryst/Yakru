@@ -6,6 +6,7 @@ import Profile from "./components/Profile";
 import ProductDetail from "./components/ProductDetail";
 import LiveStream from "./components/LiveStream";
 import Contact from "./components/Contact";
+import Learning from "./components/Learning";
 
 import Admin from "./route/Admin";
 import AdminLogin from "./components/admin/auth/Login";
@@ -63,6 +64,7 @@ const routes = [
         component: CheckoutComplete
       },
       { path: "live-stream", name: "live-stream", component: LiveStream },
+      { path: "learning", name: "learning", component: Learning },
       { path: "contact", name: "contact", component: Contact }
     ]
   },

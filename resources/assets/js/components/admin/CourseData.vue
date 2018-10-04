@@ -156,7 +156,7 @@ export default {
         };
     },
     mounted() {
-        axios.get(`/admin/category/data`).then((res) => {
+        axios.get(`/admin/api/category/data`).then((res) => {
             if (res.status === 200) {
                 this.categories = res.data.data;
             }
@@ -184,24 +184,24 @@ export default {
                     { data: "fullname", name: "fullname" },
                     {                        data: "course_name",
                         render: (data, type, row, meta) => {
-                            return `<a href="/admin/course/${row["type"]}">${data}</a>`
+                            return `<a href="/admin/course/video">${data}</a>`
 
                         }                    },
                     { data: "category_name", name: "category_name" },
                     { data: "course_subtitle", name: "course_subtitle" },
-                    { 
+                    {
                         data: "course_price",
                         render: (data, type, row, meta) => {
                             return self.numberWithCommas(data);
                         }
                     },
-                    { 
+                    {
                         data: null,
                         render: (data, type, row, meta) => {
                             return `<ul>
                                 <li><a href="/admin/course/unit">หลักสูตร</a></li>`+
                                 (row["type"] == 'live' ? `<li><a href="/admin/course/live" style="white-space: nowrap;">ตารางสอน</a></li>` : ``)
-                            +`</ul>`
+                                + `</ul>`
                         },
                         searchable: false,
                         sortable: false
@@ -214,6 +214,7 @@ export default {
                           <div class="actions" data='` +
                                 JSON.stringify(row) +
                                 `'>
+                            <a href="/product-detail" target="_blank"><i class="far fa-eye"></i></a>
                           <i class="fa fa-edit new-user-edit"></i>
                           ` +
                                 (row["deleted_at"] == null

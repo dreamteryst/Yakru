@@ -85,7 +85,7 @@
                             <li v-if="isAuth">
                                 <a class="balance">
                                     <i class="fas fa-coins"></i>
-                                    &nbsp;{{ profile.money }}
+                                    &nbsp;{{ numberWithCommas(profile.money) }}
                                 </a>
                             </li>
                         </ul>

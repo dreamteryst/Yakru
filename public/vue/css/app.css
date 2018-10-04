@@ -26,6 +26,10 @@ a.deactive-link {
   margin-left: 2px;
 }
 
+.actions .fa-eye {
+  color: #348fe2;
+}
+
 .actions .fa-edit {
   color: #00acac;
 }

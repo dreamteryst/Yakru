@@ -8,9 +8,7 @@ Vue.mixin({
             );
         },
         getPrice(percent, price) {
-            return parseInt(
-                price * (1-(percent/100))
-            );
+            return (price * (1-(percent/100))).toFixed(2)
         }
     }
 });

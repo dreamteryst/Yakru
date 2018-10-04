@@ -87,14 +87,9 @@ class UnitController extends Controller
 
     public function anyData(Request $request)
     {
-        return Datatables::of(Unit::where('course_id', $request->id))
-        ->addColumn('course_name', function($unit){
-            return $unit->course->course_name;
-        })
-        ->filterColumn('course_name', function($query, $keyword){
-            $query->whereHash('course', function($subQuery) use ($keyword){
-                $subQuery->where('course_name', 'like', "%{$keyword}%");
-            });
+        return Datatables::of(Unit::with('lectures')->where('course_id', $request->id))
+        ->addColumn('lecture_count', function($unit){
+            return $unit->lectures->count();
         })
         ->make(true);
     }

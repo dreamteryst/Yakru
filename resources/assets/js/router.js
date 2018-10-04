@@ -28,6 +28,7 @@ import TagData from "./components/admin/TagData";
 import TagAdd from "./components/admin/TagAdd";
 import PromotionAdd from "./components/admin/PromotionAdd";
 import PromotionData from "./components/admin/PromotionData";
+import CourseCalendar from "./components/admin/CourseCalendar";
 
 import Auth from "./route/Auth";
 import Login from "./components/auth/Login";
@@ -79,8 +80,9 @@ const routes = [
       { path: "dashboard", name: "Dashboard", component: Dashboard },
       { path: "course", name: "Course", component: CourseData },
       { path: "course/add", name: "CourseAdd", component: CourseAdd },
-      { path: "course/:id", name: "Unit", component: UnitData },
-      { path: "course/:id/:unit", name: "Lecuture", component: LectureData },
+      { path: "course/unit", name: "Unit", component: UnitData },
+      { path: "course/calendar", name: "CourseCalendar", component: CourseCalendar },
+      { path: "course/:id", name: "Lecuture", component: LectureData },
       { path: "student", name: "Student", component: StudentData },
       { path: "teacher", name: "Teacher", component: TeacherData },
       { path: "accounting", name: "Accounting", component: AccountingData },

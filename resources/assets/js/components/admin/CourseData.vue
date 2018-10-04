@@ -30,8 +30,8 @@
                             <th class="text-nowrap">ชื่อคอร์ส</th>
                             <th class="text-nowrap">หมวดหมู่</th>
                             <th class="text-nowrap">คำอธิบายโดยย่อ</th>
-                            <th class="text-nowrap">รายละเอียด</th>
                             <th class="text-nowrap">ราคา</th>
+                            <th class="text-nowrap">จัดการ</th>
                             <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
                         </tr>
                     </thead>
@@ -162,6 +162,7 @@ export default {
             }
         });
         var self = this;
+        var groupColumn = 3;
         $(function () {
             self.table = $("#course-table").DataTable({
                 responsive: true,
@@ -169,9 +170,9 @@ export default {
                 processing: true,
                 serverSide: true,
                 ajax: `/admin/api/course/data`,
-                order: [[3, "desc"]],
+                order: [[groupColumn, "desc"]],
                 columnDefs: [
-                    { "visible": false, "targets": 3 }
+                    { "visible": false, "targets": groupColumn }
                 ],
                 rowCallback: function (row, data, index) {
                     if (data["deleted_at"] != null) {
@@ -188,12 +189,22 @@ export default {
                         }                    },
                     { data: "category_name", name: "category_name" },
                     { data: "course_subtitle", name: "course_subtitle" },
-                    { data: "course_description", name: "course_description" },
                     { 
                         data: "course_price",
                         render: (data, type, row, meta) => {
                             return self.numberWithCommas(data);
                         }
+                    },
+                    { 
+                        data: null,
+                        render: (data, type, row, meta) => {
+                            return `<ul>
+                                <li><a href="/admin/course/unit">หลักสูตร</a></li>`+
+                                (row["type"] == 'live' ? `<li><a href="/admin/course/live" style="white-space: nowrap;">ตารางสอน</a></li>` : ``)
+                            +`</ul>`
+                        },
+                        searchable: false,
+                        sortable: false
                     },
                     {
                         data: null,
@@ -256,6 +267,15 @@ export default {
                             last = group;
                         }
                     });
+                }
+            });
+            $('#course-table tbody').on('click', 'tr.group', function () {
+                var currentOrder = self.table.order()[0];
+                if (currentOrder[0] === groupColumn && currentOrder[1] === 'asc') {
+                    self.table.order([groupColumn, 'desc']).draw();
+                }
+                else {
+                    self.table.order([groupColumn, 'asc']).draw();
                 }
             });
         });

@@ -72,6 +72,9 @@
 	<link href="{{ asset('assets_admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets_admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets_admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css') }}" rel="stylesheet" />
+
+	<link href="{{ asset('assets_admin/plugins/fullcalendar/fullcalendar.print.css') }}" rel="stylesheet" media='print' />
+	<link href="{{ asset('assets_admin/plugins/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" />
 	<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
@@ -145,6 +148,7 @@
 	<script src="{{ asset('assets_admin/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js') }}"></script>
 	<script src="{{ asset('assets_admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js') }}"></script>
 	<script src="{{ asset('assets_admin/plugins/clipboard/clipboard.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
 	<script>

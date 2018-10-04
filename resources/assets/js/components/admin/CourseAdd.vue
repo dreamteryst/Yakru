@@ -137,7 +137,7 @@ export default {
         }
     },
     mounted() {
-        axios.get(`//${window.location.host}/api/category/data`).then((res) => {
+        axios.get(`/admin/api/category/data`).then((res) => {
             if (res.status === 200) {
                 this.categories = res.data.data;
             }
@@ -155,7 +155,7 @@ export default {
             formData.append('results', JSON.stringify(this.results));
             formData.append('tags', JSON.stringify(this.tags));
 
-            axios.post(`//${window.location.host}/api/course`, formData).then((response) => {
+            axios.post(`/admin/api/course`, formData).then((response) => {
                 if (response.status === 200) {
                     this.course_name = '';
                     this.category_id = '';

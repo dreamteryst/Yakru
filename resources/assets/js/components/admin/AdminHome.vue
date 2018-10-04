@@ -27,19 +27,19 @@ export default {
 			menus: [{
 				icon: 'fas fa-layer-group',
 				name: 'จัดการหมวดหมู่',
-				link: '/admin/category'
+				link: '/admin/api/category'
 			}, {
 				icon: 'fas fa-book',
 				name: 'จัดการคอร์ส',
-				link: '/admin/course'
+				link: '/admin/api/course'
 			}, {
 				icon: 'fas fa-users',
 				name: 'รายชื่อผู้เรียน',
-				link: '/admin/student'
+				link: '/admin/api/student'
 			}, {
 				icon: 'fas fa-cogs',
 				name: 'Settings',
-				link: '/admin/settings'
+				link: '/admin/api/settings'
 			}]
 		}
 	}

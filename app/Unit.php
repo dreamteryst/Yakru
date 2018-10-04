@@ -9,4 +9,14 @@ class Unit extends Model
     protected $fillable = [
         'course_id', 'unit_name'
     ];
+
+    public function course()
+    {
+        return $this->belongsTo('App\Course');
+    }
+
+    public function lectures()
+    {
+        return $this->hasMany('App\Lecture');
+    }
 }

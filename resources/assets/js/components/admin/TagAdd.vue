@@ -57,7 +57,7 @@ export default {
             const formData = new FormData();
             formData.append('tag_name', this.tag_name);
 
-            axios.post(`//${window.location.host}/api/tag`, formData).then((response)=>{
+            axios.post(`/admin/api/tag`, formData).then((response)=>{
                 console.log(response)
                 if(response.status === 200) {
                     this.tag_name = '';

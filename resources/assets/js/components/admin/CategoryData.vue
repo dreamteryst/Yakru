@@ -2,12 +2,12 @@
     <section>
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Managed Category</li>
+            <li class="breadcrumb-item"><a href="/">หน้าแรก</a></li>
+            <li class="breadcrumb-item active">จัดการหมวดหมู่</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Managed Category <small></small></h1>
+        <h1 class="page-header">จัดการหมวดหมู่ <small></small></h1>
         <!-- end page-header -->
         
         <!-- begin panel -->
@@ -17,7 +17,7 @@
                 <div class="panel-heading-btn">
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 </div>
-                <h4 class="panel-title">List of Category</h4>
+                <h4 class="panel-title">รายการหมวดหมู่</h4>
             </div>
             <!-- end panel-heading -->
             <!-- begin panel-body -->
@@ -26,8 +26,8 @@
                     <thead>
                         <tr>
                             <th width="1%" data-priority="1">ID</th>
-                            <th width="20%" class="text-nowrap">Name</th>
-                            <th class="text-nowrap">Description</th>
+                            <th class="text-nowrap">ชื่อ</th>
+                            <th class="text-nowrap">รายละเอียด</th>
                             <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
                         </tr>
                     </thead>
@@ -100,7 +100,7 @@ export default {
         autoWidth: false,
         processing: true,
         serverSide: true,
-        ajax: `//${window.location.host}/api/category/data`,
+        ajax: `/admin/api/category/data`,
         order: [[0, "desc"]],
         rowCallback: function(row, data, index) {
           if (data["deleted_at"] != null) {
@@ -166,7 +166,7 @@ export default {
     deleteData(evt) {
       if (evt != undefined) evt.preventDefault();
       axios
-        .post(`//${window.location.host}/api/category` + "/" + this.data.id, {
+        .post(`/admin/api/category` + "/" + this.data.id, {
           _method: "DELETE"
         })
         .then(res => {
@@ -188,7 +188,7 @@ export default {
       formData.append("category_description", this.data.category_description);
 
       axios
-        .post(`//${window.location.host}/api/category` + "/" + this.data.id, formData)
+        .post(`/admin/api/category` + "/" + this.data.id, formData)
         .then(res => {
           this.modalEdit = false;
           this.errors = {};

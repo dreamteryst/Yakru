@@ -57,7 +57,7 @@ export default {
         autoWidth: false,
         processing: true,
         serverSide: true,
-        ajax: `//${window.location.host}/api/order/data`,
+        ajax: `/admin/api/order/data`,
         order: [[0, "desc"]],
         rowCallback: function(row, data, index) {
           if (data["deleted_at"] != null) {
@@ -125,7 +125,7 @@ export default {
     deleteData(evt) {
       if (evt != undefined) evt.preventDefault();
       axios
-        .post(`//${window.location.host}/api/category` + "/" + this.data.id, {
+        .post(`/admin/api/category` + "/" + this.data.id, {
           _method: "DELETE"
         })
         .then(res => {
@@ -147,7 +147,7 @@ export default {
       formData.append("category_description", this.data.category_description);
 
       axios
-        .post(`//${window.location.host}/api/category` + "/" + this.data.id, formData)
+        .post(`/admin/api/category` + "/" + this.data.id, formData)
         .then(res => {
           this.modalEdit = false;
           this.errors = {};

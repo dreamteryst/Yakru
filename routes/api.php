@@ -12,15 +12,3 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('category/data', 'CategoryController@anyData');
-Route::resource('category', 'CategoryController');
-
-Route::get('tag/data', 'TagController@anyData');
-Route::resource('tag', 'TagController');
-
-Route::get('course/data', 'CourseController@anyData');
-Route::resource('course', 'CourseController');
-
-Route::get('order/data', 'OrderController@anyData');
-Route::resource('order', 'OrderController');

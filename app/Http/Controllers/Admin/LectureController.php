@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lecture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class LectureController extends Controller
 {
@@ -82,5 +83,19 @@ class LectureController extends Controller
     public function destroy(Lecture $lecture)
     {
         //
+    }
+
+    public function anyData(Request $request)
+    {
+        return Datatables::of(Lecture::has('unit')->where('course_id', $request->id))
+        ->addColumn('unit_name', function($lecture){
+            return $lecture->unit->unit_name;
+        })
+        ->filterColumn('unit_name', function($query, $keyword){
+            // $query->whereHash('unit', function($subQuery) use ($keyword){
+            //     $subQuery->where('unit_name', 'like', "%{$keyword}%");
+            // });
+        })
+        ->make(true);
     }
 }

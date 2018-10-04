@@ -88,7 +88,7 @@ export default {
         autoWidth: false,
         processing: true,
         serverSide: true,
-        ajax: `//${window.location.host}/api/tag/data`,
+        ajax: `/admin/api/tag/data`,
         order: [[0, "ASC"]],
         rowCallback: function(row, data, index) {
         if (data["deleted_at"] != null) {
@@ -146,7 +146,7 @@ export default {
         deleteData(evt) {
         if (evt != undefined) evt.preventDefault();
         axios
-            .post(`//${window.location.host}/api/tag` + "/" + this.data.id, {
+            .post(`/admin/api/tag` + "/" + this.data.id, {
             _method: "DELETE"
             })
             .then(res => {
@@ -166,7 +166,7 @@ export default {
         formData.append("_method", "PUT");
         formData.append("tag_name", this.data.tag_name);
         axios
-            .post(`//${window.location.host}/api/tag` + "/" + this.data.id, formData)
+            .post(`/admin/api/tag` + "/" + this.data.id, formData)
             .then(res => {
                 this.modalEdit = false;
                 this.errors = {};

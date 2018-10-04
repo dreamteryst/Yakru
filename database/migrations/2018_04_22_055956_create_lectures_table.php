@@ -15,10 +15,12 @@ class CreateLecturesTable extends Migration
     {
         Schema::create('lectures', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('course_id');
             $table->unsignedInteger('unit_id');
             $table->string('lecture_name');
             $table->string('video_name')->nullable();
             
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('unit_id')->references('id')->on('units');
 
             $table->timestamps();

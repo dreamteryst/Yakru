@@ -66,7 +66,7 @@ export default {
             formData.append('category_name', this.categoryName);
             formData.append('category_description', this.description);
 
-            axios.post(`//${window.location.host}/api/category`, formData).then((response)=>{
+            axios.post(`/admin/api/category`, formData).then((response)=>{
                 console.log(response)
                 if(response.status === 200) {
                     this.categoryName = '';

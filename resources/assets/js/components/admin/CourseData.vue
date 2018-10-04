@@ -2,12 +2,12 @@
     <section>
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Managed Course</li>
+            <li class="breadcrumb-item"><a href="/">หน้าแรก</a></li>
+            <li class="breadcrumb-item active">จัดการคอร์ส</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Managed Course <small></small></h1>
+        <h1 class="page-header"> จัดการคอร์ส <small></small></h1>
         <!-- end page-header -->
 
         <!-- begin panel -->
@@ -17,7 +17,7 @@
                 <div class="panel-heading-btn">
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 </div>
-                <h4 class="panel-title">List of Course</h4>
+                <h4 class="panel-title">รายการคอร์สทั้งหมด</h4>
             </div>
             <!-- end panel-heading -->
             <!-- begin panel-body -->
@@ -26,11 +26,12 @@
                     <thead>
                         <tr>
                             <th width="1%" data-priority="1">ID</th>
-                            <th class="text-nowrap">Author</th>
-                            <th class="text-nowrap">Course Name</th>
-                            <th class="text-nowrap">Subtitle</th>
-                            <th class="text-nowrap">Description</th>
-                            <th class="text-nowrap">Price</th>
+                            <th class="text-nowrap">ผู้สอน</th>
+                            <th class="text-nowrap">ชื่อคอร์ส</th>
+                            <th class="text-nowrap">หมวดหมู่</th>
+                            <th class="text-nowrap">คำอธิบายโดยย่อ</th>
+                            <th class="text-nowrap">รายละเอียด</th>
+                            <th class="text-nowrap">ราคา</th>
                             <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
                         </tr>
                     </thead>
@@ -155,7 +156,7 @@ export default {
         };
     },
     mounted() {
-        axios.get(`//${window.location.host}/api/category/data`).then((res) => {
+        axios.get(`/admin/category/data`).then((res) => {
             if (res.status === 200) {
                 this.categories = res.data.data;
             }
@@ -167,8 +168,11 @@ export default {
                 autoWidth: false,
                 processing: true,
                 serverSide: true,
-                ajax: `//${window.location.host}/api/course/data`,
-                order: [[0, "desc"]],
+                ajax: `/admin/api/course/data`,
+                order: [[3, "desc"]],
+                columnDefs: [
+                    { "visible": false, "targets": 3 }
+                ],
                 rowCallback: function (row, data, index) {
                     if (data["deleted_at"] != null) {
                         $(row).addClass("danger");
@@ -177,7 +181,12 @@ export default {
                 columns: [
                     { data: "id", name: "id" },
                     { data: "fullname", name: "fullname" },
-                    { data: "course_name", name: "course_name" },
+                    {                        data: "course_name",
+                        render: (data, type, row, meta) => {
+                            return `<a href="/admin/course/${row["type"]}">${data}</a>`
+
+                        }                    },
+                    { data: "category_name", name: "category_name" },
                     { data: "course_subtitle", name: "course_subtitle" },
                     { data: "course_description", name: "course_description" },
                     { data: "course_price", name: "course_price" },
@@ -228,6 +237,20 @@ export default {
                         );
                         self.deleteData();
                     });
+
+                    var api = this.api();
+                    var rows = api.rows({ page: 'current' }).nodes();
+                    var last = null;
+
+                    api.column(3, { page: 'current' }).data().each(function (group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before(
+                                '<tr class="group"><td colspan="7">หมวดหมู่ ' + group + '</td></tr>'
+                            );
+
+                            last = group;
+                        }
+                    });
                 }
             });
         });
@@ -236,7 +259,7 @@ export default {
         deleteData(evt) {
             if (evt != undefined) evt.preventDefault();
             axios
-                .post(`//${window.location.host}/api/course` + "/" + this.data.id, {
+                .post(`/admin/course` + "/" + this.data.id, {
                     _method: "DELETE"
                 })
                 .then(res => {
@@ -264,7 +287,7 @@ export default {
             formData.append('tags', JSON.stringify(this.data.tags));
 
             axios
-                .post(`//${window.location.host}/api/course` + "/" + this.data.id, formData)
+                .post(`/admin/course` + "/" + this.data.id, formData)
                 .then(res => {
                     this.modalEdit = false;
                     this.errors = {};

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Unit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 class UnitController extends Controller
 {
@@ -82,5 +83,19 @@ class UnitController extends Controller
     public function destroy(Unit $unit)
     {
         //
+    }
+
+    public function anyData(Request $request)
+    {
+        return Datatables::of(Unit::where('course_id', $request->id))
+        ->addColumn('course_name', function($unit){
+            return $unit->course->course_name;
+        })
+        ->filterColumn('course_name', function($query, $keyword){
+            $query->whereHash('course', function($subQuery) use ($keyword){
+                $subQuery->where('course_name', 'like', "%{$keyword}%");
+            });
+        })
+        ->make(true);
     }
 }

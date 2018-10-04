@@ -194,6 +194,10 @@ a.deactive-link {
   padding: 20px;
 }
 
+.table .group {
+  font-weight: bold;
+}
+
 .vue-input-tag-wrapper {
   -webkit-appearance: none !important;
 }

@@ -119,7 +119,10 @@ class CourseController extends Controller
 
     public function anyData()
     {
-        return Datatables::of(Course::query())
+        return Datatables::of(Course::with('users'))
+        ->addColumn('student_count', function($course){
+            return $course->users->count();
+        })
         ->addColumn('category_name', function($course){
             return $course->category->category_name;
         })

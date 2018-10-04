@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PromotionsTableSeeder::class);
         $this->call(SchedulesTableSeeder::class);
         $this->call(TopupsTableSeeder::class);
+        $this->call(UserCoursesTableSeeder::class);
     }
 }

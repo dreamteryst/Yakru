@@ -30,6 +30,7 @@
                             <th class="text-nowrap">ชื่อคอร์ส</th>
                             <th class="text-nowrap">หมวดหมู่</th>
                             <th class="text-nowrap">คำอธิบายโดยย่อ</th>
+                            <th class="text-nowrap">จำนวนผู้เรียน</th>
                             <th class="text-nowrap">ราคา</th>
                             <th class="text-nowrap">จัดการ</th>
                             <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
@@ -189,6 +190,12 @@ export default {
                         }                    },
                     { data: "category_name", name: "category_name" },
                     { data: "course_subtitle", name: "course_subtitle" },
+                    {
+                        data: "student_count",
+                        render: (data, type, row, meta) => {
+                            return self.numberWithCommas(data)+'/'+row['course_limit'];
+                        }
+                    },
                     {
                         data: "course_price",
                         render: (data, type, row, meta) => {

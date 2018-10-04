@@ -21,6 +21,7 @@ class CreateCoursesTable extends Migration
             $table->string('course_subtitle');
             $table->mediumText('course_description');
             $table->decimal('course_price', 8, 2);
+            $table->integer('course_limit')->default(0);
             $table->json('requirements')->nullable();
             $table->json('result')->nullable();
             $table->json('tags')->nullable();

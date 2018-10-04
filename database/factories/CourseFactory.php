@@ -13,6 +13,7 @@ $factory->define(App\Course::class, function (Faker $faker) {
         'course_subtitle' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'course_description' => $faker->text,
         'course_price' => $faker->randomFloat($nbMaxDecimals = 8, $min = 0, $max = 100000.00),
+        'course_limit' => $faker->randomNumber($nbDigits = 3, $strict = false),
         'requirements' => $faker->sentences($nb = 5, $asText = false),
         'result' => $faker->sentences($nb = 3, $asText = false),
         'tags' => $faker->words($nb = 3, $asText = false),

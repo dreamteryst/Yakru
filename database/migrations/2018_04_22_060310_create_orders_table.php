@@ -20,6 +20,9 @@ class CreateOrdersTable extends Migration
             $table->string('order_no');
             $table->string('order_note');
             $table->decimal('course_price', 8, 2);
+
+            $table->foreign('course_id')->references('id')->on('course');
+            $table->foreign('user_id')->references('id')->on('users');
             
             $table->timestamps();
             $table->softDeletes();

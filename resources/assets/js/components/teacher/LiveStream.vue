@@ -16,7 +16,7 @@
 						<img src="https://camo.githubusercontent.com/ecd56f66884ba473e09b7151764acf2054b23546/68747470733a2f2f692e696d6775722e636f6d2f5a443058426b472e706e67" class="img-responsive" />
 					</div>
 					<div class="col-md-4">
-						<div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'master'">
+						<div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'admin'">
 							<button type="button" class="btn btn-primary btn-block">
 								<span class="f-s-20">เริ่มการสอน</span>
 							</button>

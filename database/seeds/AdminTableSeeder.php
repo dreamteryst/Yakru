@@ -19,7 +19,7 @@ class AdminTableSeeder extends Seeder
             'firstname' => 'Kittisak',
             'lastname' => 'Pimnonthong',
             'level' => 9,
-            'type' => 'Master',
+            'type' => 'admin',
             'money' => 999999,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

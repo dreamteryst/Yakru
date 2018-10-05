@@ -76,11 +76,11 @@ export default {
             formData.append("remember", this.data.remember);
 
             axios
-                .post("/admin/api/login", formData)
+                .post("/admin/login", formData)
                 .then(res => {
                     if (res.status === 200) {
                         this.login()
-                        window.location.href = "/admin/api";
+                        window.location.href = "/admin";
                     }
                 })
                 .catch(({ response }) => {

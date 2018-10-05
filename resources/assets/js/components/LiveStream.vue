@@ -204,8 +204,8 @@ export default {
 				var player = flvjs.createPlayer({
 					type: "flv",
 					isLive: true,
-					// url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
-					url: "http://localhost:8000/live/dreamteryst.flv"
+					url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
+					//url: "http://localhost:8000/live/dreamteryst.flv"
 				});
 				player.attachMediaElement(videoElement);
 				player.load();

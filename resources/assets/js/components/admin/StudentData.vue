@@ -31,7 +31,6 @@
                             <th class="text-nowrap">เบอร์โทร</th>
                             <th class="text-nowrap">ยอดเงิน</th>
                             <th class="text-nowrap">จำนวนคอร์สเรียน</th>
-                            <th class="text-nowrap"></th>
                             <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
                         </tr>
                     </thead>

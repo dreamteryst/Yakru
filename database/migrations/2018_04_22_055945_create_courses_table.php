@@ -22,9 +22,9 @@ class CreateCoursesTable extends Migration
             $table->mediumText('course_description');
             $table->decimal('course_price', 8, 2);
             $table->integer('course_limit')->default(0);
-            $table->json('requirements')->nullable();
-            $table->json('result')->nullable();
-            $table->json('tags')->nullable();
+            $table->text('requirements')->nullable();
+            $table->text('result')->nullable();
+            $table->text('tags')->nullable();
             $table->enum('type', ['video', 'live'])->default('video');
             $table->string('secret')->nullable();
 

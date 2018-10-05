@@ -15,7 +15,7 @@
 								<div class="info">
 									<b class="caret pull-right"></b>
 									{{ user.firstname }} {{ user.lastname }}
-									<small>{{ user.type }}</small>
+									<small>{{ ucfirst(user.type) }}</small>
 								</div>
 						</a>
 					</li>

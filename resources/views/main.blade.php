@@ -10,6 +10,7 @@
 	<meta content="แหล่งเรียนรู้ออนไลน์ การเขียนโปรแกรม การสร้างเว็บไซต์ แอปพลิเคชันต่าง ๆ รวมอยู่ที่นี่แล้ว" name="description" />
     <meta content="DreaMTeryST" name="author" />
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	
 	<link rel="apple-touch-icon" sizes="57x57" href="{{ asset('favicon/apple-icon-57x57.png') }}">
 	<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('favicon/apple-icon-60x60.png') }}">
@@ -42,6 +43,8 @@
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ asset('assets/plugins/pace/pace.min.js') }}"></script>
 	<!-- ================== END BASE JS ================== -->
+
+	<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ajhifddimkapgcifgcodmmfdlknahffk">
 </head>
 <body>
     <!-- BEGIN #page-container -->
@@ -60,7 +63,15 @@
 		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
 	<![endif]-->
 	<script src="{{ asset('assets/plugins/js-cookie/js.cookie.js') }}"></script>
-    <script src="{{ asset('assets/js/e-commerce/apps.min.js') }}"></script>
+	<script src="{{ asset('assets/js/e-commerce/apps.min.js') }}"></script>
+	<!-- scripts used for screen-sharing -->
+	<script src="https://cdn.webrtc-experiment.com/socket.io.js"> </script>
+	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+	<script src="https://cdn.webrtc-experiment.com/IceServersHandler.js"></script>
+	<script src="https://cdn.webrtc-experiment.com/getScreenId.js"> </script>
+	<script src="https://cdn.webrtc-experiment.com/CodecsHandler.js"></script>
+	<script src="https://cdn.webrtc-experiment.com/BandwidthHandler.js"></script>
+	<script src="https://cdn.webrtc-experiment.com/screen.js"> </script>
 	<!-- ================== END BASE JS ================== -->
 	
 	<script>

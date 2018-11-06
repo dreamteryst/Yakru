@@ -13,11 +13,11 @@
 				<!-- END breadcrumb -->
 				<div class="row">
 					<div class="col-md-8">
-						<img src="https://camo.githubusercontent.com/ecd56f66884ba473e09b7151764acf2054b23546/68747470733a2f2f692e696d6775722e636f6d2f5a443058426b472e706e67" class="img-responsive" />
+						<div id="videos-container embed-responsive embed-responsive-16by9" ref="videos-container"></div>
 					</div>
 					<div class="col-md-4">
 						<div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'admin'">
-							<button type="button" class="btn btn-primary btn-block">
+							<button type="button" class="btn btn-primary btn-block" id="share-screen">
 								<span class="f-s-20">เริ่มการสอน</span>
 							</button>
 						</div>
@@ -146,67 +146,220 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-export default {
-	data: () => ({
-		likes: [
-			{
-				img: "https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg",
-				name: "The Complete Web Developer Course 2.0",
-				description:
-					"Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!",
-				price: 330,
-				discount: 7800
-			},
-			{
-				img: "https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg",
-				name: "The Complete React Native and Redux Course",
-				description:
-					"iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!",
-				price: 330,
-				discount: 3600
-			},
-			{
-				img: "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
-				name: "Android O & Java - Mobile App Development | Beginning to End",
-				description:
-					"The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
-				price: 330,
-				discount: 7800
-			},
-			{
-				img: "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
-				name: "Running a Mobile App Dev Business: The Complete Guide",
-				description:
-					"Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
-				price: 330,
-				discount: 5600
-			},
-			{
-				img: "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
-				name: "Android App Development: Mobile App Development & Java",
-				description:
-					"Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
-				price: 330,
-				discount: 7200
-			},
-			{
-				img: "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
-				name: "Mobile App Development for Beginners (Swift 3, iPhone iOS10)",
-				description:
-					"iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.",
-				price: 330,
-				discount: 1800
-			}
-		]
-	}),
-	computed: {
-		...mapState(['user'])
-	},
-	mounted() {
+import { mapState } from 'vuex'
 
-	}
-};
+export default {
+    data: () => ({
+        likes: [
+            {
+                img:
+                    'https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg',
+                name: 'The Complete Web Developer Course 2.0',
+                description:
+                    'Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!',
+                price: 330,
+                discount: 7800
+            },
+            {
+                img:
+                    'https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg',
+                name: 'The Complete React Native and Redux Course',
+                description:
+                    'iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!',
+                price: 330,
+                discount: 3600
+            },
+            {
+                img:
+                    'https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg',
+                name:
+                    'Android O & Java - Mobile App Development | Beginning to End',
+                description:
+                    'The complete Android course with Android Studio & Java. Go from beginner to professional app developer.',
+                price: 330,
+                discount: 7800
+            },
+            {
+                img:
+                    'https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg',
+                name: 'Running a Mobile App Dev Business: The Complete Guide',
+                description:
+                    'Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.',
+                price: 330,
+                discount: 5600
+            },
+            {
+                img:
+                    'https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg',
+                name: 'Android App Development: Mobile App Development & Java',
+                description:
+                    'Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop',
+                price: 330,
+                discount: 7200
+            },
+            {
+                img:
+                    'https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg',
+                name:
+                    'Mobile App Development for Beginners (Swift 3, iPhone iOS10)',
+                description:
+                    'iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.',
+                price: 330,
+                discount: 1800
+            }
+        ]
+    }),
+    computed: {
+        ...mapState(['user'])
+    },
+    mounted() {
+		var self = this;
+        $(function() {
+            var videosContainer = self.$refs['videos-container']
+            var screensharing = new Screen()
+            var SIGNALING_SERVER =
+                'https://socketio-over-nodejs2.herokuapp.com:443/'
+            var channel = 'dreamteryst#1234'
+            var sender = 'dreamteryst'
+            io.connect(SIGNALING_SERVER).emit('new-channel', {
+                channel,
+                sender
+            })
+            var socket = io.connect(SIGNALING_SERVER + channel)
+            socket.send = function(message) {
+                socket.emit('message', {
+                    sender: sender,
+                    data: message
+                })
+            }
+
+            screensharing.openSignalingChannel = function(callback) {
+                return socket.on('message', callback)
+            }
+
+            screensharing.onscreen = function(_screen) {}
+
+            screensharing.onaddstream = function(media) {
+                media.video.id = media.userid
+
+                var video = media.video
+                videosContainer.insertBefore(video, videosContainer.firstChild)
+            }
+
+            screensharing.onuserleft = function(userid) {
+                var video = document.getElementById(userid)
+                if (video && video.parentNode)
+                    video.parentNode.removeChild(video)
+            }
+
+            screensharing.check()
+
+            document.getElementById('share-screen').onclick = function() {
+                screensharing.isModerator = true
+                screensharing.userid = 'dreamer'
+
+                screensharing.share()
+            }
+
+            var isChrome = !!navigator.webkitGetUserMedia
+            var DetectRTC = {}
+            var screenCallback
+            DetectRTC.screen = {
+                chromeMediaSource: 'screen',
+                getSourceId: function(callback) {
+                    if (!callback) throw '"callback" parameter is mandatory.'
+                    screenCallback = callback
+                    window.postMessage('get-sourceId', '*')
+                },
+                isChromeExtensionAvailable: function(callback) {
+                    if (!callback) return
+
+                    if (DetectRTC.screen.chromeMediaSource == 'desktop')
+                        return callback(true)
+
+                    // ask extension if it is available
+                    window.postMessage('are-you-there', '*')
+
+                    setTimeout(function() {
+                        if (DetectRTC.screen.chromeMediaSource == 'screen') {
+                            callback(false)
+                        } else callback(true)
+                    }, 2000)
+                },
+                onMessageCallback: function(data) {
+                    if (!(typeof data == 'string' || !!data.sourceId)) return
+
+                    console.log('chrome message', data)
+
+                    // "cancel" button is clicked
+                    if (data == 'PermissionDeniedError') {
+                        DetectRTC.screen.chromeMediaSource =
+                            'PermissionDeniedError'
+                        if (screenCallback)
+                            return screenCallback('PermissionDeniedError')
+                        else throw new Error('PermissionDeniedError')
+                    }
+
+                    // extension notified his presence
+                    if (data == 'rtcmulticonnection-extension-loaded') {
+                        if (document.getElementById('install-button')) {
+                            document.getElementById(
+                                'install-button'
+                            ).parentNode.innerHTML =
+                                '<strong>Great!</strong> <a href="https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk" target="_blank">Google chrome extension</a> is installed.'
+                        }
+                        DetectRTC.screen.chromeMediaSource = 'desktop'
+                    }
+
+                    // extension shared temp sourceId
+                    if (data.sourceId) {
+                        DetectRTC.screen.sourceId = data.sourceId
+                        if (screenCallback)
+                            screenCallback(DetectRTC.screen.sourceId)
+                    }
+                },
+                getChromeExtensionStatus: function(callback) {
+                    if (!!navigator.mozGetUserMedia)
+                        return callback('not-chrome')
+
+                    var extensionid = 'ajhifddimkapgcifgcodmmfdlknahffk'
+
+                    var image = document.createElement('img')
+                    image.src =
+                        'chrome-extension://' + extensionid + '/icon.png'
+                    image.onload = function() {
+                        DetectRTC.screen.chromeMediaSource = 'screen'
+                        window.postMessage('are-you-there', '*')
+                        setTimeout(function() {
+                            if (!DetectRTC.screen.notInstalled) {
+                                callback('installed-enabled')
+                            }
+                        }, 2000)
+                    }
+                    image.onerror = function() {
+                        DetectRTC.screen.notInstalled = true
+                        callback('not-installed')
+                    }
+                }
+            }
+
+            // check if desktop-capture extension installed.
+            if (window.postMessage && isChrome) {
+                DetectRTC.screen.isChromeExtensionAvailable()
+            }
+
+            DetectRTC.screen.getChromeExtensionStatus(function(status) {})
+
+            window.addEventListener('message', function(event) {
+                if (event.origin != window.location.origin) {
+                    return
+                }
+
+                DetectRTC.screen.onMessageCallback(event.data)
+            })
+        })
+    }
+}
 </script>
 
 <style>

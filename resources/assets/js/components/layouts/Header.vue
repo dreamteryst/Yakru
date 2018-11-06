@@ -67,7 +67,7 @@
                             </li>
                             <li class="divider" v-if="isAuth"></li>
                             <li v-if="isAuth">
-                                <a class="balance">
+                                <a class="balance" v-if="profile.money != undefined">
                                     <i class="fas fa-coins"></i>
                                     &nbsp;{{ numberWithCommas(profile.money) }}
                                 </a>

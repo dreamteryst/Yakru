@@ -213,20 +213,21 @@ export default {
         ...mapState(['user'])
     },
     mounted() {
-		var self = this;
+        var self = this
         $(function() {
             var videosContainer = self.$refs['videos-container']
             var screensharing = new Screen()
             var SIGNALING_SERVER =
                 'https://socketio-over-nodejs2.herokuapp.com:443/'
-            var channel = 'dreamteryst#1234'
-            var sender = 'dreamteryst'
+            var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '')
+            var sender = Math.round(Math.random() * 999999999) + 999999999
             io.connect(SIGNALING_SERVER).emit('new-channel', {
                 channel,
                 sender
             })
             var socket = io.connect(SIGNALING_SERVER + channel)
             socket.send = function(message) {
+                console.log(message)
                 socket.emit('message', {
                     sender: sender,
                     data: message
@@ -237,7 +238,12 @@ export default {
                 return socket.on('message', callback)
             }
 
-            screensharing.onscreen = function(_screen) {}
+            screensharing.onscreen = function(_screen) {
+                console.log(_screen)
+                var alreadyExist = document.getElementById(_screen.userid)
+                if (alreadyExist) return
+                screensharing.view(_screen)
+            }
 
             screensharing.onaddstream = function(media) {
                 media.video.id = media.userid
@@ -254,12 +260,14 @@ export default {
 
             screensharing.check()
 
-            document.getElementById('share-screen').onclick = function() {
-                screensharing.isModerator = true
-                screensharing.userid = 'dreamer'
+            setTimeout(function() {
+                document.getElementById('share-screen').onclick = function() {
+                    screensharing.isModerator = true
+                    screensharing.userid = 'dreamer'
 
-                screensharing.share()
-            }
+                    screensharing.share()
+                }
+            }, 1000)
 
             var isChrome = !!navigator.webkitGetUserMedia
             var DetectRTC = {}
@@ -354,6 +362,8 @@ export default {
                 if (event.origin != window.location.origin) {
                     return
                 }
+
+                console.log(event)
 
                 DetectRTC.screen.onMessageCallback(event.data)
             })

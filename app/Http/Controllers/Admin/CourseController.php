@@ -44,10 +44,10 @@ class CourseController extends Controller
             'course_description' => 'required|max:200',
             'course_price' => 'required|max:6'
         ]);
-        $data['requirements'] = json_decode($request['requirements']);
-        $data['result'] = json_decode($request['results']);
-        $data['tags'] = json_decode($request['tags']);
-        $data['admin_id'] = 1;
+        $data['requirements'] = $request['requirements'];
+        $data['result'] = $request['results'];
+        $data['tags'] = $request['tags'];
+        $data['user_id'] = $request->user()->id;
         
         $Course = new Course();
 

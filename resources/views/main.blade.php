@@ -51,7 +51,13 @@
     <div id="page-container" class="fade">
 		<div id="app"></div>
 	</div>
-    <!-- END #page-container -->
+	<!-- END #page-container -->
+	<!-- scripts used for screen-sharing -->
+	<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
+	<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+	<script src="https://webrtcexperiment-webrtc.netdna-ssl.com/getMediaElement.js"></script>
+	<script src="https://cdn.webrtc-experiment.com/getScreenId.js"> </script>
+	<script src="https://cdn.webrtc-experiment.com/commits.js" async></script>
 	<script src="https://cdn.bootcss.com/flv.js/1.4.0/flv.min.js"></script>
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ asset('vue/js/app.js') }}"></script>
@@ -64,19 +70,11 @@
 	<![endif]-->
 	<script src="{{ asset('assets/plugins/js-cookie/js.cookie.js') }}"></script>
 	<script src="{{ asset('assets/js/e-commerce/apps.min.js') }}"></script>
-	<!-- scripts used for screen-sharing -->
-	<script src="https://cdn.webrtc-experiment.com/socket.io.js"> </script>
-	<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
-	<script src="https://cdn.webrtc-experiment.com/IceServersHandler.js"></script>
-	<script src="https://cdn.webrtc-experiment.com/getScreenId.js"> </script>
-	<script src="https://cdn.webrtc-experiment.com/CodecsHandler.js"></script>
-	<script src="https://cdn.webrtc-experiment.com/BandwidthHandler.js"></script>
-	<script src="https://cdn.webrtc-experiment.com/screen.js"> </script>
 	<!-- ================== END BASE JS ================== -->
 	
 	<script>
 	    $(document).ready(function() {
-	        App.init();
+			App.init();
 	    });
 	</script>
 </body>

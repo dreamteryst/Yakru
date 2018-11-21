@@ -13,17 +13,12 @@
 				<!-- END breadcrumb -->
 				<div class="row">
 					<div class="col-md-8">
-						<div id="videos-container" CLASS="embed-responsive embed-responsive-16by9" ref="videos-container"></div>
+						<div id="videos-container embed-responsive embed-responsive-16by9" ref="videos-container"></div>
 					</div>
 					<div class="col-md-4">
-						<div class="m-b-10" v-if="user.type == 'teacher' || user.type == 'admin'">
-							<button type="button" class="btn btn-primary btn-block" ref="share-screen" @click="openRoom">
+						<div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'admin'">
+							<button type="button" class="btn btn-primary btn-block" id="share-screen">
 								<span class="f-s-20">เริ่มการสอน</span>
-							</button>
-						</div>
-                        <div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'admin'">
-							<button type="button" class="btn btn-success btn-block" ref="share-screen" @click="screenShare">
-								<span class="f-s-20">แชร์หน้าจอ</span>
 							</button>
 						</div>
 						<div class="chatbox">
@@ -212,93 +207,167 @@ export default {
                 price: 330,
                 discount: 1800
             }
-        ],
-        connection: '',
-        roomId: ''
+        ]
     }),
     computed: {
         ...mapState(['user'])
     },
     mounted() {
-        const self = this
-        this.connection = new RTCMultiConnection()
-        this.roomId = this.connection.token()
-        this.connection.getScreenConstraints = function(callback) {
-            getScreenConstraints(function(error, screen_constraints) {
-                if (!error) {
-                    screen_constraints = self.connection.modifyScreenConstraints(
-                        screen_constraints
-                    )
-                    callback(error, screen_constraints)
-                    return
-                }
-                throw error
+        var self = this
+        $(function() {
+            var videosContainer = self.$refs['videos-container']
+            var screensharing = new Screen()
+            var SIGNALING_SERVER =
+                'https://socketio-over-nodejs2.herokuapp.com:443/'
+            var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '')
+            var sender = Math.round(Math.random() * 999999999) + 999999999
+            io.connect(SIGNALING_SERVER).emit('new-channel', {
+                channel,
+                sender
             })
-        }
-        this.connection.socketURL =
-            'https://rtcmulticonnection.herokuapp.com:443/'
-
-        this.connection.socketMessageEvent = 'audio-video-screen-demo'
-
-        this.connection.session = {
-            audio: true,
-            video: true
-        }
-
-        this.connection.sdpConstraints.mandatory = {
-            OfferToReceiveAudio: true,
-            OfferToReceiveVideo: true
-        }
-
-        this.connection.videosContainer = document.getElementById('videos-container')
-        this.connection.onstream = function(event) {
-            if (document.getElementById(event.streamid)) {
-                var existing = document.getElementById(event.streamid)
-                existing.parentNode.removeChild(existing)
+            var socket = io.connect(SIGNALING_SERVER + channel)
+            socket.send = function(message) {
+                console.log(message)
+                socket.emit('message', {
+                    sender: sender,
+                    data: message
+                })
             }
 
-            var width =
-                parseInt(self.connection.videosContainer.clientWidth / 2) - 20
-
-            if (event.stream.isScreen === true) {
-                width = self.connection.videosContainer.clientWidth - 20
+            screensharing.openSignalingChannel = function(callback) {
+                return socket.on('message', callback)
             }
 
-            var mediaElement = getMediaElement(event.mediaElement, {
-                title: event.userid,
-                buttons: ['full-screen'],
-                width: width,
-                showOnMouseEnter: false
-            })
+            screensharing.onscreen = function(_screen) {
+                console.log(_screen)
+                var alreadyExist = document.getElementById(_screen.userid)
+                if (alreadyExist) return
+                screensharing.view(_screen)
+            }
 
-            self.connection.videosContainer.appendChild(mediaElement)
+            screensharing.onaddstream = function(media) {
+                media.video.id = media.userid
+
+                var video = media.video
+                videosContainer.insertBefore(video, videosContainer.firstChild)
+            }
+
+            screensharing.onuserleft = function(userid) {
+                var video = document.getElementById(userid)
+                if (video && video.parentNode)
+                    video.parentNode.removeChild(video)
+            }
+
+            screensharing.check()
 
             setTimeout(function() {
-                mediaElement.media.play()
-            }, 5000)
+                document.getElementById('share-screen').onclick = function() {
+                    screensharing.isModerator = true
+                    screensharing.userid = 'dreamer'
 
-            mediaElement.id = event.streamid
-        }
-        this.connection.onstreamended = function(event) {
-            var mediaElement = document.getElementById(event.streamid)
-            if (mediaElement) {
-                mediaElement.parentNode.removeChild(mediaElement)
+                    screensharing.share()
+                }
+            }, 1000)
+
+            var isChrome = !!navigator.webkitGetUserMedia
+            var DetectRTC = {}
+            var screenCallback
+            DetectRTC.screen = {
+                chromeMediaSource: 'screen',
+                getSourceId: function(callback) {
+                    if (!callback) throw '"callback" parameter is mandatory.'
+                    screenCallback = callback
+                    window.postMessage('get-sourceId', '*')
+                },
+                isChromeExtensionAvailable: function(callback) {
+                    if (!callback) return
+
+                    if (DetectRTC.screen.chromeMediaSource == 'desktop')
+                        return callback(true)
+
+                    // ask extension if it is available
+                    window.postMessage('are-you-there', '*')
+
+                    setTimeout(function() {
+                        if (DetectRTC.screen.chromeMediaSource == 'screen') {
+                            callback(false)
+                        } else callback(true)
+                    }, 2000)
+                },
+                onMessageCallback: function(data) {
+                    if (!(typeof data == 'string' || !!data.sourceId)) return
+
+                    console.log('chrome message', data)
+
+                    // "cancel" button is clicked
+                    if (data == 'PermissionDeniedError') {
+                        DetectRTC.screen.chromeMediaSource =
+                            'PermissionDeniedError'
+                        if (screenCallback)
+                            return screenCallback('PermissionDeniedError')
+                        else throw new Error('PermissionDeniedError')
+                    }
+
+                    // extension notified his presence
+                    if (data == 'rtcmulticonnection-extension-loaded') {
+                        if (document.getElementById('install-button')) {
+                            document.getElementById(
+                                'install-button'
+                            ).parentNode.innerHTML =
+                                '<strong>Great!</strong> <a href="https://chrome.google.com/webstore/detail/screen-capturing/ajhifddimkapgcifgcodmmfdlknahffk" target="_blank">Google chrome extension</a> is installed.'
+                        }
+                        DetectRTC.screen.chromeMediaSource = 'desktop'
+                    }
+
+                    // extension shared temp sourceId
+                    if (data.sourceId) {
+                        DetectRTC.screen.sourceId = data.sourceId
+                        if (screenCallback)
+                            screenCallback(DetectRTC.screen.sourceId)
+                    }
+                },
+                getChromeExtensionStatus: function(callback) {
+                    if (!!navigator.mozGetUserMedia)
+                        return callback('not-chrome')
+
+                    var extensionid = 'ajhifddimkapgcifgcodmmfdlknahffk'
+
+                    var image = document.createElement('img')
+                    image.src =
+                        'chrome-extension://' + extensionid + '/icon.png'
+                    image.onload = function() {
+                        DetectRTC.screen.chromeMediaSource = 'screen'
+                        window.postMessage('are-you-there', '*')
+                        setTimeout(function() {
+                            if (!DetectRTC.screen.notInstalled) {
+                                callback('installed-enabled')
+                            }
+                        }, 2000)
+                    }
+                    image.onerror = function() {
+                        DetectRTC.screen.notInstalled = true
+                        callback('not-installed')
+                    }
+                }
             }
-        }
-    },
-    methods: {
-        openRoom() {
-            this.connection.open(this.roomId, function() {
-                console.log('fn')
-                //showRoomURL(connection.sessionid);
-            });
-        },
-        screenShare() {
-            this.connection.addStream({
-                screen: true,
-                oneway: true
+
+            // check if desktop-capture extension installed.
+            if (window.postMessage && isChrome) {
+                DetectRTC.screen.isChromeExtensionAvailable()
+            }
+
+            DetectRTC.screen.getChromeExtensionStatus(function(status) {})
+
+            window.addEventListener('message', function(event) {
+                if (event.origin != window.location.origin) {
+                    return
+                }
+
+                console.log(event)
+
+                DetectRTC.screen.onMessageCallback(event.data)
             })
-        }
+        })
     }
 }
 </script>

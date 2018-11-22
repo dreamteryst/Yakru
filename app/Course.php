@@ -22,6 +22,7 @@ class Course extends Model
         'requirements',
         'result',
         'tags',
+        'user_id',
         'type',
         'secret'
     ];

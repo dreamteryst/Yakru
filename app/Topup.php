@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Topup extends Model
 {
     protected $fillable = [
-        'user_id', 'amount', 'status', 'method', 'reference'
+        'user_id', 'amount', 'status', 'method'
     ];
 
     public function user()

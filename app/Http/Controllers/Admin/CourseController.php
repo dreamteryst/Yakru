@@ -59,6 +59,7 @@ class CourseController extends Controller
             'course_video' => $request->course_video,
             'course_discounted' => $request->course_discounted,
             'course_limit' => $request->course_limit,
+            'secret' => bin2hex(random_bytes(10))
         ];
         $data['requirements'] = json_decode($request['requirements']);
         $data['result'] = json_decode($request['results']);

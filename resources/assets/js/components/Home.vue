@@ -76,7 +76,7 @@
 						<!-- BEGIN item -->
 						<div class="item item-thumbnail">
 							<router-link :to="`/product-detail/${course.id}`" class="item-image">
-								<img :src="course.course_picture" alt="" />
+								<img :src="renderPicture(course.course_picture)" alt="" />
 								<div class="discount">{{ getPercent(course) }}% OFF</div>
 							</router-link>
 							<div class="item-info">

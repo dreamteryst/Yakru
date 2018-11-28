@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+Route::get('photo/{file_path}', 'PhotoController@index')->where('file_path', '.+');
 Route::group(['middleware' => ['web']], function () {
 // Login Routes...
     Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
@@ -39,9 +40,12 @@ Route::middleware(['auth'])->prefix('api')->group(function () {
     });
     Route::get('/bank', 'BankController@jsonData')->name('bank.data');
     Route::get('/category', 'CategoryController@jsonData')->name('category.data');
+    Route::get('/chat/{id}', 'ChatController@jsonData')->name('chat.data');
+    Route::post('/chat', 'ChatController@store')->name('course.store');
     Route::get('/course/new', 'CourseController@new')->name('course.new');
     Route::post('/course/buy', 'CourseController@buy')->name('course.buy');
     Route::get('/course/me', 'CourseController@myCourse')->name('coures.me');
+    Route::get('/course/teacherCourse', 'CourseController@teacherCourse')->name('coures.teacherCourse');
     Route::get('/course/user/{id}', 'CourseController@courseUser')->name('coures.courseUser');
     Route::get('/course/{id}', 'CourseController@show')->name('course.show');
     Route::get('/course/like/{id}', 'CourseController@like')->name('course.like');

@@ -1,9 +1,9 @@
 import Vue from "vue";
-import moment from 'moment'
+import moment from "moment";
 Vue.mixin({
     methods: {
         dateFormat(datetime, format) {
-            return moment(datetime).format(format)
+            return moment(datetime).format(format);
         },
         ucfirst(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
@@ -21,6 +21,18 @@ Vue.mixin({
         },
         isError(errors, field) {
             return errors[field] !== undefined;
+        },
+        renderPicture(picture) {
+            if (picture !== undefined && picture !== "" && picture !== null) {
+                if (picture.startsWith("http") || picture.startsWith("blob")) {
+                    return picture;
+                } else {
+                    return `/photo/${picture}`;
+                }
+            } else {
+                // null image
+                return "https://fakeimg.pl/240x135/";
+            }
         }
     }
 });

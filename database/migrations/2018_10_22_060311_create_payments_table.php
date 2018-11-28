@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->datetime('transferred_at');
             $table->decimal('amount', 20, 2);
+            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->string('slip')->comment('หลักฐานการโอนเงิน');
 
             $table->foreign('topup_id')->references('id')->on('topups');

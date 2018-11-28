@@ -43,6 +43,14 @@ a.deactive-link {
     }
 }
 
+.clickable {
+    cursor: pointer;
+}
+
+.close {
+    display: none !important;
+}
+
 .chatbox {
     @media only screen and (max-width: 990px) {
         margin-top: 8px;
@@ -107,6 +115,10 @@ a.deactive-link {
     i {
         color: white;
     }
+}
+
+.live-text {
+    color: red;
 }
 
 .btn-left {

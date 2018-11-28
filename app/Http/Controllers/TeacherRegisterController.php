@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ScheduleUnit;
+use App\TeacherRegister;
 use Illuminate\Http\Request;
 
-class ScheduleUnitController extends Controller
+class TeacherRegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ScheduleUnitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ScheduleUnit  $scheduleUnit
+     * @param  \App\TeacherRegister  $teacherRegister
      * @return \Illuminate\Http\Response
      */
-    public function show(ScheduleUnit $scheduleUnit)
+    public function show(TeacherRegister $teacherRegister)
     {
         //
     }
@@ -52,10 +52,10 @@ class ScheduleUnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ScheduleUnit  $scheduleUnit
+     * @param  \App\TeacherRegister  $teacherRegister
      * @return \Illuminate\Http\Response
      */
-    public function edit(ScheduleUnit $scheduleUnit)
+    public function edit(TeacherRegister $teacherRegister)
     {
         //
     }
@@ -64,10 +64,10 @@ class ScheduleUnitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ScheduleUnit  $scheduleUnit
+     * @param  \App\TeacherRegister  $teacherRegister
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ScheduleUnit $scheduleUnit)
+    public function update(Request $request, TeacherRegister $teacherRegister)
     {
         //
     }
@@ -75,10 +75,10 @@ class ScheduleUnitController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ScheduleUnit  $scheduleUnit
+     * @param  \App\TeacherRegister  $teacherRegister
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ScheduleUnit $scheduleUnit)
+    public function destroy(TeacherRegister $teacherRegister)
     {
         //
     }

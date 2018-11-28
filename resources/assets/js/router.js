@@ -6,9 +6,11 @@ import Profile from "./components/Profile";
 import ProductDetail from "./components/ProductDetail";
 import LiveStream from "./components/LiveStream";
 import Contact from "./components/Contact";
+import Payment from "./components/Payment";
 import Learning from "./components/Learning";
 
 import TeacherLiveStream from "./components/teacher/LiveStream";
+import TeacherRegister from "./components/teacher/Register";
 
 import Admin from "./route/Admin";
 import AdminLogin from "./components/admin/auth/Login";
@@ -54,7 +56,7 @@ const routes = [
       { path: "", name: "Home", component: Home },
       { path: "profile", name: "Profile", component: Profile },
       {
-        path: "product-detail",
+        path: "product-detail/:id",
         name: "Product Detail",
         component: ProductDetail
       },
@@ -69,10 +71,12 @@ const routes = [
         name: "checkout_complete",
         component: CheckoutComplete
       },
-      { path: "live-stream", name: "live-stream", component: LiveStream },
-      { path: "learning", name: "learning", component: Learning },
+      { path: "live-stream/:id", name: "live-stream", component: LiveStream },
+      { path: "learning/:id", name: "learning", component: Learning },
       { path: "contact", name: "contact", component: Contact },
-      { path: "teacher/live-stream", name: "teacher-live-stream", component: TeacherLiveStream },
+      { path: "payment", name: "payment", component: Payment },
+      { path: "teacher/live-stream/:id", name: "teacher-live-stream", component: TeacherLiveStream },
+      { path: "teacher/register", name: "teacher-register", component: TeacherRegister },
     ]
   },
   { path: "/admin/auth", name: "AdminLogin", component: AdminLogin },

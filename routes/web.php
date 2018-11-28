@@ -33,8 +33,19 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
 });
 
-Route::middleware('auth')->get('/user', function (Request $request) {
-    return Auth::user();
+Route::middleware(['auth'])->prefix('api')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return Auth::user();
+    });
+    Route::get('/bank', 'BankController@jsonData')->name('bank.data');
+    Route::get('/category', 'CategoryController@jsonData')->name('category.data');
+    Route::get('/course/new', 'CourseController@new')->name('course.new');
+    Route::post('/course/buy', 'CourseController@buy')->name('course.buy');
+    Route::get('/course/me', 'CourseController@myCourse')->name('coures.me');
+    Route::get('/course/user/{id}', 'CourseController@courseUser')->name('coures.courseUser');
+    Route::get('/course/{id}', 'CourseController@show')->name('course.show');
+    Route::get('/course/like/{id}', 'CourseController@like')->name('course.like');
+    Route::post('/payment', 'PaymentController@store')->name('payment.store');
 });
 
 Route::group(['middleware' => ['guest:web_admin']], function () {
@@ -52,34 +63,35 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
     });
 
     Route::prefix('api')->group(function () {
-        Route::get('category/data', 'CategoryController@anyData');
-        Route::resource('category', 'CategoryController');
+        Route::get('category/data', 'Admin\CategoryController@anyData');
+        Route::resource('category', 'Admin\CategoryController');
 
-        Route::get('course/data', 'CourseController@anyData');
-        Route::resource('course', 'CourseController');
+        Route::get('course/data', 'Admin\CourseController@anyData');
+        Route::resource('course', 'Admin\CourseController');
 
-        Route::get('unit/data/{id}', 'UnitController@anyData');
-        Route::resource('unit', 'UnitController');
+        Route::get('unit/data/{id}', 'Admin\UnitController@anyData');
+        Route::resource('unit', 'Admin\UnitController');
 
-        Route::get('lecture/data/{id}', 'LectureController@anyData');
-        Route::resource('lecture', 'LectureController');
+        Route::get('lecture/data/{id}', 'Admin\LectureController@anyData');
+        Route::resource('lecture', 'Admin\LectureController');
 
-        Route::get('order/data', 'OrderController@anyData');
-        Route::resource('order', 'OrderController');
+        Route::get('order/data', 'Admin\OrderController@anyData');
+        Route::resource('order', 'Admin\OrderController');
 
-        Route::get('payment/data', 'PaymentController@anyData');
-        Route::resource('payment', 'PaymentController');
+        Route::get('payment/data', 'Admin\PaymentController@anyData');
+        Route::post('payment/confirm', 'Admin\PaymentController@confirm');
+        Route::resource('payment', 'Admin\PaymentController');
 
-        Route::get('promotion/data', 'PromotionController@anyData');
-        Route::resource('promotion', 'PromotionController');
+        Route::get('promotion/data', 'Admin\PromotionController@anyData');
+        Route::resource('promotion', 'Admin\PromotionController');
 
-        Route::get('schedule/data/{id}', 'ScheduleController@anyData');
-        Route::resource('schedule', 'ScheduleController');
+        Route::get('schedule/data/{id}', 'Admin\ScheduleController@anyData');
+        Route::resource('schedule', 'Admin\ScheduleController');
 
-        Route::get('student/data', 'StudentController@anyData');
-        Route::resource('student', 'StudentController');
+        Route::get('student/data', 'Admin\StudentController@anyData');
+        Route::resource('student', 'Admin\StudentController');
 
-        Route::get('teacher/data', 'AdminController@anyData');
+        Route::get('teacher/data', 'Admin\AdminController@anyData');
     });
 
     Route::get('/{any}', function () {
@@ -105,5 +117,3 @@ Route::get('errors', function () {
 Route::get('/{any}', function () {
     return view('main');
 })->where('any', '.*');
-
-Route::get('/home', 'HomeController@index')->name('home');

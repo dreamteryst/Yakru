@@ -18,7 +18,7 @@ export default new Vuex.Store({
     actions: {
         initialize({ commit, dispatch }) {
             axios
-                .get("/user")
+                .get("/api/user")
                 .then(({ data }) => {
                     commit("setUser", data);
                     commit("auth/login");

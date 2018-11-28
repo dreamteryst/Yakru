@@ -102,6 +102,20 @@
                     {{ errors.course_price[0] }}
                 </div>
             </div>
+            <div class="form-group">
+                <label for="course_discounted">Course Discounted</label>
+                <input type="number" min="0" max="999999" class="form-control" id="course_discounted" :class="{'is-invalid':isError('course_discounted')}" v-model="data.course_discounted" placeholder="Course Price">
+                <div class="invalid-feedback" v-if="isError('course_discounted')">
+                    {{ errors.course_discounted[0] }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="course_limit">Course Limit</label>
+                <input type="number" min="0" max="999999" class="form-control" id="course_limit" :class="{'is-invalid':isError('course_limit')}" v-model="data.course_limit" placeholder="Course Price">
+                <div class="invalid-feedback" v-if="isError('course_limit')">
+                    {{ errors.course_limit[0] }}
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="requirements">Course Requirements</label>
@@ -154,6 +168,8 @@ export default {
             tags: [''],
             errors: [],
             isSuccess: false,
+            course_discounted : 0,
+            course_limit : ''
         };
     },
     mounted() {
@@ -218,11 +234,11 @@ export default {
                         render: (data, type, row, meta) => {
                             return (
                                 `
-                          <div class="actions" data='` +
+                          <div class="actions" data-id='` +
                                 JSON.stringify(row) +
                                 `'>
                             <a href="/product-detail" target="_blank"><i class="far fa-eye"></i></a>
-                          <i class="fa fa-edit new-user-edit"></i>
+                            <i class="fa fa-edit new-user-edit"></i>
                           ` +
                                 (row["deleted_at"] == null
                                     ? '<i class="fa fa-trash-alt"></i>'
@@ -240,7 +256,7 @@ export default {
                         self.data = JSON.parse(
                             $(this)
                                 .closest("div")
-                                .attr("data")
+                                .attr("data-id")
                         );
                         self.modalEdit = true;
                     });
@@ -249,7 +265,7 @@ export default {
                         self.data = JSON.parse(
                             $(this)
                                 .closest("div")
-                                .attr("data")
+                                .attr("data-id")
                         );
                         self.modalDelete = true;
                     });
@@ -257,7 +273,7 @@ export default {
                         self.data = JSON.parse(
                             $(this)
                                 .closest("div")
-                                .attr("data")
+                                .attr("data-id")
                         );
                         self.deleteData();
                     });
@@ -269,7 +285,7 @@ export default {
                     api.column(3, { page: 'current' }).data().each(function (group, i) {
                         if (last !== group) {
                             $(rows).eq(i).before(
-                                '<tr class="group"><td colspan="7">หมวดหมู่ ' + group + '</td></tr>'
+                                '<tr class="group"><td colspan="8">หมวดหมู่ ' + group + '</td></tr>'
                             );
 
                             last = group;
@@ -318,6 +334,8 @@ export default {
             formData.append('requirements', JSON.stringify(this.data.requirements));
             formData.append('results', JSON.stringify(this.data.results));
             formData.append('tags', JSON.stringify(this.data.tags));
+            formData.append('course_discounted', this.course_discounted);
+            formData.append('course_limit', this.course_limit);
 
             axios
                 .post(`/admin/course` + "/" + this.data.id, formData)

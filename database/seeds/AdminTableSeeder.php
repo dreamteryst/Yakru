@@ -14,12 +14,24 @@ class AdminTableSeeder extends Seeder
     public function run()
     {
         Admin::create([
-            'email' => 'k.pimnonthong@gmail.com',
+            'email' => 'admin@yakru.com',
             'password' => bcrypt('admin'),
-            'firstname' => 'Kittisak',
-            'lastname' => 'Pimnonthong',
+            'firstname' => 'Admin',
+            'lastname' => 'Yakru',
             'level' => 9,
             'type' => 'admin',
+            'money' => 999999,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        Admin::create([
+            'email' => 'teacher@yakru.com',
+            'password' => bcrypt('teacher'),
+            'firstname' => 'Teacher',
+            'lastname' => 'Yakru',
+            'level' => 9,
+            'type' => 'teacher',
             'money' => 999999,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()

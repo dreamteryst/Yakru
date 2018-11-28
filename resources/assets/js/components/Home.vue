@@ -44,22 +44,6 @@
 						</div>
 					</div>
 					<!-- END item -->
-					<!-- BEGIN item -->
-					<!-- <div class="item">
-						<img src="/assets/img/cover/cover-9.jpg" class="bg-cover-img" alt="" />
-						<div class="carousel-caption">
-							<div class="container">
-								<h3 class="title m-b-5 fadeInDownBig animated">Scratch Game</h3>
-								<p class="m-b-15 fadeInDownBig animated">Programming for Young Adults</p>
-								<div class="price fadeInDownBig animated">
-									<small>from</small>
-									<span>฿999.00</span>
-								</div>
-								<router-link to="/live-stream" class="btn btn-outline btn-lg fadeInUpBig animated">Buy Now</router-link>
-							</div>
-						</div>
-					</div> -->
-					<!-- END item -->
 				</div>
 				<!-- END carousel-inner -->
 				<a class="left carousel-control" href="#main-carousel" data-slide="prev">
@@ -80,28 +64,30 @@
 				<!-- BEGIN section-title -->
 				<h4 class="section-title clearfix">
 					<a href="#" class="pull-right">SHOW ALL</a>
-					{{ category.name }}
-					<small>{{ category.description }}</small>
+					{{ category.category_name }}
+					<small>{{ category.category_description }}</small>
 				</h4>
 				<!-- END section-title -->
 
 				<!-- BEGIN row -->
 				<div class="row row-space-10">
 					<!-- BEGIN col-2 -->
-					<div class="col-md-2 col-sm-4" v-for="(course, j) in category.courses" :key="j">
+					<div class="col-md-2 col-sm-4" v-for="(course, j) in category.courses" :key="j" v-if="course.course_price">
 						<!-- BEGIN item -->
 						<div class="item item-thumbnail">
-							<router-link to="/product-detail" class="item-image">
-								<img :src="course.img" alt="" />
+							<router-link :to="`/product-detail/${course.id}`" class="item-image">
+								<img :src="course.course_picture" alt="" />
 								<div class="discount">{{ getPercent(course) }}% OFF</div>
 							</router-link>
 							<div class="item-info">
 								<h4 class="item-title">
-									<router-link to="/product-detail" v-html="course.name"></router-link>
+									<router-link :to="`/product-detail/${course.id}`" v-html="course.course_name"></router-link>
 								</h4>
-								<p class="item-desc">{{ course.description }}</p>
-								<div class="item-price">฿ {{ numberWithCommas(course.price) }}</div>
-								<div class="item-discount-price">฿ {{ numberWithCommas(course.discount) }}</div>
+								<p class="item-desc">{{ course.course_subtitle }}</p>
+								<div class="item-price">฿ {{ numberWithCommas(course.final_price) }}</div>
+								<div class="item-discount-price">฿ {{ numberWithCommas(course.course_price) }}</div>
+								<div class="live-text" v-if="course.type === 'live'">• Live</div>
+								<div class="text-primary" v-else>Video</div>
 							</div>
 						</div>
 						<!-- END item -->
@@ -209,34 +195,6 @@ export default {
               price: 330,
               discount: 7800
             },
-            // {
-            //   img:
-            //     "https://udemy-images.udemy.com/course/240x135/1002676_3c6e_2.jpg",
-            //   name: "The Full Stack Web Development",
-            //   description:
-            //     "Learn Full Stack Web Development Building Over 40+ Projects",
-            //   price: 330,
-            //   discount: 2200
-            // },
-            // {
-            //   img:
-            //     "https://udemy-images.udemy.com/course/240x135/917724_114b_12.jpg",
-            //   name: "Learn JavaScript for Web Development",
-            //   description:
-            //     "Advance your Web Development Skills By Learning Javascript from JavaScript Expert",
-            //   price: 330,
-            //   discount: 2800
-            // },
-            // {
-            //   img:
-            //     "https://udemy-images.udemy.com/course/240x135/1002030_f3e0_5.jpg",
-            //   name:
-            //     "Web Development w/ Google’s Go (golang) Programming Language",
-            //   description:
-            //     "Learn Web Programming from a University Professor in Computer Science with over 15 years of teaching experience.",
-            //   price: 330,
-            //   discount: 2400
-            // }
           ]
         },
         {
@@ -261,35 +219,7 @@ export default {
               price: 330,
               discount: 3600
             },
-            // {
-            //   img:
-            //     "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
-            //   name:
-            //     "Android O & Java - Mobile App Development | Beginning to End",
-            //   description:
-            //     "The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
-            //   price: 330,
-            //   discount: 7800
-            // },
-            // {
-            //   img:
-            //     "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
-            //   name: "Running a Mobile App Dev Business: The Complete Guide",
-            //   description:
-            //     "Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
-            //   price: 330,
-            //   discount: 5600
-            // },
-            // {
-            //   img:
-            //     "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
-            //   name: "Android App Development: Mobile App Development & Java",
-            //   description:
-            //     "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
-            //   price: 330,
-            //   discount: 7200
-            // },
-             {
+						{
                img:
                  "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
                name:
@@ -304,14 +234,19 @@ export default {
       ]
     };
   },
-  methods: {
-    getPercent(course) {
-      return parseInt((course.discount - course.price) * 100 / course.discount);
-    },
-    numberWithCommas(number) {
-      return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-  }
+	mounted() {
+		axios.get('/api/category').then(({data}) => {
+			const categories = []
+			data.map(item => {
+				item.courses = item.courses.splice(0, 7)
+				categories.push(item)
+			})
+			this.categories = categories
+		}).catch(error => {
+			console.log(error)
+			if(error.response) console.log(error.response)
+		});
+	}
 };
 </script>
 

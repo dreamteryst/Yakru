@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Course;
 use Illuminate\Http\Request;
@@ -37,16 +37,32 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $data =  $request->validate([
+        $picture = $request->file('course_picture')->store('course_pictures');
+        $request->validate([
             'category_id' => 'required',
             'course_name' => 'required|max:200',
             'course_subtitle' => 'required|max:200',
             'course_description' => 'required|max:200',
-            'course_price' => 'required|max:6'
+            'course_price' => 'required',
+            'course_picture' => 'required',
+            'course_video' => 'required',
+            'course_discounted' => 'required',
+            'course_limit' => 'required',
         ]);
-        $data['requirements'] = $request['requirements'];
-        $data['result'] = $request['results'];
-        $data['tags'] = $request['tags'];
+        $data = [
+            'category_id' => $request->category_id,
+            'course_name' => $request->course_name,
+            'course_subtitle' => $request->course_subtitle,
+            'course_description' => $request->course_description,
+            'course_price' => $request->course_price,
+            'course_picture' => $picture,
+            'course_video' => $request->course_video,
+            'course_discounted' => $request->course_discounted,
+            'course_limit' => $request->course_limit,
+        ];
+        $data['requirements'] = json_decode($request['requirements']);
+        $data['result'] = json_decode($request['results']);
+        $data['tags'] = json_decode($request['tags']);
         $data['user_id'] = $request->user()->id;
         
         $Course = new Course();
@@ -85,17 +101,31 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
+        dd($request);
         $data =  $request->validate([
             'category_id' => 'required',
             'course_name' => 'required|max:200',
             'course_subtitle' => 'required|max:200',
             'course_description' => 'required|max:200',
-            'course_price' => 'required|max:6'
+            'course_price' => 'required|max:6',
+            'course_picture' => 'required',
+            'course_video' => 'required',
+            'course_discounted' => 'required',
+            'course_limit' => 'required',
         ]);
+        
         $data['requirements'] = json_decode($request['requirements']);
         $data['result'] = json_decode($request['results']);
         $data['tags'] = json_decode($request['tags']);
         $data['admin_id'] = 1;
+
+        if(!empty($request->file('picture')))
+        {
+            Storage::delete($news->picture);
+            $data['picture'] = $request->file('course_picture')->store('course_pictures');
+        } else {
+            unset($data['picture']);
+        }
 
         if($course->update($data)){
             return json_encode(['success' => true, 'message' => 'ลบข้อมูล ' . $course->course_name . ' เรียบร้อย']);

@@ -36,8 +36,9 @@
 	<link href="{{ asset('assets/plugins/bootstrap3/css/bootstrap.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets/plugins/animate/animate.min.css') }}" rel="stylesheet" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 	<link href="{{ asset('vue/css/style.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('vue/css/app.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('vue/css/app.css') }}" rel="stylesheet" type="text/css">
 	<!-- ================== END BASE CSS STYLE ================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
@@ -58,7 +59,6 @@
 	<script src="https://webrtcexperiment-webrtc.netdna-ssl.com/getMediaElement.js"></script>
 	<script src="https://cdn.webrtc-experiment.com/getScreenId.js"> </script>
 	<script src="https://cdn.webrtc-experiment.com/commits.js" async></script>
-	<script src="https://cdn.bootcss.com/flv.js/1.4.0/flv.min.js"></script>
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ asset('vue/js/app.js') }}"></script>
 	{{-- <script src="{{ asset('assets/plugins/jquery/jquery-3.2.1.min.js') }}"></script> --}}
@@ -70,6 +70,9 @@
 	<![endif]-->
 	<script src="{{ asset('assets/plugins/js-cookie/js.cookie.js') }}"></script>
 	<script src="{{ asset('assets/js/e-commerce/apps.min.js') }}"></script>
+	<script src="{{ asset('assets_admin/plugins/bootstrap-daterangepicker/moment.js') }}"></script>
+	<script src="https://cdn.omise.co/omise.js.gz"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 	<!-- ================== END BASE JS ================== -->
 	
 	<script>

@@ -4,7 +4,7 @@ Vue.mixin({
     methods: {
         getPercent(course) {
             return parseInt(
-                ((course.discount - course.price) * 100) / course.discount
+                ((course.course_price - course.final_price) * 100) / course.course_price
             );
         },
         getPrice(percent, price) {

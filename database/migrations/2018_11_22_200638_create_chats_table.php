@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLecturesTable extends Migration
+class CreateChatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateLecturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lectures', function (Blueprint $table) {
+        Schema::create('chats', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('unit_id');
-            $table->string('lecture_name');
-            $table->string('video_name')->nullable();
-            $table->boolean('guest')->default(false);
-            
-            $table->foreign('unit_id')->references('id')->on('units');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('course_id');
+            $table->string('message');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('course_id')->references('id')->on('courses');
 
             $table->timestamps();
             $table->softDeletes();
@@ -34,6 +34,6 @@ class CreateLecturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lectures');
+        Schema::dropIfExists('chats');
     }
 }

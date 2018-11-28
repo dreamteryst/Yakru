@@ -60,9 +60,9 @@ class CourseController extends Controller
             'course_discounted' => $request->course_discounted,
             'course_limit' => $request->course_limit,
         ];
-        $data['requirements'] = $request['requirements'];
-        $data['result'] = $request['results'];
-        $data['tags'] = $request['tags'];
+        $data['requirements'] = json_decode($request['requirements']);
+        $data['result'] = json_decode($request['results']);
+        $data['tags'] = json_decode($request['tags']);
         $data['user_id'] = $request->user()->id;
         
         $Course = new Course();

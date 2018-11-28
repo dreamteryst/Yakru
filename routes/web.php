@@ -42,6 +42,7 @@ Route::middleware(['auth'])->prefix('api')->group(function () {
     Route::get('/course/new', 'CourseController@new')->name('course.new');
     Route::post('/course/buy', 'CourseController@buy')->name('course.buy');
     Route::get('/course/me', 'CourseController@myCourse')->name('coures.me');
+    Route::get('/course/user/{id}', 'CourseController@courseUser')->name('coures.courseUser');
     Route::get('/course/{id}', 'CourseController@show')->name('course.show');
     Route::get('/course/like/{id}', 'CourseController@like')->name('course.like');
     Route::post('/payment', 'PaymentController@store')->name('payment.store');

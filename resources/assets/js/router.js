@@ -71,11 +71,11 @@ const routes = [
         name: "checkout_complete",
         component: CheckoutComplete
       },
-      { path: "live-stream", name: "live-stream", component: LiveStream },
-      { path: "learning", name: "learning", component: Learning },
+      { path: "live-stream/:id", name: "live-stream", component: LiveStream },
+      { path: "learning/:id", name: "learning", component: Learning },
       { path: "contact", name: "contact", component: Contact },
       { path: "payment", name: "payment", component: Payment },
-      { path: "teacher/live-stream", name: "teacher-live-stream", component: TeacherLiveStream },
+      { path: "teacher/live-stream/:id", name: "teacher-live-stream", component: TeacherLiveStream },
       { path: "teacher/register", name: "teacher-register", component: TeacherRegister },
     ]
   },

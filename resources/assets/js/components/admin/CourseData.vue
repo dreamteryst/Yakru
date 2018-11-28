@@ -269,7 +269,7 @@ export default {
                     api.column(3, { page: 'current' }).data().each(function (group, i) {
                         if (last !== group) {
                             $(rows).eq(i).before(
-                                '<tr class="group"><td colspan="7">หมวดหมู่ ' + group + '</td></tr>'
+                                '<tr class="group"><td colspan="8">หมวดหมู่ ' + group + '</td></tr>'
                             );
 
                             last = group;

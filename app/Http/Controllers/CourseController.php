@@ -65,4 +65,9 @@ class CourseController extends Controller
         return Course::orderBy('created_at', 'DESC')->take(6)->get();
     }
 
+    public function myCourse()
+    {
+        return UserCourse::where('user_id', Auth::user()->id)->with('course')->get();
+    }
+
 }

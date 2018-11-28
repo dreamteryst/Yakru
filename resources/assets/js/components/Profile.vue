@@ -28,11 +28,9 @@
                   <i class="fas fa-graduation-cap"></i> ประวัติการเรียน
                 </h4>
                 <ul class="nav nav-list" v-if="user.type == 'student'">
-                  <li>
-                    <router-link to="/learning">React Native สำหรับมือใหม่!!</router-link>
-                  </li>
-                  <li>
-                    <router-link to="/live-stream">Core Angular: การใช้งาน Angular 4</router-link>
+                  <li v-for="(course, i) in courses" :key="i">
+                    <router-link :to="`/learning/${course.course.id}`" v-if="course.course.type === 'video'">{{ course.course.course_name }}</router-link>
+                    <router-link :to="`/live-stream/${course.course.id}`" v-else>{{ course.course.course_name }}</router-link>
                   </li>
                 </ul>
                 <h4>
@@ -59,11 +57,9 @@
                   <i class="fa fa-gitlab fa-fw text-muted"></i> คอร์สของฉัน
                 </h4>
                 <ul class="nav nav-list" v-if="user.type != 'student'">
-                  <li>
-                    <router-link to="/learning">React Native สำหรับมือใหม่!!</router-link>
-                  </li>
-                  <li>
-                    <router-link to="/teacher/live-stream">Core Angular: การใช้งาน Angular 4</router-link>
+                  <li v-for="(course, i) in courses" :key="i">
+                    <router-link :to="`/learning/${course.course.id}`" v-if="course.course.type === 'video'">{{ course.course.course_name }}</router-link>
+                    <router-link :to="`/teacher/live-stream/${course.course.id}`" v-else>{{ course.course.course_name }}</router-link>
                   </li>
                 </ul>
                 <h4>
@@ -137,7 +133,8 @@ export default {
     components: { Visa, Bank },
     data() {
         return {
-            likes: ""
+            likes: "",
+            courses: ""
         };
     },
     computed: {
@@ -148,6 +145,15 @@ export default {
             .get("/api/course/new")
             .then(({ data }) => {
                 this.likes = data;
+            })
+            .catch(error => {
+                console.log(error);
+                if (error.response) console.log(error.response);
+            });
+        axios
+            .get("/api/course/me")
+            .then(({ data }) => {
+                this.courses = data;
             })
             .catch(error => {
                 console.log(error);

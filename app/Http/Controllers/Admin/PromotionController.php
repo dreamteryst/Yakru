@@ -37,7 +37,17 @@ class PromotionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'promotion_name' => 'required',
+            'promotion_description' => 'required',
+            'discount' => 'required',
+            'started_at' => 'required',
+            'ended_at' => 'required'
+        ]);
+        
+        $Promotion = new Promotion();
+
+        return $Promotion::create($data);
     }
 
     /**
@@ -71,7 +81,18 @@ class PromotionController extends Controller
      */
     public function update(Request $request, Promotion $promotion)
     {
-        //
+        $data = $request->validate([
+            'promotion_name' => 'required',
+            'promotion_description' => 'required',
+            'discount' => 'required',
+            'started_at' => 'required',
+            'ended_at' => 'required'
+        ]);
+
+        if($promotion->update($data)){
+            return json_encode(['success' => true, 'message' => 'อัพเดทข้อมูล ' . $promotion->promotion_name . ' เรียบร้อย']);
+        }
+        return json_encode(['success' => false, 'message' => 'มีข้อผิดพลาดไม่คาดคิด']);
     }
 
     /**
@@ -82,7 +103,10 @@ class PromotionController extends Controller
      */
     public function destroy(Promotion $promotion)
     {
-        //
+        if($promotion->delete()){
+            return json_encode(['success' => true, 'message' => 'ลบข้อมูล ' . $promotion->promotion_name . ' เรียบร้อย']);
+        }
+        return json_encode(['success' => false, 'message' => 'มีข้อผิดพลาดไม่คาดคิด']);
     }
 
     public function anyData()

@@ -60,6 +60,79 @@
                 </tbody>
             </table>
         </b-modal>
+         <b-modal id="modal1" v-model="modalDelete" size="lg" @ok="deleteData" ok-title="Delete" ok-variant="danger" :title="'Delete '+data.promotion_name" @hidden="onHidden">
+            <div class="alert alert-danger fade show" v-if="isError('delete')">
+                <span class="close" data-dismiss="alert">×</span>
+                <strong>Error!</strong>
+                {{ errors.delete }}
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th width="1%" data-priority="1">ID</th>
+                        <th class="text-nowrap">ชื่อโปรโมชัน</th>
+                        <th class="text-nowrap">รายละเอียด</th>
+                        <th class="text-nowrap">ส่วนลด (%)</th>
+                        <th class="text-nowrap">เริ่มต้น</th>
+                        <th class="text-nowrap">สิ้นสุด</th>
+                    </tr>
+                    <tr>
+                        <td>{{ data.id }}</td>
+                        <td>{{ data.promotion_name }}</td>
+                        <td>{{ data.promotion_description }}</td>
+                        <td>{{ data.discount }}</td>
+                        <td>{{ data.started_at }}</td>
+                        <td>{{ data.ended_at }}</td>
+                    </tr>
+                </table>
+            </div>
+        </b-modal>
+        <b-modal id="modalNewEdit" v-model="modalEdit" size="lg" @ok="editData" ok-title="Edit" ok-variant="success" :title="'Edit '+data.promotion_name" @hidden="onHidden">
+            <div class="alert alert-danger fade show" v-if="isError('message')">
+                <span class="close" data-dismiss="alert">×</span>
+                <strong>Error!</strong>
+                {{ errors.message }}
+            </div>
+            <div class="form-group">
+                <label for="promotion_name">Promotion Name</label>
+                <input type="text" class="form-control" :class="{'is-invalid':isError('promotion_name')}" id="promotion_name" v-model="data.promotion_name" placeholder="Promotion Name">
+                <div class="invalid-feedback" v-if="isError('promotion_name')">
+                    {{ errors.promotion_name[0] }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="promotion_description">Promotion Description</label>
+                <textarea class="form-control" id="description" :class="{'is-invalid':isError('promotion_description')}" v-model="data.promotion_description" placeholder="Description" rows="10"></textarea>
+                <div class="invalid-feedback" v-if="isError('promotion_description')">
+                    {{ errors.promotion_description[0] }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="discount">Discount</label>
+                <input type="number" class="form-control" :class="{'is-invalid':isError('discount')}" id="discount" v-model="data.discount" placeholder="Discount">
+                <div class="invalid-feedback" v-if="isError('discount')">
+                    {{ errors.discount[0] }}
+                </div>
+            </div>
+            <div class="form-group row m-b-15">
+                <label class="col-form-label col-md-2">Promotion Start Date</label>
+                <div class="col-md-10">
+                    <input v-model="data.started_at"  type="text" class="form-control m-b-5 datetimepicker" :class="{'is-invalid':isError('started_at')}" @blur="handledate($event,1)" placeholder="Enter date" />
+                    <div class="invalid-feedback" v-if="isError('started_at')">
+                        {{ errors.started_at[0] }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row m-b-15">
+                <label class="col-form-label col-md-2">Promotion End Date</label>
+                <div class="col-md-10">
+                    <input v-model="data.ended_at"  type="text" class="form-control m-b-5 datetimepicker" :class="{'is-invalid':isError('ended_at')}" @blur="handledate($event,2)" placeholder="Enter date" />
+                    <div class="invalid-feedback" v-if="isError('ended_at')">
+                        {{ errors.ended_at[0] }}
+                    </div>
+                </div>
+            </div>
+        </b-modal>
     </section>
 </template>
 
@@ -67,11 +140,23 @@
 export default {
     data() {
         return {
+            modalDelete: false,
+            modalEdit: false,
             courses: [],
-            data: {}
+            errors: [],
+            data: {
+            },
+            promotion_name : '',
+            promotion_description : '',
+            discount : '',
+            started_at : '',
+            ended_at : ''
         }
     },
     mounted() {
+        $('.datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD hh:mm:ss'
+        });
         var self = this;
         $(function () {
             self.table = $("#promotion-table").DataTable({
@@ -108,7 +193,7 @@ export default {
                         render: (data, type, row, meta) => {
                             return (
                                 `
-                          <div class="actions" data='` +
+                          <div class="actions" data-id='` +
                                 JSON.stringify(row) +
                                 `'>
                             <i class="fa fa-edit new-user-edit"></i>
@@ -130,9 +215,84 @@ export default {
                         );
                         self.$refs.modalCourseList.show();
                     });
+                    $(".fa-edit").on("click", function () {
+                        self.data = JSON.parse(
+                            $(this)
+                                .closest("div")
+                                .attr("data-id")
+                        );
+                        self.modalEdit = true;
+                    });
+
+                    $(".fa-trash-alt").on("click", function () {
+                        self.data = JSON.parse(
+                            $(this)
+                                .closest("div")
+                                .attr("data-id")
+                        );
+                        self.modalDelete = true;
+                    });
+                    $(".fa-undo").on("click", function () {
+                        self.data = JSON.parse(
+                            $(this)
+                                .closest("div")
+                                .attr("data-id")
+                        );
+                        self.deleteData();
+                    });
                 }
             });
         });
+    },
+    methods : {
+        deleteData(evt) {
+            if (evt != undefined) evt.preventDefault();
+            axios
+                .post(`/admin/api/promotion` + "/" + this.data.id, {
+                    _method: "DELETE"
+                })
+                .then(res => {
+                    this.modalDelete = false;
+                    this.errors = {};
+                    this.table.ajax.reload();
+                })
+                .catch(res => {
+                    this.errors = res.response.data.errors;
+                    this.errors.message = res.response.data.message;
+                });
+        },
+        editData(evt) {
+            evt.preventDefault();
+            
+            var formData = new FormData();
+            formData.append("_method", "PUT");
+            formData.append('promotion_name', this.data.promotion_name);
+            formData.append('promotion_description', this.data.promotion_description);
+            formData.append('discount', this.data.discount);
+            formData.append('started_at', this.data.started_at);
+            formData.append('ended_at', this.data.ended_at);
+
+            axios
+                .post(`/admin/api/promotion` + "/" + this.data.id, formData)
+                .then(res => {
+                    this.modalEdit = false;
+                    this.errors = {};
+                    this.table.ajax.reload();
+                })
+                .catch(res => {
+                    this.errors = res.response.data.errors;
+                    this.errors.message = res.response.data.message;
+                });
+        },
+        onHidden(evt) {
+            this.errors = {};
+        },
+        handledate(event,type) {
+            switch(type){
+                case 1 : this.data.started_at = event.target.value;
+                case 2 : this.data.ended_at = event.target.value;
+            }
+        },
     }
 }
 </script>

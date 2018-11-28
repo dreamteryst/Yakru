@@ -78,6 +78,7 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::resource('course', 'Admin\CourseController');
 
         Route::get('unit/data/{id}', 'Admin\UnitController@anyData');
+        Route::post('unit/upload', 'Admin\UnitController@upload');
         Route::resource('unit', 'Admin\UnitController');
 
         Route::get('lecture/data/{id}', 'Admin\LectureController@anyData');

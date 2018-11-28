@@ -26,7 +26,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -37,7 +37,7 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->video_name);
     }
 
     /**
@@ -92,5 +92,13 @@ class UnitController extends Controller
             return $unit->lectures->count();
         })
         ->make(true);
+    }
+
+    public function upload(Request $request){
+        $file = $request->file('video');
+        $filename = $file->getClientOriginalName();
+        $path = public_path().'\courses\\';
+        
+        return $file->move($path, $filename);
     }
 }

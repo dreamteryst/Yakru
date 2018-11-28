@@ -49,6 +49,7 @@ class CourseController extends Controller
             'course_video' => 'required',
             'course_discounted' => 'required',
             'course_limit' => 'required',
+            'type' => 'required'
         ]);
         $data = [
             'category_id' => $request->category_id,
@@ -60,7 +61,8 @@ class CourseController extends Controller
             'course_video' => $request->course_video,
             'course_discounted' => $request->course_discounted,
             'course_limit' => $request->course_limit,
-            'secret' => bin2hex(random_bytes(10))
+            'secret' => bin2hex(random_bytes(10)),
+            'type' => $request->type
         ];
         $data['requirements'] = json_decode($request['requirements']);
         $data['result'] = json_decode($request['results']);
@@ -103,17 +105,14 @@ class CourseController extends Controller
      */
     public function update(Request $request, Course $course)
     {
-        dd($request);
         $data =  $request->validate([
             'category_id' => 'required',
             'course_name' => 'required|max:200',
             'course_subtitle' => 'required|max:200',
             'course_description' => 'required|max:200',
-            'course_price' => 'required|max:6',
-            'course_picture' => 'required',
-            'course_video' => 'required',
+            'course_price' => 'required',
             'course_discounted' => 'required',
-            'course_limit' => 'required',
+            'course_limit' => 'required'
         ]);
         
         $data['requirements'] = json_decode($request['requirements']);
@@ -121,16 +120,8 @@ class CourseController extends Controller
         $data['tags'] = json_decode($request['tags']);
         $data['admin_id'] = 1;
 
-        if(!empty($request->file('picture')))
-        {
-            Storage::delete($news->picture);
-            $data['picture'] = $request->file('course_picture')->store('course_pictures');
-        } else {
-            unset($data['picture']);
-        }
-
         if($course->update($data)){
-            return json_encode(['success' => true, 'message' => 'ลบข้อมูล ' . $course->course_name . ' เรียบร้อย']);
+            return json_encode(['success' => true, 'message' => 'อัพเดทข้อมูล ' . $course->course_name . ' เรียบร้อย']);
         }
         return json_encode(['success' => false, 'message' => 'มีข้อผิดพลาดไม่คาดคิด']);
     }

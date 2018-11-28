@@ -222,7 +222,7 @@ export default {
                         data: null,
                         render: (data, type, row, meta) => {
                             return `<ul>
-                                <li><a href="/admin/course/unit">หลักสูตร</a></li>`+
+                                <li><a href="/admin/course/unit/`+ data.id +`">หลักสูตร</a></li>`+
                                 (row["type"] == 'live' ? `<li><a href="/admin/course/live/${row['id']}" style="white-space: nowrap;">ตารางสอน</a></li>` : ``)
                                 + `</ul>`
                         },
@@ -308,7 +308,7 @@ export default {
         deleteData(evt) {
             if (evt != undefined) evt.preventDefault();
             axios
-                .post(`/admin/course` + "/" + this.data.id, {
+                .post(`/admin/api/course` + "/" + this.data.id, {
                     _method: "DELETE"
                 })
                 .then(res => {
@@ -323,7 +323,7 @@ export default {
         },
         editData(evt) {
             evt.preventDefault();
-
+            
             var formData = new FormData();
             formData.append("_method", "PUT");
             formData.append('category_id', this.data.category_id);
@@ -334,11 +334,11 @@ export default {
             formData.append('requirements', JSON.stringify(this.data.requirements));
             formData.append('results', JSON.stringify(this.data.results));
             formData.append('tags', JSON.stringify(this.data.tags));
-            formData.append('course_discounted', this.course_discounted);
-            formData.append('course_limit', this.course_limit);
+            formData.append('course_discounted', this.data.course_discounted);
+            formData.append('course_limit', this.data.course_limit);
 
             axios
-                .post(`/admin/course` + "/" + this.data.id, formData)
+                .post(`/admin/api/course` + "/" + this.data.id, formData)
                 .then(res => {
                     this.modalEdit = false;
                     this.errors = {};

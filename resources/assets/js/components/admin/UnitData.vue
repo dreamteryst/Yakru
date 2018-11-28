@@ -7,7 +7,8 @@
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">จัดการหลักสูตร</h1>
+        <h1 class="page-header">จัดการหลักสูตร<router-link to="/admin/course/unit/add" class="btn btn-info ml-3">เพิ่มหลักสูตร</router-link></h1>
+        
         <!-- end page-header -->
 
         <!-- begin panel -->
@@ -70,7 +71,7 @@ export default {
                 autoWidth: false,
                 processing: true,
                 serverSide: true,
-                ajax: `/admin/api/unit/data/1`,
+                ajax: `/admin/api/unit/data/`+ self.$route.params.id,
                 order: [[0, "desc"]],
                 rowCallback: function (row, data, index) {
                     if (data["deleted_at"] != null) {

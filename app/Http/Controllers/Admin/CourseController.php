@@ -48,6 +48,7 @@ class CourseController extends Controller
             'course_video' => 'required',
             'course_discounted' => 'required',
             'course_limit' => 'required',
+            'type' => 'required'
         ]);
         $data = [
             'category_id' => $request->category_id,
@@ -59,6 +60,7 @@ class CourseController extends Controller
             'course_video' => $request->course_video,
             'course_discounted' => $request->course_discounted,
             'course_limit' => $request->course_limit,
+            'type' => $request->type
         ];
         $data['requirements'] = json_decode($request['requirements']);
         $data['result'] = json_decode($request['results']);
@@ -108,7 +110,7 @@ class CourseController extends Controller
             'course_description' => 'required|max:200',
             'course_price' => 'required',
             'course_discounted' => 'required',
-            'course_limit' => 'required',
+            'course_limit' => 'required'
         ]);
         
         $data['requirements'] = json_decode($request['requirements']);

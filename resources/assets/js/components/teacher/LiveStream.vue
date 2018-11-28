@@ -21,20 +21,20 @@
 								<span class="f-s-20">เริ่มการสอน</span>
 							</button>
 						</div>
-                        <div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'admin'">
+						<div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'admin'">
 							<button type="button" class="btn btn-success btn-block" ref="share-screen" @click="screenShare">
 								<span class="f-s-20">แชร์หน้าจอ</span>
 							</button>
 						</div>
 						<div class="chatbox">
-							<div class="message">
+							<div class="message" v-for="(message, i) in messages" :key="i">
 								<span class="user-name-teacher">
-									DreaMTeryST :&nbsp;
+									{{ message.username }} :&nbsp;
 								</span>
-								<span class="text">สวัสดีครับ</span>
-								<span class="time">1:40</span>
+								<span class="text">{{ message.message }}</span>
+								<span class="time">{{ message.time }}</span>
 							</div>
-							<div class="message">
+							<!-- <div class="message">
 								<span class="user-name-teacher">
 									DreaMTeryST :&nbsp;
 								</span>
@@ -47,9 +47,9 @@
 								</span>
 								<span class="text">สงสัยค่ะ</span>
 								<span class="time">2:30</span>
-							</div>
+							</div> -->
 							<div class="input">
-								<input type="text" class="form-control" placeholder="พิมพ์ข้อความที่นี่" />
+								<input type="text" class="form-control" @keyup="handleMessage" placeholder="พิมพ์ข้อความที่นี่" />
 							</div>
 						</div>
 					</div>
@@ -119,7 +119,7 @@
 					<!-- END col-2 -->
 				</div>
 				<!-- END similar-product -->
-				<hr/>
+				<hr />
 				<!-- BEGIN similar-product -->
 				<h4 class="m-b-15 m-t-30">You Might Also Like</h4>
 				<div class="row row-space-10">
@@ -154,152 +154,176 @@
 import { mapState } from 'vuex'
 
 export default {
-    data: () => ({
-        likes: [
-            {
-                img:
-                    'https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg',
-                name: 'The Complete Web Developer Course 2.0',
-                description:
-                    'Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!',
-                price: 330,
-                discount: 7800
-            },
-            {
-                img:
-                    'https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg',
-                name: 'The Complete React Native and Redux Course',
-                description:
-                    'iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!',
-                price: 330,
-                discount: 3600
-            },
-            {
-                img:
-                    'https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg',
-                name:
-                    'Android O & Java - Mobile App Development | Beginning to End',
-                description:
-                    'The complete Android course with Android Studio & Java. Go from beginner to professional app developer.',
-                price: 330,
-                discount: 7800
-            },
-            {
-                img:
-                    'https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg',
-                name: 'Running a Mobile App Dev Business: The Complete Guide',
-                description:
-                    'Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.',
-                price: 330,
-                discount: 5600
-            },
-            {
-                img:
-                    'https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg',
-                name: 'Android App Development: Mobile App Development & Java',
-                description:
-                    'Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop',
-                price: 330,
-                discount: 7200
-            },
-            {
-                img:
-                    'https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg',
-                name:
-                    'Mobile App Development for Beginners (Swift 3, iPhone iOS10)',
-                description:
-                    'iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.',
-                price: 330,
-                discount: 1800
-            }
-        ],
-        connection: '',
-        roomId: ''
-    }),
-    computed: {
-        ...mapState(['user'])
-    },
-    mounted() {
-        const self = this
-        this.connection = new RTCMultiConnection()
-        this.roomId = this.connection.token()
-        this.connection.getScreenConstraints = function(callback) {
-            getScreenConstraints(function(error, screen_constraints) {
-                if (!error) {
-                    screen_constraints = self.connection.modifyScreenConstraints(
-                        screen_constraints
-                    )
-                    callback(error, screen_constraints)
-                    return
-                }
-                throw error
-            })
-        }
-        this.connection.socketURL =
-            'http://localhost:9001/'
-
-        this.connection.socketMessageEvent = 'audio-video-screen-demo'
-
-        this.connection.session = {
-            audio: true,
-            video: true
-        }
-
-        this.connection.sdpConstraints.mandatory = {
-            OfferToReceiveAudio: true,
-            OfferToReceiveVideo: true
-        }
-
-        this.connection.videosContainer = document.getElementById('videos-container')
-        this.connection.onstream = function(event) {
-            if (document.getElementById(event.streamid)) {
-                var existing = document.getElementById(event.streamid)
-                existing.parentNode.removeChild(existing)
-            }
-
-            var width =
-                parseInt(self.connection.videosContainer.clientWidth) - 20
-
-            if (event.stream.isScreen === true) {
-                width = self.connection.videosContainer.clientWidth - 20
-            }
-
-            var mediaElement = getMediaElement(event.mediaElement, {
-                title: event.userid,
-                buttons: ['full-screen'],
-                width: width,
-                showOnMouseEnter: false
-            })
-
-            self.connection.videosContainer.appendChild(mediaElement)
-
-            setTimeout(function() {
-                mediaElement.media.play()
-            }, 5000)
-
-            mediaElement.id = event.streamid
-        }
-        this.connection.onstreamended = function(event) {
-            var mediaElement = document.getElementById(event.streamid)
-            if (mediaElement) {
-                mediaElement.parentNode.removeChild(mediaElement)
-            }
+	data: () => ({
+		likes: [
+			{
+				img:
+					'https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg',
+				name: 'The Complete Web Developer Course 2.0',
+				description:
+					'Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!',
+				price: 330,
+				discount: 7800
+			},
+			{
+				img:
+					'https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg',
+				name: 'The Complete React Native and Redux Course',
+				description:
+					'iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!',
+				price: 330,
+				discount: 3600
+			},
+			{
+				img:
+					'https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg',
+				name:
+					'Android O & Java - Mobile App Development | Beginning to End',
+				description:
+					'The complete Android course with Android Studio & Java. Go from beginner to professional app developer.',
+				price: 330,
+				discount: 7800
+			},
+			{
+				img:
+					'https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg',
+				name: 'Running a Mobile App Dev Business: The Complete Guide',
+				description:
+					'Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.',
+				price: 330,
+				discount: 5600
+			},
+			{
+				img:
+					'https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg',
+				name: 'Android App Development: Mobile App Development & Java',
+				description:
+					'Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop',
+				price: 330,
+				discount: 7200
+			},
+			{
+				img:
+					'https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg',
+				name:
+					'Mobile App Development for Beginners (Swift 3, iPhone iOS10)',
+				description:
+					'iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.',
+				price: 330,
+				discount: 1800
+			}
+		],
+		connection: '',
+		roomId: '',
+		socket: '',
+		messages: [],
+		profile: {}
+	}),
+	computed: {
+		...mapState(['user'])
+	},
+	watch: {
+        user() {
+            this.profile = this.user
         }
     },
-    methods: {
-        openRoom() {
-            this.connection.open(this.roomId, function() {
-                console.log('fn')
-                //showRoomURL(connection.sessionid);
-            });
-        },
-        screenShare() {
-            this.connection.addStream({
-                screen: true,
-                oneway: true
-            })
-        }
-    }
+	mounted() {
+		this.socket = io('http://localhost:3000')
+		const self = this
+		this.connection = new RTCMultiConnection()
+		this.roomId = this.connection.token()
+		this.connection.getScreenConstraints = function (callback) {
+			getScreenConstraints(function (error, screen_constraints) {
+				if (!error) {
+					screen_constraints = self.connection.modifyScreenConstraints(
+						screen_constraints
+					)
+					callback(error, screen_constraints)
+					return
+				}
+				throw error
+			})
+		}
+		this.connection.socketURL =
+			'http://localhost:9001/'
+
+		this.connection.socketMessageEvent = 'audio-video-screen-demo'
+
+		this.connection.session = {
+			audio: true,
+			video: true
+		}
+
+		this.connection.sdpConstraints.mandatory = {
+			OfferToReceiveAudio: true,
+			OfferToReceiveVideo: true
+		}
+
+		this.connection.videosContainer = document.getElementById('videos-container')
+		this.connection.onstream = function (event) {
+			if (document.getElementById(event.streamid)) {
+				var existing = document.getElementById(event.streamid)
+				existing.parentNode.removeChild(existing)
+			}
+
+			var width =
+				parseInt(self.connection.videosContainer.clientWidth) - 20
+
+			if (event.stream.isScreen === true) {
+				width = self.connection.videosContainer.clientWidth - 20
+			}
+
+			var mediaElement = getMediaElement(event.mediaElement, {
+				title: event.userid,
+				buttons: ['full-screen'],
+				width: width,
+				showOnMouseEnter: false
+			})
+
+			self.connection.videosContainer.appendChild(mediaElement)
+
+			setTimeout(function () {
+				mediaElement.media.play()
+			}, 5000)
+
+			mediaElement.id = event.streamid
+		}
+		this.connection.onstreamended = function (event) {
+			var mediaElement = document.getElementById(event.streamid)
+			if (mediaElement) {
+				mediaElement.parentNode.removeChild(mediaElement)
+			}
+		}
+
+		this.socket.on('chat message', function (msg) {
+			console.log(msg)
+			self.messages.push(msg)
+		})
+	},
+	methods: {
+		openRoom() {
+			this.connection.open(this.roomId, function () {
+				console.log('fn')
+				//showRoomURL(connection.sessionid);
+			});
+		},
+		screenShare() {
+			this.connection.addStream({
+				screen: true,
+				oneway: true
+			})
+		},
+		handleMessage(event) {
+			if(event.key === 'Enter') {
+				this.socket.emit('chat message', {
+					username: this.profile.firstname + ' ' + this.profile.lastname,
+					time: '0:00',
+					message: event.target.value
+				})
+				event.target.value = ''
+			}
+		}
+	}
 }
 </script>
 

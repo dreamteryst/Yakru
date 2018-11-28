@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\User;
 use App\Payment;
 use App\Topup;
 use Illuminate\Http\Request;
@@ -104,12 +105,16 @@ class PaymentController extends Controller
     public function confirm(Request $request)
     {
         $request->validate([
-            'topup_id' => 'required'
+            'payment_id' => 'required'
         ]);
-
-        $topup = Topup::find($request->topup_id);
-        $topup->status = 'paid';
-        if($topup->save())
+        
+        $payment = Payment::find($request->payment_id);
+        $payment->status = $payment->status == 'paid' ? 'unpaid' : 'paid';
+        $topup = Topup::find($payment->topup_id);
+        $topup->status = $topup->status == 'paid' ? 'unpaid' : 'paid';
+        $user = User::find($payment->user_id);
+        $user->money = $payment->status == 'paid' ? $user->money += $payment->amount : $user->money -= $payment->amount;
+        if($topup->save() && $payment->save() && $user->save())
         {
             return $topup;
         } else {

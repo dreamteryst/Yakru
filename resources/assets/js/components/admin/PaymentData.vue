@@ -90,14 +90,25 @@ export default {
                     {
                         data: null,
                         render: (data, type, row, meta) => {
-                            return (
-                                `
+                            if (row["status"] === "unpaid") {
+                                return (
+                                    `
                           <div class="actions" data='` +
-                                JSON.stringify(row) +
-                                `'>
+                                    JSON.stringify(row) +
+                                    `'>
                             <button type="button" class="btn btn-info btn-confirm">ยืนยัน</button>
                           </div>`
-                            );
+                                );
+                            } else {
+                                return (
+                                    `
+                          <div class="actions" data='` +
+                                    JSON.stringify(row) +
+                                    `'>
+                            <button type="button" class="btn btn-danger btn-unconfirm">ยกเลิก</button>
+                          </div>`
+                                );
+                            }
                         },
                         searchable: false,
                         sortable: false
@@ -106,13 +117,35 @@ export default {
                 drawCallback: function(settings) {
                     $(".btn-confirm").on("click", function() {
                         swal({
-                            title: "Are you sure?",
-                            text: "You won't be able to revert this!",
+                            title: "ยืนยันการดำเนินการ",
+                            text: "คุณต้องการยืนยันการแจ้งชำระเงินใช่หรือไม่?",
                             type: "warning",
                             showCancelButton: true,
                             confirmButtonColor: "#3085d6",
                             cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes"
+                            confirmButtonText: "Yes",
+                            reverseButtons: true
+                        }).then(result => {
+                            if (result.value) {
+                                self.data = JSON.parse(
+                                    $(this)
+                                        .closest("div")
+                                        .attr("data")
+                                );
+                                self.confirm();
+                            }
+                        });
+                    });
+                    $(".btn-unconfirm").on("click", function() {
+                        swal({
+                            title: "ยืนยันการดำเนินการ",
+                            text: "คุณต้องการยกเลิกการแจ้งชำระเงินใช่หรือไม่?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes",
+                            reverseButtons: true
                         }).then(result => {
                             if (result.value) {
                                 self.data = JSON.parse(
@@ -135,6 +168,7 @@ export default {
                     payment_id: this.data.id
                 })
                 .then(({ data }) => {
+                    this.table.ajax.reload()
                     swal({
                         type: "success",
                         title: "ดำเนินการสำเร็จ"

@@ -76,6 +76,7 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::resource('order', 'Admin\OrderController');
 
         Route::get('payment/data', 'Admin\PaymentController@anyData');
+        Route::post('payment/confirm', 'Admin\PaymentController@confirm');
         Route::resource('payment', 'Admin\PaymentController');
 
         Route::get('promotion/data', 'Admin\PromotionController@anyData');

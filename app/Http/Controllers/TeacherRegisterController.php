@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Order;
+use App\TeacherRegister;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Yajra\Datatables\Datatables;
 
-class OrderController extends Controller
+class TeacherRegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,10 +41,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\TeacherRegister  $teacherRegister
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(TeacherRegister $teacherRegister)
     {
         //
     }
@@ -54,10 +52,10 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order  $order
+     * @param  \App\TeacherRegister  $teacherRegister
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(TeacherRegister $teacherRegister)
     {
         //
     }
@@ -66,10 +64,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order  $order
+     * @param  \App\TeacherRegister  $teacherRegister
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, TeacherRegister $teacherRegister)
     {
         //
     }
@@ -77,26 +75,11 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order  $order
+     * @param  \App\TeacherRegister  $teacherRegister
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(TeacherRegister $teacherRegister)
     {
         //
-    }
-
-    public function anyData()
-    {
-        return Datatables::of(Order::query())
-        ->addColumn('course_name', function($order) {
-            return $order->course->course_name;
-        })
-        ->addColumn('course_price', function($order) {
-            return $order->course->course_price;
-        })
-        ->addColumn('fullname', function($order) {
-            return $order->user->firstname.' '.$order->user->lastname;
-        })
-        ->make(true);
     }
 }

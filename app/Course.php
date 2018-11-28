@@ -15,10 +15,12 @@ class Course extends Model
      */
     protected $fillable = [
         'category_id',
+        'course_picture',
         'course_name',
         'course_subtitle',
         'course_description',
         'course_price',
+        'course_discounted',
         'requirements',
         'result',
         'tags',

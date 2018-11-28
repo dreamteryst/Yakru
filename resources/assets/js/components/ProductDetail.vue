@@ -10,9 +10,9 @@
                         <a href="#">Home</a>
                     </li>
                     <li>
-                        <a href="#">Mobile Development</a>
+                        <a href="#" v-if="course.category">{{ course.category.category_name }}</a>
                     </li>
-                    <li class="active">React Native สำหรับมือใหม่!!</li>
+                    <li class="active">{{ course.course_name }}</li>
                 </ul>
                 <!-- END breadcrumb -->
 
@@ -24,7 +24,7 @@
                         <div class="product-image">
                             <div class="embed-responsive embed-responsive-16by9">
                                 <!-- <video ref="videoElement"></video> -->
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/mkualZPRZCs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                <iframe width="560" height="315" :src="course.course_video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                             </div>
                         </div>
                         <!-- END product-image -->
@@ -33,10 +33,10 @@
                             <!-- BEGIN product-info-header -->
                             <div class="product-info-header">
                                 <h1 class="product-title">
-                                    <span class="label label-success">41% OFF</span> React Native สำหรับมือใหม่!!</h1>
+                                    <span class="label label-success">{{getPercent(course)}}% OFF</span> {{ course.course_name}}</h1>
                                 <ul class="product-category">
                                     <li>
-                                        <a href="#">Mobile Development</a>
+                                        <a href="#" v-if="course.category">{{ course.category.category_name }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -48,33 +48,20 @@
                             <!-- END product-warranty -->
                             <!-- BEGIN product-info-list -->
                             <ul class="product-info-list">
-                                <li>
-                                    <i class="fa fa-circle"></i> Setup and Introduction</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Mastering User Interface</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Platform Specific</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Using Dynamic Content and Network (JSON Http Feed)</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Access Native Device Feature</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> User Input, Form and Data Management</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> Using Google Map</li>
-                                <li>
-                                    <i class="fa fa-circle"></i> การเตรียม Resources, เทคนิคการ Build App และอัปโหลด App ไปที่ Store</li>
+                                <li v-for="(result, i) in course.result" :key="i">
+                                    <i class="fa fa-circle"></i> {{ result }}
+                                </li>
                             </ul>
                             <!-- END product-info-list -->
                             <!-- BEGIN product-purchase-container -->
                             <div class="product-purchase-container">
                                 <div class="product-discount">
-                                    <span class="discount">฿869.00</span>
+                                    <span class="discount" v-if="course.course_price">฿{{ numberWithCommas(course.course_price) }}</span>
                                 </div>
                                 <div class="product-price">
-                                    <div class="price">฿749.00</div>
+                                    <div class="price" v-if="course.course_discounted">฿{{ numberWithCommas(course.course_discounted) }}</div>
                                 </div>
-                                <button class="btn btn-inverse btn-lg" type="button" @click="play">PURCHASE</button>
+                                <button class="btn btn-inverse btn-lg" type="button">PURCHASE</button>
                             </div>
                             <!-- END product-purchase-container -->
                         </div>
@@ -93,19 +80,19 @@
                         <!-- BEGIN #product-tab-content -->
                         <div id="product-tab-content" class="tab-content">
                             <!-- BEGIN #curriculum -->
-                            <div class="tab-pane fade active in" id="curriculum" v-for="(course, i) in courses" :key="i">
+                            <div class="tab-pane fade active in" id="curriculum" v-for="(unit, i) in course.units" :key="i">
                                 <b-card no-body class="mb-1">
                                     <b-card-header header-tag="header" class="p-1" role="tab">
                                         <b-btn block href="#" v-b-toggle="'accordion-' + i" variant="info" class="btn-left">
-                                            <i class="fa fa-plus"></i> {{ course.title }}
+                                            <i class="fa fa-plus"></i> {{ unit.unit_name }}
                                         </b-btn>
                                     </b-card-header>
                                     <b-collapse :id="'accordion-' + i" accordion="my-accordion" role="tabpanel">
                                         <b-card-body>
-                                            <ul class="curriculum" v-for="(sub, j) in course.sub" :key="j">
+                                            <ul class="curriculum" v-for="(lecture, j) in unit.lectures" :key="j">
                                                 <li>
                                                     <router-link to="#">
-                                                        <i class="fa fa-play-circle"></i> {{ sub.name }}
+                                                        <i class="fa fa-play-circle"></i> {{ lecture.lecture_name }}
                                                     </router-link>
                                                 </li>
                                             </ul>
@@ -131,18 +118,12 @@
                         <div id="product-tab-content" class="tab-content">
                             <!-- BEGIN #product-desc -->
                             <div class="tab-pane fade active in" id="product-desc">
-                                <h3>Requirement</h3>
-                                <ul>
-                                    <li>Javascript</li>
-                                    <li>HTML</li>
-                                    <li>CSS</li>
+                                <h3 v-if="course.requirements">Requirement</h3>
+                                <ul v-if="course.requirements">
+                                    <li v-for="(item, i) in course.requirements" :key="i">{{ item }}</li>
                                 </ul>
                                 <h3>Description</h3>
-                                <p>
-                                    React-Native คือ Cross-Platform Framework ที่ใช้ในการพัฒนา Native Mobile Application อย่าง Android และ iOS ที่พัฒนาโดยบริษัท Facebook Inc. React Native มีหลักการคล้ายกับ Xamarin คือมันสามารถ Reuse Code ได้มากกว่า 70% ในการทำแอพที่รันได้ทั้งบน Android และ iOS โดยใช้ภาษาหลักภาษาเดียว คือภาษา ReactJS (ES6 / JSX) ซึ่งใกล้เคียงกับ Javascript / Typescript / XML ในการพัฒนาแอพ ซึ่งเมื่อทำเสร็จ แอพจะทำงานไวใกล้เคียงกับการเขียนด้วย ภาษา Native อย่าง Java และ Swift/Objective-C
-                                    อีกหนึ่งจุดเด่นของ React Native คือการประยุกต์ใช้แนวคิดแบบ Reactive Programming ที่ทำให้การพัฒนารองรับการทำงานแบบ Asynchronous และมี State ที่ซับซ้อนได้
-                                    นอกจากนี้ในหลักสูตรจะมีการสอน Redux (State Container) ในการจัดการ State เพื่อให้การพัฒนารองรับระบบที่มีความซับซ้อนและดูเป็นมืออาชีพ รวมถึงการเขียนโค้ดที่ทำงานร่วมกับ Native API ที่เป็น Java หรือ Objective-C และแชร์ประสบการณ์การในพัฒนาแอพด้วย React-Native จริงๆ
-                                </p>
+                                <p v-html="course.course_description"></p>
                             </div>
                             <!-- END #product-desc -->
                         </div>
@@ -156,20 +137,20 @@
                 <h4 class="m-b-15 m-t-30">คอร์สที่คุณอาจจะชอบ</h4>
                 <div class="row row-space-10">
                     <!-- BEGIN col-2 -->
-                    <div class="col-md-2 col-sm-4" v-for="(like, i) in links" :key="i">
+                    <div class="col-md-2 col-sm-4" v-for="(like, i) in likes" :key="i">
                         <!-- BEGIN item -->
                         <div class="item item-thumbnail">
-                            <router-link to="/product-detail" class="item-image">
-                                <img :src="like.img" alt="" />
+                            <router-link :to="`/product-detail/${like.id}`" class="item-image">
+                                <img :src="like.course_picture" alt="" />
                                 <div class="discount">{{ getPercent(like) }}% OFF</div>
                             </router-link>
                             <div class="item-info">
                                 <h4 class="item-title">
-                                    <router-link to="/product-detail">{{ like.name }}</router-link>
+                                    <router-link to="/product-detail">{{ like.course_name }}</router-link>
                                 </h4>
-                                <p class="item-desc">{{ like.description }}</p>
-                                <div class="item-price">฿ {{ numberWithCommas(like.price) }}</div>
-                                <div class="item-discount-price">฿ {{ numberWithCommas(like.discount) }}</div>
+                                <p class="item-desc">{{ like.course_description }}</p>
+                                <div class="item-price" v-if="like.course_discounted">฿ {{ numberWithCommas(like.course_discounted) }}</div>
+                                <div class="item-discount-price" v-if="like.course_price">฿ {{ numberWithCommas(like.course_price) }}</div>
                             </div>
                         </div>
                         <!-- END item -->
@@ -188,6 +169,8 @@
 export default {
     data() {
         return {
+            course: '',
+            likes: '',
             links: [
                 {
                     img:
@@ -243,296 +226,21 @@ export default {
                     discount: 1800
                 }
             ],
-            courses: [
-                {
-                    title: "Setup and Introduction",
-                    sub: [
-                        {
-                            name: "Course Introduction"
-                        },
-                        {
-                            name: "NodeJS Install"
-                        },
-                        {
-                            name: "React-Native & Watchman"
-                        },
-                        {
-                            name: "Visual Studio Install and React-Native Extension Pack"
-                        },
-                        {
-                            name: "React-Native CLI"
-                        },
-                        {
-                            name: "How to use the React-Native Documentation"
-                        },
-                        {
-                            name: "Basic ReactJS Langulage (ES5/6 and JSX)"
-                        },
-                        {
-                            name: "React Component and Basic UI"
-                        },
-                        {
-                            name: "Styling and Theming"
-                        },
-                        {
-                            name: "Debugging / JS-Debugging / Auto-Reload"
-                        }
-                    ]
-                },
-                {
-                    title: "Mastering User Interface",
-                    sub: [
-                        {
-                            name: "React-Native Project Structure"
-                        },
-                        {
-                            name: "Core User Interface Input / Output"
-                        },
-                        {
-                            name: "Data Binding (Props and State)"
-                        },
-                        {
-                            name: "Event Listener"
-                        },
-                        {
-                            name: "Mutiple Screens"
-                        },
-                        {
-                            name: "Redux, React-Redux"
-                        },
-                        {
-                            name: "Redux Middleware Redux-Thunk"
-                        },
-                        {
-                            name: "Reducer, Action, Dispatch"
-                        },
-                        {
-                            name: "How Navigation works in an React-Native"
-                        },
-                        {
-                            name: "Creating a Page and how to Navigate to it"
-                        },
-                        {
-                            name: "Passing Data between Pages"
-                        },
-                        {
-                            name: "Popping Pages - Callback Data"
-                        },
-                        {
-                            name: "Using Redux for Page Navigation"
-                        },
-                        {
-                            name: "Configuring Page Transitions"
-                        },
-                        {
-                            name: "The Page Lifecycle in Action"
-                        }
-                    ]
-                },
-                {
-                    title: "Platform Specific Code",
-                    sub: [
-                        {
-                            name: "Detecting OS (Android or iOS)"
-                        },
-                        {
-                            name: "Detecting Android Version"
-                        },
-                        {
-                            name: "Detecting iOS Version"
-                        },
-                        {
-                            name: "Style and Size in Specific Platform"
-                        },
-                        {
-                            name: "Platform-specific extensions"
-                        },
-                        {
-                            name: "Access Platform Specific Code"
-                        }
-                    ]
-                },
-                {
-                    title: "Using Dynamic Content and Network (JSON Http Feed)",
-                    sub: [
-                        {
-                            name: "Standard Network API - Fetch"
-                        },
-                        {
-                            name: "3rd Party Network API - Axios"
-                        },
-                        {
-                            name: "HTTP Fetching RESTful (JSON)"
-                        },
-                        {
-                            name: "Fixing iOS HTTP (unsecured) Issue"
-                        },
-                        {
-                            name: "Fetching data from MySql"
-                        },
-                        {
-                            name: "ScrolllView"
-                        },
-                        {
-                            name: "Setup FlatList"
-                        },
-                        {
-                            name: "Styling ListView"
-                        },
-                        {
-                            name: "Tap Event Listener"
-                        }, {
-                            name: "Add Loading Component"
-                        },
-                        {
-                            name: "Add Pull to Refresh support to our app"
-                        },
-                        {
-                            name: "การจัดการกับปัญหาเรื่อง Cross-Origin-Resource-Sharing (Cors)"
-                        }
-                    ]
-                },
-                {
-                    title: "Access Native Device Feature",
-                    sub: [
-                        {
-                            name: "Runtime Permission"
-                        },
-                        {
-                            name: "Youtube Video Player"
-                        },
-                        {
-                            name: "Camera"
-                        },
-                        {
-                            name: "arcode and QR Code Scanner"
-                        },
-                        {
-                            name: "InAppBrowser"
-                        },
-                        {
-                            name: "SQLite"
-                        },
-                        {
-                            name: "Toasts"
-                        },
-                        {
-                            name: "Call Number"
-                        },
-                        {
-                            name: "File"
-                        }, {
-                            name: "File Path"
-                        },
-                        {
-                            name: "File Transfer"
-                        }
-                    ]
-                },
-                {
-                    title: "User Input, Forms and Data Management",
-                    sub: [
-                        {
-                            name: "How to use Local Storage"
-                        },
-                        {
-                            name: "Learn 3rd-party Custom UI - 'UI Element'"
-                        },
-                        {
-                            name: "Handle User Input"
-                        },
-                        {
-                            name: "Registering Controls"
-                        },
-                        {
-                            name: "Submitting the Form"
-                        },
-                        {
-                            name: "Validating the Form"
-                        },
-                        {
-                            name: "Handling Data with a Model for our Ingredients"
-                        },
-                        {
-                            name: "Managing Data with a Service"
-                        },
-                        {
-                            name: "insert, update, and delete data"
-                        },
-                        {
-                            name: "Alerts"
-                        }
-                    ]
-                },
-                {
-                    title: "Using Google Map",
-                    sub: [
-                        {
-                            name: "Using 3rd-party Library"
-                        },
-                        {
-                            name: "Adding Google Maps to the App"
-                        },
-                        {
-                            name: "Configuring our Maps"
-                        },
-                        {
-                            name: "Allowing the User to Place a Marker on the Map"
-                        },
-                        {
-                            name: "Displaying the Chosen Location"
-                        },
-                        {
-                            name: "Geolocation to Locate the User"
-                        }
-                    ]
-                },
-                {
-                    title: "การเตรียม Resources, เทคนิคการ Build App และอัพโหลด App ไปที่ Store",
-                    sub: [
-                        {
-                            name: "Custom Icons and Splashscreen"
-                        },
-                        {
-                            name: "Configuration"
-                        },
-                        {
-                            name: "Generate Distribution Files"
-                        },
-                        {
-                            name: "Build Preparations and Building for Production"
-                        },
-                        {
-                            name: "Publish to Google Play Store"
-                        },
-                        {
-                            name: "Publish to Apple AppStore"
-                        }
-                    ]
-                }
-            ],
-            player: null
         };
     },
     mounted() {
-        const self = this;
-        $(function () {
-            if (flvjs.isSupported()) {
-                var videoElement = self.$refs.videoElement;
-                self.player = flvjs.createPlayer({
-                    type: "flv",
-                    //   url: "http://178.128.50.9:8000/live/nodemedia2017privatekey.flv"
-                    url: "/assets/flv/converted.flv"
-                });
-                self.player.attachMediaElement(videoElement);
-                self.player.load();
-            }
-        });
-    },
-    methods: {
-        play() {
-            this.player.play();
-        }
+        axios.get(`/api/course/${this.$route.params.id}`).then(({data}) => {
+            this.course = data
+        }).catch(error => {
+            console.log(error)
+			if(error.response) console.log(error.response)
+        })
+        axios.get(`/api/course/like/${this.$route.params.id}`).then(({data}) => {
+            this.likes = data
+        }).catch(error => {
+            console.log(error)
+			if(error.response) console.log(error.response)
+        })
     }
 };
 </script>

@@ -5,11 +5,6 @@ Vue.mixin({
         ucfirst(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         },
-        getPercent(course) {
-            return parseInt(
-                ((course.discount - course.price) * 100) / course.discount
-            );
-        },
         numberWithCommas(number) {
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         },

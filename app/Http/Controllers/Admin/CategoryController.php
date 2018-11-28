@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use Illuminate\Http\Request;
@@ -108,4 +108,5 @@ class CategoryController extends Controller
     {
         return Datatables::of(Category::query())->make(true);
     }
+
 }

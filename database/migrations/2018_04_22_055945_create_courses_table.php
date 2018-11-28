@@ -17,10 +17,13 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('user_id');
+            $table->string('course_picture');
+            $table->string('course_video');
             $table->string('course_name');
             $table->string('course_subtitle');
             $table->mediumText('course_description');
             $table->decimal('course_price', 8, 2);
+            $table->decimal('course_discounted', 8, 2);
             $table->integer('course_limit')->default(0);
             $table->text('requirements')->nullable();
             $table->text('result')->nullable();

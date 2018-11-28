@@ -16,4 +16,9 @@ class Category extends Model
     protected $fillable = [
         'category_name', 'category_description',
     ];
+
+    public function courses()
+    {
+        return $this->hasMany('App\Course');
+    }
 }

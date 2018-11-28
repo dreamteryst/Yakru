@@ -52,34 +52,34 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
     });
 
     Route::prefix('api')->group(function () {
-        Route::get('category/data', 'CategoryController@anyData');
-        Route::resource('category', 'CategoryController');
+        Route::get('category/data', 'Admin\CategoryController@anyData');
+        Route::resource('category', 'Admin\CategoryController');
 
-        Route::get('course/data', 'CourseController@anyData');
-        Route::resource('course', 'CourseController');
+        Route::get('course/data', 'Admin\CourseController@anyData');
+        Route::resource('course', 'Admin\CourseController');
 
-        Route::get('unit/data/{id}', 'UnitController@anyData');
-        Route::resource('unit', 'UnitController');
+        Route::get('unit/data/{id}', 'Admin\UnitController@anyData');
+        Route::resource('unit', 'Admin\UnitController');
 
-        Route::get('lecture/data/{id}', 'LectureController@anyData');
-        Route::resource('lecture', 'LectureController');
+        Route::get('lecture/data/{id}', 'Admin\LectureController@anyData');
+        Route::resource('lecture', 'Admin\LectureController');
 
-        Route::get('order/data', 'OrderController@anyData');
-        Route::resource('order', 'OrderController');
+        Route::get('order/data', 'Admin\OrderController@anyData');
+        Route::resource('order', 'Admin\OrderController');
 
-        Route::get('payment/data', 'PaymentController@anyData');
-        Route::resource('payment', 'PaymentController');
+        Route::get('payment/data', 'Admin\PaymentController@anyData');
+        Route::resource('payment', 'Admin\PaymentController');
 
-        Route::get('promotion/data', 'PromotionController@anyData');
-        Route::resource('promotion', 'PromotionController');
+        Route::get('promotion/data', 'Admin\PromotionController@anyData');
+        Route::resource('promotion', 'Admin\PromotionController');
 
-        Route::get('schedule/data/{id}', 'ScheduleController@anyData');
-        Route::resource('schedule', 'ScheduleController');
+        Route::get('schedule/data/{id}', 'Admin\ScheduleController@anyData');
+        Route::resource('schedule', 'Admin\ScheduleController');
 
-        Route::get('student/data', 'StudentController@anyData');
-        Route::resource('student', 'StudentController');
+        Route::get('student/data', 'Admin\StudentController@anyData');
+        Route::resource('student', 'Admin\StudentController');
 
-        Route::get('teacher/data', 'AdminController@anyData');
+        Route::get('teacher/data', 'Admin\AdminController@anyData');
     });
 
     Route::get('/{any}', function () {
@@ -106,4 +106,3 @@ Route::get('/{any}', function () {
     return view('main');
 })->where('any', '.*');
 
-Route::get('/home', 'HomeController@index')->name('home');

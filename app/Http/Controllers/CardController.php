@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\ScheduleUnit;
+use Auth;
+use App\Card;
 use Illuminate\Http\Request;
 
-class ScheduleUnitController extends Controller
+class CardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,16 +36,28 @@ class ScheduleUnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'card_name' => 'required',
+            'card_token' => 'required'
+        ]);
+        $data = $request->all();
+        $data['user_id'] = Auth::user()->id;
+        $card = Card::create($data);
+        if($card)
+        {
+            return $card;
+        } else {
+            return reponse('failed', 500);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ScheduleUnit  $scheduleUnit
+     * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function show(ScheduleUnit $scheduleUnit)
+    public function show(Card $card)
     {
         //
     }
@@ -52,10 +65,10 @@ class ScheduleUnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ScheduleUnit  $scheduleUnit
+     * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function edit(ScheduleUnit $scheduleUnit)
+    public function edit(Card $card)
     {
         //
     }
@@ -64,10 +77,10 @@ class ScheduleUnitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ScheduleUnit  $scheduleUnit
+     * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ScheduleUnit $scheduleUnit)
+    public function update(Request $request, Card $card)
     {
         //
     }
@@ -75,11 +88,16 @@ class ScheduleUnitController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ScheduleUnit  $scheduleUnit
+     * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ScheduleUnit $scheduleUnit)
+    public function destroy(Card $card)
     {
-        //
+        if($card->delete())
+        {
+            return response('success');
+        } else {
+            return response('failed', 500);
+        }
     }
 }

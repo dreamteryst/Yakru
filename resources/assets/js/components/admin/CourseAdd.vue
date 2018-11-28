@@ -38,9 +38,16 @@
                 </div>
                 <div class="form-group">
                     <label for="course_cover">ภาพปก</label>
-                    <input type="file" class="form-control" :class="{'is-invalid':isError('course_cover')}" id="course_cover" accept="image/*" placeholder="Course Cover">
+                    <input type="file" class="form-control" :class="{'is-invalid':isError('course_cover')}" id="course_cover" @change="handlefile($event)" accept="image/*" placeholder="Course Cover">
                     <div class="invalid-feedback" v-if="isError('course_cover')">
                         {{ errors.course_cover[0] }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="course_video">ลิงค์ intro</label>
+                   <input type="text" class="form-control" :class="{'is-invalid':isError('course_video')}" id="course_video" v-model="course_video" placeholder="Course Video">
+                    <div class="invalid-feedback" v-if="isError('course_video')">
+                        {{ errors.course_video[0] }}
                     </div>
                 </div>
                 <div class="form-group">
@@ -69,6 +76,20 @@
                     <input type="number" min="0" max="999999" step="0.01" class="form-control" id="course_price" :class="{'is-invalid':isError('course_price')}" v-model="course_price" placeholder="Course Price">
                     <div class="invalid-feedback" v-if="isError('course_price')">
                         {{ errors.course_price[0] }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="course_discounted">ส่วนลด</label>
+                    <input type="number" min="0" max="999999" step="0.01" class="form-control" id="course_discounted" :class="{'is-invalid':isError('course_discounted')}" v-model="course_discounted" placeholder="Course Price">
+                    <div class="invalid-feedback" v-if="isError('course_discounted')">
+                        {{ errors.course_discounted[0] }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="course_limit">จำนวนผู้เรียนได้สูงสุด</label>
+                    <input type="number" min="0" max="999999" step="0.01" class="form-control" id="course_limit" :class="{'is-invalid':isError('course_limit')}" v-model="course_limit" placeholder="Course Price">
+                    <div class="invalid-feedback" v-if="isError('course_limit')">
+                        {{ errors.course_limit[0] }}
                     </div>
                 </div>
 
@@ -134,6 +155,10 @@ export default {
             tags: [],
             errors: [],
             isSuccess: false,
+            picture : '',
+            course_video : '',
+            course_discounted : 0,
+            course_limit: ''
         }
     },
     mounted() {
@@ -154,6 +179,10 @@ export default {
             formData.append('requirements', JSON.stringify(this.requirements));
             formData.append('results', JSON.stringify(this.results));
             formData.append('tags', JSON.stringify(this.tags));
+            formData.append('course_picture', this.picture,this.picture.name);
+            formData.append('course_video', this.course_video);
+            formData.append('course_discounted', this.course_discounted);
+            formData.append('course_limit', this.course_limit);
 
             axios.post(`/admin/api/course`, formData).then((response) => {
                 if (response.status === 200) {
@@ -167,6 +196,10 @@ export default {
                     this.isSuccess = true;
                     this.tags = [];
                     this.errors = [];
+                    this.picture = '';
+                    this.course_video = '';
+                    this.course_discounted = 0;
+                    this.course_limit = '';
                 }
             })
                 .catch((error) => {
@@ -189,6 +222,9 @@ export default {
         },
         removeReq() {
             this.requirements.splice((this.requirements.length > 1) ? this.requirements.length - 1 : this.requirements.length - 0);
+        },
+        handlefile(event) {
+            this.picture = event.target.files[0];
         }
     }
 }

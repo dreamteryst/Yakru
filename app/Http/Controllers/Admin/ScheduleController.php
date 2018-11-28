@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Course;
 use App\Http\Controllers\Controller;
 use App\Schedule;
 use App\ScheduleUnit;
+use Auth;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
@@ -17,7 +19,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        return Course::where('user_id', Auth::user()->id)->with('schedule')->get();
     }
 
     /**
@@ -98,8 +100,7 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        if($schedule->delete())
-        {
+        if ($schedule->delete()) {
             return response('success');
         } else {
             return response('failed', 500);

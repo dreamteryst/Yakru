@@ -42,6 +42,7 @@ Route::prefix('api')->group(function () {
         Route::get('course/teacherCourse', 'CourseController@teacherCourse')->name('coures.teacherCourse');
         Route::get('course/user/{id}', 'CourseController@courseUser')->name('coures.courseUser');
         Route::post('payment', 'PaymentController@store')->name('payment.store');
+        Route::post('teacher/register', 'TeacherRegisterController@store')->name('teacherRegister.store');
     });
     Route::get('bank', 'BankController@jsonData')->name('bank.data');
     Route::get('category', 'CategoryController@jsonData')->name('category.data');
@@ -101,6 +102,8 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::resource('student', 'Admin\StudentController');
 
         Route::get('teacher/data', 'Admin\AdminController@anyData');
+
+        Route::get('setting/stats', 'Admin\SettingController@stats');
     });
 
     Route::get('/{any}', function () {

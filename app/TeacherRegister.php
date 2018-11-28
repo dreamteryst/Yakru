@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class TeacherRegister extends Model
 {
     protected $fillable = [
-        'prefix', 'firstname', 'lastname', 'date_of_birth', 'attach', 'skill', 'bio', 'cityzen_id', 'photo_id',
+        'user_id', 'name', 'date_of_birth', 'attach', 'skill', 'bio', 'citizen_id', 'photo_id',
     ];
 }

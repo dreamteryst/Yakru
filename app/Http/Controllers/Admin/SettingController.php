@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Setting;
+use App\Order;
+use App\Course;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -82,5 +85,15 @@ class SettingController extends Controller
     public function destroy(Setting $setting)
     {
         //
+    }
+
+    public function stats()
+    {
+        return [
+            'course_sell' => Order::sum('course_price'),
+            'total_course' => Course::count(),
+            'total_member' => User::count(),
+            'total_teacher' => User::where('type', '!=', 'student')->count()
+        ];
     }
 }

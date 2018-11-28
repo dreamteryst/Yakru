@@ -91,8 +91,8 @@ export default {
         $('.datetimepicker').datetimepicker({
             format: 'YYYY-MM-DD hh:mm:ss'
         });
-        this.data.started_at = $('.datetimepicker').val()
-        this.data.ended_at = $('.datetimepicker').val()
+        this.started_at = $('.datetimepicker').val()
+        this.ended_at = $('.datetimepicker').val()
     },
     methods:{
         save(){

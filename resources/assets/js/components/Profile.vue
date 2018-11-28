@@ -74,7 +74,7 @@
                     <a href="javascript:;" @click="openVisa">ชำระด้วย บัตรเครดิต</a>
                   </li>
                   <li>
-                    <a href="#">ชำระด้วย โอนเงินผ่านธนาคาร</a>
+                    <a href="javascript:;" @click="openBank">ชำระด้วย โอนเงินผ่านธนาคาร</a>
                   </li>
                 </ul>
               </div>
@@ -86,23 +86,29 @@
         </div>
         <!-- END account-container -->
         <!-- BEGIN similar-product -->
-        <h4 class="m-b-15 m-t-30">คอร์สที่คุณอาจจะชอบ</h4>
+        <h4 class="m-b-15 m-t-30">คอร์สใหม่ล่าสุด</h4>
         <div class="row row-space-10">
           <!-- BEGIN col-2 -->
-          <div class="col-md-2 col-sm-4" v-for="(like, i) in links" :key="i">
+          <div class="col-md-2 col-sm-4" v-for="(like, i) in likes" :key="i">
             <!-- BEGIN item -->
             <div class="item item-thumbnail">
-              <router-link to="/product-detail" class="item-image">
-                <img :src="like.img" alt>
+              <router-link :to="`/product-detail/${like.id}`" class="item-image">
+                <img :src="like.course_picture" alt>
                 <div class="discount">{{ getPercent(like) }}% OFF</div>
               </router-link>
               <div class="item-info">
                 <h4 class="item-title">
-                  <router-link to="/product-detail">{{ like.name }}</router-link>
+                  <router-link to="/product-detail">{{ like.course_name }}</router-link>
                 </h4>
-                <p class="item-desc">{{ like.description }}</p>
-                <div class="item-price">฿ {{ numberWithCommas(like.price) }}</div>
-                <div class="item-discount-price">฿ {{ numberWithCommas(like.discount) }}</div>
+                <p class="item-desc">{{ like.course_description }}</p>
+                <div
+                  class="item-price"
+                  v-if="like.course_discounted"
+                >฿ {{ numberWithCommas(like.course_discounted) }}</div>
+                <div
+                  class="item-discount-price"
+                  v-if="like.course_price"
+                >฿ {{ numberWithCommas(like.course_price) }}</div>
               </div>
             </div>
             <!-- END item -->
@@ -115,86 +121,45 @@
     </div>
     <!-- END #about-us-cover -->
     <b-modal ref="modalVisa" title="ชำระด้วย บัตรเครดิต" hide-footer no-fade>
-      <Visa />
+      <Visa/>
+    </b-modal>
+    <b-modal ref="modalBank" title="ชำระด้วย โอนผ่านธนาคาร" hide-footer no-fade>
+      <Bank/>
     </b-modal>
   </section>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import Visa from './Visa'
+import Visa from "./Visa";
+import Bank from "./Transfer";
 export default {
-    components: { Visa },
+    components: { Visa, Bank },
     data() {
         return {
-            links: [
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/764164_de03_2.jpg",
-                    name: "The Complete Web Developer Course 2.0",
-                    description:
-                        "Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!",
-                    price: 330,
-                    discount: 7800
-                },
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/959700_8bd2_9.jpg",
-                    name: "The Complete React Native and Redux Course",
-                    description:
-                        "iOS and Android App Development from scratch - build full React Native mobile apps ridiculously fast!",
-                    price: 330,
-                    discount: 3600
-                },
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/1212244_825c.jpg",
-                    name:
-                        "Android O & Java - Mobile App Development | Beginning to End",
-                    description:
-                        "The complete Android course with Android Studio & Java. Go from beginner to professional app developer.",
-                    price: 330,
-                    discount: 7800
-                },
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/529438_f64b_4.jpg",
-                    name:
-                        "Running a Mobile App Dev Business: The Complete Guide",
-                    description:
-                        "Learn how to start and grow a mobile app development business. Get up & running in less than 1 week.",
-                    price: 330,
-                    discount: 5600
-                },
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/1512578_b4eb_2.jpg",
-                    name:
-                        "Android App Development: Mobile App Development & Java",
-                    description:
-                        "Android App Development & Java Programming: Mobile App Development & Design, Build Android Apps, Android 5 & Lollipop",
-                    price: 330,
-                    discount: 7200
-                },
-                {
-                    img:
-                        "https://udemy-images.udemy.com/course/240x135/1017096_0e3f_3.jpg",
-                    name:
-                        "Mobile App Development for Beginners (Swift 3, iPhone iOS10)",
-                    description:
-                        "iPhone (iOS 10) app development. The complete development course. Use Swift 3 & Xcode 8 to design 10 iPhone apps.",
-                    price: 330,
-                    discount: 1800
-                }
-            ]
+            likes: ""
         };
     },
     computed: {
         ...mapState(["user"])
     },
+    mounted() {
+        axios
+            .get("/api/course/new")
+            .then(({ data }) => {
+                this.likes = data;
+            })
+            .catch(error => {
+                console.log(error);
+                if (error.response) console.log(error.response);
+            });
+    },
     methods: {
         openVisa() {
             this.$refs.modalVisa.show();
+        },
+        openBank() {
+            this.$refs.modalBank.show();
         }
     }
 };

@@ -17,4 +17,9 @@ class CourseController extends Controller
         $course = Course::find($request->id);
         return Course::where('category_id', $course->category_id)->latest()->take(6)->get();
     }
+
+    public function new()
+    {
+        return Course::orderBy('created_at', 'DESC')->take(6)->get();
+    }
 }

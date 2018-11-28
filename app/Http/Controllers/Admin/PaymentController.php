@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Payment;
+use App\Topup;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -98,5 +99,21 @@ class PaymentController extends Controller
             return $payment->user->firstname.' '.$payment->user->lastname;
         })
         ->make(true);
+    }
+
+    public function confirm(Request $request)
+    {
+        $request->validate([
+            'topup_id' => 'required'
+        ]);
+
+        $topup = Topup::find($request->topup_id);
+        $topup->status = 'paid';
+        if($topup->save())
+        {
+            return $topup;
+        } else {
+            return response('failed', 500);
+        }
     }
 }

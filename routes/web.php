@@ -33,8 +33,16 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
 });
 
-Route::middleware('auth')->get('/user', function (Request $request) {
-    return Auth::user();
+Route::middleware(['auth'])->prefix('api')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return Auth::user();
+    });
+    Route::get('/bank', 'BankController@jsonData')->name('bank.data');
+    Route::get('/category', 'CategoryController@jsonData')->name('category.data');
+    Route::get('/course/new', 'CourseController@new')->name('course.new');
+    Route::get('/course/{id}', 'CourseController@show')->name('course.show');
+    Route::get('/course/like/{id}', 'CourseController@like')->name('course.like');
+    Route::post('/payment', 'PaymentController@store')->name('payment.store');
 });
 
 Route::group(['middleware' => ['guest:web_admin']], function () {
@@ -105,4 +113,3 @@ Route::get('errors', function () {
 Route::get('/{any}', function () {
     return view('main');
 })->where('any', '.*');
-

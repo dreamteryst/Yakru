@@ -19,7 +19,6 @@ class CategoriesTableSeeder extends Seeder
                     'course_id' => $course->id
                 ])->each(function ($unit) use ($course) {
                     factory(App\Lecture::class, 10)->create([
-                        'course_id' => $course->id,
                         'unit_id' => $unit->id
                     ]);
                 });

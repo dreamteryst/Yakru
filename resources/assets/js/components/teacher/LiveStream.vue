@@ -236,7 +236,7 @@ export default {
             })
         }
         this.connection.socketURL =
-            'https://rtcmulticonnection.herokuapp.com:443/'
+            'http://localhost:9001/'
 
         this.connection.socketMessageEvent = 'audio-video-screen-demo'
 
@@ -258,7 +258,7 @@ export default {
             }
 
             var width =
-                parseInt(self.connection.videosContainer.clientWidth / 2) - 20
+                parseInt(self.connection.videosContainer.clientWidth) - 20
 
             if (event.stream.isScreen === true) {
                 width = self.connection.videosContainer.clientWidth - 20

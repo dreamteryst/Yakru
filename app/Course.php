@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Auth;
+use App\Promotion;
+use App\UserCourse;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -34,6 +37,8 @@ class Course extends Model
         'result'  => 'array',
         'tags'  => 'array',
     ];
+
+    public $appends = ['final_price', 'is_bought'];
     
     public function category()
     {
@@ -43,6 +48,11 @@ class Course extends Model
     public function admin()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function schedule()
+    {
+        return $this->hasMany('App\Schedule');
     }
 
     public function users()
@@ -58,5 +68,28 @@ class Course extends Model
     public function promotion()
     {
         return $this->belongsToMany('App\Promotion', 'course_promotions');
+    }
+
+    public function getFinalPriceAttribute()
+    {
+        $course_id = $this->id;
+        $promotions = Promotion::with('course')->get()->filter(function ($value) use ($course_id) {
+            foreach($value->course as $course) {
+                return $course_id == $course->id;
+            }
+        });
+        $final_price = $this->course_discounted;
+        if(count($promotions) > 0) {
+            foreach($promotions as $promotion) {
+                $final_price = $this->course_price - $this->course_price * $promotion->discount / 100;
+            }
+        }
+        return number_format((float)$final_price, 2, '.', '');
+    }
+
+    public function getIsBoughtAttribute()
+    {
+        $userCourse = UserCourse::where('user_id', Auth::user()->id)->where('course_id', $this->id)->count();
+        return $userCourse > 0;
     }
 }

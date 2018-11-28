@@ -18,6 +18,7 @@ class CreateLecturesTable extends Migration
             $table->unsignedInteger('unit_id');
             $table->string('lecture_name');
             $table->string('video_name')->nullable();
+            $table->boolean('guest')->default(false);
             
             $table->foreign('unit_id')->references('id')->on('units');
 

@@ -84,8 +84,10 @@
 									<router-link :to="`/product-detail/${course.id}`" v-html="course.course_name"></router-link>
 								</h4>
 								<p class="item-desc">{{ course.course_subtitle }}</p>
-								<div class="item-price">฿ {{ numberWithCommas(course.course_discounted) }}</div>
+								<div class="item-price">฿ {{ numberWithCommas(course.final_price) }}</div>
 								<div class="item-discount-price">฿ {{ numberWithCommas(course.course_price) }}</div>
+								<div class="live-text" v-if="course.type === 'live'">• Live</div>
+								<div class="text-primary" v-else>Video</div>
 							</div>
 						</div>
 						<!-- END item -->

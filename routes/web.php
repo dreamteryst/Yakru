@@ -40,6 +40,7 @@ Route::middleware(['auth'])->prefix('api')->group(function () {
     Route::get('/bank', 'BankController@jsonData')->name('bank.data');
     Route::get('/category', 'CategoryController@jsonData')->name('category.data');
     Route::get('/course/new', 'CourseController@new')->name('course.new');
+    Route::post('/course/buy', 'CourseController@buy')->name('course.buy');
     Route::get('/course/{id}', 'CourseController@show')->name('course.show');
     Route::get('/course/like/{id}', 'CourseController@like')->name('course.like');
     Route::post('/payment', 'PaymentController@store')->name('payment.store');

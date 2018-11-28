@@ -1,7 +1,10 @@
 import Vue from "vue";
-
+import moment from 'moment'
 Vue.mixin({
     methods: {
+        dateFormat(datetime, format) {
+            return moment(datetime).format(format)
+        },
         ucfirst(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         },

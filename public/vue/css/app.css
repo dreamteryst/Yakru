@@ -145,6 +145,10 @@ a.deactive-link {
   color: white;
 }
 
+.live-text {
+  color: red;
+}
+
 .btn-left {
   text-align: left;
 }

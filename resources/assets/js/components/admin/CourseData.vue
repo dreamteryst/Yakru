@@ -223,7 +223,7 @@ export default {
                         render: (data, type, row, meta) => {
                             return `<ul>
                                 <li><a href="/admin/course/unit">หลักสูตร</a></li>`+
-                                (row["type"] == 'live' ? `<li><a href="/admin/course/live" style="white-space: nowrap;">ตารางสอน</a></li>` : ``)
+                                (row["type"] == 'live' ? `<li><a href="/admin/course/live/${row['id']}" style="white-space: nowrap;">ตารางสอน</a></li>` : ``)
                                 + `</ul>`
                         },
                         searchable: false,

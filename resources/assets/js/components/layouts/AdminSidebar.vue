@@ -22,7 +22,7 @@
 					<li>
 						<ul class="nav nav-profile">
 							<li><a href="javascript:;"><i class="fa fa-user"></i> Profile</a></li>
-							<li><a href="javascript:;"><i class="fa fa-power-off"></i> Logout</a></li>
+							<li><a href="/admin/logout"><i class="fa fa-power-off"></i> Logout</a></li>
 						</ul>
 					</li>
 				</ul>

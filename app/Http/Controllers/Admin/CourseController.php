@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Course;
+use App\Unit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -171,5 +172,10 @@ class CourseController extends Controller
             });
         })
         ->make(true);
+    }
+
+    public function unit(Request $request)
+    {
+        return Unit::where('course_id', $request->id)->get();
     }
 }

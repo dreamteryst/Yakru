@@ -89,7 +89,7 @@ const routes = [
       { path: "course", name: "Course", component: CourseData },
       { path: "course/add", name: "CourseAdd", component: CourseAdd },
       { path: "course/unit", name: "Unit", component: UnitData },
-      { path: "course/live", name: "Schedule", component: ScheduleData },
+      { path: "course/live/:id", name: "Schedule", component: ScheduleData },
       { path: "course/calendar", name: "CourseCalendar", component: CourseCalendar },
       { path: "course/:id", name: "Lecuture", component: LectureData },
       { path: "student", name: "Student", component: StudentData },

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Schedule;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Schedule;
+use App\ScheduleUnit;
+use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 class ScheduleController extends Controller
@@ -37,7 +38,22 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'unit' => 'required',
+        ]);
+
+        $schedule = Schedule::create($request->all());
+        if ($schedule) {
+            foreach ($request->unit as $unit) {
+                ScheduleUnit::create(['schedule_id' => $schedule->id, 'unit_id' => $unit]);
+            }
+            return $schedule;
+        } else {
+            return response('failed', 500);
+        }
     }
 
     /**
@@ -82,15 +98,20 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        if($schedule->delete())
+        {
+            return response('success');
+        } else {
+            return response('failed', 500);
+        }
     }
 
     public function anyData(Request $request)
     {
         return Datatables::of(Schedule::with('unit')->where('course_id', $request->id))
-        ->addColumn('unit_count', function($lecture){
-            return (!empty($lecture->unit)?$lecture->unit->count():0);
-        })
-        ->make(true);
+            ->addColumn('unit_count', function ($lecture) {
+                return (!empty($lecture->unit) ? $lecture->unit->count() : 0);
+            })
+            ->make(true);
     }
 }

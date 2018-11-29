@@ -13,6 +13,7 @@ import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import InputTag from 'vue-input-tag';
 import './mixins';
+import 'eonasdan-bootstrap-datetimepicker'
 
 window.Vue = require('vue');
 Vue.use(BootstrapVue);

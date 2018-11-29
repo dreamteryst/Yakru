@@ -74,10 +74,6 @@ export default {
 				name: 'รายชื่อผู้เรียน',
 				link: '/admin/student'
 			}, {
-				icon: 'fas fa-calendar',
-				name: 'ปฏิทิน',
-				link: '/admin/course/calendar'
-			}, {
 				icon: 'fas fa-cogs',
 				name: 'ตั้งค่า',
 				link: '/admin/settings'

@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+Route::get('photo/{file_path}', 'PhotoController@index')->where('file_path', '.+');
 Route::group(['middleware' => ['web']], function () {
 // Login Routes...
     Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
@@ -17,10 +18,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('logout', function () {
         Auth::logout();
         return redirect('/auth');
-    });
-    Route::get('admin/logout', function () {
-        Auth::logout();
-        return redirect('/admin/auth');
     });
 
 // Registration Routes...
@@ -33,22 +30,29 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('password/reset', ['as' => 'password.reset.post', 'uses' => 'Auth\ResetPasswordController@reset']);
 });
 
-Route::middleware(['auth'])->prefix('api')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return Auth::user();
+Route::prefix('api')->group(function () {
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/user', function (Request $request) {
+            return Auth::user();
+        });
+        Route::get('chat/{id}', 'ChatController@jsonData')->name('chat.data');
+        Route::post('chat', 'ChatController@store')->name('course.store');
+        Route::post('course/buy', 'CourseController@buy')->name('course.buy');
+        Route::get('course/me', 'CourseController@myCourse')->name('coures.me');
+        Route::get('course/teacherCourse', 'CourseController@teacherCourse')->name('coures.teacherCourse');
+        Route::get('course/user/{id}', 'CourseController@courseUser')->name('coures.courseUser');
+        Route::post('payment', 'PaymentController@store')->name('payment.store');
+        Route::post('teacher/register', 'TeacherRegisterController@store')->name('teacherRegister.store');
     });
-    Route::get('/bank', 'BankController@jsonData')->name('bank.data');
-    Route::get('/category', 'CategoryController@jsonData')->name('category.data');
-    Route::get('/course/new', 'CourseController@new')->name('course.new');
-    Route::post('/course/buy', 'CourseController@buy')->name('course.buy');
-    Route::get('/course/me', 'CourseController@myCourse')->name('coures.me');
-    Route::get('/course/user/{id}', 'CourseController@courseUser')->name('coures.courseUser');
-    Route::get('/course/{id}', 'CourseController@show')->name('course.show');
-    Route::get('/course/like/{id}', 'CourseController@like')->name('course.like');
-    Route::post('/payment', 'PaymentController@store')->name('payment.store');
+    Route::get('bank', 'BankController@jsonData')->name('bank.data');
+    Route::get('category', 'CategoryController@jsonData')->name('category.data');
+    Route::get('course/new', 'CourseController@new')->name('course.new');
+    Route::get('course/{id}', 'CourseController@show')->name('course.show');
+    Route::get('course/like/{id}', 'CourseController@like')->name('course.like');
 });
 
 Route::group(['middleware' => ['guest:web_admin']], function () {
+
     Route::get('admin/auth', function () {
         return view('auth');
     })->name('admin.login');
@@ -57,6 +61,10 @@ Route::group(['middleware' => ['guest:web_admin']], function () {
 Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin');
+    });
+    Route::get('logout', function () {
+        Auth::logout();
+        return redirect('/admin/auth');
     });
     Route::get('/user', function (Request $request) {
         return Auth::user();
@@ -67,9 +75,11 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::resource('category', 'Admin\CategoryController');
 
         Route::get('course/data', 'Admin\CourseController@anyData');
+        Route::get('course/{id}/unit', 'Admin\CourseController@unit');
         Route::resource('course', 'Admin\CourseController');
 
         Route::get('unit/data/{id}', 'Admin\UnitController@anyData');
+        Route::post('unit/upload', 'Admin\UnitController@upload');
         Route::resource('unit', 'Admin\UnitController');
 
         Route::get('lecture/data/{id}', 'Admin\LectureController@anyData');
@@ -92,6 +102,8 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::resource('student', 'Admin\StudentController');
 
         Route::get('teacher/data', 'Admin\AdminController@anyData');
+
+        Route::get('setting/stats', 'Admin\SettingController@stats');
     });
 
     Route::get('/{any}', function () {

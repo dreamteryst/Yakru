@@ -124,11 +124,11 @@
                         <div class="form-group">
                             <label>ประเภท</label>
                             <div class="radio radio-css radio-inline">
-                                <input type="radio" id="type-video" name="type" />
+                                <input v-model="type" type="radio" id="type-video" value="video" name="type" />
                                 <label for="type-video">Video</label>
                             </div>
                             <div class="radio radio-css radio-inline">
-                                <input type="radio" id="type-live" name="type" />
+                                <input v-model="type" type="radio" id="type-live" value="live" name="type" />
                                 <label for="type-live">Live Streaming</label>
                             </div>
                         </div>
@@ -158,7 +158,8 @@ export default {
             picture : '',
             course_video : '',
             course_discounted : 0,
-            course_limit: ''
+            course_limit: '',
+            type : ''
         }
     },
     mounted() {
@@ -183,7 +184,8 @@ export default {
             formData.append('course_video', this.course_video);
             formData.append('course_discounted', this.course_discounted);
             formData.append('course_limit', this.course_limit);
-
+            formData.append('type', this.type);
+            
             axios.post(`/admin/api/course`, formData).then((response) => {
                 if (response.status === 200) {
                     this.course_name = '';

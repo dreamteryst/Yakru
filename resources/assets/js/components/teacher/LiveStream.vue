@@ -10,7 +10,7 @@
             <a href="#">Home</a>
           </li>
           <li>
-            <a href="#">{{ course.category.category_name }}</a>
+            <a href="#" v-if="course.category">{{ course.category.category_name }}</a>
           </li>
           <li class="active">{{ course.course_name }}</li>
         </ul>
@@ -45,23 +45,18 @@
               </button>
             </div>
             <div class="chatbox">
-              <div class="message">
-                <span class="user-name-teacher">DreaMTeryST :&nbsp;</span>
-                <span class="text">สวัสดีครับ</span>
-                <span class="time">1:40</span>
-              </div>
-              <div class="message">
-                <span class="user-name-teacher">DreaMTeryST :&nbsp;</span>
-                <span class="text">ท่านผู้ชม</span>
-                <span class="time">1:41</span>
-              </div>
-              <div class="message">
-                <span class="user-name">Moojy :&nbsp;</span>
-                <span class="text">สงสัยค่ะ</span>
-                <span class="time">2:30</span>
+              <div class="message" v-for="(item, i) in chats" :key="i">
+                <span :class="[item.user_id === course.user_id ? 'user-name-teacher' : 'user-name' ]">{{ item.name }} :&nbsp;</span>
+                <span class="text">{{ item.message }}</span>
+                <span class="time">{{ item.time }}</span>
               </div>
               <div class="input">
-                <input type="text" class="form-control" placeholder="พิมพ์ข้อความที่นี่">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="พิมพ์ข้อความที่นี่"
+                  @keyup="handleMessage"
+                >
               </div>
             </div>
           </div>
@@ -69,7 +64,12 @@
         <h4 class="m-t-15">{{ course.course_name }} (Live)</h4>
         <div class="row row-space-10">
           <!-- BEGIN col-2 -->
-          <div class="col-md-2 col-sm-4" style="margin-bottom: 8px;" v-for="(user, i) in course.users" :key="i">
+          <div
+            class="col-md-2 col-sm-4"
+            style="margin-bottom: 8px;"
+            v-for="(user, i) in course.users"
+            :key="i"
+          >
             <!-- BEGIN item -->
             <div class="item item-thumbnail">
               <router-link to class="item-image">
@@ -95,7 +95,7 @@
             <!-- BEGIN item -->
             <div class="item item-thumbnail">
               <router-link :to="`/product-detail/${like.id}`" class="item-image">
-                <img :src="like.course_picture" alt>
+                <img :src="renderPicture(like.course_picture)" alt>
                 <div class="discount">{{ getPercent(like) }}% OFF</div>
               </router-link>
               <div class="item-info">
@@ -125,23 +125,34 @@
 
 <script>
 import { mapState } from "vuex";
+import swal from "sweetalert2";
 
 export default {
     data: () => ({
         course: "",
         likes: "",
         connection: "",
-        roomId: ""
+        roomId: "",
+        socket: "",
+        profile: {},
+        chats: []
     }),
     computed: {
         ...mapState(["user"])
     },
+    watch: {
+        user() {
+            this.profile = this.user;
+        }
+    },
     mounted() {
         const self = this;
+        this.socket = io("http://localhost:3000");
         axios
             .get(`/api/course/user/${this.$route.params.id}`)
             .then(({ data }) => {
                 this.course = data;
+                this.initialize(data.secret);
             })
             .catch(error => {
                 console.log(error);
@@ -156,84 +167,145 @@ export default {
                 console.log(error);
                 if (error.response) console.log(error.response);
             });
-        this.connection = new RTCMultiConnection();
-        this.roomId = this.connection.token();
-        this.connection.getScreenConstraints = function(callback) {
-            getScreenConstraints(function(error, screen_constraints) {
-                if (!error) {
-                    screen_constraints = self.connection.modifyScreenConstraints(
-                        screen_constraints
-                    );
-                    callback(error, screen_constraints);
-                    return;
-                }
-                throw error;
+        axios
+            .get(`/api/chat/${this.$route.params.id}`)
+            .then(({ data }) => {
+                data.map(item => {
+                    const temp = {
+						user_id: item.user.id,
+                        name: `${item.user.firstname} ${item.user.lastname}`,
+                        message: item.message,
+                        time: item.time
+					};
+					this.chats.push(temp)
+                });
+            })
+            .catch(error => {
+                console.log(error);
+                if (error.response) console.log(error.response);
             });
-        };
-        this.connection.socketURL = "http://localhost:9001/";
-
-        this.connection.socketMessageEvent = "audio-video-screen-demo";
-
-        this.connection.session = {
-            audio: true,
-            video: true
-        };
-
-        this.connection.sdpConstraints.mandatory = {
-            OfferToReceiveAudio: true,
-            OfferToReceiveVideo: true
-        };
-
-        this.connection.videosContainer = document.getElementById(
-            "videos-container"
-        );
-        this.connection.onstream = function(event) {
-            if (document.getElementById(event.streamid)) {
-                var existing = document.getElementById(event.streamid);
-                existing.parentNode.removeChild(existing);
-            }
-
-            var width =
-                parseInt(self.connection.videosContainer.clientWidth) - 20;
-
-            if (event.stream.isScreen === true) {
-                width = self.connection.videosContainer.clientWidth - 20;
-            }
-
-            var mediaElement = getMediaElement(event.mediaElement, {
-                title: event.userid,
-                buttons: ["full-screen"],
-                width: width,
-                showOnMouseEnter: false
-            });
-
-            self.connection.videosContainer.appendChild(mediaElement);
-
-            setTimeout(function() {
-                mediaElement.media.play();
-            }, 5000);
-
-            mediaElement.id = event.streamid;
-        };
-        this.connection.onstreamended = function(event) {
-            var mediaElement = document.getElementById(event.streamid);
-            if (mediaElement) {
-                mediaElement.parentNode.removeChild(mediaElement);
-            }
-        };
+    },
+    beforeDestroy() {
+        console.log("des");
+        this.socket.emit("stop stream", this.roomId);
     },
     methods: {
-        openRoom() {
-            this.connection.open(this.roomId, function() {
-                console.log("fn");
-                //showRoomURL(connection.sessionid);
+        initialize(roomId) {
+            const self = this;
+            this.connection = new RTCMultiConnection();
+            this.roomId = roomId;
+            this.connection.getScreenConstraints = function(callback) {
+                getScreenConstraints(function(error, screen_constraints) {
+                    if (!error) {
+                        screen_constraints = self.connection.modifyScreenConstraints(
+                            screen_constraints
+                        );
+                        callback(error, screen_constraints);
+                        return;
+                    }
+                    throw error;
+                });
+            };
+            this.connection.socketURL = "http://localhost:9001/";
+
+            this.connection.socketMessageEvent = "audio-video-screen-demo";
+
+            this.connection.session = {
+                audio: true,
+				video: true,
+				oneway: true
+            };
+
+            this.connection.sdpConstraints.mandatory = {
+                OfferToReceiveAudio: true,
+                OfferToReceiveVideo: true
+            };
+
+            this.connection.videosContainer = document.getElementById(
+                "videos-container"
+            );
+            this.connection.onstream = function(event) {
+                if (document.getElementById(event.streamid)) {
+                    var existing = document.getElementById(event.streamid);
+                    existing.parentNode.removeChild(existing);
+                }
+
+                var width =
+                    parseInt(self.connection.videosContainer.clientWidth) - 20;
+
+                if (event.stream.isScreen === true) {
+                    width = self.connection.videosContainer.clientWidth - 20;
+                }
+
+                var mediaElement = getMediaElement(event.mediaElement, {
+                    title: event.userid,
+                    buttons: ["full-screen"],
+                    width: width,
+                    showOnMouseEnter: false
+                });
+
+                self.connection.videosContainer.appendChild(mediaElement);
+
+                setTimeout(function() {
+                    mediaElement.media.play();
+                }, 5000);
+
+                mediaElement.id = event.streamid;
+            };
+            this.connection.onstreamended = function(event) {
+                var mediaElement = document.getElementById(event.streamid);
+                if (mediaElement) {
+                    mediaElement.parentNode.removeChild(mediaElement);
+                }
+            };
+
+            this.socket.emit("initialize", this.roomId);
+
+            this.socket.on(roomId + "/chat message", msg => {
+                const data = {
+					user_id: self.profile.id,
+                    course_id: self.course.id,
+                    message: msg.message,
+                    time: msg.time
+                };
+                axios
+                    .post("/api/chat", data)
+                    .then(({ data }) => {
+                        this.chats.push(msg)
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        if (error.response) {
+                            console.log(error.response);
+                            swal({
+                                type: "error",
+                                title: "Oops...",
+                                text: error.response.data.message
+                            });
+                        }
+                    });
             });
+        },
+        openRoom() {
+            this.socket.emit("start stream");
+            this.connection.open(this.roomId);
         },
         screenShare() {
             this.connection.addStream({
                 screen: true,
                 oneway: true
             });
+        },
+        handleMessage(event) {
+            if (event.key === "Enter" && event.target.value !== "") {
+                const payload = {
+					user_id: this.profile.id,
+                    name: this.profile.firstname + " " + this.profile.lastname,
+                    message: event.target.value
+				};
+                this.socket.emit(this.roomId + "/chat message", payload);
+                event.target.value = "";
+            }
         }
     }
 };

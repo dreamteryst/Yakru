@@ -39,7 +39,7 @@
                 <li>
                   <router-link to="/payment">แจ้งชำระเงิน</router-link>
                 </li>
-                <li>
+                <li v-if="profile.type === 'student'">
                   <router-link to="/teacher/register">สมัครเป็นผู้สอน</router-link>
                 </li>
                 <li>

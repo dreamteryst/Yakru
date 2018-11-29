@@ -20,8 +20,12 @@ export default new Vuex.Store({
             axios
                 .get("/api/user")
                 .then(({ data }) => {
-                    commit("setUser", data);
-                    commit("auth/login");
+                    if (!data) {
+                        commit("auth/logout");
+                    } else {
+                        commit("setUser", data);
+                        commit("auth/login");
+                    }
                 })
                 .catch(error => {
                     if (error.response.status === 401) {
@@ -33,8 +37,12 @@ export default new Vuex.Store({
             axios
                 .get("/admin/user")
                 .then(({ data }) => {
-                    commit("setUser", data);
-                    commit("auth/login");
+                    if (!data) {
+                        commit("auth/logout");
+                    } else {
+                        commit("setUser", data);
+                        commit("auth/login");
+                    }
                 })
                 .catch(error => {
                     if (error.response.status === 401) {

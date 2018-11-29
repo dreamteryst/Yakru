@@ -27,10 +27,16 @@
                 <h4>
                   <i class="fas fa-graduation-cap"></i> ประวัติการเรียน
                 </h4>
-                <ul class="nav nav-list" v-if="user.type == 'student'">
+                <ul class="nav nav-list">
                   <li v-for="(course, i) in courses" :key="i">
-                    <router-link :to="`/learning/${course.course.id}`" v-if="course.course.type === 'video'">{{ course.course.course_name }}</router-link>
-                    <router-link :to="`/live-stream/${course.course.id}`" v-else>{{ course.course.course_name }}</router-link>
+                    <router-link
+                      :to="`/learning/${course.course.id}`"
+                      v-if="course.course && course.course.type === 'video'"
+                    >{{ course.course.course_name }}</router-link>
+                    <router-link
+                      :to="`/live-stream/${course.course.id}`"
+                      v-else-if="course.course"
+                    >{{ course.course.course_name }}</router-link>
                   </li>
                 </ul>
                 <h4>
@@ -57,9 +63,15 @@
                   <i class="fa fa-gitlab fa-fw text-muted"></i> คอร์สของฉัน
                 </h4>
                 <ul class="nav nav-list" v-if="user.type != 'student'">
-                  <li v-for="(course, i) in courses" :key="i">
-                    <router-link :to="`/learning/${course.course.id}`" v-if="course.course.type === 'video'">{{ course.course.course_name }}</router-link>
-                    <router-link :to="`/teacher/live-stream/${course.course.id}`" v-else>{{ course.course.course_name }}</router-link>
+                  <li v-for="(course, i) in myCourses" :key="i">
+                    <router-link
+                      :to="`/learning/${course.id}`"
+                      v-if="course.type === 'video'"
+                    >{{ course.course_name }}</router-link>
+                    <router-link
+                      :to="`/teacher/live-stream/${course.id}`"
+                      v-else
+                    >{{ course.course_name }}</router-link>
                   </li>
                 </ul>
                 <h4>
@@ -134,7 +146,8 @@ export default {
     data() {
         return {
             likes: "",
-            courses: ""
+            courses: "",
+            myCourses: ""
         };
     },
     computed: {
@@ -154,6 +167,15 @@ export default {
             .get("/api/course/me")
             .then(({ data }) => {
                 this.courses = data;
+            })
+            .catch(error => {
+                console.log(error);
+                if (error.response) console.log(error.response);
+            });
+        axios
+            .get("/api/course/teacherCourse")
+            .then(({ data }) => {
+                this.myCourses = data;
             })
             .catch(error => {
                 console.log(error);

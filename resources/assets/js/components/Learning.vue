@@ -11,11 +11,8 @@
                     <div class="product-detail">
                         <!-- BEGIN product-image -->
                         <div class="product-image">
-                            <h1 class="product-title">React Native สำหรับมือใหม่!!</h1><br/>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <!-- <video ref="videoElement"></video> -->
-                                <iframe src="https://www.youtube.com/embed/mkualZPRZCs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                            </div>
+                            <h1 class="product-title">{{ course.course_name }}</h1><br />
+                            <div id="player" data-plyr-provider="youtube" :data-plyr-embed-id="youtube_parser(course.course_video)" v-if="course.course_video"></div>
                         </div>
                         <!-- END product-image -->
                     </div>
@@ -32,20 +29,25 @@
                         <!-- BEGIN #product-tab-content -->
                         <div id="product-tab-content" class="tab-content">
                             <!-- BEGIN #curriculum -->
-                            <div class="tab-pane fade active in" id="curriculum" v-for="(course, i) in courses" :key="i">
+                            <div class="tab-pane fade active in" id="curriculum" v-for="(unit, i) in course.units" :key="i" v-if="course.type === 'video'">
                                 <b-card no-body class="mb-1">
                                     <b-card-header header-tag="header" class="p-1" role="tab">
                                         <b-btn block href="#" v-b-toggle="'accordion-' + i" variant="info" class="btn-left">
-                                            <i class="fa fa-plus"></i> {{ course.title }}
+                                            <i class="fa fa-plus"></i>
+                                            {{ unit.unit_name }}
                                         </b-btn>
                                     </b-card-header>
                                     <b-collapse :id="'accordion-' + i" accordion="my-accordion" role="tabpanel">
                                         <b-card-body>
-                                            <ul class="curriculum" v-for="(sub, j) in course.sub" :key="j">
+                                            <ul class="curriculum" v-for="(lecture, j) in unit.lectures" :key="j">
                                                 <li>
-                                                    <router-link to="#" :class="{'deactive-link': sub.isLearned}">
-                                                        <i class="fa fa-play-circle"></i> {{ sub.name }}
-                                                    </router-link>
+                                                    <a href="javascript:;" v-if="lecture.guest  || course.is_bought">
+                                                        <i class="fa fa-play-circle"></i>
+                                                        {{ lecture.lecture_name }}
+                                                    </a>
+                                                    <span v-else>
+                                                        {{ lecture.lecture_name }}
+                                                    </span>
                                                 </li>
                                             </ul>
                                         </b-card-body>
@@ -71,285 +73,26 @@
 export default {
     data() {
         return {
-            courses: [
-                {
-                    title: "Setup and Introduction",
-                    sub: [
-                        {
-                            name: "Course Introduction",
-                            isLearned: true
-                        },
-                        {
-                            name: "NodeJS Install",
-                            isLearned: true
-                        },
-                        {
-                            name: "React-Native & Watchman",
-                            isLearned: true
-                        },
-                        {
-                            name: "Visual Studio Install and React-Native Extension Pack",
-                            isLearned: true
-                        },
-                        {
-                            name: "React-Native CLI",
-                            isLearned: true
-                        },
-                        {
-                            name: "How to use the React-Native Documentation"
-                        },
-                        {
-                            name: "Basic ReactJS Langulage (ES5/6 and JSX)"
-                        },
-                        {
-                            name: "React Component and Basic UI"
-                        },
-                        {
-                            name: "Styling and Theming"
-                        },
-                        {
-                            name: "Debugging / JS-Debugging / Auto-Reload"
-                        }
-                    ]
-                },
-                {
-                    title: "Mastering User Interface",
-                    sub: [
-                        {
-                            name: "React-Native Project Structure"
-                        },
-                        {
-                            name: "Core User Interface Input / Output"
-                        },
-                        {
-                            name: "Data Binding (Props and State)"
-                        },
-                        {
-                            name: "Event Listener"
-                        },
-                        {
-                            name: "Mutiple Screens"
-                        },
-                        {
-                            name: "Redux, React-Redux"
-                        },
-                        {
-                            name: "Redux Middleware Redux-Thunk"
-                        },
-                        {
-                            name: "Reducer, Action, Dispatch"
-                        },
-                        {
-                            name: "How Navigation works in an React-Native"
-                        },
-                        {
-                            name: "Creating a Page and how to Navigate to it"
-                        },
-                        {
-                            name: "Passing Data between Pages"
-                        },
-                        {
-                            name: "Popping Pages - Callback Data"
-                        },
-                        {
-                            name: "Using Redux for Page Navigation"
-                        },
-                        {
-                            name: "Configuring Page Transitions"
-                        },
-                        {
-                            name: "The Page Lifecycle in Action"
-                        }
-                    ]
-                },
-                {
-                    title: "Platform Specific Code",
-                    sub: [
-                        {
-                            name: "Detecting OS (Android or iOS)"
-                        },
-                        {
-                            name: "Detecting Android Version"
-                        },
-                        {
-                            name: "Detecting iOS Version"
-                        },
-                        {
-                            name: "Style and Size in Specific Platform"
-                        },
-                        {
-                            name: "Platform-specific extensions"
-                        },
-                        {
-                            name: "Access Platform Specific Code"
-                        }
-                    ]
-                },
-                {
-                    title: "Using Dynamic Content and Network (JSON Http Feed)",
-                    sub: [
-                        {
-                            name: "Standard Network API - Fetch"
-                        },
-                        {
-                            name: "3rd Party Network API - Axios"
-                        },
-                        {
-                            name: "HTTP Fetching RESTful (JSON)"
-                        },
-                        {
-                            name: "Fixing iOS HTTP (unsecured) Issue"
-                        },
-                        {
-                            name: "Fetching data from MySql"
-                        },
-                        {
-                            name: "ScrolllView"
-                        },
-                        {
-                            name: "Setup FlatList"
-                        },
-                        {
-                            name: "Styling ListView"
-                        },
-                        {
-                            name: "Tap Event Listener"
-                        }, {
-                            name: "Add Loading Component"
-                        },
-                        {
-                            name: "Add Pull to Refresh support to our app"
-                        },
-                        {
-                            name: "การจัดการกับปัญหาเรื่อง Cross-Origin-Resource-Sharing (Cors)"
-                        }
-                    ]
-                },
-                {
-                    title: "Access Native Device Feature",
-                    sub: [
-                        {
-                            name: "Runtime Permission"
-                        },
-                        {
-                            name: "Youtube Video Player"
-                        },
-                        {
-                            name: "Camera"
-                        },
-                        {
-                            name: "arcode and QR Code Scanner"
-                        },
-                        {
-                            name: "InAppBrowser"
-                        },
-                        {
-                            name: "SQLite"
-                        },
-                        {
-                            name: "Toasts"
-                        },
-                        {
-                            name: "Call Number"
-                        },
-                        {
-                            name: "File"
-                        }, {
-                            name: "File Path"
-                        },
-                        {
-                            name: "File Transfer"
-                        }
-                    ]
-                },
-                {
-                    title: "User Input, Forms and Data Management",
-                    sub: [
-                        {
-                            name: "How to use Local Storage"
-                        },
-                        {
-                            name: "Learn 3rd-party Custom UI - 'UI Element'"
-                        },
-                        {
-                            name: "Handle User Input"
-                        },
-                        {
-                            name: "Registering Controls"
-                        },
-                        {
-                            name: "Submitting the Form"
-                        },
-                        {
-                            name: "Validating the Form"
-                        },
-                        {
-                            name: "Handling Data with a Model for our Ingredients"
-                        },
-                        {
-                            name: "Managing Data with a Service"
-                        },
-                        {
-                            name: "insert, update, and delete data"
-                        },
-                        {
-                            name: "Alerts"
-                        }
-                    ]
-                },
-                {
-                    title: "Using Google Map",
-                    sub: [
-                        {
-                            name: "Using 3rd-party Library"
-                        },
-                        {
-                            name: "Adding Google Maps to the App"
-                        },
-                        {
-                            name: "Configuring our Maps"
-                        },
-                        {
-                            name: "Allowing the User to Place a Marker on the Map"
-                        },
-                        {
-                            name: "Displaying the Chosen Location"
-                        },
-                        {
-                            name: "Geolocation to Locate the User"
-                        }
-                    ]
-                },
-                {
-                    title: "การเตรียม Resources, เทคนิคการ Build App และอัพโหลด App ไปที่ Store",
-                    sub: [
-                        {
-                            name: "Custom Icons and Splashscreen"
-                        },
-                        {
-                            name: "Configuration"
-                        },
-                        {
-                            name: "Generate Distribution Files"
-                        },
-                        {
-                            name: "Build Preparations and Building for Production"
-                        },
-                        {
-                            name: "Publish to Google Play Store"
-                        },
-                        {
-                            name: "Publish to Apple AppStore"
-                        }
-                    ]
-                }
-            ],
+            course: "",
             player: null
         };
+    },
+    mounted() {
+        axios
+            .get(`/api/course/${this.$route.params.id}`)
+            .then(({ data }) => {
+                this.course = data;
+            })
+            .catch(error => {
+                console.log(error);
+                if (error.response) console.log(error.response);
+            });
+        $(function () {
+            new Plyr('#player')
+        })
     }
 };
 </script>
 
 <style>
-
 </style>

@@ -88,7 +88,7 @@ export default {
             .then((res) => {
                 if(res.status === 200)
                 {
-                    windows.location.href = '/';
+                    window.location.href = '/';
                 }
             })
             .catch((err) => {

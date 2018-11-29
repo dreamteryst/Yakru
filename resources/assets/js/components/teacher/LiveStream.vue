@@ -147,7 +147,7 @@ export default {
     },
     mounted() {
         const self = this;
-        this.socket = io("http://localhost:3000");
+        this.socket = io("https://yakru-chat.herokuapp.com/");
         axios
             .get(`/api/course/user/${this.$route.params.id}`)
             .then(({ data }) => {
@@ -206,7 +206,7 @@ export default {
                     throw error;
                 });
             };
-            this.connection.socketURL = "http://localhost:9001/";
+            this.connection.socketURL = "https://rtcmulticonnection.herokuapp.com:443/";
 
             this.connection.socketMessageEvent = "audio-video-screen-demo";
 

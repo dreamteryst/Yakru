@@ -7,8 +7,10 @@
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">จัดการหลักสูตร<router-link to="/admin/course/unit/add" class="btn btn-info ml-3">เพิ่มหลักสูตร</router-link></h1>
-        
+        <!-- <h1 class="page-header">จัดการหลักสูตร<router-link to="/admin/course/unit/add" class="btn btn-info ml-3">เพิ่มหลักสูตร</router-link> -->
+        <h1 class="page-header">จัดการหลักสูตร<button type="button" class="btn btn-info ml-3" @click="openAdd">เพิ่มหลักสูตร</button>
+        </h1>
+
         <!-- end page-header -->
 
         <!-- begin panel -->
@@ -52,15 +54,28 @@
                 </tbody>
             </table>
         </b-modal>
+        <b-modal ref="modalAddUnit" size="lg" title="เพิ่มหลักสูตร" hide-footer>
+            <form @submit="submit">
+                <div class="form-group">
+                    <label for="unit_name">ชื่อหลักสูตร</label>
+                    <input type="text" class="form-control" id="unit_name" placeholder="ชื่อหลักสูตร" v-model="unit_name" />
+                </div>
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                </div>
+            </form>
+        </b-modal>
     </section>
 </template>
 
 <script>
+import swal from 'sweetalert2'
 export default {
     data() {
         return {
             lectures: [],
-            data: {}
+            data: {},
+            unit_name: ''
         }
     },
     mounted() {
@@ -71,7 +86,7 @@ export default {
                 autoWidth: false,
                 processing: true,
                 serverSide: true,
-                ajax: `/admin/api/unit/data/`+ self.$route.params.id,
+                ajax: `/admin/api/unit/data/` + self.$route.params.id,
                 order: [[0, "desc"]],
                 rowCallback: function (row, data, index) {
                     if (data["deleted_at"] != null) {
@@ -82,7 +97,7 @@ export default {
                     { data: "id", name: "id" },
                     { data: "unit_name", name: "unit_name" },
                     { data: "lecture_count", name: "lecture_count" },
-                    { 
+                    {
                         data: null,
                         searchable: false,
                         sortable: false,
@@ -122,10 +137,39 @@ export default {
                 }
             });
         });
+    },
+    methods: {
+        openAdd() {
+            this.$refs.modalAddUnit.show();
+        },
+        submit(event) {
+            event.preventDefault();
+            const payload = new FormData()
+            payload.append('course_id', this.$route.params.id);
+            payload.append('unit_name', this.unit_name);
+
+            axios.post('/admin/api/unit', payload).then(({ data }) => {
+                console.log(data)
+                this.table.ajax.reload();
+                swal({
+                    type: "success",
+                    title: "ดำเนินการสำเร็จ"
+                });
+            }).catch(error => {
+                console.log(error);
+                if (error.response) {
+                    console.log(error.response);
+                    swal({
+                        type: "error",
+                        title: "Oops...",
+                        text: error.response.data.message
+                    });
+                }
+            })
+        }
     }
 }
 </script>
 
 <style>
-
 </style>

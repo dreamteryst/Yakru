@@ -106,20 +106,22 @@ export default {
                         });
                     });
                 })
-                $("#calendar").fullCalendar({
-                    header: {
-                        left: "month,agendaWeek,agendaDay",
-                        center: "title",
-                        right: "prev,today,next "
-                    },
-                    droppable: false,
-                    selectable: false,
-                    selectHelper: false,
-                    editable: false,
-                    eventLimit: true, // allow "more" link when too many events
-                    events: this.schedules
+                const self = this
+                $(function () {
+                    $("#calendar").fullCalendar({
+                        header: {
+                            left: "month,agendaWeek,agendaDay",
+                            center: "title",
+                            right: "prev,today,next "
+                        },
+                        droppable: false,
+                        selectable: false,
+                        selectHelper: false,
+                        editable: false,
+                        eventLimit: true, // allow "more" link when too many events
+                        events: self.schedules
+                    });
                 });
-                
             });
     }
 }

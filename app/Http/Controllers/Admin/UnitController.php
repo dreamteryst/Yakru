@@ -37,7 +37,17 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->video_name);
+        $request->validate([
+            'unit_name' => 'required',
+            'course_id' => 'required'
+        ]);
+
+        $unit = Unit::create($request->all());
+        if($unit) {
+            return $unit;
+        } else {
+            return response('failed', 500);
+        }
     }
 
     /**

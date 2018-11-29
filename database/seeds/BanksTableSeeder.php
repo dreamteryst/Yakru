@@ -11,6 +11,13 @@ class BanksTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Bank::class, 20)->create();
+        // factory(App\Bank::class, 20)->create();
+        App\Bank::create([
+            'bank_logo' => "http://news.mthai.com/app/uploads/2016/10/734708-01-1.jpg",
+            'bank_name' => "กสิกรไทย",
+            'account_no' => "124-2-76195-9",
+            'account_name' => "กิตธิศักดิ์ พิมพ์โนนทอง",
+            'bank_branch' => "ชุมแพ",
+        ]);
     }
 }

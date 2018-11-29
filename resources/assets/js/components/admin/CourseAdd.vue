@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="course_discounted">ส่วนลด</label>
+                    <label for="course_discounted">ลดเหลือ</label>
                     <input type="number" min="0" max="999999" step="0.01" class="form-control" id="course_discounted" :class="{'is-invalid':isError('course_discounted')}" v-model="course_discounted" placeholder="Course Price">
                     <div class="invalid-feedback" v-if="isError('course_discounted')">
                         {{ errors.course_discounted[0] }}

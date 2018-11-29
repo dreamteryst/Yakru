@@ -84,7 +84,7 @@ export default {
                     {
                         data: "slip",
                         render: (data, type, row, meta) => {
-                            return `<a href="${data}" target="_blank">View</a>`;
+                            return `<a href="${self.renderPicture(data)}" target="_blank">View</a>`;
                         }
                     },
                     {

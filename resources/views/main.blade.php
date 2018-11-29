@@ -37,6 +37,7 @@
 	<link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
 	<link href="{{ asset('assets/plugins/animate/animate.min.css') }}" rel="stylesheet" />
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.plyr.io/3.4.7/plyr.css">
 	<link href="{{ asset('vue/css/style.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('vue/css/app.css') }}" rel="stylesheet" type="text/css">
 	<!-- ================== END BASE CSS STYLE ================== -->
@@ -73,6 +74,7 @@
 	<script src="{{ asset('assets_admin/plugins/bootstrap-daterangepicker/moment.js') }}"></script>
 	<script src="https://cdn.omise.co/omise.js.gz"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="https://cdn.plyr.io/3.4.7/plyr.js"></script>
 	<!-- ================== END BASE JS ================== -->
 	
 	<script>

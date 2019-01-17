@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+Route::post('paypal', 'PaymentController@payWithpaypal');
+Route::get('status', 'PaymentController@getPaymentStatus')->name('status');
 Route::get('photo/{file_path}', 'PhotoController@index')->where('file_path', '.+');
 Route::group(['middleware' => ['web']], function () {
 // Login Routes...
@@ -102,6 +104,8 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::resource('student', 'Admin\StudentController');
 
         Route::get('teacher/data', 'Admin\AdminController@anyData');
+        Route::get('teacherRegister/data', 'TeacherRegisterController@anyData');
+        Route::post('teacherRegister/confirm', 'TeacherRegisterController@confirm');
 
         Route::get('setting/stats', 'Admin\SettingController@stats');
     });

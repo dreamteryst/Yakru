@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\TeacherRegister;
+use App\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class TeacherRegisterController extends Controller
 {
@@ -104,5 +106,31 @@ class TeacherRegisterController extends Controller
     public function destroy(TeacherRegister $teacherRegister)
     {
         //
+    }
+
+    public function anyData()
+    {
+        return Datatables::of(TeacherRegister::query())
+            ->addColumn('email', function ($teacherRegister) {
+                return $teacherRegister->user->email;
+            })
+            ->make(true);
+    }
+
+    public function confirm(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+        ]);
+
+        $teacherRegister = TeacherRegister::find($request->id);
+        $user = User::find($teacherRegister->user_id);
+        $teacherRegister->status = $teacherRegister->status == 'accept' ? 'unaccept' : 'accept';
+        $user->type = $teacherRegister->status == 'accept' ? 'teacher' : 'student';
+        if ($teacherRegister->save() && $user->save()) {
+            return $teacherRegister;
+        } else {
+            return response('failed', 500);
+        }
     }
 }

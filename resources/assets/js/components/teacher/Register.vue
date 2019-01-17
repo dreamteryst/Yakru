@@ -65,7 +65,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3">ไฟล์อื่นๆ <span class="text-danger">*</span></label>
+                                <label class="control-label col-md-3">ไฟล์อื่นๆ</label>
                                 <div class="col-md-7">
                                     <input type="file" class="form-control" name="attach" @change="handleAttach">
                                 </div>
@@ -81,7 +81,7 @@
                     <!-- END col-8 -->
                     <!-- BEGIN col-4 -->
                     <div class="col-md-4">
-                        
+
                     </div>
                     <!-- END col-4 -->
                 </div>
@@ -108,11 +108,11 @@ export default {
     },
     mounted() {
         const self = this;
-        $(function() {
+        $(function () {
             $('.datetimepicker').datetimepicker({
                 format: 'DD/MM/YYYY'
             });
-            $(".datetimepicker").on("dp.change", function(e) {
+            $(".datetimepicker").on("dp.change", function (e) {
                 self.date_of_birth = e.date.format("DD/MM/YYYY");
             });
         })
@@ -126,6 +126,13 @@ export default {
         },
         submit(event) {
             event.preventDefault();
+            if (!validateThaiCitizenID(this.citizen_id)) {
+                return swal({
+                    type: "error",
+                    title: "Oops...",
+                    text: 'เลขบัตรประชาชนไม่ถูกต้อง'
+                });
+            }
             const data = new FormData();
             data.append('name', this.name)
             data.append('citizen_id', this.citizen_id)
@@ -135,29 +142,28 @@ export default {
             data.append('photo_id', this.photo_id, this.photo_id.name)
             data.append('attach', this.attach, this.attach.name)
 
-            axios.post('/api/teacher/register', data).then(({data}) => {
+            axios.post('/api/teacher/register', data).then(({ data }) => {
                 swal({
                     type: "success",
                     title: "ดำเนินการสำเร็จ"
                 });
             })
-            .catch(error => {
-                console.log(error);
-                if (error.response) {
-                    console.log(error.response);
-                    swal({
-                        type: "error",
-                        title: "Oops...",
-                        text: error.response.data.message
-                    });
-                }
-            });
-            
+                .catch(error => {
+                    console.log(error);
+                    if (error.response) {
+                        console.log(error.response);
+                        swal({
+                            type: "error",
+                            title: "Oops...",
+                            text: error.response.data.message
+                        });
+                    }
+                });
+
         }
     }
 }
 </script>
 
 <style>
-
 </style>

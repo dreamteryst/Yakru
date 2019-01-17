@@ -24,6 +24,7 @@ import TeacherData from "./components/admin/TeacherData";
 import AccountingData from "./components/admin/AccountingData";
 import SettingData from "./components/admin/SettingData";
 import PaymentData from "./components/admin/PaymentData";
+import TeacherRegisterData from "./components/admin/TeacherRegisterData";
 import UnitData from "./components/admin/UnitData";
 import OrderData from "./components/admin/OrderData";
 import CategoryData from "./components/admin/CategoryData";
@@ -99,6 +100,7 @@ const routes = [
       { path: "accounting", name: "Accounting", component: AccountingData },
       { path: "setting", name: "Setting", component: SettingData },
       { path: "payment", name: "Payment", component: PaymentData },
+      { path: "teacher/register", name: "TeacherRegister", component: TeacherRegisterData },
       { path: "order", name: "Order", component: OrderData },
       { path: "category", name: "Category", component: CategoryData },
       { path: "category/add", name: "AddCategory", component: CategoryAdd },

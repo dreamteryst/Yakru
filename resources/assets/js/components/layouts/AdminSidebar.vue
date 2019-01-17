@@ -140,6 +140,10 @@ export default {
 				'title': 'รายการแจ้งชำระเงิน',
 				'url': '/admin/payment'
 			}, {
+				'icon': 'fas fa-address-card',
+				'title': 'ข้อมูลผู้สมัครเป็นผู้สอน',
+				'url': '/admin/teacher/register'
+			}, {
 				'icon': 'fa fa-users',
 				'title': 'ผู้ใช้งาน',
 				'url': '',

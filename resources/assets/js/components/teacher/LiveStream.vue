@@ -17,14 +17,15 @@
         <!-- END breadcrumb -->
         <div class="row">
           <div class="col-md-8">
-            <div
+            <!-- <div
               id="videos-container"
               class="embed-responsive embed-responsive-16by9"
               ref="videos-container"
-            ></div>
+            ></div>-->
+            <div id="videos-container" ref="videos-container"></div>
           </div>
           <div class="col-md-4">
-            <div class="m-b-10" v-if="user.type == 'teacher' || user.type == 'admin'">
+            <div class="m-b-10" v-if="!isLive">
               <button
                 type="button"
                 class="btn btn-primary btn-block"
@@ -32,6 +33,16 @@
                 @click="openRoom"
               >
                 <span class="f-s-20">เริ่มการสอน</span>
+              </button>
+            </div>
+            <div class="m-b-10" v-if="isLive">
+              <button
+                type="button"
+                class="btn btn-danger btn-block"
+                ref="share-screen"
+                @click="stop"
+              >
+                <span class="f-s-20">หยุดการสอน</span>
               </button>
             </div>
             <div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'admin'">
@@ -46,7 +57,9 @@
             </div>
             <div class="chatbox">
               <div class="message" v-for="(item, i) in chats" :key="i">
-                <span :class="[item.user_id === course.user_id ? 'user-name-teacher' : 'user-name' ]">{{ item.name }} :&nbsp;</span>
+                <span
+                  :class="[item.user_id === course.user_id ? 'user-name-teacher' : 'user-name' ]"
+                >{{ item.name }} :&nbsp;</span>
                 <span class="text">{{ item.message }}</span>
                 <span class="time">{{ item.time }}</span>
               </div>
@@ -72,12 +85,15 @@
           >
             <!-- BEGIN item -->
             <div class="item item-thumbnail">
-              <router-link to class="item-image">
+              <span class="clickable item-image" @click="request(user.id)">
                 <img src="https://fakeimg.pl/240x135/" alt>
-              </router-link>
+              </span>
               <div class="item-info">
                 <h4 class="item-title">
-                  <router-link to class="f-s-20">{{ user.firstname }} {{ user.lastname }}</router-link>
+                  <span
+                    class="clickable f-s-20"
+                    @click="request(user.id)"
+                  >{{ user.firstname }} {{ user.lastname }}</span>
                 </h4>
               </div>
             </div>
@@ -133,9 +149,11 @@ export default {
         likes: "",
         connection: "",
         roomId: "",
+        oldRoomId: "",
         socket: "",
         profile: {},
-        chats: []
+        chats: [],
+        isLive: false
     }),
     computed: {
         ...mapState(["user"])
@@ -172,12 +190,12 @@ export default {
             .then(({ data }) => {
                 data.map(item => {
                     const temp = {
-						user_id: item.user.id,
+                        user_id: item.user.id,
                         name: `${item.user.firstname} ${item.user.lastname}`,
                         message: item.message,
                         time: item.time
-					};
-					this.chats.push(temp)
+                    };
+                    this.chats.push(temp);
                 });
             })
             .catch(error => {
@@ -194,6 +212,7 @@ export default {
             const self = this;
             this.connection = new RTCMultiConnection();
             this.roomId = roomId;
+            this.oldRoomId = roomId;
             this.connection.getScreenConstraints = function(callback) {
                 getScreenConstraints(function(error, screen_constraints) {
                     if (!error) {
@@ -206,14 +225,15 @@ export default {
                     throw error;
                 });
             };
-            this.connection.socketURL = "https://rtcmulticonnection.herokuapp.com:443/";
+            this.connection.socketURL =
+                "https://rtcmulticonnection.herokuapp.com:443/";
 
             this.connection.socketMessageEvent = "audio-video-screen-demo";
 
             this.connection.session = {
                 audio: true,
-				video: true,
-				oneway: true
+                video: true,
+                oneway: true
             };
 
             this.connection.sdpConstraints.mandatory = {
@@ -263,7 +283,7 @@ export default {
 
             this.socket.on(roomId + "/chat message", msg => {
                 const data = {
-					user_id: self.profile.id,
+                    user_id: self.profile.id,
                     course_id: self.course.id,
                     message: msg.message,
                     time: msg.time
@@ -271,7 +291,7 @@ export default {
                 axios
                     .post("/api/chat", data)
                     .then(({ data }) => {
-                        this.chats.push(msg)
+                        this.chats.push(msg);
                     })
                     .catch(error => {
                         console.log(error);
@@ -285,10 +305,28 @@ export default {
                         }
                     });
             });
+
+            this.socket.on(roomId + "/user response", data => {
+                console.log(data)
+                if (data.accept) {
+                    this.stop()
+                    this.roomId = data.roomId
+                    this.join()
+                }
+            });
         },
         openRoom() {
             this.socket.emit("start stream");
             this.connection.open(this.roomId);
+            this.isLive = true;
+        },
+        join() {
+            const self = this;
+            this.connection.checkPresence(this.roomId, function(isRoomExists) {
+                if (isRoomExists) {
+                    self.connection.join(self.roomId);
+                }
+            });
         },
         screenShare() {
             this.connection.addStream({
@@ -296,13 +334,42 @@ export default {
                 oneway: true
             });
         },
+        stop() {
+            const self = this;
+            this.connection.getAllParticipants().forEach(function(pid) {
+                self.connection.disconnectWith(pid);
+            });
+
+            // stop all local cameras
+            this.connection.attachStreams.forEach(function(localStream) {
+                localStream.stop();
+            });
+
+            this.isLive = false;
+        },
+        request(userId) {
+            swal({
+                title: "ส่งคำขอถึงผู้เรียน",
+                text: "คุณต้องการแชร์หน้าจอของผู้เรียนใช่หรือไม่?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "OK",
+                reverseButtons: true
+            }).then(result => {
+                if (result.value) {
+                    this.socket.emit(this.roomId + "/request share screen", userId);
+                }
+            });
+        },
         handleMessage(event) {
             if (event.key === "Enter" && event.target.value !== "") {
                 const payload = {
-					user_id: this.profile.id,
+                    user_id: this.profile.id,
                     name: this.profile.firstname + " " + this.profile.lastname,
                     message: event.target.value
-				};
+                };
                 this.socket.emit(this.roomId + "/chat message", payload);
                 event.target.value = "";
             }

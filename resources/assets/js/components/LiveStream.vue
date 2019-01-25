@@ -24,6 +24,26 @@
             ></div>
           </div>
           <div class="col-md-4">
+            <div class="m-b-10" v-if="!isLive">
+              <button
+                type="button"
+                class="btn btn-primary btn-block"
+                ref="share-screen"
+                @click="join"
+              >
+                <span class="f-s-20">เริ่ม</span>
+              </button>
+            </div>
+            <div class="m-b-10" v-if="isLive">
+              <button
+                type="button"
+                class="btn btn-danger btn-block"
+                ref="share-screen"
+                @click="stop"
+              >
+                <span class="f-s-20">หยุดการแชร์</span>
+              </button>
+            </div>
             <div class="chatbox">
               <div class="message" v-for="(item, i) in chats" :key="i">
                 <span
@@ -115,9 +135,11 @@ export default {
         likes: "",
         connection: "",
         roomId: "",
+        oldRoomId: "",
         socket: "",
         profile: {},
-        chats: []
+        chats: [],
+        isLive: false
     }),
     computed: {
         ...mapState(["user"])
@@ -135,6 +157,7 @@ export default {
             .then(({ data }) => {
                 this.course = data;
                 this.initialize(data.secret);
+                this.listening(data.secret);
             })
             .catch(error => {
                 console.log(error);
@@ -167,15 +190,12 @@ export default {
                 if (error.response) console.log(error.response);
             });
     },
-    beforeDestroy() {
-        console.log("des");
-        this.socket.emit("stop stream", this.roomId);
-    },
     methods: {
         initialize(roomId) {
             const self = this;
             this.connection = new RTCMultiConnection();
             this.roomId = roomId;
+            this.oldRoomId = roomId;
             this.connection.getScreenConstraints = function(callback) {
                 getScreenConstraints(function(error, screen_constraints) {
                     if (!error) {
@@ -188,14 +208,20 @@ export default {
                     throw error;
                 });
             };
-            this.connection.socketURL = "https://rtcmulticonnection.herokuapp.com:443/";
+            this.connection.socketURL =
+                "https://rtcmulticonnection.herokuapp.com:443/";
 
             this.connection.socketMessageEvent = "audio-video-screen-demo";
 
+            // this.connection.session = {
+            //     audio: true,
+            //     video: true,
+            //     oneway: true
+            // };
+
             this.connection.session = {
-                audio: true,
-								video: true,
-								oneway: true
+                screen: true,
+                oneway: true
             };
 
             this.connection.sdpConstraints.mandatory = {
@@ -207,7 +233,7 @@ export default {
                 "videos-container"
             );
             this.connection.onstream = function(event) {
-								console.log(event)
+                console.log(event);
                 if (document.getElementById(event.streamid)) {
                     var existing = document.getElementById(event.streamid);
                     existing.parentNode.removeChild(existing);
@@ -234,6 +260,12 @@ export default {
                 }, 5000);
 
                 mediaElement.id = event.streamid;
+                if (self.isLive) {
+                    self.socket.emit(self.oldRoomId + "/user response", {
+                        accept: true,
+                        roomId: self.profile.firstname + self.profile.lastname
+                    });
+                }
             };
             this.connection.onstreamended = function(event) {
                 var mediaElement = document.getElementById(event.streamid);
@@ -241,14 +273,17 @@ export default {
                     mediaElement.parentNode.removeChild(mediaElement);
                 }
             };
-
+        },
+        join() {
+            const self = this;
             this.connection.checkPresence(this.roomId, function(isRoomExists) {
                 if (isRoomExists) {
                     self.connection.join(self.roomId);
                 }
             });
-
-            this.socket.emit("initialize", this.roomId);
+        },
+        listening(roomId) {
+            this.socket.emit("initialize", roomId);
 
             this.socket.on(roomId + "/chat message", msg => {
                 const data = {
@@ -274,6 +309,51 @@ export default {
                         }
                     });
             });
+
+            this.socket.on(roomId + "/request share screen", userId => {
+                if (userId === this.profile.id) {
+                    swal({
+                        title: "ผู้สอนต้องการให้คุณแชร์หน้าจอ",
+                        text: "คุณต้องการแชร์หน้าจอหรือไม่?",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Accept",
+                        reverseButtons: true
+                    }).then(result => {
+                        if (result.value) {
+                            this.stop();
+                            this.roomId =
+                                this.profile.firstname + this.profile.lastname;
+                            this.live();
+                        } else {
+                            this.socket.emit(roomId + "/user response", {
+                                accept: false
+                            });
+                        }
+                    });
+                }
+            });
+        },
+        stop() {
+            const self = this;
+            this.connection.getAllParticipants().forEach(function(pid) {
+                self.connection.disconnectWith(pid);
+            });
+
+            // stop all local cameras
+            this.connection.attachStreams.forEach(function(localStream) {
+                localStream.stop();
+            });
+
+            this.socket.emit(this.roomId + "/stop sharing");
+
+            this.isLive = false;
+        },
+        live() {
+            this.isLive = true;
+            this.connection.open(this.roomId);
         },
         handleMessage(event) {
             if (event.key === "Enter" && event.target.value !== "") {

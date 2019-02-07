@@ -38,7 +38,6 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        $picture = $request->file('course_picture')->store('course_pictures');
         $request->validate([
             'category_id' => 'required',
             'course_name' => 'required|max:200',
@@ -51,6 +50,7 @@ class CourseController extends Controller
             'course_limit' => 'required',
             'type' => 'required'
         ]);
+        $picture = $request->file('course_picture')->store('course_pictures');
         $data = [
             'category_id' => $request->category_id,
             'course_name' => $request->course_name,

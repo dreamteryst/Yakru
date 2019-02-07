@@ -37,10 +37,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="course_cover">ภาพปก</label>
-                    <input type="file" class="form-control" :class="{'is-invalid':isError('course_cover')}" id="course_cover" @change="handlefile($event)" accept="image/*" placeholder="Course Cover">
-                    <div class="invalid-feedback" v-if="isError('course_cover')">
-                        {{ errors.course_cover[0] }}
+                    <label for="course_picture">ภาพปก</label>
+                    <input type="file" class="form-control" :class="{'is-invalid':isError('course_picture')}" id="course_picture" @change="handlefile($event)" accept="image/*" placeholder="Course Cover">
+                    <div class="invalid-feedback" v-if="isError('course_picture')">
+                        {{ errors.course_picture[0] }}
                     </div>
                 </div>
                 <div class="form-group">

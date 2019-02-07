@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Unit;
+use App\Lecture;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -39,12 +40,32 @@ class UnitController extends Controller
     {
         $request->validate([
             'unit_name' => 'required',
+            'lectures' => 'required|array',
             'course_id' => 'required'
         ]);
 
-        $unit = Unit::create($request->all());
+        $data = [
+            'unit_name' => $request->unit_name,
+            'course_id' => $request->course_id
+        ];
+
+        $unit = Unit::create($data);
         if($unit) {
-            return $unit;
+            foreach($request->lectures as $lecture) {
+                $video = $lecture['video']->store('videos');
+                $data_lecture = [
+                    'unit_id' => $unit->id, 
+                    'lecture_name' => $lecture['name'], 
+                    'video_name' => $video,
+                    'mime_type' => $lecture['video']->getMimeType(),
+                    'guest' => $lecture['guest'] === "true"
+                ];
+                $lecture = Lecture::insert($data_lecture);
+                if(!$lecture) {
+                    return response('failed', 500);
+                }
+            }
+            return "success";
         } else {
             return response('failed', 500);
         }

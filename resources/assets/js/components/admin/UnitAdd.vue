@@ -29,23 +29,26 @@
                 </div>
                 <div class="form-group">
                     <label for="unit_name">Unit Name</label>
-                    <input type="text" class="form-control" id="unit_name" :class="{'is-invalid':isError('unit_name')}" v-model="unit_name" placeholder="Course Subtitle">
+                    <input type="text" class="form-control" id="unit_name" :class="{'is-invalid':isError('unit_name')}" v-model="unit_name" placeholder="Unit name">
                     <div class="invalid-feedback" v-if="isError('unit_name')">
                         {{ errors.unit_name[0] }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="lecture_name">Lecture</label>
+                    <label for="lecture">Lecture</label>
                     <div class="col-md-2 offset-md-11 col-4 offset-9">
-                        <i class="fa fa-plus fa-2x m-t-5" @click="addReq"></i>
-                        <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeReq"></i>
+                        <i class="fa fa-plus fa-2x m-t-5" @click="addLecture"></i>
+                        <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeLecture"></i>
                     </div>
-                    <div class="row m-b-15" v-for="(req, j) in lecture_name" :key="j">
-                        <div class="col-md-10">
-                            <input class="form-control" v-model="lecture_name[j]" placeholder="Course lecture_name">
+                    <div class="row m-b-15" v-for="(lec, j) in lectures" :key="j">
+                        <div class="col-md-6">
+                            <input class="form-control" v-model="lectures[j].name" placeholder="Lecture name">
                         </div>
-                         <div class="col-md-10">
+                         <div class="col-md-4">
                             <input type="file" @change="onFileChange($event,j)" class="form-control" :class="{'is-invalid':isError('video_name')}" id="video" accept="video/*" placeholder="Video file">
+                        </div>
+                        <div class="col-md-2">
+                            <b-form-checkbox v-model="lectures[j].guest" :value="true">Public</b-form-checkbox>
                         </div>
                     </div>
                 </div>
@@ -62,9 +65,11 @@ export default {
     data() {
         return {
             unit_name: '',
-            lecture_name: [''],
-            video_name:[''],
-            video : '',
+            lectures: [{
+                name: '',
+                video: '',
+                guest: false
+            }],
             errors: [],
             isSuccess : false,
         }
@@ -79,10 +84,14 @@ export default {
     methods: {
         save() {
             const formData = new FormData();
-            formData.append('lecture_name', this.lecture_name);
-            formData.append('video_name', JSON.stringify(this.video_name));
             formData.append('unit_name', this.unit_name);
-            
+            formData.append('course_id', this.$route.params.id);
+            this.lectures.map((item, i) => {
+                formData.append(`lectures[${i}][name]`, item.name)
+                formData.append(`lectures[${i}][guest]`, item.guest)
+                formData.append(`lectures[${i}][video]`, item.video, item.video.name)
+            })
+
             axios.post(`/admin/api/unit`, formData).then((response) => {
                 if (response.status === 200) {
                     this.unit_name = '';
@@ -96,32 +105,17 @@ export default {
         isError(field) {
             return this.errors[field] !== undefined;
         },
-        addResult() {
-            this.results.push('');
-
+        addLecture() {
+            this.lectures.push({
+                name: '',
+                video: ''
+            });
         },
-        removeResult() {
-            this.results.splice((this.results.length > 1) ? this.results.length - 1 : this.results.length - 0);
-        },
-        addReq() {
-            this.lecture_name.push('');
-            this.video_name.push('');
-        },
-        removeReq() {
-            this.lecture_name.splice((this.lecture_name.length > 1) ? this.lecture_name.length - 1 : this.lecture_name.length - 0);
-            this.video_name.splice((this.video_name.length > 1) ? this.video_name.length - 1 : this.video_name.length - 0);
+        removeLecture() {
+            this.lectures.splice((this.lectures.length > 1) ? this.lectures.length - 1 : this.lectures.length - 0);
         },
         onFileChange(event,j) {
-            this.video = event.target.files[0]
-            var formData = new FormData()
-            formData.append('video',this.video)
-    
-            axios
-                .post('/admin/api/unit/upload',formData)
-                .then((res) => {
-                    this.video_name[j] = res.data
-                    console.log(res.data)
-                })
+            this.lectures[j].video = event.target.files[0]
         }
     }
 }

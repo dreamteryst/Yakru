@@ -54,13 +54,15 @@
         <thead>
           <tr>
             <th>ชื่อเลคเชอร์</th>
-            <th>ชื่อวิดีโอ</th>
+            <th>ที่อยู่วิดีโอ</th>
+            <th>การเข้าถึง</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(lecture, i) in lectures" :key="i">
             <td>{{ lecture.lecture_name }}</td>
             <td>{{ lecture.video_name }}</td>
+            <td>{{ lecture.guest ? 'Public' : 'Private' }}</td>
           </tr>
         </tbody>
       </table>

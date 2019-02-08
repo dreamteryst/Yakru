@@ -52,12 +52,19 @@ class UnitController extends Controller
         $unit = Unit::create($data);
         if($unit) {
             foreach($request->lectures as $lecture) {
-                $video = $lecture['video']->store('videos');
+                if ($lecture['type'] === 'youtube')
+                {
+                    $video = $lecture['url'];
+                    $mime = 'youtube';
+                } else {
+                    $video = $lecture['video']->store('videos');
+                    $mime = $lecture['video']->getMimeType();
+                }
                 $data_lecture = [
                     'unit_id' => $unit->id, 
                     'lecture_name' => $lecture['name'], 
                     'video_name' => $video,
-                    'mime_type' => $lecture['video']->getMimeType(),
+                    'mime_type' => $mime,
                     'guest' => $lecture['guest'] === "true"
                 ];
                 $lecture = Lecture::insert($data_lecture);

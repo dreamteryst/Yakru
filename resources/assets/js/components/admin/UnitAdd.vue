@@ -41,13 +41,19 @@
                         <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeLecture"></i>
                     </div>
                     <div class="row m-b-15" v-for="(lec, j) in lectures" :key="j">
+                        <div class="col-md-2">
+                            <b-form-select :options="options" v-model="lectures[j].type"></b-form-select>
+                        </div>
                         <div class="col-md-6">
                             <input class="form-control" v-model="lectures[j].name" placeholder="Lecture name">
                         </div>
-                         <div class="col-md-4">
+                         <div class="col-md-3" v-if="lectures[j].type === 'youtube'">
+                            <b-form-input v-model="lectures[j].url" placeholder="ลิงค์ Youtube" />
+                        </div>
+                        <div class="col-md-3" v-else>
                             <input type="file" @change="onFileChange($event,j)" class="form-control" :class="{'is-invalid':isError('video_name')}" id="video" accept="video/*" placeholder="Video file">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <b-form-checkbox v-model="lectures[j].guest" :value="true">Public</b-form-checkbox>
                         </div>
                     </div>
@@ -66,20 +72,19 @@ export default {
         return {
             unit_name: '',
             lectures: [{
+                type: 'youtube',
                 name: '',
                 video: '',
+                url: '',
                 guest: false
             }],
             errors: [],
             isSuccess : false,
+            options: [
+                { value: 'youtube', text: 'Youtube'},
+                { value: 'video', text: 'Video File' }
+            ]
         }
-    },
-    mounted() {
-        axios.get(`/admin/api/category/data`).then((res) => {
-            if (res.status === 200) {
-                this.categories = res.data.data;
-            }
-        });
     },
     methods: {
         save() {
@@ -87,14 +92,16 @@ export default {
             formData.append('unit_name', this.unit_name);
             formData.append('course_id', this.$route.params.id);
             this.lectures.map((item, i) => {
+                formData.append(`lectures[${i}][type]`, item.type)
                 formData.append(`lectures[${i}][name]`, item.name)
                 formData.append(`lectures[${i}][guest]`, item.guest)
+                formData.append(`lectures[${i}][url]`, item.url)
                 formData.append(`lectures[${i}][video]`, item.video, item.video.name)
             })
 
             axios.post(`/admin/api/unit`, formData).then((response) => {
                 if (response.status === 200) {
-                    this.unit_name = '';
+                    window.location.href = `/admin/course/unit/${this.$route.params.id}`
                 }
             })
                 .catch((error) => {

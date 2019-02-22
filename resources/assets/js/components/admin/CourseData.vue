@@ -222,9 +222,10 @@ export default {
                         data: null,
                         render: (data, type, row, meta) => {
                             return `<ul>
-                                <li><a href="/admin/course/unit/`+ data.id +`">หลักสูตร</a></li>`+
-                                (row["type"] == 'live' ? `<li><a href="/admin/course/live/${row['id']}" style="white-space: nowrap;">ตารางสอน</a></li>` : ``)
-                                + `</ul>`
+                                <li><a href="/admin/course/unit/${data.id}">หลักสูตร</a></li>
+                                <li><a href="/admin/course/example/${data.id}">แบบทดสอบ</a></li>
+                                ${row["type"] == 'live' ? `<li><a href="/admin/course/live/${row['id']}" style="white-space: nowrap;">ตารางสอน</a></li>` : ``}
+                                </ul>`
                         },
                         searchable: false,
                         sortable: false

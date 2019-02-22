@@ -29,6 +29,8 @@ import UnitData from "./components/admin/UnitData";
 import OrderData from "./components/admin/OrderData";
 import CategoryData from "./components/admin/CategoryData";
 import CategoryAdd from "./components/admin/CategoryAdd";
+import ExampleData from "./components/admin/ExampleData";
+import ExampleAdd from "./components/admin/ExampleAdd";
 import TagData from "./components/admin/TagData";
 import TagAdd from "./components/admin/TagAdd";
 import PromotionAdd from "./components/admin/PromotionAdd";
@@ -93,6 +95,8 @@ const routes = [
       { path: "course/add", name: "CourseAdd", component: CourseAdd },
       { path: "course/unit/:id/add", name: "AddUnit", component: UnitAdd },
       { path: "course/unit/:id", name: "Unit", component: UnitData },
+      { path: "course/example/:id/add", name: "AddExample", component: ExampleAdd },
+      { path: "course/example/:id", name: "Example", component: ExampleData },
       { path: "course/live/:id", name: "Schedule", component: ScheduleData },
       { path: "course/calendar", name: "CourseCalendar", component: CourseCalendar },
       { path: "course/:id", name: "Lecuture", component: LectureData },

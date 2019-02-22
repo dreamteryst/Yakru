@@ -36,6 +36,7 @@ import PromotionData from "./components/admin/PromotionData";
 import CourseCalendar from "./components/admin/CourseCalendar";
 import ScheduleData from "./components/admin/ScheduleData";
 import UnitAdd from "./components/admin/UnitAdd";
+import TopupData from './components/admin/TopupData'
 
 import Auth from "./route/Auth";
 import Login from "./components/auth/Login";
@@ -108,7 +109,7 @@ const routes = [
       { path: "tag/add", name: "Addtag", component: TagAdd },
       { path: "promotion", name: "Promotion", component: PromotionData },
       { path: "promotion/add", name: "AddPromotion", component: PromotionAdd },
-      
+      { path: "topup", name: "Topup", component: TopupData },
     ]
   },
   {

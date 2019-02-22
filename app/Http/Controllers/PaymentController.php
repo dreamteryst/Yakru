@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Payment as PaymentModel;
 use App\Topup;
+use App\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -117,7 +118,14 @@ class PaymentController extends Controller
         }
         /** add payment ID to session **/
         Session::put('paypal_payment_id', $payment->getId());
-        if (isset($redirect_url)) {
+        $dataTopup = [
+            'user_id' => Auth::user()->id,
+            'amount' => $request->amount,
+            'method' => 'paypal',
+            'evidence' => $payment->getId()
+        ];
+        $topup = Topup::create($dataTopup);
+        if (isset($redirect_url) && $topup) {
             /** redirect to paypal **/
             return Redirect::away($redirect_url);
         }
@@ -135,12 +143,20 @@ class PaymentController extends Controller
             \Session::put('error', 'Payment failed');
             return Redirect::to('/profile');
         }
-        $payment = Payment::get($payment_id, $this->_api_context);
+        try {
+            $payment = Payment::get($payment_id, $this->_api_context);
+        } catch (PayPal\Exception\PayPalConnectionException $ex) {
+            $ex->getData();
+        }
         $execution = new PaymentExecution();
         $execution->setPayerId($request->PayerID);
         /**Execute the payment **/
         $result = $payment->execute($execution, $this->_api_context);
         if ($result->getState() == 'approved') {
+            $topup = topup::where('evidence', $payment_id)->first();
+            $user = User::findOrFail($topup->user_id);
+            $user->money += $topup->amount;
+            $user->save();
             \Session::put('success', 'Payment success');
             return Redirect::to('/profile');
         }

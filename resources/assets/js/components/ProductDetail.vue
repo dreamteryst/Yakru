@@ -21,10 +21,14 @@
           <div class="product-detail">
             <!-- BEGIN product-image -->
             <div class="product-image">
-              <div id="player" data-plyr-provider="youtube" :data-plyr-embed-id="youtube_parser(course.course_video)" v-if="course.course_video"></div>
-              <!-- <div class="embed-responsive embed-responsive-16by9">
-                <iframe width="560" height="315" :src="course.course_video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-              </div> -->
+              <div class="plyr__video-embed" id="player">
+                <iframe
+                  :src="`https://www.youtube.com/embed/${youtube_parser(course.course_video)}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1`"
+                  allowfullscreen
+                  allowtransparency
+                  allow="autoplay"
+                ></iframe>
+              </div>
             </div>
             <!-- END product-image -->
             <!-- BEGIN product-info -->
@@ -58,12 +62,23 @@
               <!-- BEGIN product-purchase-container -->
               <div class="product-purchase-container">
                 <div class="product-discount">
-                  <span class="discount" v-if="course.course_price">฿{{ numberWithCommas(course.course_price) }}</span>
+                  <span
+                    class="discount"
+                    v-if="course.course_price"
+                  >฿{{ numberWithCommas(course.course_price) }}</span>
                 </div>
                 <div class="product-price">
-                  <div class="price" v-if="course.final_price">฿{{ numberWithCommas(course.final_price) }}</div>
+                  <div
+                    class="price"
+                    v-if="course.final_price"
+                  >฿{{ numberWithCommas(course.final_price) }}</div>
                 </div>
-                <button class="btn btn-inverse btn-lg" type="button" @click="purchase" v-if="!course.is_bought">PURCHASE</button>
+                <button
+                  class="btn btn-inverse btn-lg"
+                  type="button"
+                  @click="purchase"
+                  v-if="!course.is_bought"
+                >PURCHASE</button>
                 <button class="btn btn-inverse btn-lg" type="button" v-else>VIEW</button>
               </div>
               <!-- END product-purchase-container -->
@@ -83,10 +98,22 @@
             <!-- BEGIN #product-tab-content -->
             <div id="product-tab-content" class="tab-content">
               <!-- BEGIN #curriculum -->
-              <div class="tab-pane fade active in" id="curriculum" v-for="(unit, i) in course.units" :key="i" v-if="course.type === 'video'">
+              <div
+                class="tab-pane fade active in"
+                id="curriculum"
+                v-for="(unit, i) in course.units"
+                :key="i"
+                v-if="course.type === 'video'"
+              >
                 <b-card no-body class="mb-1">
                   <b-card-header header-tag="header" class="p-1" role="tab">
-                    <b-btn block href="#" v-b-toggle="'accordion-' + i" variant="info" class="btn-left">
+                    <b-btn
+                      block
+                      href="#"
+                      v-b-toggle="'accordion-' + i"
+                      variant="info"
+                      class="btn-left"
+                    >
                       <i class="fa fa-plus"></i>
                       {{ unit.unit_name }}
                     </b-btn>
@@ -99,9 +126,7 @@
                             <i class="fa fa-play-circle"></i>
                             {{ lecture.lecture_name }}
                           </a>
-                          <span v-else>
-                            {{ lecture.lecture_name }}
-                          </span>
+                          <span v-else>{{ lecture.lecture_name }}</span>
                         </li>
                       </ul>
                     </b-card-body>
@@ -110,10 +135,22 @@
               </div>
               <!-- END #curriculum -->
               <!-- BEGIN #curriculum -->
-              <div class="tab-pane fade active in" id="curriculum" v-for="(schedule, i) in course.schedule" :key="i" v-if="course.schedule && course.type === 'live'">
+              <div
+                class="tab-pane fade active in"
+                id="curriculum"
+                v-for="(schedule, i) in course.schedule"
+                :key="i"
+                v-if="course.schedule && course.type === 'live'"
+              >
                 <b-card no-body class="mb-1">
                   <b-card-header header-tag="header" class="p-1" role="tab">
-                    <b-btn block href="#" v-b-toggle="'accordion-' + i" variant="info" class="btn-left">
+                    <b-btn
+                      block
+                      href="#"
+                      v-b-toggle="'accordion-' + i"
+                      variant="info"
+                      class="btn-left"
+                    >
                       <i class="fa fa-plus"></i>
                       {{ dateFormat(schedule.start, 'DD/MM/YYYY HH:mm') }} - {{ dateFormat(schedule.end, 'DD/MM/YYYY HH:mm') }}
                     </b-btn>
@@ -122,9 +159,7 @@
                     <b-card-body>
                       <ul class="curriculum" v-for="(unit, j) in schedule.unit" :key="j">
                         <li>
-                          <span>
-                            {{ unit.unit_name }}
-                          </span>
+                          <span>{{ unit.unit_name }}</span>
                         </li>
                       </ul>
                     </b-card-body>
@@ -179,8 +214,14 @@
                   <router-link :to="`/product-detail/${like.id}`">{{ like.course_name }}</router-link>
                 </h4>
                 <p class="item-desc">{{ like.course_description }}</p>
-                <div class="item-price" v-if="like.final_price">฿ {{ numberWithCommas(like.final_price) }}</div>
-                <div class="item-discount-price" v-if="like.course_price">฿ {{ numberWithCommas(like.course_price) }}</div>
+                <div
+                  class="item-price"
+                  v-if="like.final_price"
+                >฿ {{ numberWithCommas(like.final_price) }}</div>
+                <div
+                  class="item-discount-price"
+                  v-if="like.course_price"
+                >฿ {{ numberWithCommas(like.course_price) }}</div>
               </div>
             </div>
             <!-- END item -->
@@ -196,76 +237,75 @@
 </template>
 
 <script>
-import swal from 'sweetalert2'
+import swal from "sweetalert2";
 export default {
-  data() {
-    return {
-      course: "",
-      likes: ""
-    };
-  },
-  mounted() {
-    axios
-      .get(`/api/course/${this.$route.params.id}`)
-      .then(({ data }) => {
-        this.course = data;
-      })
-      .catch(error => {
-        console.log(error);
-        if (error.response) console.log(error.response);
-      });
-    axios
-      .get(`/api/course/like/${this.$route.params.id}`)
-      .then(({ data }) => {
-        this.likes = data;
-      })
-      .catch(error => {
-        console.log(error);
-        if (error.response) console.log(error.response);
-      });
-      $(function() {
-        new Plyr('#player')
-      })
-  },
-  methods: {
-    purchase() {
-      swal({
-        title: "ยืนยันการดำเนินการ",
-        text: "คุณต้องการซื้อคอร์สนี้ใช่หรือไม่?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes",
-        reverseButtons: true
-      }).then(result => {
-        if (result.value) {          ;
-
-          axios
-            .post("/api/course/buy", {
-              course_id: this.course.id
-            })
+    data() {
+        return {
+            course: "",
+            likes: ""
+        };
+    },
+    mounted() {
+        axios
+            .get(`/api/course/${this.$route.params.id}`)
             .then(({ data }) => {
-              swal({
-                type: "success",
-                title: "ดำเนินการสำเร็จ"
-              });
+                this.course = data;
+                $(function() {
+                    new Plyr("#player");
+                });
             })
             .catch(error => {
-              console.log(error);
-              if (error.response) {
-                console.log(error.response);
-                swal({
-                  type: "error",
-                  title: "Oops...",
-                  text: error.response.data.message
-                });
-              }
+                console.log(error);
+                if (error.response) console.log(error.response);
+            });
+        axios
+            .get(`/api/course/like/${this.$route.params.id}`)
+            .then(({ data }) => {
+                this.likes = data;
+            })
+            .catch(error => {
+                console.log(error);
+                if (error.response) console.log(error.response);
+            });
+    },
+    methods: {
+        purchase() {
+            swal({
+                title: "ยืนยันการดำเนินการ",
+                text: "คุณต้องการซื้อคอร์สนี้ใช่หรือไม่?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes",
+                reverseButtons: true
+            }).then(result => {
+                if (result.value) {
+                    axios
+                        .post("/api/course/buy", {
+                            course_id: this.course.id
+                        })
+                        .then(({ data }) => {
+                            swal({
+                                type: "success",
+                                title: "ดำเนินการสำเร็จ"
+                            });
+                        })
+                        .catch(error => {
+                            console.log(error);
+                            if (error.response) {
+                                console.log(error.response);
+                                swal({
+                                    type: "error",
+                                    title: "Oops...",
+                                    text: error.response.data.message
+                                });
+                            }
+                        });
+                }
             });
         }
-      });
     }
-  }
 };
 </script>
 

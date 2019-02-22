@@ -67,7 +67,7 @@
         </tbody>
       </table>
     </b-modal>
-    <b-modal ref="modalAddUnit" size="lg" title="เพิ่มหลักสูตร" hide-footer>
+    <b-modal ref="modalEdit" size="lg" title="แก้ไข" hide-footer>
       <form @submit="submit">
         <div class="form-group">
           <label for="unit_name">ชื่อหลักสูตร</label>
@@ -76,7 +76,7 @@
             class="form-control"
             id="unit_name"
             placeholder="ชื่อหลักสูตร"
-            v-model="unit_name"
+            v-model="data.unit_name"
           >
         </div>
         <div class="form-group text-right">
@@ -138,8 +138,8 @@ export default {
                           <div class="actions" data='` +
                                 JSON.stringify(row) +
                                 `'>
-                            <i class="fa fa-edit new-user-edit"></i>
-                            <i class="fa fa-trash-alt"></i>
+                            <i class="fa fa-edit unit-edit"></i>
+                            <i class="fa fa-trash-alt unit-delete"></i>
                           </div>`
                             );
                         },
@@ -157,6 +157,35 @@ export default {
                         );
                         self.$refs.modalLectureList.show();
                     });
+                    $(".unit-edit").on("click", function() {
+                        self.data = JSON.parse(
+                            $(this)
+                                .closest("div")
+                                .attr("data")
+                        );
+                        self.$refs.modalEdit.show();
+                    });
+                    $(".unit-delete").on("click", function() {
+                        swal({
+                            title: "ยืนยันการดำเนินการ",
+                            text: "คุณต้องการยืนยันการลบข้อมูลใช่หรือไม่?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Yes",
+                            reverseButtons: true
+                        }).then(result => {
+                            if (result.value) {
+                                self.data = JSON.parse(
+                                    $(this)
+                                        .closest("div")
+                                        .attr("data")
+                                );
+                                self.remove();
+                            }
+                        });
+                    });
                 }
             });
         });
@@ -168,18 +197,44 @@ export default {
         submit(event) {
             event.preventDefault();
             const payload = new FormData();
-            payload.append("course_id", this.$route.params.id);
-            payload.append("unit_name", this.unit_name);
+            payload.append("unit_name", this.data.unit_name);
+            payload.append("_method", "PUT");
 
             axios
-                .post("/admin/api/unit", payload)
+                .post(`/admin/api/unit/${this.data.id}`, payload)
                 .then(({ data }) => {
-                    console.log(data);
                     this.table.ajax.reload();
                     swal({
                         type: "success",
                         title: "ดำเนินการสำเร็จ"
                     });
+                    this.$refs.modalEdit.hide();
+                })
+                .catch(error => {
+                    console.log(error);
+                    if (error.response) {
+                        console.log(error.response);
+                        swal({
+                            type: "error",
+                            title: "Oops...",
+                            text: error.response.data.message
+                        });
+                    }
+                });
+        },
+        remove() {
+            const payload = new FormData();
+            payload.append("_method", "DELETE");
+
+            axios
+                .post(`/admin/api/unit/${this.data.id}`, payload)
+                .then(({ data }) => {
+                    this.table.ajax.reload();
+                    swal({
+                        type: "success",
+                        title: "ดำเนินการสำเร็จ"
+                    });
+                    this.$refs.modalEdit.hide();
                 })
                 .catch(error => {
                     console.log(error);

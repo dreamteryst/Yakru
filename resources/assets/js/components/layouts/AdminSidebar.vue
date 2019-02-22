@@ -140,6 +140,10 @@ export default {
 				'title': 'รายการแจ้งชำระเงิน',
 				'url': '/admin/payment'
 			}, {
+				'icon': 'fa fa-coins',
+				'title': 'รายการเติมเงิน',
+				'url': '/admin/topup'
+			}, {
 				'icon': 'fas fa-address-card',
 				'title': 'ข้อมูลผู้สมัครเป็นผู้สอน',
 				'url': '/admin/teacher/register'

@@ -12,7 +12,12 @@ class Topup extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Topup');
+        return $this->belongsTo('App\User');
+    }
+
+    public function admin()
+    {
+        return $this->belongsTo('App\Admin');
     }
 
     public function payment()

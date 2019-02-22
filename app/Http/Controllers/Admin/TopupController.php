@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Topup;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class TopupController extends Controller
 {
@@ -81,5 +83,19 @@ class TopupController extends Controller
     public function destroy(Topup $topup)
     {
         //
+    }
+    
+    public function anyData()
+    {
+        return Datatables::of(Topup::with('user'))
+        ->addColumn('name', function($topup) {
+            return $topup->user->firstname.' '.$topup->user->lastname;
+        })
+        ->filterColumn('name', function($query, $keyword) {
+            $query->whereHas('user', function($query) use ($keyword) {
+                $query->whereRaw("CONCAT(firstname, ' ', lastname) like ?", ["%{$keyword}%"]);
+            });
+        })
+        ->make(true);
     }
 }

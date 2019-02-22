@@ -109,7 +109,16 @@ class UnitController extends Controller
      */
     public function update(Request $request, Unit $unit)
     {
-        //
+       $request->validate([
+            'unit_name' => 'required'
+        ]);
+
+        $unit->unit_name = $request->unit_name;
+        if($unit->save()) {
+            return $unit;
+        } else {
+            return response('failed', 500);
+        }
     }
 
     /**
@@ -119,8 +128,8 @@ class UnitController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Unit $unit)
-    {
-        //
+    { 
+        return $unit->delete() ? "success" : response('failed', 500);
     }
 
     public function anyData(Request $request)

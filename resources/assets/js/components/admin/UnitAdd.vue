@@ -114,8 +114,11 @@ export default {
         },
         addLecture() {
             this.lectures.push({
+                type: 'youtube',
                 name: '',
-                video: ''
+                video: '',
+                url: '',
+                guest: false
             });
         },
         removeLecture() {

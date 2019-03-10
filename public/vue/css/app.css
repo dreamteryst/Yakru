@@ -17,6 +17,12 @@ video {
   height: auto;
 }
 
+td.fit,
+th.fit {
+  width: 1%;
+  white-space: nowrap;
+}
+
 a.deactive-link {
   color: black;
 }
@@ -25,6 +31,10 @@ a.deactive-link {
   text-align: center;
   cursor: pointer;
   white-space: nowrap;
+}
+
+.actions .btn .fa {
+  color: white;
 }
 
 .actions .fa {

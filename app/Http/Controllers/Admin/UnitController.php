@@ -129,7 +129,8 @@ class UnitController extends Controller
      */
     public function destroy(Unit $unit)
     { 
-        return $unit->delete() ? "success" : response('failed', 500);
+        $lecture = Lecture::where('unit_id', $unit->id)->delete();
+        return $lecture && $unit->delete() ? "success" : response('failed', 500);
     }
 
     public function anyData(Request $request)

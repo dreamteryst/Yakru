@@ -201,7 +201,7 @@ export default {
                     { data: "fullname", name: "fullname" },
                     {                        data: "course_name",
                         render: (data, type, row, meta) => {
-                            return `<a href="/admin/course/video">${data}</a>`
+                            return `<a href="/admin/course/unit/${row.id}">${data}</a>`
 
                         }                    },
                     { data: "category_name", name: "category_name" },
@@ -238,7 +238,7 @@ export default {
                           <div class="actions" data-id='` +
                                 JSON.stringify(row) +
                                 `'>
-                            <a href="/product-detail" target="_blank"><i class="far fa-eye"></i></a>
+                            <a href="/product-detail/${row.id}" target="_blank"><i class="far fa-eye"></i></a>
                             <i class="fa fa-edit new-user-edit"></i>
                           ` +
                                 (row["deleted_at"] == null

@@ -51,6 +51,20 @@
           <div class="invalid-feedback" v-if="isError('example_type')">{{ errors.example_type[0] }}</div>
         </div>
         <b-row>
+          <b-col>
+            <div class="form-group">
+              <label for="time_limit">จำกัดเวลา</label>
+              <input
+                type="text"
+                class="form-control"
+                id="time_limit"
+                v-model="time_limit"
+                placeholder="นาที"
+              >
+            </div>
+          </b-col>
+        </b-row>
+        <b-row>
           <div class="col-md-2 offset-md-11 col-4 offset-9">
             <i class="fa fa-plus fa-2x m-t-5" @click="addEx"></i>
             <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeEx"></i>
@@ -119,6 +133,7 @@ export default {
                     choices: [{ text: "" }]
                 }
             ],
+            time_limit: "",
             errors: [],
             isSuccess: false
         };
@@ -146,6 +161,7 @@ export default {
             const formData = new FormData();
             formData.append("example_type", this.example_type);
             formData.append("course_id", this.$route.params.id);
+            formData.append("time_limit", this.time_limit);
             this.examples.forEach((item, i) => {
                 formData.append(`question[${i}][question]`, item.question);
                 formData.append(`question[${i}][ans]`, item.ans);
@@ -161,9 +177,9 @@ export default {
                 .post(`/admin/api/example`, formData)
                 .then(response => {
                     if (response.status === 200) {
-                        // window.location.href = `/admin/course/example/${
-                        //     this.$route.params.id
-                        // }`;
+                        window.location.href = `/admin/course/example/${
+                            this.$route.params.id
+                        }`;
                     }
                 })
                 .catch(error => {

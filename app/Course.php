@@ -62,6 +62,11 @@ class Course extends Model
         return $this->belongsToMany('App\User', 'user_course');
     }
 
+    public function userCourse()
+    {
+        return $this->hasMany('App\UserCourse');
+    }
+
     public function units()
     {
         return $this->hasMany('App\Unit');
@@ -70,6 +75,11 @@ class Course extends Model
     public function promotion()
     {
         return $this->belongsToMany('App\Promotion', 'course_promotions');
+    }
+
+    public function example()
+    {
+        return $this->hasMany('App\Example');
     }
 
     public function getFinalPriceAttribute()

@@ -45,6 +45,23 @@
           <!-- BEGIN product-tab -->
           <div class="product-tab">
             <!-- BEGIN #product-tab -->
+            <ul id="example" class="nav nav-tabs">
+              <li class="active">
+                <a href="#example" data-toggle="tab">Example</a>
+              </li>
+            </ul>
+            <div id="product-tab-content" class="tab-content">
+              <div
+                class="tab-pane fade active in"
+                id="example"
+                v-for="(unit, i) in course.units"
+                :key="i"
+              >
+              <button class="btn btn-primary" @click="$refs.modalPreTest.show()">แบบทดสอบก่อนเรียน</button>
+              <button class="btn btn-success" disabled>แบบทดสอบหลังเรียน</button>
+              </div>
+            </div>
+            <!-- BEGIN #product-tab -->
             <ul id="product-tab" class="nav nav-tabs">
               <li class="active">
                 <a href="#curriculum" data-toggle="tab">Curriculum For This Course</a>
@@ -103,6 +120,12 @@
       <!-- END container -->
     </div>
     <!-- END #product -->
+    <b-modal ref="modalPreTest" title="แบบทดสอบก่อนเรียน" ok-title="บันทึก" size="lg" no-fade>
+      <div>
+        Hello world
+      </div>
+    </b-modal>
+    <b-modal ref="modalPostTest" ok-title="บันทึก"></b-modal>
   </section>
 </template>
 

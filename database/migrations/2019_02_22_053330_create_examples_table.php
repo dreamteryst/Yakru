@@ -17,6 +17,7 @@ class CreateExamplesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('course_id');
             $table->string('example_type');
+            $table->integer('time_limit');
 
             $table->foreign('course_id')->references('id')->on('courses');
             $table->timestamps();

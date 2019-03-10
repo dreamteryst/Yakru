@@ -85,7 +85,11 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::resource('unit', 'Admin\UnitController');
 
         Route::get('example/data/{id}', 'Admin\ExampleController@anyData');
+        Route::get('example/course/{id}', 'Admin\ExampleController@jsonData');
         Route::resource('example', 'Admin\ExampleController');
+
+        Route::post('example/done', 'UserExampleController@store');
+
 
         Route::get('lecture/data/{id}', 'Admin\LectureController@anyData');
         Route::resource('lecture', 'Admin\LectureController');

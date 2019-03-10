@@ -36,7 +36,7 @@ Vue.mixin({
         },
         youtube_parser(url) {
             if (this.isEmpty(url)) {
-                return ''
+                return "";
             }
             var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
             var match = url.match(regExp);
@@ -55,6 +55,13 @@ Vue.mixin({
             }
 
             return true;
+        },
+        shuffle(a) {
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
         }
     }
 });

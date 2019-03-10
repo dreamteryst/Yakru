@@ -13,22 +13,17 @@
               <h1 class="product-title">{{ course.course_name }}</h1>
               <br>
               <div v-if="lecture">
-                <video
-                  id="player"
-                  playsinline
-                  controls
-                  v-if="lecture.mime_type !== 'youtube'"
-                >
+                <video id="player" playsinline controls v-if="lecture.mime_type !== 'youtube'">
                   <source :src="`/photo/${lecture.video_name}`" :type="lecture.mime_type">
                 </video>
                 <div class="plyr__video-embed" id="player" v-else>
-                <iframe
-                  :src="`https://www.youtube.com/embed/${youtube_parser(lecture.video_name)}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1`"
-                  allowfullscreen
-                  allowtransparency
-                  allow="autoplay"
-                ></iframe>
-              </div>
+                  <iframe
+                    :src="`https://www.youtube.com/embed/${youtube_parser(lecture.video_name)}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1`"
+                    allowfullscreen
+                    allowtransparency
+                    allow="autoplay"
+                  ></iframe>
+                </div>
               </div>
               <div class="plyr__video-embed" id="player" v-else>
                 <iframe
@@ -51,14 +46,9 @@
               </li>
             </ul>
             <div id="product-tab-content" class="tab-content">
-              <div
-                class="tab-pane fade active in"
-                id="example"
-                v-for="(unit, i) in course.units"
-                :key="i"
-              >
-              <button class="btn btn-primary" @click="$refs.modalPreTest.show()">แบบทดสอบก่อนเรียน</button>
-              <button class="btn btn-success" disabled>แบบทดสอบหลังเรียน</button>
+              <div class="tab-pane fade active in" id="example">
+                <button class="btn btn-primary" @click="$refs.modalPreTest.show()">แบบทดสอบก่อนเรียน</button>
+                <button class="btn btn-success" disabled>แบบทดสอบหลังเรียน</button>
               </div>
             </div>
             <!-- BEGIN #product-tab -->
@@ -120,11 +110,13 @@
       <!-- END container -->
     </div>
     <!-- END #product -->
-    <b-modal ref="modalPreTest" title="แบบทดสอบก่อนเรียน" ok-title="บันทึก" size="lg" no-fade>
-      <div>
-        Hello world
-      </div>
-    </b-modal>
+    <Example
+      ref="modalPreTest"
+      title="แบบทดสอบก่อนเรียน"
+      v-if="course.example"
+      :time_limit="course.example.find(item => item.example_type === 'pretest').time_limit"
+      :questions="course.example.find(item => item.example_type === 'pretest').question"
+    />
     <b-modal ref="modalPostTest" ok-title="บันทึก"></b-modal>
   </section>
 </template>

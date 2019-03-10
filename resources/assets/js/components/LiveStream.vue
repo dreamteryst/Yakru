@@ -285,6 +285,21 @@ export default {
         listening(roomId) {
             this.socket.emit("initialize", roomId);
 
+            this.socket.on(roomId + "/stop student screen", studentRoomId => {
+                this.stop();
+                this.roomId = roomId;
+                if (
+                    studentRoomId ==
+                    this.profile.firstname + this.profile.lastname
+                ) {
+                    this.isLive = false;
+                }
+                this.roomId = roomId;
+                setTimeout(() => {
+                    this.join();
+                }, 1000);
+            });
+
             this.socket.on(roomId + "/chat message", msg => {
                 const data = {
                     user_id: self.profile.id,
@@ -326,7 +341,7 @@ export default {
                             this.stop();
                             this.roomId =
                                 this.profile.firstname + this.profile.lastname;
-                            this.live();
+                            this.live(true);
                         } else {
                             this.socket.emit(roomId + "/user response", {
                                 accept: false
@@ -351,8 +366,8 @@ export default {
 
             this.isLive = false;
         },
-        live() {
-            this.isLive = true;
+        live(isLive) {
+            this.isLive = isLive;
             this.connection.open(this.roomId);
         },
         handleMessage(event) {

@@ -29,7 +29,7 @@
               <button
                 type="button"
                 class="btn btn-primary btn-block"
-                ref="share-screen"
+                ref="start-screen"
                 @click="openRoom"
               >
                 <span class="f-s-20">เริ่มการสอน</span>
@@ -39,10 +39,20 @@
               <button
                 type="button"
                 class="btn btn-danger btn-block"
-                ref="share-screen"
+                ref="stop-screen"
                 @click="stop"
               >
                 <span class="f-s-20">หยุดการสอน</span>
+              </button>
+            </div>
+            <div class="m-b-10" v-if="!isLive">
+              <button
+                type="button"
+                class="btn btn-warning btn-block"
+                ref="stop-student-screen"
+                @click="stopStudent"
+              >
+                <span class="f-s-20">หยุดการแชร์หน้าจอผู้เรียน</span>
               </button>
             </div>
             <div class="m-b-20" v-if="user.type == 'teacher' || user.type == 'admin'">
@@ -171,6 +181,7 @@ export default {
             .then(({ data }) => {
                 this.course = data;
                 this.initialize(data.secret);
+                this.listening(data.secret);
             })
             .catch(error => {
                 console.log(error);
@@ -278,7 +289,8 @@ export default {
                     mediaElement.parentNode.removeChild(mediaElement);
                 }
             };
-
+        },
+        listening(roomId) {
             this.socket.emit("initialize", this.roomId);
 
             this.socket.on(roomId + "/chat message", msg => {
@@ -307,11 +319,11 @@ export default {
             });
 
             this.socket.on(roomId + "/user response", data => {
-                console.log(data)
+                console.log(data);
                 if (data.accept) {
-                    this.stop()
-                    this.roomId = data.roomId
-                    this.join()
+                    this.stop();
+                    this.roomId = data.roomId;
+                    this.join();
                 }
             });
         },
@@ -347,6 +359,15 @@ export default {
 
             this.isLive = false;
         },
+        stopStudent() {
+            this.socket.emit(
+                this.course.secret + "/stop student screen",
+                this.roomId
+            );
+            this.stop();
+            this.roomId = this.course.secret;
+            this.openRoom();
+        },
         request(userId) {
             swal({
                 title: "ส่งคำขอถึงผู้เรียน",
@@ -359,7 +380,10 @@ export default {
                 reverseButtons: true
             }).then(result => {
                 if (result.value) {
-                    this.socket.emit(this.roomId + "/request share screen", userId);
+                    this.socket.emit(
+                        this.roomId + "/request share screen",
+                        userId
+                    );
                 }
             });
         },

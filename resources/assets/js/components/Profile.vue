@@ -41,10 +41,12 @@
                     <router-link
                       :to="`/learning/${course.course.id}`"
                       v-if="course.course && course.course.type === 'video'"
+                      class="text-success"
                     >{{ course.course.course_name }}</router-link>
                     <router-link
                       :to="`/live-stream/${course.course.id}`"
                       v-else-if="course.course"
+                      class="text-success"
                     >{{ course.course.course_name }}</router-link>
                   </li>
                 </ul>

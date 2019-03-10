@@ -49,7 +49,7 @@ class CourseController extends Controller
 
     public function show(Request $request)
     {
-        return Course::where('id', $request->id)->with(['category', 'units.lectures', 'schedule' => function($query) {
+        return Course::where('id', $request->id)->with(['category', 'example.question.choice', 'units.lectures', 'schedule' => function($query) {
             $query->with('unit')->orderBy('start');
         }])->first();
     }
@@ -77,7 +77,7 @@ class CourseController extends Controller
 
     public function courseUser(Request $request)
     {
-        return Course::where('id', $request->id)->with(['users', 'category'])->first();
+        return Course::where('id', $request->id)->with(['users', 'category', 'example'])->first();
     }
 
 }

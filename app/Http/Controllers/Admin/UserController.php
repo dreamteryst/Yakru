@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -68,9 +69,40 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required',
+        ]);
+
+        $user = $request->user();
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        if ($user->save()) {
+            return 'succes';
+        } else {
+            return response('failed', 500);
+        }
+    }
+
+    public function password(Request $request)
+    {
+        $request->validate([
+            'password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+
+        $user = $request->user();
+        if (!Hash::check($request->password, $user->password)) {
+            return response(['message' => 'รหัสผ่านไม่ถูกต้อง'], 421);
+        }
+        $user->password = bcrypt($request->password);
+        if ($user->save()) {
+            return 'succes';
+        } else {
+            return response('failed', 500);
+        }
     }
 
     /**

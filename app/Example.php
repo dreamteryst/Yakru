@@ -8,6 +8,8 @@ class Example extends Model
 {
     protected $fillable = ['example_type', 'course_id', 'time_limit'];
 
+    protected $appends = ['isDone'];
+
     public function course()
     {
         return $this->belongsTo('App\Course');
@@ -16,5 +18,14 @@ class Example extends Model
     public function question()
     {
         return $this->hasMany('App\Question');
+    }
+
+    public function userExample()
+    {
+        return $this->hasOne('App\UserExample');
+    }
+
+    public function getIsDoneAttribute() {
+        return !empty($this->userExample);
     }
 }

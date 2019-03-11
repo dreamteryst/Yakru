@@ -45,12 +45,16 @@ Route::prefix('api')->group(function () {
         Route::get('course/user/{id}', 'CourseController@courseUser')->name('coures.courseUser');
         Route::post('payment', 'PaymentController@store')->name('payment.store');
         Route::post('teacher/register', 'TeacherRegisterController@store')->name('teacherRegister.store');
+        Route::post('user/update', 'Admin\UserController@update');
+        Route::post('user/password', 'Admin\UserController@password');
     });
     Route::get('bank', 'BankController@jsonData')->name('bank.data');
     Route::get('category', 'CategoryController@jsonData')->name('category.data');
     Route::get('course/new', 'CourseController@new')->name('course.new');
     Route::get('course/{id}', 'CourseController@show')->name('course.show');
     Route::get('course/like/{id}', 'CourseController@like')->name('course.like');
+
+    Route::post('example/done', 'UserExampleController@store');
 });
 
 Route::group(['middleware' => ['guest:web_admin']], function () {
@@ -87,8 +91,6 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::get('example/data/{id}', 'Admin\ExampleController@anyData');
         Route::get('example/course/{id}', 'Admin\ExampleController@jsonData');
         Route::resource('example', 'Admin\ExampleController');
-
-        Route::post('example/done', 'UserExampleController@store');
 
 
         Route::get('lecture/data/{id}', 'Admin\LectureController@anyData');

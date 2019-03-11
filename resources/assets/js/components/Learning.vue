@@ -47,8 +47,15 @@
             </ul>
             <div id="product-tab-content" class="tab-content">
               <div class="tab-pane fade active in" id="example">
-                <button class="btn btn-primary" @click="$refs.modalPreTest.show()">แบบทดสอบก่อนเรียน</button>
-                <button class="btn btn-success" disabled>แบบทดสอบหลังเรียน</button>
+                <button
+                  class="btn btn-primary"
+                  @click="openExamp"
+                  :disabled="checkIsDone('pretest')"
+                >แบบทดสอบก่อนเรียน</button>
+                <button
+                  class="btn btn-success"
+                  :disabled="checkIsDone('posttest')"
+                >แบบทดสอบหลังเรียน</button>
               </div>
             </div>
             <!-- BEGIN #product-tab -->
@@ -116,12 +123,15 @@
       v-if="course.example"
       :time_limit="course.example.find(item => item.example_type === 'pretest').time_limit"
       :questions="course.example.find(item => item.example_type === 'pretest').question"
+      @submit="submitExam"
+      @timeOver="submitExam"
     />
     <b-modal ref="modalPostTest" ok-title="บันทึก"></b-modal>
   </section>
 </template>
 
 <script>
+import moment from "moment";
 export default {
     data() {
         return {
@@ -129,7 +139,8 @@ export default {
                 name: ""
             },
             player: null,
-            lecture: null
+            lecture: null,
+            started_at: ""
         };
     },
     mounted() {
@@ -154,6 +165,38 @@ export default {
                 this.lecture = lecture;
                 new Plyr("#player");
             }, 500);
+        },
+        checkIsDone(type) {
+            if (!this.course.example) {
+                return false;
+            }
+            if (!this.course.example.find(item => item.type === type)) {
+                return false;
+            }
+            return this.course.example.find(item => item.type === type).isDone;
+        },
+        openExamp() {
+            this.alertConfirm(
+                "ยืนยันการดำเนินการ",
+                "คุณต้องการเริ่มทำข้อสอบใช่หรือไม่"
+            ).then(result => {
+                if (result.value) {
+                    this.started_at = moment().format("YYYY-MM-DD");
+                    this.$refs.modalPreTest.show();
+                }
+            });
+        },
+        submitExam($answers) {
+            const payload = new FormData();
+            payload.append("example_id", this.$route.params.id);
+            payload.append("started_at", this.started_at);
+            $answers.forEach((item, i) => {
+                payload.append(`answers[${i}]`, item);
+            });
+
+            axios.post("/api/example/done", payload).then(({ data }) => {
+                this.alertSuccess();
+            });
         }
     }
 };

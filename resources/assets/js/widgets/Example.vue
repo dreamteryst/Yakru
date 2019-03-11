@@ -13,7 +13,7 @@
     <b-row>
       <b-col class="p-20">
         <b-form-group v-for="(item, i) in reQuestions" :key="i" :label="item.label">
-          <b-form-radio-group v-model="answers[i]" :options="item.choices"/>
+          <b-form-radio-group v-model="answers[item.id]" :options="item.choices"/>
         </b-form-group>
       </b-col>
     </b-row>
@@ -26,7 +26,8 @@ export default {
     data() {
         return {
             time_left: this.time_limit,
-            answers: []
+            answers: [],
+            timer: ""
         };
     },
     computed: {
@@ -36,6 +37,7 @@ export default {
                 const choices = this.shuffle(item.choice);
                 return {
                     label: item.question,
+                    id: item.id,
                     choices: choices.map((choice, j) => {
                         return {
                             text: choice.text,
@@ -49,16 +51,22 @@ export default {
     methods: {
         show() {
             this.$refs.modal.show();
-            if (this.time_left > 0) {
-                setInterval(() => {
-                    this.time_left = this.time_left - 1;
-                }, 1000);
-            } else {
-              this.$emit("timeOver", this.answers);
-            }
+
+            this.timer = setInterval(() => {
+                this.time_left = this.time_left - 1;
+                if (this.time_left <= 0) {
+                    clearInterval(this.timer);
+                    this.$emit("timeOver", this.answers);
+                }
+            }, 60000);
         },
-        submit() {
-            this.$emit("submit", this.answers);
+        submit(e) {
+            e.preventDefault();
+            if (this.reQuestions.length > this.answers.length) {
+                this.alertWarning("กรุณาเลือกคำตอบให้ครบ");
+            } else {
+                this.$emit("submit", this.answers);
+            }
         }
     }
 };

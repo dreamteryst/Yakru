@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Example;
 use App\UserExample;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class UserExampleController extends Controller
 {
@@ -39,13 +40,13 @@ class UserExampleController extends Controller
         $request->validate([
             'example_id' => 'required',
             'answers' => 'required|array',
-            'started_at' => 'required'
+            'started_at' => 'required',
         ]);
-        $example = Example::where('id', $request->example_id)->with(['question'])->first();
+        $example = Example::where('id', $request->example_id)->with(['question.choice'])->first();
         $point = 0;
-        foreach($example->question as $index => $question) {
-            if (!empty($request->answers[$index]) && $request->answers[$index] === $question->ans)
-            {
+        foreach ($example->question as $index => $question) {
+            if (!empty($request->answers[$question->id]) &&
+                $request->answers[$question->id] == $question->choice->get($question->ans - 1)['text']) {
                 $point++;
             }
         }
@@ -54,11 +55,11 @@ class UserExampleController extends Controller
             'answers' => $request->answers,
             'started_at' => $request->started_at,
             'ended_at' => Carbon::now(),
-            'point' => $point
+            'point' => $point,
         ];
 
         $userExample = UserExample::create($data);
-        if($userExample) {
+        if ($userExample) {
             return $userExample;
         } else {
             return response('failed', 500);

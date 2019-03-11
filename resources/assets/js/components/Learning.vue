@@ -120,7 +120,7 @@
     <Example
       ref="modalPreTest"
       title="แบบทดสอบก่อนเรียน"
-      v-if="course.example"
+      v-if="course.example.length > 0"
       :time_limit="course.example.find(item => item.example_type === 'pretest').time_limit"
       :questions="course.example.find(item => item.example_type === 'pretest').question"
       @submit="submitExam"

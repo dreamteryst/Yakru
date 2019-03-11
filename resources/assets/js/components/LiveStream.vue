@@ -283,6 +283,7 @@ export default {
             });
         },
         listening(roomId) {
+            const self = this;
             this.socket.emit("initialize", roomId);
 
             this.socket.on(roomId + "/stop student screen", studentRoomId => {

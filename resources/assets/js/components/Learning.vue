@@ -54,7 +54,7 @@
                 >แบบทดสอบก่อนเรียน</button>
                 <button
                   class="btn btn-success"
-                  :disabled="checkIsDone('posttest')"
+                  :disabled="checkIsDone('posttest') || !checkIsDone('posttest')"
                 >แบบทดสอบหลังเรียน</button>
               </div>
             </div>
@@ -168,12 +168,12 @@ export default {
         },
         checkIsDone(type) {
             if (!this.course.example) {
-                return false;
+                return true;
             }
-            if (!this.course.example.find(item => item.type === type)) {
-                return false;
+            if (!this.course.example.find(item => item.example_type === type)) {
+                return true;
             }
-            return this.course.example.find(item => item.type === type).isDone;
+            return this.course.example.find(item => item.example_type === type).isDone;
         },
         openExamp() {
             this.alertConfirm(

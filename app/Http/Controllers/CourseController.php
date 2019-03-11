@@ -77,7 +77,7 @@ class CourseController extends Controller
 
     public function courseUser(Request $request)
     {
-        return Course::where('id', $request->id)->with(['users', 'category', 'example'])->first();
+        return Course::where('id', $request->id)->with(['users', 'category', 'example.userExample'])->first();
     }
 
 }

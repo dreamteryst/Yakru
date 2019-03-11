@@ -78,7 +78,6 @@
                 <router-link to="/profile" v-if="isAuth">
                   <img src="/assets_admin/img/user/user.jpg" class="user-img" alt>
                   <span
-                    class="hidden-md hidden-sm hidden-xs"
                   >{{ profile.firstname }} {{ profile.lastname }}</span>
                 </router-link>
                 <a href="/auth" v-if="!isAuth">
@@ -118,7 +117,7 @@ export default {
     },
     watch: {
         user() {
-            this.profile = this.user;
+            this.profile = {...this.user};
         }
     }
 };

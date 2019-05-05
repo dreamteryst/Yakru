@@ -3,13 +3,13 @@
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right">
       <li class="breadcrumb-item">
-        <a href="/">Home</a>
+        <a href="/">หน้าแรก</a>
       </li>
-      <li class="breadcrumb-item active">Manage Topup</li>
+      <li class="breadcrumb-item active">รายการเติมเงิน</li>
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
-    <h1 class="page-header">Manage Topup
+    <h1 class="page-header">รายการเติมเงิน
       <small></small>
     </h1>
     <!-- end page-header -->
@@ -26,7 +26,7 @@
             <i class="fa fa-minus"></i>
           </a>
         </div>
-        <h4 class="panel-title">List of Topup</h4>
+        <h4 class="panel-title">รายการเติมเงิน</h4>
       </div>
       <!-- end panel-heading -->
       <!-- begin panel-body -->

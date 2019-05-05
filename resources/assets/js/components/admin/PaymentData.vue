@@ -42,6 +42,7 @@
               <th class="text-nowrap">จำนวน</th>
               <th class="text-nowrap">เวลา</th>
               <th class="text-nowrap">หลักฐาน</th>
+              <th class="text-nowrap">สถานะ</th>
               <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
             </tr>
           </thead>
@@ -87,28 +88,26 @@ export default {
                             return `<a href="${self.renderPicture(data)}" target="_blank">View</a>`;
                         }
                     },
+                    { data: "status", render: (data, type, row, meta) => {
+                        return `<p class='${(data == 'unpaid') ? 'text-danger' : 
+                        (data == 'paid') ? 'text-success' : 'text-warning'}'>
+                        ${(data == 'unpaid') ? 'ปฏิเสธ' : (data == 'paid') ? 'อนุมัติ' : 'รอดำเนินการ'}</p>`
+                    } },
                     {
                         data: null,
                         render: (data, type, row, meta) => {
-                            if (row["status"] === "unpaid") {
+                            if (row["status"] === "prepare") {
                                 return (
                                     `
                           <div class="actions" data='` +
                                     JSON.stringify(row) +
                                     `'>
-                            <button type="button" class="btn btn-info btn-confirm">ยืนยัน</button>
-                          </div>`
-                                );
-                            } else {
-                                return (
-                                    `
-                          <div class="actions" data='` +
-                                    JSON.stringify(row) +
-                                    `'>
-                            <button type="button" class="btn btn-danger btn-unconfirm">ยกเลิก</button>
+                            <button type="button" class="btn btn-info btn-confirm">อนุมัติ</button>
+                            <button type="button" class="btn btn-danger btn-reject">ปฏิเสธ</button>
                           </div>`
                                 );
                             }
+                            return '';
                         },
                         searchable: false,
                         sortable: false
@@ -116,44 +115,26 @@ export default {
                 ],
                 drawCallback: function(settings) {
                     $(".btn-confirm").on("click", function() {
-                        swal({
-                            title: "ยืนยันการดำเนินการ",
-                            text: "คุณต้องการยืนยันการแจ้งชำระเงินใช่หรือไม่?",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes",
-                            reverseButtons: true
-                        }).then(result => {
+                        self.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการยืนยันการแจ้งชำระเงินใช่หรือไม่").then(result => {
                             if (result.value) {
                                 self.data = JSON.parse(
                                     $(this)
                                         .closest("div")
                                         .attr("data")
                                 );
-                                self.confirm();
+                                self.confirm(1);
                             }
                         });
                     });
-                    $(".btn-unconfirm").on("click", function() {
-                        swal({
-                            title: "ยืนยันการดำเนินการ",
-                            text: "คุณต้องการยกเลิกการแจ้งชำระเงินใช่หรือไม่?",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes",
-                            reverseButtons: true
-                        }).then(result => {
+                    $(".btn-reject").on("click", function() {
+                        self.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการปฏิเสธการแจ้งชำระเงินใช่หรือไม่").then(result => {
                             if (result.value) {
                                 self.data = JSON.parse(
                                     $(this)
                                         .closest("div")
                                         .attr("data")
                                 );
-                                self.confirm();
+                                self.confirm(2);
                             }
                         });
                     });
@@ -162,9 +143,9 @@ export default {
         });
     },
     methods: {
-        confirm() {
+        confirm(mode) {
             axios
-                .post("/admin/api/payment/confirm", {
+                .post("/admin/api/payment/confirm/" + mode, {
                     payment_id: this.data.id
                 })
                 .then(({ data }) => {

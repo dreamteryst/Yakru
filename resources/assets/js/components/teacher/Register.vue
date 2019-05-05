@@ -126,7 +126,7 @@ export default {
         },
         submit(event) {
             event.preventDefault();
-            if (!validateThaiCitizenID(this.citizen_id)) {
+            if (!this.validateThaiCitizenID(this.citizen_id)) {
                 return swal({
                     type: "error",
                     title: "Oops...",

@@ -2,12 +2,12 @@
     <section>
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Managed Course</li>
+            <li class="breadcrumb-item"><a href="/">หน้าแรก</a></li>
+            <li class="breadcrumb-item active">จัดการนักบัญชี</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Managed Course <small></small></h1>
+        <h1 class="page-header">จัดการนักบัญชี <small></small></h1>
         <!-- end page-header -->
         
         <!-- begin panel -->
@@ -17,7 +17,7 @@
                 <div class="panel-heading-btn">
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 </div>
-                <h4 class="panel-title">List of Course</h4>
+                <h4 class="panel-title">รายการนักบัญชี</h4>
             </div>
             <!-- end panel-heading -->
             <!-- begin panel-body -->

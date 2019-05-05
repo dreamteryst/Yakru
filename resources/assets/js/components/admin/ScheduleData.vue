@@ -3,7 +3,7 @@
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right">
       <li class="breadcrumb-item">
-        <a href="/">Home</a>
+        <a href="/">หน้าแรก</a>
       </li>
       <li class="breadcrumb-item active">จัดการตารางสอน</li>
     </ol>

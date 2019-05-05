@@ -2,12 +2,12 @@
     <section>
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Add Promotion</li>
+            <li class="breadcrumb-item"><a href="/">หน้าแรก</a></li>
+            <li class="breadcrumb-item active">เพิ่มโปรโมชัน</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Add Promotion <small></small></h1>
+        <h1 class="page-header">เพิ่มโปรโมชัน <small></small></h1>
         <!-- end page-header -->
         
         <!-- begin panel -->
@@ -17,7 +17,7 @@
                 <div class="panel-heading-btn">
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 </div>
-                <h4 class="panel-title">List of Promotion</h4>
+                <h4 class="panel-title">รายการโปรโมชัน</h4>
             </div>
             <!-- end panel-heading -->
             <!-- begin panel-body -->
@@ -28,28 +28,28 @@
                     เพิ่มข้อมูลสำเร็จ
                 </div>
                 <div class="form-group">
-                    <label for="promotion_name">Promotion Name</label>
+                    <label for="promotion_name">ชื่อโปรโมชัน</label>
                     <input type="text" class="form-control" :class="{'is-invalid':isError('promotion_name')}" id="promotion_name" v-model="promotion_name" placeholder="Promotion Name">
                     <div class="invalid-feedback" v-if="isError('promotion_name')">
                         {{ errors.promotion_name[0] }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="promotion_description">Promotion Description</label>
+                    <label for="promotion_description">รายละเอียดโปรโมชัน</label>
                     <textarea class="form-control" id="description" :class="{'is-invalid':isError('promotion_description')}" v-model="promotion_description" placeholder="Description" rows="10"></textarea>
                     <div class="invalid-feedback" v-if="isError('promotion_description')">
                         {{ errors.promotion_description[0] }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="discount">Discount</label>
+                    <label for="discount">ส่วนลด</label>
                     <input type="number" class="form-control" :class="{'is-invalid':isError('discount')}" id="discount" v-model="discount" placeholder="Discount">
                     <div class="invalid-feedback" v-if="isError('discount')">
                         {{ errors.discount[0] }}
                     </div>
                 </div>
                 <div class="form-group row m-b-15">
-                    <label class="col-form-label col-md-2">Promotion Start Date</label>
+                    <label class="col-form-label col-md-2">วันเริ่มต้น</label>
                     <div class="col-md-10">
                         <input type="text" class="form-control m-b-5 datetimepicker" :class="{'is-invalid':isError('started_at')}" @blur="handledate($event,1)" placeholder="Enter date" />
                         <div class="invalid-feedback" v-if="isError('started_at')">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="form-group row m-b-15">
-                    <label class="col-form-label col-md-2">Promotion End Date</label>
+                    <label class="col-form-label col-md-2">วันสิ้นสุด</label>
                     <div class="col-md-10">
                         <input type="text" class="form-control m-b-5 datetimepicker" :class="{'is-invalid':isError('ended_at')}" @blur="handledate($event,1)" placeholder="Enter date" />
                         <div class="invalid-feedback" v-if="isError('ended_at')">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-primary" @click="save"><i class="fa fa-paper-plane"></i> Save</button>
+                    <button class="btn btn-primary" @click="save"><i class="fa fa-paper-plane"></i> บันทึก</button>
                 </div>
             </div>
         </div>

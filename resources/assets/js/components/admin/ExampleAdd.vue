@@ -3,14 +3,14 @@
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right">
       <li class="breadcrumb-item">
-        <a href="/">Home</a>
+        <a href="/">หน้าแรก</a>
       </li>
-      <li class="breadcrumb-item active">Add Example</li>
+      <li class="breadcrumb-item active">เพิ่มแบบทดสอบ</li>
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
     <h1 class="page-header">
-      Add Example
+      เพิ่มแบบทดสอบ
       <small></small>
     </h1>
     <!-- end page-header -->
@@ -27,7 +27,7 @@
             <i class="fa fa-minus"></i>
           </a>
         </div>
-        <h4 class="panel-title">Form of Example</h4>
+        <h4 class="panel-title">เพิ่มแบบทดสอบ</h4>
       </div>
       <!-- end panel-heading -->
       <!-- begin panel-body -->
@@ -45,8 +45,8 @@
             id="example_type"
             v-model="example_type"
           >
-            <option value="pretest">Pretest</option>
-            <option value="posttest">Posttest</option>
+            <option value="pretest">ก่อนเรียน</option>
+            <option value="posttest">หลังเรียน</option>
           </select>
           <div class="invalid-feedback" v-if="isError('example_type')">{{ errors.example_type[0] }}</div>
         </div>
@@ -113,7 +113,7 @@
         </b-row>
         <div class="pull-right">
           <button class="btn btn-primary" @click="save">
-            <i class="fa fa-paper-plane"></i> Save
+            <i class="fa fa-paper-plane"></i> บันทึก
           </button>
         </div>
       </div>

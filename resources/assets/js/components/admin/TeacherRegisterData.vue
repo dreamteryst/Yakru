@@ -42,6 +42,7 @@
               <th class="text-nowrap">วันเกิด</th>
               <th class="text-nowrap">คำแนะนำตัว</th>
               <th class="text-nowrap">ทักษะ</th>
+              <th class="text-nowrap">สถานะ</th>
               <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
             </tr>
           </thead>
@@ -82,28 +83,26 @@ export default {
                     { data: "date_of_birth", name: "date_of_birth" },
                     { data: "bio", name: "bio" },
                     { data: "skill", name: "skill" },
+                    { data: "status", render: (data, type, row, meta) => {
+                        return `<p class='${(data == 'unaccept') ? 'text-danger' : 
+                        (data == 'accept') ? 'text-success' : 'text-warning'}'>
+                        ${(data == 'unaccept') ? 'ปฏิเสธ' : (data == 'accept') ? 'อนุมัติ' : 'รอดำเนินการ'}</p>`
+                    }},
                     {
                         data: null,
                         render: (data, type, row, meta) => {
-                            if (row["status"] === "unaccept") {
+                            if (row["status"] === "prepare") {
                                 return (
                                     `
                           <div class="actions" data='` +
                                     JSON.stringify(row) +
                                     `'>
                             <button type="button" class="btn btn-info btn-confirm">ยืนยัน</button>
-                          </div>`
-                                );
-                            } else {
-                                return (
-                                    `
-                          <div class="actions" data='` +
-                                    JSON.stringify(row) +
-                                    `'>
                             <button type="button" class="btn btn-danger btn-unconfirm">ยกเลิก</button>
                           </div>`
                                 );
                             }
+                            return '';
                         },
                         searchable: false,
                         sortable: false
@@ -111,44 +110,28 @@ export default {
                 ],
                 drawCallback: function(settings) {
                     $(".btn-confirm").on("click", function() {
-                        swal({
-                            title: "ยืนยันการดำเนินการ",
-                            text: "คุณต้องการยืนยันผู้สอนใช่หรือไม่?",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes",
-                            reverseButtons: true
-                        }).then(result => {
+                        this.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการยืนยันผู้สอนใช่หรือไม่?")
+                        .then(result => {
                             if (result.value) {
                                 self.data = JSON.parse(
                                     $(this)
                                         .closest("div")
                                         .attr("data")
                                 );
-                                self.confirm();
+                                self.confirm(1);
                             }
                         });
                     });
                     $(".btn-unconfirm").on("click", function() {
-                        swal({
-                            title: "ยืนยันการดำเนินการ",
-                            text: "คุณต้องการยกเลิกการยืนยันผู้สอนใช่หรือไม่?",
-                            type: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#3085d6",
-                            cancelButtonColor: "#d33",
-                            confirmButtonText: "Yes",
-                            reverseButtons: true
-                        }).then(result => {
+                        this.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการยกเลิกการยืนยันผู้สอนใช่หรือไม่?")
+                        .then(result => {
                             if (result.value) {
                                 self.data = JSON.parse(
                                     $(this)
                                         .closest("div")
                                         .attr("data")
                                 );
-                                self.confirm();
+                                self.confirm(2);
                             }
                         });
                     });
@@ -157,9 +140,9 @@ export default {
         });
     },
     methods: {
-        confirm() {
+        confirm(mode) {
             axios
-                .post("/admin/api/teacherRegister/confirm", {
+                .post("/admin/api/teacherRegister/confirm" + mode, {
                     id: this.data.id
                 })
                 .then(({ data }) => {

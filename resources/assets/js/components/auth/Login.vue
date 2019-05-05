@@ -23,13 +23,13 @@
                         {{ error_message }}
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'email')}" v-model="data.email" placeholder="Email Address" required />
+                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'email')}" v-model="data.email" placeholder="อีเมล" required />
                         <div class="invalid-feedback" v-if="isError(errors, 'email')">
                             {{ errors.email[0] }}
                         </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'password')}" v-model="data.password" placeholder="Password" required />
+                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'password')}" v-model="data.password" placeholder="รหัสผ่าน" required />
                         <div class="invalid-feedback" v-if="isError(errors, 'password')">
                             {{ errors.password[0] }}
                         </div>
@@ -37,14 +37,14 @@
                     <div class="checkbox checkbox-css m-b-20">
                         <input type="checkbox" id="remember_checkbox" v-model="data.remember" />
                         <label for="remember_checkbox">
-                            Remember Me
+                            จำการเข้าสู่ระบบ
                         </label>
                     </div>
                     <div class="login-buttons">
-                        <button type="submit" class="btn btn-success btn-block btn-lg">Sign me in</button>
+                        <button type="submit" class="btn btn-success btn-block btn-lg">เข้าสู่ระบบ</button>
                     </div>
                     <div class="m-t-20">
-                        Not a member yet? Click <router-link to="/auth/register">here</router-link> to register.
+                        ยังไม่ได้เป็นสมาชิก? คลิก <router-link to="/auth/register">ที่นี่</router-link> เพื่อสมัครสมาชิก
                     </div>
                 </form>
             </div>

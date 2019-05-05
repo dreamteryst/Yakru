@@ -73,10 +73,6 @@ export default {
 				icon: 'fas fa-users',
 				name: 'รายชื่อผู้เรียน',
 				link: '/admin/student'
-			}, {
-				icon: 'fas fa-cogs',
-				name: 'ตั้งค่า',
-				link: '/admin/settings'
 			}]
 		}
 	}

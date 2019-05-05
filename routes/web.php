@@ -100,7 +100,7 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::resource('order', 'Admin\OrderController');
 
         Route::get('payment/data', 'Admin\PaymentController@anyData');
-        Route::post('payment/confirm', 'Admin\PaymentController@confirm');
+        Route::post('payment/confirm/{mode}', 'Admin\PaymentController@confirm');
         Route::resource('payment', 'Admin\PaymentController');
 
         Route::get('promotion/data', 'Admin\PromotionController@anyData');
@@ -117,7 +117,7 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
 
         Route::get('teacher/data', 'Admin\AdminController@anyData');
         Route::get('teacherRegister/data', 'TeacherRegisterController@anyData');
-        Route::post('teacherRegister/confirm', 'TeacherRegisterController@confirm');
+        Route::post('teacherRegister/confirm/{mode}', 'TeacherRegisterController@confirm');
 
         Route::get('setting/stats', 'Admin\SettingController@stats');
     });

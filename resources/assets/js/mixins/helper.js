@@ -1,5 +1,6 @@
 import Vue from "vue";
 import moment from "moment";
+
 Vue.mixin({
     methods: {
         dateFormat(datetime, format) {
@@ -46,7 +47,7 @@ Vue.mixin({
             if (id.length != 13 || id.charAt(0).match(/[09]/)) return false;
 
             var sum = 0;
-            for (i = 0; i < 12; i++) {
+            for (var i = 0; i < 12; i++) {
                 sum += parseInt(id.charAt(i)) * (13 - i);
             }
 

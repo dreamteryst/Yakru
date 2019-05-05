@@ -35,7 +35,7 @@
             </div>
         </div>
         <!-- Modal Component -->
-        <b-modal id="modal1" v-model="modalDelete" size="lg" @ok="deleteData" ok-title="Delete" ok-variant="danger" :title="'Delete '+data.category_name" @hidden="onHidden">
+        <b-modal id="modal1" v-model="modalDelete" size="lg" @ok="deleteData" ok-title="ลบ" ok-variant="danger" :title="'ลบ '+data.category_name" @hidden="onHidden">
             <div class="alert alert-danger fade show" v-if="isError('delete')">
                 <span class="close" data-dismiss="alert">×</span>
                 <strong>Error!</strong>
@@ -45,8 +45,8 @@
                 <table class="table table-bordered">
                     <tr>
                         <th width="1%">ID</th>
-                        <th class="text-nowrap">Name</th>
-                        <th class="text-nowrap">Description</th>
+                        <th class="text-nowrap">ชื่อหมวดหมู่</th>
+                        <th class="text-nowrap">รายละเอียด</th>
                     </tr>
                     <tr>
                         <td>{{ data.id }}</td>
@@ -57,21 +57,21 @@
             </div>
         </b-modal>
 
-        <b-modal id="modalNewEdit" v-model="modalEdit" size="lg" @ok="editData" ok-title="Edit" ok-variant="success" :title="'Edit '+data.category_name" @hidden="onHidden">
+        <b-modal id="modalNewEdit" v-model="modalEdit" size="lg" @ok="editData" ok-title="ลบ" ok-variant="success" :title="'ลบ '+data.category_name" @hidden="onHidden">
             <div class="alert alert-danger fade show" v-if="isError('message')">
                 <span class="close" data-dismiss="alert">×</span>
                 <strong>Error!</strong>
                 {{ errors.message }}
             </div>
             <div class="form-group">
-                <label for="categoryName">Category Name</label>
+                <label for="categoryName">ชื่อหมวดหมู่</label>
                 <input type="text" class="form-control" :class="{'is-invalid':isError('category_name')}" id="categoryName" v-model="data.category_name" placeholder="Category Name">
                 <div class="invalid-feedback" v-if="isError('category_name')">
                     {{ errors.category_name[0] }}
                 </div>
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
+                <label for="description">รายการ</label>
                 <textarea class="form-control" id="description" :class="{'is-invalid':isError('category_description')}" v-model="data.category_description" placeholder="Description" rows="10"></textarea>
                 <div class="invalid-feedback" v-if="isError('category_description')">
                     {{ errors.category_description[0] }}

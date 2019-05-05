@@ -102,16 +102,16 @@ class PaymentController extends Controller
         ->make(true);
     }
 
-    public function confirm(Request $request)
+    public function confirm(Request $request, $mode)
     {
         $request->validate([
             'payment_id' => 'required'
         ]);
         
         $payment = Payment::find($request->payment_id);
-        $payment->status = $payment->status == 'paid' ? 'unpaid' : 'paid';
+        $payment->status = $mode == 2 ? 'unpaid' : 'paid';
         $topup = Topup::find($payment->topup_id);
-        $topup->status = $topup->status == 'paid' ? 'unpaid' : 'paid';
+        $topup->status = $mode == 2 ? 'unpaid' : 'paid';
         $user = User::find($payment->user_id);
         $user->money = $payment->status == 'paid' ? $user->money += $payment->amount : $user->money -= $payment->amount;
         if($topup->save() && $payment->save() && $user->save())

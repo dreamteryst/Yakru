@@ -20,40 +20,40 @@
             <div class="login-content">
                 <form action="/" method="POST" @submit="register" class="margin-bottom-0">
                     <div class="form-group m-b-20">
-                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'firstname')}" v-model="data.firstname" placeholder="Firstname" required />
+                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'firstname')}" v-model="data.firstname" placeholder="ชื่อจริง" required />
                         <div class="invalid-feedback" v-if="isError(errors, 'firstname')">
                             {{ errors.firstname[0] }}
                         </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'lastname')}" v-model="data.lastname" placeholder="Lastname" required />
+                        <input type="text" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'lastname')}" v-model="data.lastname" placeholder="นามสกุล" required />
                         <div class="invalid-feedback" v-if="isError(errors, 'lastname')">
                             {{ errors.lastname[0] }}
                         </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="email" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'email')}" v-model="data.email" placeholder="Email Address" required />
+                        <input type="email" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'email')}" v-model="data.email" placeholder="อีเมล" required />
                         <div class="invalid-feedback" v-if="isError(errors, 'email')">
                             {{ errors.email[0] }}
                         </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'password')}" v-model="data.password" placeholder="Password" required />
+                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'password')}" v-model="data.password" placeholder="รหัสผ่าน" required />
                         <div class="invalid-feedback" v-if="isError(errors, 'password')">
                             {{ errors.password[0] }}
                         </div>
                     </div>
                     <div class="form-group m-b-20">
-                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'password_confirmation')}" v-model="data.password_confirmation" placeholder="Password Confirm" required />
+                        <input type="password" class="form-control form-control-lg" :class="{'is-invalid':isError(errors, 'password_confirmation')}" v-model="data.password_confirmation" placeholder="ยืนยันรหัสผ่าน" required />
                         <div class="invalid-feedback" v-if="isError(errors, 'password_confirmation')">
                             {{ errors.password_confirmation[0] }}
                         </div>
                     </div>
                     <div class="login-buttons">
-                        <button type="submit" class="btn btn-success btn-block btn-lg">Register</button>
+                        <button type="submit" class="btn btn-success btn-block btn-lg">สมัครสมาชิก</button>
                     </div>
                     <div class="m-t-20">
-                        Already a member yet? Click <router-link to="/auth">here</router-link> to login.
+                        เป็นสมาชิกอยู่แล้ว? คลิก <router-link to="/auth">ที่นี่</router-link> เพื่อเข้าสู่ระบบ
                     </div>
                 </form>
             </div>

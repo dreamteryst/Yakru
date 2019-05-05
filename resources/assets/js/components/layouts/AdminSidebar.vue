@@ -159,10 +159,6 @@ export default {
 					'url': '/admin/teacher',
 					'title': 'รายชื่อผู้สอน'
 				}]
-			}, {
-				'icon': 'fa fa-cog',
-				'title': 'ตั้งค่า',
-				'url': '/admin/setting'
 			}]
 		};
 	},

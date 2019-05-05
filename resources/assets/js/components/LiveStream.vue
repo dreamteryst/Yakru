@@ -301,6 +301,15 @@ export default {
                 }, 1000);
             });
 
+            this.socket.on(roomId + "/user response", data => {
+                console.log(data);
+                if (data.accept) {
+                    this.stop();
+                    this.roomId = data.roomId;
+                    this.join();
+                }
+            });
+
             this.socket.on(roomId + "/chat message", msg => {
                 const data = {
                     user_id: self.profile.id,

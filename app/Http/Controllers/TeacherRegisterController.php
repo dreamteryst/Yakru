@@ -117,7 +117,7 @@ class TeacherRegisterController extends Controller
             ->make(true);
     }
 
-    public function confirm(Request $request)
+    public function confirm(Request $request, $mode)
     {
         $request->validate([
             'id' => 'required',
@@ -125,8 +125,8 @@ class TeacherRegisterController extends Controller
 
         $teacherRegister = TeacherRegister::find($request->id);
         $user = User::find($teacherRegister->user_id);
-        $teacherRegister->status = $teacherRegister->status == 'accept' ? 'unaccept' : 'accept';
-        $user->type = $teacherRegister->status == 'accept' ? 'teacher' : 'student';
+        $teacherRegister->status = $mode == 2 ? 'unaccept' : 'accept';
+        $user->type = $mode == 2 ? 'teacher' : 'student';
         if ($teacherRegister->save() && $user->save()) {
             return $teacherRegister;
         } else {

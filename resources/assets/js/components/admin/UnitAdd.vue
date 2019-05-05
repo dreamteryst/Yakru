@@ -2,12 +2,12 @@
     <section>
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Add Unit</li>
+            <li class="breadcrumb-item"><a href="/">หน้าแรก</a></li>
+            <li class="breadcrumb-item active">เพิ่มบทเรียน</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Add Unit <small></small></h1>
+        <h1 class="page-header">เพิ่มบทเรียน <small></small></h1>
         <!-- end page-header -->
 
         <!-- begin panel -->
@@ -17,7 +17,7 @@
                 <div class="panel-heading-btn">
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 </div>
-                <h4 class="panel-title">Form of Unit</h4>
+                <h4 class="panel-title">เพิ่มบทเรียน</h4>
             </div>
             <!-- end panel-heading -->
             <!-- begin panel-body -->
@@ -28,14 +28,14 @@
                     เพิ่มข้อมูลสำเร็จ
                 </div>
                 <div class="form-group">
-                    <label for="unit_name">Unit Name</label>
+                    <label for="unit_name">ชื่อบทเรียน</label>
                     <input type="text" class="form-control" id="unit_name" :class="{'is-invalid':isError('unit_name')}" v-model="unit_name" placeholder="Unit name">
                     <div class="invalid-feedback" v-if="isError('unit_name')">
                         {{ errors.unit_name[0] }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="lecture">Lecture</label>
+                    <label for="lecture">เลคเชอร์</label>
                     <div class="col-md-2 offset-md-11 col-4 offset-9">
                         <i class="fa fa-plus fa-2x m-t-5" @click="addLecture"></i>
                         <i class="fa fa-minus fa-2x m-t-5 m-l-5" @click="removeLecture"></i>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-primary" @click="save"><i class="fa fa-paper-plane"></i> Save</button>
+                    <button class="btn btn-primary" @click="save"><i class="fa fa-paper-plane"></i> บันทึก</button>
                 </div>
             </div>
         </div>

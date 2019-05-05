@@ -2,12 +2,12 @@
     <section>
         <!-- begin breadcrumb -->
         <ol class="breadcrumb pull-right">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Add Course</li>
+            <li class="breadcrumb-item"><a href="/">หน้าแรก</a></li>
+            <li class="breadcrumb-item active">เพิ่มคอร์ส</li>
         </ol>
         <!-- end breadcrumb -->
         <!-- begin page-header -->
-        <h1 class="page-header">Add Course <small></small></h1>
+        <h1 class="page-header">เพิ่มคอร์ส <small></small></h1>
         <!-- end page-header -->
 
         <!-- begin panel -->
@@ -17,14 +17,14 @@
                 <div class="panel-heading-btn">
                     <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
                 </div>
-                <h4 class="panel-title">Form of Course</h4>
+                <h4 class="panel-title">เพิ่มคอร์ส</h4>
             </div>
             <!-- end panel-heading -->
             <!-- begin panel-body -->
             <div class="panel-body">
                 <div class="alert alert-success fade show" v-if="isSuccess">
                     <span class="close" data-dismiss="alert">×</span>
-                    <strong>Success!</strong>
+                    <strong>สำเร็จ!</strong>
                     เพิ่มข้อมูลสำเร็จ
                 </div>
                 <div class="form-group">
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                         <div class="pull-right">
-                            <button class="btn btn-primary" @click="save"><i class="fa fa-paper-plane"></i> Save</button>
+                            <button class="btn btn-primary" @click="save"><i class="fa fa-paper-plane"></i> บันทึก</button>
                         </div>
                     </div>
                 </div>

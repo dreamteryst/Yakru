@@ -3,14 +3,14 @@
     <!-- begin breadcrumb -->
     <ol class="breadcrumb pull-right">
       <li class="breadcrumb-item">
-        <a href="/">Home</a>
+        <a href="/">หน้าแรก</a>
       </li>
-      <li class="breadcrumb-item active">Manage Example</li>
+      <li class="breadcrumb-item active">จัดการแบบทดสอบ</li>
     </ol>
     <!-- end breadcrumb -->
     <!-- begin page-header -->
     <h1 class="page-header">
-      Manage Example
+      จัดการแบบทดสอบ
       <small></small>
     </h1>
     <!-- end page-header -->
@@ -27,7 +27,7 @@
             <i class="fa fa-minus"></i>
           </a>
         </div>
-        <h4 class="panel-title">List of Example</h4>
+        <h4 class="panel-title">รายการแบบทดสอบ</h4>
       </div>
       <!-- end panel-heading -->
       <!-- begin panel-body -->

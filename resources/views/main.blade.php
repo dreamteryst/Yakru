@@ -57,7 +57,7 @@
 	<!-- scripts used for screen-sharing -->
 	<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
 	<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
-	<script src="https://webrtcexperiment-webrtc.netdna-ssl.com/getMediaElement.js"></script>
+	<script src="{{ asset('assets/js/getMediaElement.js') }}"></script>
 	<script src="https://cdn.webrtc-experiment.com/getScreenId.js"> </script>
 	<script src="https://cdn.webrtc-experiment.com/commits.js" async></script>
 	<!-- ================== BEGIN BASE JS ================== -->

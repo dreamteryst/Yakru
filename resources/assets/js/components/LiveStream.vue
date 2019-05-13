@@ -150,6 +150,7 @@ export default {
         }
     },
     mounted() {
+        if (this.user) this.profile = this.user;
         const self = this;
         this.socket = io("https://yakru-chat.herokuapp.com/");
         axios
@@ -311,28 +312,25 @@ export default {
             });
 
             this.socket.on(roomId + "/chat message", msg => {
+                if (msg.user_id == self.profile.id) return;
+                this.chats.push(msg);
                 const data = {
                     user_id: self.profile.id,
                     course_id: self.course.id,
                     message: msg.message,
                     time: msg.time
                 };
-                axios
-                    .post("/api/chat", data)
-                    .then(({ data }) => {
-                        this.chats.push(msg);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        if (error.response) {
-                            console.log(error.response);
-                            swal({
-                                type: "error",
-                                title: "Oops...",
-                                text: error.response.data.message
-                            });
-                        }
-                    });
+                axios.post("/api/chat", data).catch(error => {
+                    console.log(error);
+                    if (error.response) {
+                        console.log(error.response);
+                        swal({
+                            type: "error",
+                            title: "Oops...",
+                            text: error.response.data.message
+                        });
+                    }
+                });
             });
 
             this.socket.on(roomId + "/request share screen", userId => {
@@ -387,6 +385,7 @@ export default {
                     name: this.profile.firstname + " " + this.profile.lastname,
                     message: event.target.value
                 };
+                this.chats.push(payload);
                 this.socket.emit(this.roomId + "/chat message", payload);
                 event.target.value = "";
             }

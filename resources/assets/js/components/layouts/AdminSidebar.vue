@@ -133,7 +133,7 @@ export default {
 				'title': 'โปรโมชัน',
 				'caret': true,
 				'url': '',
-				'for': ['admin'],
+				'for': [],
 				'submenu': [
 					{
 						'url': '/admin/promotion/add',

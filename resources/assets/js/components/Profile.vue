@@ -106,7 +106,7 @@
             <!-- BEGIN item -->
             <div class="item item-thumbnail">
               <router-link :to="`/product-detail/${like.id}`" class="item-image">
-                <img :src="like.course_picture" alt>
+                <img :src="`/${like.course_picture}`" alt>
                 <div class="discount">{{ getPercent(like) }}% OFF</div>
               </router-link>
               <div class="item-info">

@@ -50,8 +50,9 @@ class UnitController extends Controller
         ];
 
         $unit = Unit::create($data);
-        if($unit) {
+        if($unit && !empty($request->lectures)) {
             foreach($request->lectures as $lecture) {
+                if (empty($lecture['name'])) continue;
                 if ($lecture['type'] === 'youtube')
                 {
                     $video = $lecture['url'];

@@ -75,7 +75,7 @@ export default {
 				icon: 'fas fa-award',
 				name: 'จัดการโปรโมชัน',
 				link: '/admin/promotion',
-				for: ['admin']
+				for: []
 			}, {
 				icon: 'fas fa-users',
 				name: 'รายชื่อผู้เรียน',

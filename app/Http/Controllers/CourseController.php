@@ -28,7 +28,7 @@ class CourseController extends Controller
         $dataOrder = [
             'user_id' => Auth::user()->id,
             'course_id' => $course->id,
-            'order_no' => Carbon::today()->format('YYYYmd').str_pad($orderNum, 3, '0', STR_PAD_LEFT),
+            'order_no' => Carbon::today()->format('Ymd').str_pad($orderNum, 3, '0', STR_PAD_LEFT),
             'order_note' => '',
             'course_price' => $course->final_price
         ];

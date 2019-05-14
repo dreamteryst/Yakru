@@ -31,7 +31,7 @@
                             <th class="text-nowrap">เบอร์โทร</th>
                             <th class="text-nowrap">ยอดเงิน</th>
                             <th class="text-nowrap">จำนวนคอร์สสอน</th>
-                            <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
+                            <!-- <th width="1%" class="text-nowrap" data-priority="1">Actions</th> -->
                         </tr>
                     </thead>
                 </table>
@@ -98,22 +98,22 @@ export default {
                             return `<a href="javascript:;" class="view-course" data-teacher="${escape(JSON.stringify(row))}" data-course="${escape(JSON.stringify(course))}">${data}</a>`
                         }
                     },
-                    {
-                        data: null,
-                        render: (data, type, row, meta) => {
-                            return (
-                                `
-                          <div class="actions" data='` +
-                                JSON.stringify(row) +
-                                `'>
-                            <i class="fa fa-edit new-user-edit"></i>
-                            <i class="fa fa-trash-alt"></i>
-                          </div>`
-                            );
-                        },
-                        searchable: false,
-                        sortable: false
-                    }
+                    // {
+                    //     data: null,
+                    //     render: (data, type, row, meta) => {
+                    //         return (
+                    //             `
+                    //       <div class="actions" data='` +
+                    //             JSON.stringify(row) +
+                    //             `'>
+                    //         <i class="fa fa-edit new-user-edit"></i>
+                    //         <i class="fa fa-trash-alt"></i>
+                    //       </div>`
+                    //         );
+                    //     },
+                    //     searchable: false,
+                    //     sortable: false
+                    // }
                 ],
                 drawCallback: function (settings) {
                     $(".view-course").on("click", function () {

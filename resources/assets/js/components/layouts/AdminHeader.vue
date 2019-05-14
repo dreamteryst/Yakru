@@ -34,7 +34,7 @@
 				</li>
 				<li class="dropdown navbar-user">
 					<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-						<img src="/assets_admin/img/user/user.jpg" alt="" /> 
+						<img src="/assets_admin/img/user/personal.png" alt="" /> 
 						<span class="d-none d-md-inline">Kittisak Pimnonthong</span> <b class="caret"></b>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">

@@ -68,7 +68,6 @@ export default {
         setTime() {
             if (this.timeLeft.totalSeconds <= 0 && !this.isAns) {
                 this.answer("");
-                clearInterval(this.interval);
                 return;
             }
             --this.timeLeft.totalSeconds;
@@ -123,6 +122,7 @@ export default {
         },
         answer(text) {
             console.log("answer exam");
+            clearInterval(this.interval);
             const payload = {
                 text,
                 user: this.user,

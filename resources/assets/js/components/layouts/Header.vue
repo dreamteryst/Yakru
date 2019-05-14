@@ -76,7 +76,7 @@
             <ul class="nav pull-right">
               <li>
                 <router-link to="/profile" v-if="isAuth">
-                  <img src="/assets_admin/img/user/user.jpg" class="user-img" alt>
+                  <img src="/assets_admin/img/user/personal.png" class="user-img" alt>
                   <span
                   >{{ profile.firstname }} {{ profile.lastname }}</span>
                 </router-link>

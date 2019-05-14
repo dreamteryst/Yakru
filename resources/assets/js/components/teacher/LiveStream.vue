@@ -89,7 +89,7 @@
             <h4 class="m-t-15">{{ course.course_name }} (Live)</h4>
           </b-col>
         </b-row>
-        <Exam :socket="socket" :roomId="roomId"/>
+        <Exam :socket="socket" :roomId="roomId" :courseId="this.$route.params.id" />
         <hr>
         <div class="row row-space-10">
           <!-- BEGIN col-2 -->

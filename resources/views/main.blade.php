@@ -55,11 +55,11 @@
 	</div>
 	<!-- END #page-container -->
 	<!-- scripts used for screen-sharing -->
-	<script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
-	<script src="https://rtcmulticonnection.herokuapp.com/socket.io/socket.io.js"></script>
+	<script src="{{ asset('assets/js/RTCMultiConnection.min.js') }}"></script>
+	<script src="{{ asset('assets/js/socket.io.js') }}"></script>
 	<script src="{{ asset('assets/js/getMediaElement.js') }}"></script>
-	<script src="https://cdn.webrtc-experiment.com/getScreenId.js"> </script>
-	<script src="https://cdn.webrtc-experiment.com/commits.js" async></script>
+	<script src="{{ asset('assets/js/getScreenId.js') }}"> </script>
+	<script src="{{ asset('assets/js/commits.js') }}" async></script>
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ asset('vue/js/app.js') }}"></script>
 	{{-- <script src="{{ asset('assets/plugins/jquery/jquery-3.2.1.min.js') }}"></script> --}}

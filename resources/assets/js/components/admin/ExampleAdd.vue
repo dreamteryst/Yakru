@@ -38,8 +38,9 @@
           เพิ่มข้อมูลสำเร็จ
         </div>
         <div class="form-group">
-          <label for="example_type">ประเภท</label>
-          <select
+          <label for="example_type">ชื่อคอร์ส</label>
+          <b-form-input v-model="example_type" />
+          <!-- <select
             class="form-control"
             :class="{'is-invalid':isError('example_type')}"
             id="example_type"
@@ -47,7 +48,7 @@
           >
             <option value="pretest">ก่อนเรียน</option>
             <option value="posttest">หลังเรียน</option>
-          </select>
+          </select> -->
           <div class="invalid-feedback" v-if="isError('example_type')">{{ errors.example_type[0] }}</div>
         </div>
         <b-row>

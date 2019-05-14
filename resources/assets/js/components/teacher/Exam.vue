@@ -67,7 +67,7 @@
 
 <script>
 export default {
-    props: ["socket", "roomId"],
+    props: ["socket", "roomId", "courseId"],
     watch: {
       roomId(val) {
         if(val) {
@@ -90,7 +90,7 @@ export default {
         };
     },
     mounted() {
-        axios.get(`/api/example/course/${1}`).then(({ data }) => {
+        axios.get(`/api/example/course/${this.courseId}`).then(({ data }) => {
             this.exams = data;
         });
     },
@@ -106,6 +106,7 @@ export default {
             this.socket.on(this.roomId + "/end exam", data => {
                 console.log("end exam");
                 this.isEnd = true
+                this.isExam = false
                 this.users = data.sort((a, b) => {
                   return b.point - a.point
                 });

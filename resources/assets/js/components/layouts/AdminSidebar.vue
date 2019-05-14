@@ -10,7 +10,7 @@
 						<a href="javascript:;" data-toggle="nav-profile">
 							<div class="cover with-shadow"></div>
 							<div class="image">
-								<img src="/assets_admin/img/user/user.jpg" alt="" />
+								<img src="/assets_admin/img/user/personal.png" alt="" />
 							</div>
 								<div class="info">
 									<b class="caret pull-right"></b>

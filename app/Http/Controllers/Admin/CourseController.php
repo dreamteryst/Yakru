@@ -140,9 +140,14 @@ class CourseController extends Controller
         return json_encode(['success' => false, 'message' => 'มีข้อผิดพลาดไม่คาดคิด']);
     }
 
-    public function anyData()
+    public function anyData(Request $request)
     {
-        return Datatables::of(Course::with('users'))
+        $user = $request->user();
+        $course = Course::with('users');
+        if ($user->type == "teacher") {
+            $course->where('user_id', $user->id);
+        }
+        return Datatables::of($course)
         ->addColumn('student_count', function($course){
             return $course->users->count();
         })

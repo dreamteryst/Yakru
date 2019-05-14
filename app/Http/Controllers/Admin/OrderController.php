@@ -85,9 +85,16 @@ class OrderController extends Controller
         //
     }
 
-    public function anyData()
+    public function anyData(Request $request)
     {
-        return Datatables::of(Order::query())
+        $user = $request->user();
+        $order = Order::query();
+        if ($user->type == "teacher") {
+            $order->whereHas('course', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            });
+        }
+        return Datatables::of($order)
         ->addColumn('course_name', function($order) {
             return $order->course->course_name;
         })

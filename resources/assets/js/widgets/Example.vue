@@ -22,7 +22,7 @@
 
 <script>
 export default {
-    props: ["title", "questions", "time_limit"],
+    props: ["title", "questions", "time_limit", "example_id"],
     data() {
         return {
             time_left: this.time_limit,
@@ -56,7 +56,7 @@ export default {
                 this.time_left = this.time_left - 1;
                 if (this.time_left <= 0) {
                     clearInterval(this.timer);
-                    this.$emit("timeOver", this.answers);
+                    this.$emit("timeOver", this.example_id, this.answers);
                 }
             }, 60000);
         },
@@ -65,7 +65,7 @@ export default {
             if (this.reQuestions.length > this.answers.length) {
                 this.alertWarning("กรุณาเลือกคำตอบให้ครบ");
             } else {
-                this.$emit("submit", this.answers);
+                this.$emit("submit", this.example_id, this.answers);
             }
         }
     }

@@ -84,7 +84,13 @@
             </div>
           </div>
         </div>
-        <h4 class="m-t-15">{{ course.course_name }} (Live)</h4>
+        <b-row>
+          <b-col>
+            <h4 class="m-t-15">{{ course.course_name }} (Live)</h4>
+          </b-col>
+        </b-row>
+        <Exam :socket="socket" :roomId="roomId"/>
+        <hr>
         <div class="row row-space-10">
           <!-- BEGIN col-2 -->
           <div
@@ -152,8 +158,10 @@
 <script>
 import { mapState } from "vuex";
 import swal from "sweetalert2";
+import Exam from "./Exam";
 
 export default {
+    components: { Exam },
     data: () => ({
         course: "",
         likes: "",
@@ -176,7 +184,8 @@ export default {
     mounted() {
         if (this.user) this.profile = this.user;
         const self = this;
-        this.socket = io("https://yakru-chat.herokuapp.com/");
+        // this.socket = io("https://yakru-chat.herokuapp.com/");
+        this.socket = io("http://localhost:3000");
         axios
             .get(`/api/course/user/${this.$route.params.id}`)
             .then(({ data }) => {
@@ -209,6 +218,7 @@ export default {
                     };
                     this.chats.push(temp);
                 });
+                $(".chatbox").animate({ scrollTop: $(".chatbox").prop('scrollHeight') * 3 }, 1000);
             })
             .catch(error => {
                 console.log(error);
@@ -297,24 +307,26 @@ export default {
 
             this.socket.on(roomId + "/chat message", msg => {
                 this.chats.push(msg);
-                if (msg.user_id == self.profile.id) return;
-                const data = {
-                    user_id: self.profile.id,
-                    course_id: self.course.id,
-                    message: msg.message,
-                    time: msg.time
-                };
-                axios.post("/api/chat", data).catch(error => {
-                    console.log(error);
-                    if (error.response) {
-                        console.log(error.response);
-                        swal({
-                            type: "error",
-                            title: "Oops...",
-                            text: error.response.data.message
-                        });
-                    }
-                });
+                if (msg.user_id == self.profile.id) {
+                    const data = {
+                        user_id: self.profile.id,
+                        course_id: self.course.id,
+                        message: msg.message,
+                        time: msg.time
+                    };
+                    axios.post("/api/chat", data).catch(error => {
+                        console.log(error);
+                        if (error.response) {
+                            console.log(error.response);
+                            swal({
+                                type: "error",
+                                title: "Oops...",
+                                text: error.response.data.message
+                            });
+                        }
+                    });
+                }
+                $(".chatbox").animate({ scrollTop: $(".chatbox").prop('scrollHeight') }, 1000);
             });
 
             this.socket.on(roomId + "/user response", data => {
@@ -330,6 +342,7 @@ export default {
             this.socket.emit("start stream");
             this.connection.open(this.roomId);
             this.isLive = true;
+            axios.get("/api/course/notify/" + this.$route.params.id);
         },
         join() {
             const self = this;

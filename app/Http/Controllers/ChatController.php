@@ -17,7 +17,7 @@ class ChatController extends Controller
             'time' => 'required'
         ]);
         $data = $request->all();
-        $data['user_id'] = Auth::user()->id;
+        $data['user_id'] = $request->user()->id;
 
         $chat = Chat::create($data);
         if($chat) {

@@ -51,6 +51,9 @@
                   <li>
                     <span class="clickable" @click="openEditProfile">แก้ไขข้อมูลส่วนตัว</span>
                   </li>
+                  <li v-if="user.type != 'student'">
+                    <span class="clickable" @click="openAdmin">จัดการคอร์ส</span>
+                  </li>
                   <li>
                     <a href="/logout" class="text-danger">
                       <i class="fas fa-lock"></i> ออกจากระบบ
@@ -226,6 +229,9 @@ export default {
         },
         openChangePassword() {
             this.$refs.changePassword.show();
+        },
+        openAdmin() {
+          window.location.href = "/admin"
         }
     }
 };

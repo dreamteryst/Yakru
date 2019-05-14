@@ -30,7 +30,10 @@
 				<!-- begin sidebar nav -->
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
-					<li v-for="(menu, i) in menus" :key="i" :class="{'has-sub':isNotEmpty(menu.submenu), 'active':checkActive(menu)}">
+					<li v-for="(menu, i) in menus" :key="i" 
+						:class="{'has-sub':isNotEmpty(menu.submenu), 'active':checkActive(menu)}"
+						v-show="menu.for.includes(user.type)"
+					>
 						<router-link :to="menu.url">
 							<b class="caret" v-if="menu.caret"></b>
 							<span class="badge pull-right" v-if="isNotEmpty(menu.badge)">{{ menu.badge }}</span>
@@ -86,15 +89,18 @@ export default {
 			menus: [{
 				'icon': 'fa fa-home',
 				'title': 'หน้าแรก',
-				'url': '/admin'
+				'url': '/admin',
+				'for': ['teacher', 'admin']
 			}, {
 				'icon': 'fa fa-shopping-cart',
 				'title': 'รายการซื้อขาย',
-				'url': '/admin/order'
+				'url': '/admin/order',
+				'for': ['teacher', 'admin']
 			}, {
 				'icon': 'fa fa-book',
 				'title': 'หมวดหมู่',
 				'url': '',
+				'for': ['admin'],
 				'caret': true,
 				'submenu': [
 					{
@@ -111,6 +117,7 @@ export default {
 				'title': 'คอร์ส',
 				'caret': true,
 				'url': '',
+				'for': ['teacher'],
 				'submenu': [
 					{
 						'url': '/admin/course/add',
@@ -126,6 +133,7 @@ export default {
 				'title': 'โปรโมชัน',
 				'caret': true,
 				'url': '',
+				'for': ['admin'],
 				'submenu': [
 					{
 						'url': '/admin/promotion/add',
@@ -138,19 +146,23 @@ export default {
 			}, {
 				'icon': 'fa fa-credit-card',
 				'title': 'รายการแจ้งชำระเงิน',
-				'url': '/admin/payment'
+				'url': '/admin/payment',
+				'for': ['admin']
 			}, {
 				'icon': 'fa fa-coins',
 				'title': 'รายการเติมเงิน',
-				'url': '/admin/topup'
+				'url': '/admin/topup',
+				'for': ['admin']
 			}, {
 				'icon': 'fas fa-address-card',
 				'title': 'ข้อมูลผู้สมัครเป็นผู้สอน',
-				'url': '/admin/teacher/register'
+				'url': '/admin/teacher/register',
+				'for': ['admin']
 			}, {
 				'icon': 'fa fa-users',
 				'title': 'ผู้ใช้งาน',
 				'url': '',
+				'for': ['admin'],
 				'caret': true,
 				'submenu': [{
 					'url': '/admin/student',

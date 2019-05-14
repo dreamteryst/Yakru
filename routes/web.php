@@ -47,6 +47,8 @@ Route::prefix('api')->group(function () {
         Route::post('teacher/register', 'TeacherRegisterController@store')->name('teacherRegister.store');
         Route::post('user/update', 'Admin\UserController@update');
         Route::post('user/password', 'Admin\UserController@password');
+        Route::get('course/notify/{id}', 'CourseController@notify');
+        Route::get('example/course/{id}', 'Admin\ExampleController@course');
     });
     Route::get('bank', 'BankController@jsonData')->name('bank.data');
     Route::get('category', 'CategoryController@jsonData')->name('category.data');
@@ -54,6 +56,7 @@ Route::prefix('api')->group(function () {
     Route::get('course/{id}', 'CourseController@show')->name('course.show');
     Route::get('course/like/{id}', 'CourseController@like')->name('course.like');
 
+    Route::get('example/{id}', 'Admin\ExampleController@show');
     Route::post('example/done', 'UserExampleController@store');
 });
 

@@ -17,7 +17,7 @@
 			</div>
 			<!-- end navbar-header -->
 			<ul class="navbar-nav">
-				<li v-for="(menu, i) in menus" :key="i">
+				<li v-for="(menu, i) in menus" :key="i" v-show="menu.for.includes(user.type)">
 					<router-link :to="menu.link"><i :class="menu.icon"></i> {{ menu.name }}</router-link>
 				</li>
 			</ul>
@@ -54,25 +54,33 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
+	computed: {
+		...mapState(['user'])
+	},
 	data() {
 		return {
 			menus: [{
 				icon: 'fas fa-layer-group',
 				name: 'จัดการหมวดหมู่',
-				link: '/admin/category'
+				link: '/admin/category',
+				for: ['admin']
 			}, {
 				icon: 'fas fa-book',
 				name: 'จัดการคอร์ส',
-				link: '/admin/course'
+				link: '/admin/course',
+				for: ['teacher', 'admin']
 			}, {
 				icon: 'fas fa-award',
 				name: 'จัดการโปรโมชัน',
-				link: '/admin/promotion'
+				link: '/admin/promotion',
+				for: ['admin']
 			}, {
 				icon: 'fas fa-users',
 				name: 'รายชื่อผู้เรียน',
-				link: '/admin/student'
+				link: '/admin/student',
+				for: ['admin']
 			}]
 		}
 	}

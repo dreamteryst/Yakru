@@ -77,9 +77,19 @@ class ExampleController extends Controller
      * @param  \App\Example  $example
      * @return \Illuminate\Http\Response
      */
-    public function show(Example $example)
+    public function show(Request $request, $id)
     {
-        //
+        $examples = Example::where('id', $id)->with('question.choice')->first();
+        $examples->question->each(function($question) {
+            $question->makeVisible(['ans']);
+        });
+        return $examples;
+    }
+
+    public function course(Request $request, $id)
+    {
+        $examples = Example::where('course_id', $id)->get();
+        return $examples;
     }
 
     /**

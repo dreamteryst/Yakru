@@ -49,12 +49,13 @@
               <div class="tab-pane fade active in" id="example">
                 <button
                   class="btn btn-primary"
-                  @click="openExamp"
+                  @click="openExamp('pretest')"
                   :disabled="checkIsDone('pretest')"
                 >แบบทดสอบก่อนเรียน</button>
                 <button
                   class="btn btn-success"
-                  :disabled="checkIsDone('posttest') || !checkIsDone('posttest')"
+                  @click="openExamp('posttest')"
+                  :disabled="!checkIsDone('pretest') || checkIsDone('posttest')"
                 >แบบทดสอบหลังเรียน</button>
               </div>
             </div>
@@ -120,13 +121,23 @@
     <Example
       ref="modalPreTest"
       title="แบบทดสอบก่อนเรียน"
-      v-if="course.example.length > 0"
+      v-if="course.example && course.example.length > 0"
       :time_limit="course.example.find(item => item.example_type === 'pretest').time_limit"
       :questions="course.example.find(item => item.example_type === 'pretest').question"
+      :example_id="course.example.find(item => item.example_type === 'pretest').id"
       @submit="submitExam"
       @timeOver="submitExam"
     />
-    <b-modal ref="modalPostTest" ok-title="บันทึก"></b-modal>
+    <Example
+      ref="modalPostTest"
+      title="แบบทดสอบหลังเรียน"
+      v-if="course.example && course.example.length > 0"
+      :time_limit="course.example.find(item => item.example_type === 'posttest').time_limit"
+      :questions="course.example.find(item => item.example_type === 'posttest').question"
+      :example_id="course.example.find(item => item.example_type === 'posttest').id"
+      @submit="submitExam"
+      @timeOver="submitExam"
+    />
   </section>
 </template>
 
@@ -175,22 +186,26 @@ export default {
             }
             return this.course.example.find(item => item.example_type === type).isDone;
         },
-        openExamp() {
+        openExamp(type) {
             this.alertConfirm(
                 "ยืนยันการดำเนินการ",
                 "คุณต้องการเริ่มทำข้อสอบใช่หรือไม่"
             ).then(result => {
                 if (result.value) {
                     this.started_at = moment().format("YYYY-MM-DD");
-                    this.$refs.modalPreTest.show();
+                    if (type == "pretest") {
+                      this.$refs.modalPreTest.show();
+                    } else {
+                      this.$refs.modalPostTest.show();
+                    }
                 }
             });
         },
-        submitExam($answers) {
+        submitExam(id, answers) {
             const payload = new FormData();
-            payload.append("example_id", this.$route.params.id);
+            payload.append("example_id", id);
             payload.append("started_at", this.started_at);
-            $answers.forEach((item, i) => {
+            answers.forEach((item, i) => {
                 payload.append(`answers[${i}]`, item);
             });
 

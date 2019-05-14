@@ -193,7 +193,12 @@ export default {
                     };
                     this.chats.push(temp);
                 });
-                $(".chatbox").animate({ scrollTop: $(".chatbox").prop('scrollHeight') }, 1000);
+                setTimeout(() => {
+                    $(".chatbox").animate(
+                        { scrollTop: $(".chatbox").prop("scrollHeight") },
+                        1000
+                    );
+                }, 500);
             })
             .catch(error => {
                 console.log(error);

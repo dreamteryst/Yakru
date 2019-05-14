@@ -65,23 +65,13 @@
                 <span class="f-s-20">แชร์หน้าจอ</span>
               </button>
             </div>
-            <div class="chatbox">
-              <div class="message" v-for="(item, i) in chats" :key="i">
-                <span
-                  :class="[item.user_id === course.user_id ? 'user-name-teacher' : 'user-name' ]"
-                >{{ item.name }} :&nbsp;</span>
-                <span class="text">{{ item.message }}</span>
-                <span class="time">{{ item.time }}</span>
-              </div>
-              <div class="input">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="พิมพ์ข้อความที่นี่"
-                  @keyup="handleMessage"
-                >
-              </div>
-            </div>
+            <Chat
+              :courseId="$route.params.id"
+              :user="profile"
+              :roomId="roomId"
+              :course="course"
+              :socket="socket"
+            />
           </div>
         </div>
         <b-row>
@@ -89,7 +79,7 @@
             <h4 class="m-t-15">{{ course.course_name }} (Live)</h4>
           </b-col>
         </b-row>
-        <Exam :socket="socket" :roomId="roomId" :courseId="this.$route.params.id" />
+        <Exam :socket="socket" :roomId="roomId" :courseId="this.$route.params.id"/>
         <hr>
         <div class="row row-space-10">
           <!-- BEGIN col-2 -->
@@ -206,24 +196,6 @@ export default {
                 console.log(error);
                 if (error.response) console.log(error.response);
             });
-        axios
-            .get(`/api/chat/${this.$route.params.id}`)
-            .then(({ data }) => {
-                data.map(item => {
-                    const temp = {
-                        user_id: item.user.id,
-                        name: `${item.user.firstname} ${item.user.lastname}`,
-                        message: item.message,
-                        time: item.time
-                    };
-                    this.chats.push(temp);
-                });
-                $(".chatbox").animate({ scrollTop: $(".chatbox").prop('scrollHeight') * 3 }, 1000);
-            })
-            .catch(error => {
-                console.log(error);
-                if (error.response) console.log(error.response);
-            });
     },
     beforeDestroy() {
         console.log("des");
@@ -305,30 +277,6 @@ export default {
             const self = this;
             this.socket.emit("initialize", this.roomId);
 
-            this.socket.on(roomId + "/chat message", msg => {
-                this.chats.push(msg);
-                if (msg.user_id == self.profile.id) {
-                    const data = {
-                        user_id: self.profile.id,
-                        course_id: self.course.id,
-                        message: msg.message,
-                        time: msg.time
-                    };
-                    axios.post("/api/chat", data).catch(error => {
-                        console.log(error);
-                        if (error.response) {
-                            console.log(error.response);
-                            swal({
-                                type: "error",
-                                title: "Oops...",
-                                text: error.response.data.message
-                            });
-                        }
-                    });
-                }
-                $(".chatbox").animate({ scrollTop: $(".chatbox").prop('scrollHeight') }, 1000);
-            });
-
             this.socket.on(roomId + "/user response", data => {
                 console.log(data);
                 if (data.accept) {
@@ -398,17 +346,6 @@ export default {
                     );
                 }
             });
-        },
-        handleMessage(event) {
-            if (event.key === "Enter" && event.target.value !== "") {
-                const payload = {
-                    user_id: this.profile.id,
-                    name: this.profile.firstname + " " + this.profile.lastname,
-                    message: event.target.value
-                };
-                this.socket.emit(this.roomId + "/chat message", payload);
-                event.target.value = "";
-            }
         }
     }
 };

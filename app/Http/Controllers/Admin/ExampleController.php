@@ -80,7 +80,7 @@ class ExampleController extends Controller
     public function show(Request $request, $id)
     {
         $examples = Example::where('id', $id)->with('question.choice')->first();
-        $examples->question->each(function($question) {
+        $examples->question->each(function ($question) {
             $question->makeVisible(['ans']);
         });
         return $examples;
@@ -88,8 +88,11 @@ class ExampleController extends Controller
 
     public function course(Request $request, $id)
     {
-        $examples = Example::where('course_id', $id)->get();
-        return $examples;
+        return Example::where('course_id', $id)->with('question.choice')->get()->each(function ($exam) {
+            $exam->question->each(function ($question) {
+                $question->makeVisible(['ans']);
+            });
+        });
     }
 
     /**
@@ -123,7 +126,7 @@ class ExampleController extends Controller
                 $choice = Choice::where('question_id', $item->id)->delete();
                 $item->delete();
             });
-            
+
             foreach ($request->question as $question) {
                 $dataQuestion = [
                     'example_id' => $example->id,

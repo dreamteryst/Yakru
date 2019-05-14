@@ -63,7 +63,13 @@
             </div>
           </div>
         </div>
-        <h4 class="m-t-15">{{ course.course_name }} (Live)</h4>
+        <b-row>
+          <b-col>
+            <h4 class="m-t-15">{{ course.course_name }} (Live)</h4>
+          </b-col>
+        </b-row>
+        <LiveExam :socket="socket" :roomId="roomId" :user="profile"/>
+        <hr>
         <div class="row row-space-10">
           <!-- BEGIN col-2 -->
           <div
@@ -139,7 +145,8 @@ export default {
         socket: "",
         profile: {},
         chats: [],
-        isLive: false
+        isLive: false,
+        isExam: false
     }),
     computed: {
         ...mapState(["user"])
@@ -152,8 +159,8 @@ export default {
     mounted() {
         if (this.user) this.profile = this.user;
         const self = this;
-        // this.socket = io("https://yakru-chat.herokuapp.com/");
-        this.socket = io("http://localhost:3000");
+        this.socket = io("https://yakru-chat.herokuapp.com/");
+        // this.socket = io("http://localhost:3000");
         axios
             .get(`/api/course/user/${this.$route.params.id}`)
             .then(({ data }) => {

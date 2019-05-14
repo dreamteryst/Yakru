@@ -117,7 +117,7 @@ export default {
 				'title': 'คอร์ส',
 				'caret': true,
 				'url': '',
-				'for': ['teacher'],
+				'for': ['teacher', 'admin'],
 				'submenu': [
 					{
 						'url': '/admin/course/add',

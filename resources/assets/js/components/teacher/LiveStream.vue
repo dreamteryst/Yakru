@@ -184,8 +184,8 @@ export default {
     mounted() {
         if (this.user) this.profile = this.user;
         const self = this;
-        // this.socket = io("https://yakru-chat.herokuapp.com/");
-        this.socket = io("http://localhost:3000");
+        this.socket = io("https://yakru-chat.herokuapp.com/");
+        // this.socket = io("http://localhost:3000");
         axios
             .get(`/api/course/user/${this.$route.params.id}`)
             .then(({ data }) => {

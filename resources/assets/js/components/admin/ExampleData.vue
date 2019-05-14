@@ -38,6 +38,8 @@
           :columns="columns"
           newable
           @clickNew="newData"
+          @clickEdit="editData"
+          @clickDelete="deleteData"
         />
       </div>
     </div>
@@ -65,6 +67,12 @@ export default {
     methods: {
         newData() {
             this.$router.push(`/admin/course/example/${this.$route.params.id}/add`)
+        },
+        editData(data) {
+          this.$router.push(`/admin/course/example/edit/${data.id}`)
+        },
+        deleteData(data) {
+          axios.post(`/admin/api/example/${data.id}`, { "_method": "DELETE"})
         }
     }
 };

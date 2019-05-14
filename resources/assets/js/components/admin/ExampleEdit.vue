@@ -126,18 +126,27 @@
 export default {
     data() {
         return {
+            course_id: "",
             example_type: "",
-            examples: [
-                {
-                    question: "",
-                    ans: "",
-                    choices: [{ text: "" }]
-                }
-            ],
+            examples: [],
             time_limit: "",
             errors: [],
             isSuccess: false
         };
+    },
+    mounted() {
+        axios.get(`/api/example/${this.$route.params.id}`).then(({ data }) => {
+            this.course_id = data.course_id
+            this.example_type = data.example_type
+            this.time_limit = data.time_limit
+            data.question.map(item => {
+                this.examples.push({
+                    question: item.question,
+                    ans: item.ans,
+                    choices: item.choice
+                })
+            })
+        })
     },
     methods: {
         addEx() {
@@ -160,8 +169,9 @@ export default {
         },
         save() {
             const formData = new FormData();
+            formData.append("_method", "PUT");
             formData.append("example_type", this.example_type);
-            formData.append("course_id", this.$route.params.id);
+            formData.append("course_id", this.course_id);
             formData.append("time_limit", this.time_limit);
             this.examples.forEach((item, i) => {
                 formData.append(`question[${i}][question]`, item.question);
@@ -175,7 +185,7 @@ export default {
             });
 
             axios
-                .post(`/admin/api/example`, formData)
+                .post(`/admin/api/example/${this.$route.params.id}`, formData)
                 .then(response => {
                     if (response.status === 200) {
                         window.location.href = `/admin/course/example/${

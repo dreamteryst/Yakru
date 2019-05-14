@@ -95,6 +95,9 @@ export default {
             this.socket.on(this.roomId + "/next exam", data => {
                 console.log("next exam");
                 console.log(data);
+                if(this.interval) {
+                    clearInterval(this.interval);
+                }
                 const self = this;
                 this.isAns = false;
                 this.initTime(data.time * 60);
@@ -122,7 +125,6 @@ export default {
         },
         answer(text) {
             console.log("answer exam");
-            clearInterval(this.interval);
             const payload = {
                 text,
                 user: this.user,

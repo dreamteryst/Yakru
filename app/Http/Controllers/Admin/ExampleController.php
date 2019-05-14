@@ -113,13 +113,19 @@ class ExampleController extends Controller
      * @param  \App\Example  $example
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Example $example)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'example_type' => 'required',
+            'course_id' => 'required',
+            'time_limit' => 'required',
+        ]);
         $dataExample = [
             'example_type' => $request->example_type,
             'course_id' => $request->course_id,
             'time_limit' => $request->time_limit,
         ];
+        $example = Example::findOrFail($id);
         if ($example->update($dataExample)) {
             $question = Question::where('example_id', $example->id)->get();
             $question->each(function ($item) {
@@ -157,14 +163,14 @@ class ExampleController extends Controller
      * @param  \App\Example  $example
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Example $example)
+    public function destroy(Request $request, $id)
     {
-        $question = Question::where('example_id', $example->id)->get();
+        $question = Question::where('example_id', $id)->get();
         $question->each(function ($item) {
             $choice = Choice::where('question_id', $item->id)->delete();
             $item->delete();
         });
-        if ($example->delete()) {
+        if (Example::find($id)->delete()) {
             return "success";
         } else {
             return response('failed', 500);

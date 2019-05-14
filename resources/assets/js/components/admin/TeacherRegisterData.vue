@@ -110,7 +110,7 @@ export default {
                 ],
                 drawCallback: function(settings) {
                     $(".btn-confirm").on("click", function() {
-                        this.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการยืนยันผู้สอนใช่หรือไม่?")
+                        self.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการยืนยันผู้สอนใช่หรือไม่?")
                         .then(result => {
                             if (result.value) {
                                 self.data = JSON.parse(
@@ -123,7 +123,7 @@ export default {
                         });
                     });
                     $(".btn-unconfirm").on("click", function() {
-                        this.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการยกเลิกการยืนยันผู้สอนใช่หรือไม่?")
+                        self.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการยกเลิกการยืนยันผู้สอนใช่หรือไม่?")
                         .then(result => {
                             if (result.value) {
                                 self.data = JSON.parse(
@@ -142,7 +142,7 @@ export default {
     methods: {
         confirm(mode) {
             axios
-                .post("/admin/api/teacherRegister/confirm" + mode, {
+                .post("/admin/api/teacherRegister/confirm/" + mode, {
                     id: this.data.id
                 })
                 .then(({ data }) => {

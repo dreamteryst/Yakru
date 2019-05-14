@@ -2,7 +2,7 @@
   <section>
     <b-row>
       <b-col>
-        <b-row v-if="!isEnd">
+        <b-row>
           <b-col md="6">
             <h4>เมนูข้อสอบ</h4>
             <button class="btn btn-block btn-info" v-if="!isExam" @click="openExam">เริ่มทำข้อสอบ</button>
@@ -146,6 +146,11 @@ export default {
         nextExam() {
             console.log("next exam");
             const self = this;
+
+            if(isNaN(this.time)) {
+              this.alertWarning("กรุณากรอกตัวเลข")
+              return;
+            }
 
             this.index++;
             this.socket.emit(this.roomId + "/next exam", {

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     protected $fillable = [
-        'topup_id', 'bank_id', 'user_id', 'transferred_at', 'amount', 'slip'
+        'topup_id', 'bank_id', 'user_id', 'transferred_at', 'amount', 'slip', 'reverse_slip', 'reason'
     ];
 
     public function bank()

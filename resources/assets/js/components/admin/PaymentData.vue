@@ -35,26 +35,30 @@
         <table id="payment-table" class="table table-striped table-bordered">
           <thead>
             <tr>
-              <th width="1%" data-priority="1">ID</th>
-              <th class="text-nowrap">ชื่อ นามสกุล</th>
-              <th class="text-nowrap">เลขที่บัญชีโอนเข้า</th>
-              <th class="text-nowrap">ธนาคาร</th>
-              <th class="text-nowrap">จำนวน</th>
-              <th class="text-nowrap">เวลา</th>
-              <th class="text-nowrap">หลักฐาน</th>
-              <th class="text-nowrap">สถานะ</th>
-              <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
+              <th width="1%" data-priority="2">ID</th>
+              <th class="text-nowrap" data-priority="1">ชื่อ นามสกุล</th>
+              <th class="text-nowrap" data-priority="1">เลขที่บัญชีโอนเข้า</th>
+              <th class="text-nowrap" data-priority="1">ธนาคาร</th>
+              <th class="text-nowrap" data-priority="1">จำนวน</th>
+              <th class="text-nowrap" data-priority="1">เวลา</th>
+              <th class="text-nowrap" data-priority="1">หลักฐาน</th>
+              <th class="text-nowrap" data-priority="1">สถานะ</th>
+              <th class="text-nowrap" data-priority="1">เหตุผล</th>
+              <th width="1%" class="text-nowrap" data-priority="2">Actions</th>
             </tr>
           </thead>
         </table>
       </div>
     </div>
+    <Reverse ref="reverse"/>
   </section>
 </template>
 
 <script>
 import swal from "sweetalert2";
+import Reverse from "./Reverse";
 export default {
+    components: { Reverse },
     data() {
         return {
             data: ""
@@ -85,14 +89,33 @@ export default {
                     {
                         data: "slip",
                         render: (data, type, row, meta) => {
-                            return `<a href="${self.renderPicture(data)}" target="_blank">View</a>`;
+                            return `<a href="${self.renderPicture(
+                                data
+                            )}" target="_blank">View</a>`;
                         }
                     },
-                    { data: "status", render: (data, type, row, meta) => {
-                        return `<p class='${(data == 'unpaid') ? 'text-danger' : 
-                        (data == 'paid') ? 'text-success' : 'text-warning'}'>
-                        ${(data == 'unpaid') ? 'ปฏิเสธ' : (data == 'paid') ? 'อนุมัติ' : 'รอดำเนินการ'}</p>`
-                    } },
+                    {
+                        data: "status",
+                        render: (data, type, row, meta) => {
+                            return `<p class='${
+                                data == "unpaid"
+                                    ? "text-danger"
+                                    : data == "paid"
+                                    ? "text-success"
+                                    : "text-warning"
+                            }'>
+                        ${
+                            data == "unpaid"
+                                ? "ปฏิเสธ"
+                                : data == "paid"
+                                ? "อนุมัติ"
+                                : data == 'reverse'
+                                ? "คืนเงิน"
+                                : "รอดำเนินการ"
+                        }</p>`;
+                        }
+                    },
+                    { data: "reason", name: "reason" },
                     {
                         data: null,
                         render: (data, type, row, meta) => {
@@ -106,8 +129,18 @@ export default {
                             <button type="button" class="btn btn-danger btn-reject">ปฏิเสธ</button>
                           </div>`
                                 );
+                            } else if (row["status"] != "reverse") {
+                                return (
+                                    `
+                                <div class="actions" data='` +
+                                    JSON.stringify(row) +
+                                    `'>
+                                    <button type="button" class="btn btn-danger btn-reverse">คืนเงิน</button>
+                                </div>
+                                `
+                                );
                             }
-                            return '';
+                            return "";
                         },
                         searchable: false,
                         sortable: false
@@ -115,7 +148,10 @@ export default {
                 ],
                 drawCallback: function(settings) {
                     $(".btn-confirm").on("click", function() {
-                        self.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการยืนยันการแจ้งชำระเงินใช่หรือไม่").then(result => {
+                        self.alertConfirm(
+                            "ยืนยันการดำเนินการ",
+                            "คุณต้องการยืนยันการแจ้งชำระเงินใช่หรือไม่"
+                        ).then(result => {
                             if (result.value) {
                                 self.data = JSON.parse(
                                     $(this)
@@ -127,7 +163,10 @@ export default {
                         });
                     });
                     $(".btn-reject").on("click", function() {
-                        self.alertConfirm("ยืนยันการดำเนินการ", "คุณต้องการปฏิเสธการแจ้งชำระเงินใช่หรือไม่").then(result => {
+                        self.alertConfirm(
+                            "ยืนยันการดำเนินการ",
+                            "คุณต้องการปฏิเสธการแจ้งชำระเงินใช่หรือไม่"
+                        ).then(result => {
                             if (result.value) {
                                 self.data = JSON.parse(
                                     $(this)
@@ -137,6 +176,14 @@ export default {
                                 self.confirm(2);
                             }
                         });
+                    });
+                    $(".btn-reverse").on("click", function() {
+                        self.data = JSON.parse(
+                            $(this)
+                                .closest("div")
+                                .attr("data")
+                        );
+                        self.reverse();
                     });
                 }
             });
@@ -149,7 +196,7 @@ export default {
                     payment_id: this.data.id
                 })
                 .then(({ data }) => {
-                    this.table.ajax.reload()
+                    this.table.ajax.reload();
                     swal({
                         type: "success",
                         title: "ดำเนินการสำเร็จ"
@@ -166,6 +213,9 @@ export default {
                         });
                     }
                 });
+        },
+        reverse() {
+            this.$refs.reverse.open(this.data);
         }
     }
 };

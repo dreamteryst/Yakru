@@ -109,9 +109,14 @@ class PaymentController extends Controller
         ]);
         
         $payment = Payment::find($request->payment_id);
-        $payment->status = $mode == 2 ? 'unpaid' : 'paid';
+        $payment->status = $mode == 1 ? 'paid' : $mode == 2 ? 'unpaid' : 'reverse';
+        if ($mode == 3) {
+            $slip = $request->evidence->store('evidence');
+            $payment->reverse_slip = $slip;
+            $payment->reason = $request->reason;
+        }
         $topup = Topup::find($payment->topup_id);
-        $topup->status = $mode == 2 ? 'unpaid' : 'paid';
+        $topup->status = $mode == 1 ? 'paid' : 'unpaid';
         $user = User::find($payment->user_id);
         $user->money = $payment->status == 'paid' ? $user->money += $payment->amount : $user->money -= $payment->amount;
         if($topup->save() && $payment->save() && $user->save())

@@ -160,7 +160,6 @@ export default {
         oldRoomId: "",
         socket: "",
         profile: {},
-        chats: [],
         isLive: false
     }),
     computed: {

@@ -144,6 +144,11 @@ export default {
 					}
 				]
 			}, {
+				'icon': 'fa fa-undo-alt',
+				'title': 'รายการคำขอคืนเงิน',
+				'url': '/admin/course/refund',
+				'for': ['admin']
+			}, {
 				'icon': 'fa fa-credit-card',
 				'title': 'รายการแจ้งชำระเงิน',
 				'url': '/admin/payment',

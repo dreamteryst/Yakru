@@ -26,14 +26,14 @@
                     <thead>
                         <tr>
                             <th width="1%" data-priority="1">ID</th>
-                            <th class="text-nowrap">ผู้สอน</th>
-                            <th class="text-nowrap">ชื่อคอร์ส</th>
-                            <th class="text-nowrap">หมวดหมู่</th>
-                            <th class="text-nowrap">คำอธิบายโดยย่อ</th>
-                            <th class="text-nowrap">จำนวนผู้เรียน</th>
-                            <th class="text-nowrap">ราคา</th>
-                            <th class="text-nowrap">จัดการ</th>
-                            <th width="1%" class="text-nowrap" data-priority="1">Actions</th>
+                            <th>ผู้สอน</th>
+                            <th>ชื่อคอร์ส</th>
+                            <th>หมวดหมู่</th>
+                            <th>คำอธิบายโดยย่อ</th>
+                            <th>จำนวนผู้เรียน</th>
+                            <th>ราคา</th>
+                            <th>จัดการ</th>
+                            <th width="1%" data-priority="1">Actions</th>
                         </tr>
                     </thead>
                 </table>
@@ -96,6 +96,13 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="refund_policy">รายละเอียดการคืนเงิน</label>
+                <textarea class="form-control" id="refund_policy" :class="{'is-invalid':isError('refund_policy')}" v-model="data.refund_policy" placeholder="Course Refund Policy" rows="8"></textarea>
+                <div class="invalid-feedback" v-if="isError('refund_policy')">
+                    {{ errors.refund_policy[0] }}
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="course_price">ราคา</label>
                 <input type="number" min="0" max="999999" class="form-control" id="course_price" :class="{'is-invalid':isError('course_price')}" v-model="data.course_price" placeholder="Course Price">
                 <div class="invalid-feedback" v-if="isError('course_price')">
@@ -107,6 +114,13 @@
                 <input type="number" min="0" max="999999" class="form-control" id="course_discounted" :class="{'is-invalid':isError('course_discounted')}" v-model="data.course_discounted" placeholder="Course Price">
                 <div class="invalid-feedback" v-if="isError('course_discounted')">
                     {{ errors.course_discounted[0] }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="refund_percentage">ร้อยละการคืนเงิน</label>
+                <input type="number" min="1" max="100" class="form-control" id="refund_percentage" :class="{'is-invalid':isError('refund_percentage')}" v-model="data.refund_percentage" placeholder="Course Refund Percentage">
+                <div class="invalid-feedback" v-if="isError('refund_percentage')">
+                    {{ errors.refund_percentage[0] }}
                 </div>
             </div>
             <div class="form-group">
@@ -169,7 +183,7 @@ export default {
             errors: [],
             isSuccess: false,
             course_discounted : 0,
-            course_limit : ''
+            course_limit : '',
         };
     },
     mounted() {
@@ -337,6 +351,8 @@ export default {
             formData.append('tags', JSON.stringify(this.data.tags));
             formData.append('course_discounted', this.data.course_discounted);
             formData.append('course_limit', this.data.course_limit);
+            formData.append('refund_policy', this.data.refund_policy);
+            formData.append('refund_percentage', this.data.refund_percentage);
 
             axios
                 .post(`/admin/api/course` + "/" + this.data.id, formData)

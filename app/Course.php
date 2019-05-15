@@ -32,6 +32,8 @@ class Course extends Model
         'user_id',
         'type',
         'secret',
+        'refund_policy',
+        'refund_percentage'
     ];
 
     protected $casts = [
@@ -62,6 +64,11 @@ class Course extends Model
         return $this->belongsToMany('App\User', 'user_course');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function userCourse()
     {
         return $this->hasMany('App\UserCourse');
@@ -75,6 +82,11 @@ class Course extends Model
     public function promotion()
     {
         return $this->belongsToMany('App\Promotion', 'course_promotions');
+    }
+
+    public function order()
+    {
+        return $this->hasMany('App\Order');
     }
 
     public function example()

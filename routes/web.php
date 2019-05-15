@@ -39,6 +39,7 @@ Route::prefix('api')->group(function () {
         });
         Route::get('chat/{id}', 'ChatController@jsonData')->name('chat.data');
         Route::post('chat', 'ChatController@store')->name('course.store');
+        Route::post('course/refund', 'RefundController@store');
         Route::post('course/buy', 'CourseController@buy')->name('course.buy');
         Route::get('course/me', 'CourseController@myCourse')->name('coures.me');
         Route::get('course/teacherCourse', 'CourseController@teacherCourse')->name('coures.teacherCourse');
@@ -123,6 +124,8 @@ Route::middleware(['auth:web_admin'])->prefix('admin')->group(function () {
         Route::post('teacherRegister/confirm/{mode}', 'TeacherRegisterController@confirm');
 
         Route::get('setting/stats', 'Admin\SettingController@stats');
+        Route::get('refund', 'RefundController@anyData');
+        Route::post('refund/confirm/{id}', 'RefundController@confirm');
     });
 
     Route::get('/{any}', function () {

@@ -67,7 +67,9 @@ class CourseController extends Controller
 
     public function myCourse()
     {
-        return UserCourse::where('user_id', Auth::user()->id)->with('course')->get();
+        return UserCourse::where('user_id', Auth::user()->id)->with(['course.order' => function ($query) {
+            $query->where('user_id', Auth::user()->id);
+        }])->get();
     }
 
     public function teacherCourse()

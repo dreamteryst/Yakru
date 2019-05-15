@@ -1,5 +1,6 @@
 <template>
   <section>
+    <b-alert variant="warning" show>*เมื่อทำการเติมเงินแล้ว จะไม่สามารถขอคืนเงินเป็นเงินสดได้</b-alert>
     <div class="row m-b-3" v-for="(bank, i) in banks" :key="i">
       <div class="col-sm-3">
         <img :src="bank.bank_logo" alt="" class="img-responsive" />

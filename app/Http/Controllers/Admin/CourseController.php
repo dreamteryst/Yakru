@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Course;
 use App\Unit;
+use App\Refund;
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
@@ -48,7 +50,9 @@ class CourseController extends Controller
             'course_video' => 'required',
             'course_discounted' => 'required',
             'course_limit' => 'required',
-            'type' => 'required'
+            'type' => 'required',
+            'refund_policy' => 'required',
+            'refund_percentage' => 'required|numeric|min:1|max:100'
         ]);
         $picture = $request->file('course_picture')->store('course_pictures');
         $data = [
@@ -62,7 +66,9 @@ class CourseController extends Controller
             'course_discounted' => $request->course_discounted,
             'course_limit' => $request->course_limit,
             'secret' => bin2hex(random_bytes(10)),
-            'type' => $request->type
+            'type' => $request->type,
+            'refund_policy' => $request->refund_policy,
+            'refund_percentage' => $request->refund_percentage
         ];
         $data['requirements'] = json_decode($request['requirements']);
         $data['result'] = json_decode($request['results']);
@@ -112,7 +118,9 @@ class CourseController extends Controller
             'course_description' => 'required|max:200',
             'course_price' => 'required',
             'course_discounted' => 'required',
-            'course_limit' => 'required'
+            'course_limit' => 'required',
+            'refund_policy' => 'required',
+            'refund_percentage' => 'required|numeric|min:1|max:100'
         ]);
         
         $data['requirements'] = json_decode($request['requirements']);
@@ -134,6 +142,21 @@ class CourseController extends Controller
      */
     public function destroy(Course $course)
     {
+        foreach($course->users as $user) {
+            $order = Order::where('course_id', $course->id)->where('user_id', $user->id)->first();
+            $data = [
+                'user_id' => $user->id,
+                'course_id' => $course->id,
+                'amount' => $order->course_price * $course->refund_percentage / 100,
+                'reason' => 'Teacher cancel',
+                'status' => 'approve'
+            ];
+            $user->money += $data['amount'];
+            $refund = Refund::create($data);
+            if(!$refund && !$user->save()) {
+                return response(['message' => 'Failed'], 500);
+            }
+        }
         if($course->delete()){
             return json_encode(['success' => true, 'message' => 'ลบข้อมูล ' . $course->course_name . ' เรียบร้อย']);
         }

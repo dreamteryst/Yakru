@@ -138,17 +138,23 @@
     </b-modal>
     <b-modal ref="modalPaypal" title="ชำระด้วย Paypal" hide-footer no-fade>
       <b-form action="/paypal" method="post">
+        <b-alert variant="warning" show>*เมื่อทำการเติมเงินแล้ว จะไม่สามารถขอคืนเงินเป็นเงินสดได้</b-alert>
         <input type="hidden" name="_token" id="csrf-token" v-model="token">
         <b-form-group label="จำนวนเงิน" label-for="amount">
-          <b-form-input
-            id="amount"
-            name="amount"
-            type="number"
-            step="0.1"
-            min="100"
-            v-model="amount"
-            placeholder="ระบุจำนวนเงิน"
-          />
+          <div class="input-group">
+            <input
+              id="amount"
+              name="amount"
+              type="number"
+              step="0.1"
+              min="100"
+              max="1000000"
+              class="form-control"
+              v-model="amount"
+              placeholder="ระบุจำนวนเงิน"
+            >
+            <span class="input-group-addon">บาท</span>
+          </div>
         </b-form-group>
         <div class="form-group text-right">
           <button type="submit" class="btn btn-primary">ยืนยัน</button>
@@ -231,7 +237,7 @@ export default {
             this.$refs.changePassword.show();
         },
         openAdmin() {
-          window.location.href = "/admin"
+            window.location.href = "/admin";
         }
     }
 };

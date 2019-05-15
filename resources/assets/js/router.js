@@ -7,6 +7,7 @@ import ProductDetail from "./components/ProductDetail";
 import LiveStream from "./components/LiveStream";
 import Contact from "./components/Contact";
 import Payment from "./components/Payment";
+import Refund from "./components/Refund";
 import Learning from "./components/Learning";
 
 import TeacherLiveStream from "./components/teacher/LiveStream";
@@ -40,6 +41,7 @@ import CourseCalendar from "./components/admin/CourseCalendar";
 import ScheduleData from "./components/admin/ScheduleData";
 import UnitAdd from "./components/admin/UnitAdd";
 import TopupData from './components/admin/TopupData'
+import RefundData from './components/admin/RefundData'
 
 import Auth from "./route/Auth";
 import Login from "./components/auth/Login";
@@ -81,6 +83,7 @@ const routes = [
       { path: "learning/:id", name: "learning", component: Learning },
       { path: "contact", name: "contact", component: Contact },
       { path: "payment", name: "payment", component: Payment },
+      { path: "refund", name: "Refund", component: Refund },
       { path: "teacher/live-stream/:id", name: "teacher-live-stream", component: TeacherLiveStream },
       { path: "teacher/register", name: "teacher-register", component: TeacherRegister },
     ]
@@ -93,6 +96,7 @@ const routes = [
       { path: "", name: "Admin", component: Dashboard },
       { path: "dashboard", name: "Dashboard", component: Dashboard },
       { path: "course", name: "Course", component: CourseData },
+      { path: "course/refund", name: "CourseRefund", component: RefundData },
       { path: "course/add", name: "CourseAdd", component: CourseAdd },
       { path: "course/unit/:id/add", name: "AddUnit", component: UnitAdd },
       { path: "course/unit/:id", name: "Unit", component: UnitData },

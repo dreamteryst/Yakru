@@ -184,12 +184,14 @@
             <div id="product-tab-content" class="tab-content">
               <!-- BEGIN #product-desc -->
               <div class="tab-pane fade active in" id="product-desc">
-                <h3 v-if="course.requirements">Requirement</h3>
+                <h3 v-if="course.requirements">ความสามารถพื้นฐานที่ต้องมี</h3>
                 <ul v-if="course.requirements">
                   <li v-for="(item, i) in course.requirements" :key="i">{{ item }}</li>
                 </ul>
-                <h3>Description</h3>
+                <h3>รายละเอียด</h3>
                 <p v-html="course.course_description"></p>
+                <h3>นโยบายการคืนเงิน</h3>
+                <p v-html="course.refund_policy"></p>
               </div>
               <!-- END #product-desc -->
             </div>

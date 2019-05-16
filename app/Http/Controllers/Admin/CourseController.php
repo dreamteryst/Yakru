@@ -140,21 +140,26 @@ class CourseController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Request $request, Course $course)
     {
-        foreach($course->users as $user) {
-            $order = Order::where('course_id', $course->id)->where('user_id', $user->id)->first();
-            $data = [
-                'user_id' => $user->id,
-                'course_id' => $course->id,
-                'amount' => $order->course_price * $course->refund_percentage / 100,
-                'reason' => 'Teacher cancel',
-                'status' => 'approve'
-            ];
-            $user->money += $data['amount'];
-            $refund = Refund::create($data);
-            if(!$refund && !$user->save()) {
-                return response(['message' => 'Failed'], 500);
+        $request->validate([
+            'refund' => 'required'
+        ]);
+        if ($request->refund) {
+            foreach($course->users as $user) {
+                $order = Order::where('course_id', $course->id)->where('user_id', $user->id)->first();
+                $data = [
+                    'user_id' => $user->id,
+                    'course_id' => $course->id,
+                    'amount' => $order->course_price * $course->refund_percentage / 100,
+                    'reason' => 'Teacher cancel',
+                    'status' => 'approve'
+                ];
+                $user->money += $data['amount'];
+                $refund = Refund::create($data);
+                if(!$refund && !$user->save()) {
+                    return response(['message' => 'Failed'], 500);
+                }
             }
         }
         if($course->delete()){
@@ -173,6 +178,9 @@ class CourseController extends Controller
         return Datatables::of($course)
         ->addColumn('student_count', function($course){
             return $course->users->count();
+        })
+        ->addColumn('orders', function($course) {
+            return $course->order->each->user->toArray();
         })
         ->addColumn('category_name', function($course){
             return $course->category->category_name;

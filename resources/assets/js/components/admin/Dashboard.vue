@@ -33,7 +33,7 @@
                     <div class="stats-icon stats-icon-lg"><i class="fa fa-archive fa-fw"></i></div>
                     <div class="stats-content">
                         <div class="stats-title">คอร์สทั้งหมด</div>
-                        <div class="stats-number" v-if="this.stats.total_course">{{ numberWithCommas(this.stats.total_course) }}</div>
+                        <div class="stats-number">{{ this.stats.total_course ? numberWithCommas(this.stats.total_course) : 0 }}</div>
                         <div class="stats-progress progress">
                             <div class="progress-bar" style="width: 80%;"></div>
                         </div>

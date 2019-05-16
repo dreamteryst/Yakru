@@ -48,28 +48,6 @@
                 <li>
                   <router-link to="/contact">ติดต่อเรา</router-link>
                 </li>
-                <li class="dropdown dropdown-hover">
-                  <a href="#" data-toggle="dropdown">
-                    <i class="fa fa-search search-btn"></i>
-                    <span class="arrow top"></span>
-                  </a>
-                  <div class="dropdown-menu p-15">
-                    <form action="search_results.html" method="POST" name="search_form">
-                      <div class="input-group">
-                        <input
-                          type="text"
-                          placeholder="Search"
-                          class="form-control bg-silver-lighter"
-                        >
-                        <span class="input-group-btn">
-                          <button class="btn btn-inverse" type="submit">
-                            <i class="fa fa-search"></i>
-                          </button>
-                        </span>
-                      </div>
-                    </form>
-                  </div>
-                </li>
               </ul>
             </div>
           </div>

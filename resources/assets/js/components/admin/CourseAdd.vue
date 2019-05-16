@@ -148,7 +148,7 @@
             <input
               type="number"
               min="0"
-              max="999999"
+              max="2000000000"
               step="0.01"
               class="form-control"
               id="course_price"
@@ -166,7 +166,7 @@
             <input
               type="number"
               min="0"
-              max="999999"
+              max="2000000000"
               step="0.01"
               class="form-control"
               id="course_discounted"
@@ -198,7 +198,7 @@
             <input
               type="number"
               min="0"
-              max="999999"
+              max="1000000"
               step="0.01"
               class="form-control"
               id="course_limit"

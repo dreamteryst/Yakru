@@ -104,14 +104,14 @@
             </div>
             <div class="form-group">
                 <label for="course_price">ราคา</label>
-                <input type="number" min="0" max="999999" class="form-control" id="course_price" :class="{'is-invalid':isError('course_price')}" v-model="data.course_price" placeholder="Course Price">
+                <input type="number" min="0" max="2000000000" class="form-control" id="course_price" :class="{'is-invalid':isError('course_price')}" v-model="data.course_price" placeholder="Course Price">
                 <div class="invalid-feedback" v-if="isError('course_price')">
                     {{ errors.course_price[0] }}
                 </div>
             </div>
             <div class="form-group">
                 <label for="course_discounted">ลดเหลือ</label>
-                <input type="number" min="0" max="999999" class="form-control" id="course_discounted" :class="{'is-invalid':isError('course_discounted')}" v-model="data.course_discounted" placeholder="Course Price">
+                <input type="number" min="0" max="2000000000" class="form-control" id="course_discounted" :class="{'is-invalid':isError('course_discounted')}" v-model="data.course_discounted" placeholder="Course Price">
                 <div class="invalid-feedback" v-if="isError('course_discounted')">
                     {{ errors.course_discounted[0] }}
                 </div>
@@ -125,7 +125,7 @@
             </div>
             <div class="form-group">
                 <label for="course_limit">จำนวนผู้เรียนได้สูงสุด</label>
-                <input type="number" min="0" max="999999" class="form-control" id="course_limit" :class="{'is-invalid':isError('course_limit')}" v-model="data.course_limit" placeholder="Course Price">
+                <input type="number" min="0" max="1000000" class="form-control" id="course_limit" :class="{'is-invalid':isError('course_limit')}" v-model="data.course_limit" placeholder="Course Price">
                 <div class="invalid-feedback" v-if="isError('course_limit')">
                     {{ errors.course_limit[0] }}
                 </div>

@@ -6,6 +6,7 @@ use App\Course;
 use App\Order;
 use App\Refund;
 use App\User;
+use App\UserCourse;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
@@ -24,6 +25,14 @@ class RefundController extends Controller
             'course_id' => 'required',
             'reason' => 'required',
         ]);
+
+        $refunded = Refund::where('user_id', $request->user()->id)
+            ->where('course_id', $request->course_id)
+            ->where('status', '!=', 'reject')
+            ->exists();
+        if($refunded) {
+            return response(['message' => 'คุณเคยขอคืนเงินจากคอร์สนี้ไปแล้ว'], 422);
+        }
 
         $order = Order::where('course_id', $request->course_id)->where('user_id', $request->user()->id)->first();
         $course = Course::findOrFail($request->course_id);
@@ -51,6 +60,8 @@ class RefundController extends Controller
         if ($request->mode == 1) {
             $user = User::findOrFail($refund->user_id);
             $user->money += $refund->amount;
+
+            $userCourse = UserCourse::where('user_id', $user->id)->where('course_id', $refund->course_id)->delete();
             if (!$user->save()) {
                 return response(['message' => 'failed'], 500);
             }

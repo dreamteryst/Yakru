@@ -106,18 +106,18 @@
             <!-- BEGIN item -->
             <div class="item item-thumbnail">
               <router-link :to="`/product-detail/${like.id}`" class="item-image">
-                <img :src="`/${like.course_picture}`" alt>
-                <div class="discount">{{ getPercent(like) }}% OFF</div>
+                <img :src="renderPicture(like.course_picture)" alt>
+                <div class="discount">{{ isNaN(getPercent(like)) ? 0 : getPercent(like) }}% OFF</div>
               </router-link>
               <div class="item-info">
                 <h4 class="item-title">
-                  <router-link to="/product-detail">{{ like.course_name }}</router-link>
+                  <router-link :to="`/product-detail/${like.id}`">{{ like.course_name }}</router-link>
                 </h4>
                 <p class="item-desc">{{ like.course_description }}</p>
                 <div
                   class="item-price"
-                  v-if="like.course_discounted"
-                >฿ {{ numberWithCommas(like.course_discounted) }}</div>
+                  v-if="like.final_price"
+                >฿ {{ like.final_price <= 0 ? 'FREE' : numberWithCommas(like.final_price) }}</div>
                 <div
                   class="item-discount-price"
                   v-if="like.course_price"

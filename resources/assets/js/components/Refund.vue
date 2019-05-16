@@ -89,13 +89,15 @@ export default {
     },
     watch: {
         course_id(val) {
-            const course = this.courses.find(item => item.course_id == val);
-            this.course_price = course.course.order[0].course_price;
-            this.refund_amount =
-                (course.course.refund_percentage *
-                    course.course.order[0].course_price) /
-                    100 +
-                ` (${course.course.refund_percentage}%)`;
+            if (val) {
+                const course = this.courses.find(item => item.course_id == val);
+                this.course_price = course.course.order[0].course_price;
+                this.refund_amount =
+                    (course.course.refund_percentage *
+                        course.course.order[0].course_price) /
+                        100 +
+                    ` (${course.course.refund_percentage}%)`;
+            }
         }
     },
     mounted() {
@@ -119,16 +121,28 @@ export default {
         submit(e) {
             e.preventDefault();
             const payload = new FormData();
-            payload.append('course_id', this.course_id);
-            payload.append('reason', this.reason);
-            axios.post('/api/course/refund', payload).then(({ data }) => {
-                this.alertSuccess();
-            }).catch(error => {
-                console.log(error)
-                if (error.response.data.errors) {
-                    this.alertWarning(errro.response.data.errors.message)
-                }
-            })
+            payload.append("course_id", this.course_id);
+            payload.append("reason", this.reason);
+            axios
+                .post("/api/course/refund", payload)
+                .then(({ data }) => {
+                    this.alertSuccess();
+                    this.clearData();
+                })
+                .catch(error => {
+                    console.log(error);
+                    if (error.response.data.errors) {
+                        this.alertWarning(error.response.data.errors.message);
+                    } else if (error.response.data.message) {
+                        this.alertWarning(error.response.data.message);
+                    }
+                });
+        },
+        clearData() {
+            this.course_id = "";
+            this.reason = "";
+            this.course_price = "";
+            this.refund_amount = "";
         }
     }
 };

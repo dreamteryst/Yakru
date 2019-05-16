@@ -77,14 +77,14 @@
 						<div class="item item-thumbnail">
 							<router-link :to="`/product-detail/${course.id}`" class="item-image">
 								<img :src="renderPicture(course.course_picture)" alt="" />
-								<div class="discount">{{ getPercent(course) }}% OFF</div>
+								<div class="discount">{{ isNaN(getPercent(course)) ? 0 : getPercent(course) }}% OFF</div>
 							</router-link>
 							<div class="item-info">
 								<h4 class="item-title">
 									<router-link :to="`/product-detail/${course.id}`" v-html="course.course_name"></router-link>
 								</h4>
 								<p class="item-desc">{{ course.course_subtitle }}</p>
-								<div class="item-price">฿ {{ numberWithCommas(course.final_price) }}</div>
+								<div class="item-price">฿ {{ course.final_price <= 0 ? 'FREE' : numberWithCommas(course.final_price) }}</div>
 								<div class="item-discount-price">฿ {{ numberWithCommas(course.course_price) }}</div>
 								<div class="live-text" v-if="course.type === 'live'">• Live</div>
 								<div class="text-primary" v-else>Video</div>

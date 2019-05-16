@@ -71,7 +71,7 @@
             <!-- BEGIN item -->
             <div class="item item-thumbnail">
               <router-link to class="item-image">
-                <img src="https://fakeimg.pl/240x135/" alt>
+                <img src="/assets_admin/img/user/personal.png" alt>
               </router-link>
               <div class="item-info">
                 <h4 class="item-title">

@@ -45,11 +45,11 @@ class CourseController extends Controller
             'course_name' => 'required|max:200',
             'course_subtitle' => 'required|max:200',
             'course_description' => 'required|max:200',
-            'course_price' => 'required',
+            'course_price' => 'required|numeric|min:0|max:2000000000',
             'course_picture' => 'required',
             'course_video' => 'required',
-            'course_discounted' => 'required',
-            'course_limit' => 'required',
+            'course_discounted' => 'required|numeric|min:0|max:2000000000',
+            'course_limit' => 'required|numeric|min:0|max:1000000',
             'type' => 'required',
             'refund_policy' => 'required',
             'refund_percentage' => 'required|numeric|min:1|max:100'
@@ -116,9 +116,9 @@ class CourseController extends Controller
             'course_name' => 'required|max:200',
             'course_subtitle' => 'required|max:200',
             'course_description' => 'required|max:200',
-            'course_price' => 'required',
-            'course_discounted' => 'required',
-            'course_limit' => 'required',
+            'course_price' => 'required|numeric|min:0|max:2000000000',
+            'course_discounted' => 'required|numeric|min:0|max:2000000000',
+            'course_limit' => 'required|numeric|min:0|max:1000000',
             'refund_policy' => 'required',
             'refund_percentage' => 'required|numeric|min:1|max:100'
         ]);

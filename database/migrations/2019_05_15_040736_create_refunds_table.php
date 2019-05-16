@@ -21,7 +21,7 @@ class CreateRefundsTable extends Migration
             $table->enum('status', ['prepare', 'approve', 'reject'])->default('prepare');
             $table->decimal('amount', 10, 2);
 
-            $table->foreign('course_id')->references('id')->on('course');
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

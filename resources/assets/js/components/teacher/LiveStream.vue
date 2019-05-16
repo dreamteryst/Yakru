@@ -92,7 +92,7 @@
             <!-- BEGIN item -->
             <div class="item item-thumbnail">
               <span class="clickable item-image" @click="request(user.id)">
-                <img src="https://fakeimg.pl/240x135/" alt>
+                <img src="/assets_admin/img/user/personal.png" alt>
               </span>
               <div class="item-info">
                 <h4 class="item-title">

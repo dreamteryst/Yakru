@@ -126,7 +126,7 @@ class TeacherRegisterController extends Controller
         $teacherRegister = TeacherRegister::find($request->id);
         $user = User::find($teacherRegister->user_id);
         $teacherRegister->status = $mode == 2 ? 'unaccept' : 'accept';
-        $user->type = $mode == 2 ? 'teacher' : 'student';
+        $user->type = $mode == 1 ? 'teacher' : 'student';
         if ($teacherRegister->save() && $user->save()) {
             return $teacherRegister;
         } else {

@@ -70,9 +70,9 @@
 				<!-- END section-title -->
 
 				<!-- BEGIN row -->
-				<div class="row row-space-10">
+				<div class="row row-space-10" v-for="j in Math.ceil(category.courses.length / 5)" :key="j">
 					<!-- BEGIN col-2 -->
-					<div class="col-md-2 col-sm-4" v-for="(course, j) in category.courses" :key="j" v-if="course.course_price">
+					<div class="col-md-2 col-sm-4" v-for="course in category.courses.slice((j - 1) * 5, j * 5)" :key="course.id">
 						<!-- BEGIN item -->
 						<div class="item item-thumbnail">
 							<router-link :to="`/product-detail/${course.id}`" class="item-image">
@@ -238,7 +238,7 @@ export default {
 		axios.get('/api/category').then(({data}) => {
 			const categories = []
 			data.map(item => {
-				item.courses = item.courses.splice(0, 7)
+				// item.courses = item.courses.splice(0, 7)
 				categories.push(item)
 			})
 			this.categories = categories
